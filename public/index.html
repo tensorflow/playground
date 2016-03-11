@@ -1,0 +1,147 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<!--  Roboto webfont -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,400,300,700" rel="stylesheet" type="text/css">
+<!--  Material design icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--  Generic "site" styles -->
+<link rel="stylesheet" href="site.css">
+
+<style>
+
+/* Layout */
+
+.layout--page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Page header */
+
+.header {
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+.header h1 {
+  font-weight: 300;
+  font-size: 46px;
+  margin: 40px 0 15px 0;
+}
+.header .summary {
+  font-weight: 300;
+  font-size: 18px;
+  margin: 0 0 20px;
+}
+
+/* Control Bar */
+
+.control-bar {
+  border-top: solid 1px #eee;
+  border-bottom: solid 1px #eee;
+  padding: 12px 0;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.control-bar .big-button {
+  outline: none;
+  background: white;
+  border-radius: 60px;
+  border: solid 1px #ddd;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  margin-right: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.control-bar .big-button.play {
+  width: 60px;
+  height: 60px;
+}
+.control-bar .big-button.play .material-icons {
+  font-size: 40px;
+}
+
+/* Graphic */
+.graphic {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.graphic .column {
+
+}
+
+
+</style>
+
+<header>
+  <h2 class="layout--page">TensorFlow</h2>
+</header>
+
+
+
+  <div class="header layout--page">
+    <h1>Poke, prod and tweak a live deep neural network</h1>
+    <!-- <div class="summary">Poke, prod and tweak a live deep neural network right here in your browser</div> -->
+  </div>
+
+  <div class="control-bar layout--page">
+    <button class="big-button replay">
+      <i class="material-icons">replay</i>
+    </button>
+    <button class="big-button play">
+      <i class="material-icons">play_arrow</i>
+    </button>
+    <button class="big-button skip">
+      <i class="material-icons">skip_next</i>
+    </button>
+  </div>
+
+  <div class="graphic layout--page">
+    <div class="column">
+      <h3>Data</h3>
+      <p>Sample data sets to choose from.</p>
+    </div>
+    <div class="column">
+      <h3>Features</h3>
+      <p>Sample data sets to choose from.</p>
+    </div>
+    <div class="column">
+      <h3>Hidden Layers</h3>
+      <p>Sample data sets to choose from.</p>
+    </div>
+    <div class="column">
+      <h3>Output</h3>
+      <p>Sample data sets to choose from.</p>
+    </div>
+  </div>
+
+  <div class="article layout--page">
+    <h2>How Many Layers Should I Use?</h2>
+    <p>Some text.</p>
+  </div>
+
+
+<footer>
+  <div class="layout--page">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 20">
+      <path d="M6.25 13.24c-3.39 0-6.24-2.76-6.24-6.15C.01 3.7 2.86.94 6.25.94c1.87 0 3.21.73 4.21 1.69L9.28 3.82c-.72-.67-1.7-1.2-3.03-1.2-2.47 0-4.41 1.99-4.41 4.47 0 2.47 1.93 4.47 4.41 4.47 1.61 0 2.52-.65 3.11-1.23.48-.48.79-1.17.92-2.11H6.24V6.49h5.67c.06.3.09.71.09 1.1 0 1.26-.34 2.82-1.46 3.93-1.08 1.12-2.46 1.72-4.29 1.72zm14.72-3.96c0 2.28-1.79 3.96-3.97 3.96s-3.97-1.68-3.97-3.96c0-2.29 1.79-3.96 3.97-3.96s3.97 1.67 3.97 3.96zm-1.73 0c0-1.43-1.04-2.4-2.24-2.4s-2.24.97-2.24 2.4c0 1.41 1.04 2.4 2.24 2.4s2.24-.99 2.24-2.4zm10.73 0c0 2.28-1.79 3.96-3.97 3.96s-3.97-1.68-3.97-3.96c0-2.29 1.79-3.96 3.97-3.96s3.97 1.67 3.97 3.96zm-1.73 0c0-1.43-1.04-2.4-2.24-2.4s-2.24.97-2.24 2.4c0 1.41 1.04 2.4 2.24 2.4s2.24-.99 2.24-2.4zm10.33-3.72v7.11c0 2.92-1.72 4.12-3.76 4.12-1.92 0-3.08-1.29-3.51-2.34l1.51-.63c.27.64.93 1.41 2 1.41 1.3 0 2.12-.81 2.12-2.32v-.57h-.06c-.39.48-1.14.9-2.08.9-1.98 0-3.79-1.73-3.79-3.95 0-2.23 1.82-3.97 3.79-3.97.95 0 1.7.42 2.08.88h.06v-.64h1.64zm-1.53 3.73c0-1.39-.93-2.41-2.11-2.41-1.2 0-2.21 1.02-2.21 2.41 0 1.38 1 2.39 2.21 2.39 1.18 0 2.11-1 2.11-2.39zM42 1.36V13h-1.74V1.36H42zm7.09 9.22l1.35.9c-.43.65-1.48 1.76-3.3 1.76-2.25 0-3.93-1.74-3.93-3.96 0-2.35 1.7-3.96 3.74-3.96 2.05 0 3.06 1.63 3.39 2.52l.18.45-5.29 2.19c.41.79 1.04 1.2 1.92 1.2.87 0 1.49-.44 1.94-1.1zm-4.16-1.42l3.54-1.47c-.19-.49-.78-.84-1.47-.84-.88 0-2.11.78-2.07 2.31z"/>
+      <path fill="none" d="M0 0h52v20H0z"/>
+    </svg>
+    <div class="links">
+      <a href="">About</a>
+      <a href="">Github</a>
+      <a href="">Tensorflow</a>
+    </div>
+  </div>
+</footer>
+
+<script src="lib/d3.min.js"></script>
+<script>
+var stage = d3.select(".stage");
+
+</script>

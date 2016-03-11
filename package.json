@@ -1,0 +1,13 @@
+{
+  "name": "deep-playground-prototype",
+  "version": "2016.3.10",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "make",
+    "watch": "fswatch -0 --exclude 'node_modules/' --exclude 'build/' --exclude 'public/' . | xargs -0 -n 1 -I {} make all"
+  },
+  "dependencies": {
+    "d3": "^3.5.16"
+  }
+}
