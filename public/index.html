@@ -44,6 +44,11 @@
   display: flex;
   align-items: center;
 }
+.control-bar .big-buttons {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
 
 .control-bar .big-button {
   outline: none;
@@ -64,16 +69,33 @@
 .control-bar .big-button.play .material-icons {
   font-size: 42px;
 }
+.control-bar .section {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+.control-bar .section .label {
+  text-align: right;
+  font-size: 13px;
+  font-weight: 300;
+  margin: 0 20px;
+}
+.control-bar .section .value {
+  font-size: 30px;
+  font-weight: 300;
+}
 
 /* Graphic */
 .graphic {
   display: flex;
   margin-bottom: 40px;
 }
-.graphic .column {
-  box-sizing: border-box;
+.graphic > .column {
   flex-shrink: 1;
-  padding-right: 40px;
+}
+.graphic .column.column--hidden-layers {
+  display: flex;
 }
 .graphic .column.column--output {
   flex-grow: 2;
@@ -110,20 +132,37 @@
 </header>
 
   <div class="header layout--page">
-    <h1>Poke, prod and tweak a live deep neural network</h1>
+    <h1>Poke, Prod and Tweak A Deep Neural Network</h1>
     <!-- <div class="summary">Poke, prod and tweak a live deep neural network right here in your browser</div> -->
   </div>
 
   <div class="control-bar layout--page">
-    <button class="big-button replay">
-      <i class="material-icons">replay</i>
-    </button>
-    <button class="big-button play">
-      <i class="material-icons">play_arrow</i>
-    </button>
-    <button class="big-button skip">
-      <i class="material-icons">skip_next</i>
-    </button>
+    <div class="big-buttons">
+      <button class="big-button replay">
+        <i class="material-icons">replay</i>
+      </button>
+      <button class="big-button play">
+        <i class="material-icons">play_arrow</i>
+      </button>
+      <button class="big-button skip">
+        <i class="material-icons">skip_next</i>
+      </button>
+    </div>
+
+    <div class="section">
+      <div class="label">Training accuracy</div>
+      <div class="value">58.2%</div>
+    </div>
+
+    <div class="section">
+      <div class="label">Training accuracy</div>
+      <div class="value">58.2%</div>
+    </div>
+
+    <div class="section">
+      <div class="label">Training accuracy</div>
+      <div class="value">58.2%</div>
+    </div>
   </div>
 
   <div class="graphic layout--page">
@@ -135,13 +174,20 @@
       <h3>Features</h3>
       <p>Sample data sets tasdfas dfasdf asd fasdfasdfo choose from.</p>
     </div>
-    <div class="column column--hidden-layer">
-      <h3>Hidden Layer 1</h3>
-      <p>Sample data setadsfaasdfaa sds adf assdfasdfsdfasdfasds to choose from.</p>
-    </div>
-    <div class="column column--hidden-layer">
-      <h3>Hidden Layer 2</h3>
-      <p>Sample data setadsfaasdfaa sds adf assdfasdfsdfasdfasds to choose from.</p>
+    <div class="column column--hidden-layers">
+      <div class="hidden-layer">
+        <h3>Hidden Layer 1</h3>
+        <p>Sample data setadsfaasdfaa sds adf assdfasdfsdfasdfasds to choose from.</p>
+      </div>
+      <div class="hidden-layer">
+        <h3>Hidden Layer 2</h3>
+        <p>Sample data setadsfaasdfaa sds adf assdfasdfsdfasdfasds to choose from.</p>
+      </div>
+      <div class="hidden-layer">
+        <h3>Hidden Layer 3</h3>
+        <p>Sample data setadsfaasdfaa sds adf assdfasdfsdfasdfasds to choose from.</p>
+      </div>
+
     </div>
     <div class="column column--output">
       <h3>Output</h3>
