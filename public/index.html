@@ -70,19 +70,40 @@
   display: flex;
   margin-bottom: 40px;
 }
-
 .graphic .column {
+  box-sizing: border-box;
+  flex-shrink: 1;
+  padding-right: 40px;
+}
+.graphic .column.column--output {
+  flex-grow: 2;
+  padding-right: 0;
+}
+.graphic .column h3 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+.graphic .column p {
+  font-weight: 300;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4em;
+}
 
+/* Article */
+.article {
+  margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 
 </style>
 
 <header>
-  <h2 class="layout--page">TensorFlow</h2>
+  <h2 class="layout--page">TensorFlow > Deep Playground</h2>
 </header>
-
-
 
   <div class="header layout--page">
     <h1>Poke, prod and tweak a live deep neural network</h1>
@@ -104,19 +125,23 @@
   <div class="graphic layout--page">
     <div class="column">
       <h3>Data</h3>
-      <p>Sample data sets to choose from.</p>
+      <p>Sample data setsasdfasasdf asdf as fsaddfasd to choose from.</p>
     </div>
     <div class="column">
       <h3>Features</h3>
-      <p>Sample data sets to choose from.</p>
+      <p>Sample data sets tasdfas dfasdf asd fasdfasdfo choose from.</p>
     </div>
-    <div class="column">
-      <h3>Hidden Layers</h3>
-      <p>Sample data sets to choose from.</p>
+    <div class="column column--hidden-layer">
+      <h3>Hidden Layer 1</h3>
+      <p>Sample data setadsfaasdfaa sds adf assdfasdfsdfasdfasds to choose from.</p>
     </div>
-    <div class="column">
+    <div class="column column--hidden-layer">
+      <h3>Hidden Layer 2</h3>
+      <p>Sample data setadsfaasdfaa sds adf assdfasdfsdfasdfasds to choose from.</p>
+    </div>
+    <div class="column column--output">
       <h3>Output</h3>
-      <p>Sample data sets to choose from.</p>
+      <p>Sample data seadsfasadsfasas asd asfd afdsdfasdfdfasdfasdfasts to choose from.</p>
     </div>
   </div>
 
@@ -134,8 +159,7 @@
     </svg>
     <div class="links">
       <a href="">About</a>
-      <a href="">Github</a>
-      <a href="">Tensorflow</a>
+      <a href="">View on Github</a>
     </div>
   </div>
 </footer>
