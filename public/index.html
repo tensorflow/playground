@@ -169,13 +169,15 @@ That Runs In Your Browser-->
   </div>
 
   <div class="graphic layout--page">
-    <div class="column">
+    <div class="column column--data">
       <h3>Data</h3>
       <p>Sample data setsasdfasasdf asdf as fsaddfasd to choose from.</p>
+      <div class="stage"></div>
     </div>
     <div class="column">
       <h3>Features</h3>
       <p>Sample data sets tasdfas dfasdf asd fasdfasdfo choose from.</p>
+      <div class="stage"></div>
     </div>
     <div class="column column--hidden-layers">
       <div class="hidden-layer">
@@ -219,6 +221,27 @@ That Runs In Your Browser-->
 
 <script src="lib/d3.min.js"></script>
 <script>
-var stage = d3.select(".stage");
+
+var inputsData = ["Spiral", "Simple", "XOR", "Gaussian"];
+var inputsStage = d3.select(".column--data .stage");
+dataColumn.selectAll(".node")
+    .data(dataSamples)
+  .enter().append("div")
+    .attr("class", "node")
+    .text((d) => d);
+
+var featuresData = [
+  {name: "X value"},
+  {name: "Y value"}
+];
+
+var layersData = [
+  {name: "hidden layer 1", neurons: 2},
+  {name: "hidden layer 2", neurons: 2},
+  {name: "hidden layer 3", neurons: 2}
+];
+
+
+
 
 </script>
