@@ -224,7 +224,7 @@ That Runs In Your Browser-->
 
 var inputsData = ["Spiral", "Simple", "XOR", "Gaussian"];
 var inputsStage = d3.select(".column--data .stage");
-dataColumn.selectAll(".node")
+inputsStage.selectAll(".node")
     .data(dataSamples)
   .enter().append("div")
     .attr("class", "node")
@@ -234,6 +234,7 @@ var featuresData = [
   {name: "X value"},
   {name: "Y value"}
 ];
+var featuresStage = d3.select("")
 
 var layersData = [
   {name: "hidden layer 1", neurons: 2},
