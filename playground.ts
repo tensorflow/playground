@@ -138,7 +138,7 @@ function makeGUI() {
   });
 
   player.onPlayPause(isPlaying => {
-    d3.select("#play-pause-button").html(isPlaying ? "||" : ">");
+    d3.select("#play-pause-button").classed("playing", isPlaying);
   });
 
   d3.select("#next-step-button").on("click", () => {

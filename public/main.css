@@ -46,7 +46,6 @@ body {
 }
 
 .circle-button:hover {
-  background: #ccc;
   border: 1px solid #aaa;
 }
 
@@ -59,6 +58,17 @@ body {
   width: 50px;
   height: 50px;
 }
+
+#play-pause-button i:nth-of-type(2) {
+  display: none;
+}
+#play-pause-button.playing i:nth-of-type(1) {
+  display: none;
+}
+#play-pause-button.playing i:nth-of-type(2) {
+  display: inherit;
+}
+
 
 #main-part {
   display: flex;

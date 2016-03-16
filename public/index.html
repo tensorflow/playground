@@ -16,9 +16,17 @@
   <h1>Poke, prod and tweak a live deep neural network, right here in the browser.</h1>
   <div id="top-controls">
     <div class="control">
-      <div class="circle-button small" id="reset-button">&lt;</div>
-      <div class="circle-button large" id="play-pause-button">&gt;</div>
-      <div class="circle-button small" id="next-step-button">&gt;|</div></div>
+      <div class="circle-button small" id="reset-button">
+        <i class="material-icons">replay</i>
+      </div>
+      <div class="circle-button large" id="play-pause-button">
+        <i class="material-icons">play_arrow</i>
+        <i class="material-icons">pause</i>
+      </div>
+      <div class="circle-button small" id="next-step-button">
+        <i class="material-icons">skip_next</i>
+      </div>
+    </div>
     <div class="control"><span class="label">Iterations</span><span class="value" id="iter-number"></span></div>
     <div class="control"><span class="label">Train accuracy</span><span class="value" id="accuracy-train"></span></div>
     <div class="control"><span class="label">Test accuracy</span><span class="value" id="accuracy-test"></span></div>
