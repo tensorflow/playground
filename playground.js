@@ -348,7 +348,7 @@ function addPlusMinusControl(x, layerIdx) {
         .style("left", (x - 10) + "px");
     var i = layerIdx - 1;
     var firstRow = div.append("div").style("display", "flex");
-    firstRow.append("span").text("+")
+    firstRow.append("div")
         .classed("button", true)
         .on("click", function () {
         var numNeurons = state.networkShape[i];
@@ -357,8 +357,11 @@ function addPlusMinusControl(x, layerIdx) {
         }
         state.networkShape[i]++;
         reset();
-    });
-    firstRow.append("span").text("-")
+    })
+        .append("i")
+        .attr("class", "material-icons")
+        .text("add");
+    firstRow.append("div")
         .classed("button", true)
         .on("click", function () {
         var numNeurons = state.networkShape[i];
@@ -367,7 +370,10 @@ function addPlusMinusControl(x, layerIdx) {
         }
         state.networkShape[i]--;
         reset();
-    });
+    })
+        .append("i")
+        .attr("class", "material-icons")
+        .text("remove");
     var suffix = state.networkShape[i] > 1 ? "s" : "";
     div.append("div").text(state.networkShape[i] + " neuron" + suffix);
 }
