@@ -4,10 +4,21 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "make",
-    "watch": "fswatch -0 --exclude 'node_modules/' --exclude 'build/' --exclude 'public/' . | xargs -0 -n 1 -I {} make all"
+    "clean": "rm -rf public/lib/*",
+    "prep": "typings install && cp node_modules/d3/d3.min.js node_modules/seedrandom/seedrandom.min.js public/lib/.",
+    "build": "npm run prep && browserify playground.ts -p [tsify] | uglifyjs -c > public/lib/bundle.min.js",
+    "watch": "npm run prep && watchify playground.ts -p [tsify] -v --debug -o public/lib/bundle.js",
+    "server": "cd public; python -m SimpleHTTPServer"
+  },
+  "devDependencies": {
+    "typescript": "^1.8.7",
+    "typings": "^0.7.9",
+    "uglify-js": "^2.6.2",
+    "tsify": "^0.14.1",
+    "watchify": "^3.7.0"
   },
   "dependencies": {
-    "d3": "^3.5.16"
+    "d3": "^3.5.16",
+    "seedrandom": "^2.4.2"
   }
 }
