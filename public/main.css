@@ -1,0 +1,308 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+#container {
+  margin: 0px auto;
+  width: 970px;
+}
+
+#top-controls {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.label {
+  color: #666;
+  font-size: 13px;
+}
+
+.control .label {
+  margin-right: 15px;
+}
+
+#top-controls .value {
+  font-size: 26px;
+  font-weight: 300;
+}
+
+#top-controls .control {
+  display: flex;
+  align-items: center;
+}
+
+.circle-button {
+  cursor: pointer;
+  margin: 0 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+
+.circle-button:hover {
+  background: #ccc;
+  border: 1px solid #aaa;
+}
+
+.circle-button.small {
+  width: 35px;
+  height: 35px;
+}
+
+.circle-button.large {
+  width: 50px;
+  height: 50px;
+}
+
+#main-part {
+  display: flex;
+  justify-content: space-between;
+}
+
+.vcenter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.data-thumbnail {
+  cursor: pointer;
+  width:40px;
+  height:40px;
+  margin: 2px 12px 2px 2px;
+  opacity: 0.5;
+  border: 1px solid black;
+}
+
+.data-thumbnail:hover {
+  border: 3px solid black;
+  margin: 0 10px 0 0;
+}
+
+.data-thumbnail.selected {
+  border: 3px solid black;
+  opacity: 1;
+  margin: 0 10px 0 0;
+}
+
+#main-part .column {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.column .label {
+  margin-bottom: 30px;
+}
+
+#main-part .title {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.main-label {
+  font-size: 14px;
+}
+
+.node rect {
+  fill: white;
+  stroke-width: 0;
+}
+
+.node.inactive {
+  opacity: 0.4;
+}
+
+.node.hovered {
+  opacity: 1.0;
+}
+
+.canvas canvas {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  border: 3px solid black;
+}
+
+.canvas.inactive canvas {
+  opacity: 0.4;
+  border: 0;
+  top: 0;
+  left: 0;
+}
+
+.canvas.hovered canvas {
+  opacity: 1.0;
+  border: 3px solid #666;
+  top: -3px;
+  left: -3px;
+}
+
+h1 {
+  margin-top: 24px;
+  margin-bottom: 15px;
+  font-weight: 300;
+  font-size: 36px;
+}
+
+h2 {
+  margin: 5px 0;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+h3 {
+  margin: 10px 0;
+}
+
+svg text {
+  dominant-baseline: middle;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+}
+
+.axis path {
+  display: none;
+}
+
+.tick line {
+  opacity: 0.2;
+}
+
+canvas {
+  display: block;
+  image-rendering: crisp-edges;
+}
+
+.link {
+  fill: none;
+  stroke: #aaa;
+  stroke-width: 1;
+}
+
+#hovercard {
+  display: none;
+  position: absolute;
+  padding: 5px;
+  border: 1px solid #aaa;
+  z-index: 1000;
+  background: #fff;
+  cursor: default;
+  border-radius: 5px;
+  left: 240px;
+  width: 175px;
+  top: -20px;
+}
+
+#hovercard input {
+  width: 38px;
+}
+
+.node {
+  cursor: default;
+}
+
+#node-output {
+  font-weight: bold;
+}
+
+g.column rect {
+  stroke: none;
+}
+
+#heatmap {
+  position: relative;
+  float: left;
+}
+
+#network {
+  position: relative;
+}
+
+#time-matrix-container {
+  display: none;
+}
+
+#time-matrix {
+  width: 100%;
+  overflow-x: auto;
+}
+
+#time-matrix text {
+  alignment-baseline: hanging;
+  text-anchor: end;
+  font-size: 9px;
+  font-family: 'Roboto', sans-serif;
+}
+
+#num-layers {
+  margin-left: 10px;
+}
+
+.plus-minus-neurons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  position: absolute;
+  top: -58px;
+  width: 55px;
+  height: 44px;
+  font-size: 12px;
+}
+
+.button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-size: 23px;
+  border-radius: 10%;
+  margin: 0 2px;
+  background-color: #e4e4e4;
+}
+
+.button:hover {
+  background: #ccc;
+}
+
+.hide-button {
+  cursor: pointer;
+  padding: 6px 4px 8px 4px;
+  border-left: 1px solid #2c2c2c;
+  border-bottom: 1px solid #2c2c2c;
+  position: fixed;
+  right: 0px;
+  background: #1a1a1a;
+  color: #eee;
+  font: 11px 'Lucida Grande', sans-serif;
+  display: table;
+}
+
+g.train circle {
+  stroke: black;
+  stroke-width: 1;
+}
+
+g.test circle {
+  stroke-width: 1;
+  stroke: red;
+}
