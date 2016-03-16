@@ -13,19 +13,19 @@
 </head>
 <body>
 <div id="container">
-  <h1>Poke, prod and tweak a live deep neural network, right here in the browser.</h1>
+  <h1>Poke, prod and tweak a live deep neural network</h1>
   <div id="top-controls">
     <div class="control">
-      <div class="circle-button small" id="reset-button">
+      <button class="circle-button small" id="reset-button">
         <i class="material-icons">replay</i>
-      </div>
-      <div class="circle-button large" id="play-pause-button">
+      </button>
+      <button class="circle-button large" id="play-pause-button">
         <i class="material-icons">play_arrow</i>
         <i class="material-icons">pause</i>
-      </div>
-      <div class="circle-button small" id="next-step-button">
+      </button>
+      <button class="circle-button small" id="next-step-button">
         <i class="material-icons">skip_next</i>
-      </div>
+      </button>
     </div>
     <div class="control"><span class="label">Iterations</span><span class="value" id="iter-number"></span></div>
     <div class="control"><span class="label">Train accuracy</span><span class="value" id="accuracy-train"></span></div>
@@ -122,12 +122,12 @@
     </div>
     <div class="column" style="width: 380px;">
       <div class="title">
-        <span id="add-layers" class="button">
+        <button id="add-layers" class="button">
           <i class="material-icons">add</i>
-        </span>
-        <span id="remove-layers" class="button">
+        </button>
+        <button id="remove-layers" class="button">
           <i class="material-icons">remove</i>
-        </span>
+        </button>
         <span id="num-layers"></span>
       </div>
     </div>

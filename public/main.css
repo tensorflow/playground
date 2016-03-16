@@ -43,6 +43,7 @@ body {
   background: #eee;
   border: 1px solid #ccc;
   border-radius: 50%;
+  outline: none;
 }
 
 .circle-button:hover {
@@ -285,13 +286,16 @@ g.column rect {
   width: 22px;
   height: 22px;
   font-size: 23px;
-  border-radius: 10%;
+  border-radius: 3px;
   margin: 0 2px;
   background-color: #e4e4e4;
+  outline: none;
+  border: none;
+  padding: 0;
 }
 
-.button:hover {
-  background: #ccc;
+.button i {
+  font-size: 18px;
 }
 
 .hide-button {

@@ -348,7 +348,7 @@ function addPlusMinusControl(x, layerIdx) {
         .style("left", (x - 10) + "px");
     var i = layerIdx - 1;
     var firstRow = div.append("div").style("display", "flex");
-    firstRow.append("div")
+    firstRow.append("button")
         .classed("button", true)
         .on("click", function () {
         var numNeurons = state.networkShape[i];
@@ -361,7 +361,7 @@ function addPlusMinusControl(x, layerIdx) {
         .append("i")
         .attr("class", "material-icons")
         .text("add");
-    firstRow.append("div")
+    firstRow.append("button")
         .classed("button", true)
         .on("click", function () {
         var numNeurons = state.networkShape[i];
