@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>Deep Playground</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="main.css" type="text/css">
-    <script src="lib/d3.min.js"></script>
-    <script src="lib/seedrandom.min.js"></script>
+  <meta charset="utf-8">
+  <title>Deep Playground</title>
+  <!--  Roboto and Material design icons -->
+  <!--  TODO maybe cache fonts into project -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="main.css" type="text/css">
+  <!--  TODO maybe bundle these js files with bundle.js, or at least together. -->
+  <script src="lib/d3.min.js"></script>
+  <script src="lib/seedrandom.min.js"></script>
 </head>
 <body>
 <div id="container">
-  <h1>Deep Playground</h1>
-  <h2>Poke, prod and tweak a live deep neural network, right here in the browser.</h2>
+  <h1>Poke, prod and tweak a live deep neural network, right here in the browser.</h1>
   <div id="top-controls">
     <div class="control">
       <div class="circle-button small" id="reset-button">&lt;</div>
