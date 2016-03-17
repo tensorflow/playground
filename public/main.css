@@ -91,9 +91,8 @@ header h1 {
 /* Top Controls */
 
 #top-controls {
-  margin-top: 20px;
   border-bottom: 1px solid #ddd;
-  padding: 16px 0;
+  padding: 25px 0;
 }
 #top-controls .container {
   display: flex;
@@ -125,8 +124,9 @@ header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #eee;
-  border: 1px solid #ccc;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
   border-radius: 50%;
   outline: none;
 }
@@ -136,13 +136,17 @@ header h1 {
 }
 
 .circle-button.small {
-  width: 35px;
-  height: 35px;
+  width: 46px;
+  height: 46px;
 }
 
 .circle-button.large {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+}
+
+.circle-button.large i {
+  font-size: 36px;
 }
 
 #play-pause-button i:nth-of-type(2) {
@@ -244,7 +248,7 @@ header h1 {
 }
 
 #main-part svg {
-  border: solid 1px magenta;
+  border: solid 1px yellow;
 }
 
 svg text {
