@@ -158,17 +158,17 @@ function makeGUI() {
         updateUI();
     });
     discretize.property("checked", state.discretize);
-    var percTrain = d3.select("#percTrainData").on("change", function () {
+    var percTrain = d3.select("#percTrainData").on("input", function () {
         state.percTrainData = this.value;
         reset();
     });
     percTrain.property("value", state.percTrainData);
-    var noise = d3.select("#noise").on("change", function () {
+    var noise = d3.select("#noise").on("input", function () {
         state.noise = this.value;
         reset();
     });
     noise.property("value", state.noise);
-    var batchSize = d3.select("#batchSize").on("change", function () {
+    var batchSize = d3.select("#batchSize").on("input", function () {
         state.batchSize = this.value;
         reset();
     });

@@ -197,19 +197,19 @@ function makeGUI() {
   // Check/uncheck the checbox according to the current state.
   discretize.property("checked", state.discretize);
 
-  let percTrain = d3.select("#percTrainData").on("change", function() {
+  let percTrain = d3.select("#percTrainData").on("input", function() {
     state.percTrainData = this.value;
     reset();
   });
   percTrain.property("value", state.percTrainData);
 
-  let noise = d3.select("#noise").on("change", function() {
+  let noise = d3.select("#noise").on("input", function() {
     state.noise = this.value;
     reset();
   });
   noise.property("value", state.noise);
 
-  let batchSize = d3.select("#batchSize").on("change", function() {
+  let batchSize = d3.select("#batchSize").on("input", function() {
     state.batchSize = this.value;
     reset();
   });

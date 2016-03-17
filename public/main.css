@@ -50,15 +50,26 @@ body {
   font-size: 18px;
   border-radius: 50%;
   margin: 0 1px;
-  background-color: rgba(0,0,0,0.07);
+  background-color: rgba(0,0,0,0.05);
   outline: none;
   border: none;
   padding: 0;
+  color: #666;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: rgba(0,0,0,0.1);
+
+}
+
+.button:active {
+  background-color: rgba(0,0,0,0.15);
+  color: #333;
 }
 
 .button i {
   font-size: 16px;
-  color: #666;
 }
 
 .hide-button {
