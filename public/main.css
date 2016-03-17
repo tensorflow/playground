@@ -99,7 +99,13 @@ header h1 {
   justify-content: space-between;
 }
 
-#top-controls .circle-button {
+#top-controls .timeline-controls {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+#top-controls .timeline-controls .circle-button {
   cursor: pointer;
   margin: 0 3px;
   display: flex;
@@ -112,21 +118,21 @@ header h1 {
   outline: none;
 }
 
-#top-controls .circle-button:hover {
+#top-controls .timeline-controls .circle-button:hover {
   border: 1px solid #aaa;
 }
 
-#top-controls .circle-button.small {
-  width: 46px;
-  height: 46px;
+#top-controls .timeline-controls .circle-button.small {
+  width: 44px;
+  height: 44px;
 }
 
-#top-controls .circle-button.large {
-  width: 60px;
-  height: 60px;
+#top-controls .timeline-controls .circle-button.large {
+  width: 58px;
+  height: 58px;
 }
 
-#top-controls .circle-button.large i {
+#top-controls .timeline-controls .circle-button.large i {
   font-size: 36px;
 }
 
@@ -142,9 +148,10 @@ header h1 {
   display: inherit;
 }
 
-#top-controls .timeline-controls {
-  display: flex;
-  align-items: center;
+#top-controls .control {
+  width: 300px;
+  margin-left: 20px;
+  margin-top: 8px;
 }
 
 #top-controls .control .label,
@@ -152,10 +159,24 @@ header h1 {
   color: #666;
   font-size: 13px;
   display: block;
+  margin-bottom: 6px;
+}
+
+#top-controls .control .value {
+  font-size: 20px;
+  margin: 0;
 }
 
 #top-controls .control select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   display: block;
+  background-color: #e4e4e4;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  width: 100%;
 }
 
 
