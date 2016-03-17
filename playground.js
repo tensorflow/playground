@@ -541,7 +541,8 @@ function reset() {
     state.serialize();
     player.pause();
     var suffix = state.numHiddenLayers !== 1 ? "s" : "";
-    d3.select("#num-layers").text(HUMAN_NUM[state.numHiddenLayers] + " hidden layer" + suffix);
+    d3.select("#layers-label").text("Hidden layer" + suffix);
+    d3.select("#num-layers").text(state.numHiddenLayers);
     iter = 0;
     var numInputs = constructInput(0, 0).length;
     var shape = [numInputs].concat(state.networkShape).concat([1]);

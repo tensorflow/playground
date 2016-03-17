@@ -57,6 +57,7 @@ body {
 
 .button i {
   font-size: 18px;
+  color: #666;
 }
 
 .hide-button {
@@ -187,6 +188,7 @@ header h1 {
 #main-part {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
 .vcenter {
@@ -268,10 +270,6 @@ header h1 {
   border: 3px solid #666;
   top: -3px;
   left: -3px;
-}
-
-#main-part svg {
-  border: solid 1px yellow;
 }
 
 svg text {
@@ -363,7 +361,23 @@ g.column rect {
 }
 
 #num-layers {
-  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.hidden-layers .title {
+  position: relative;
+  border-bottom: solid 1px#ddd;
+  padding-bottom: 18px;
+}
+
+.hidden-layers .title .control {
+  display: flex;
+  position: absolute;
+  right: 0;
+}
+
+.hidden-layers .title .control .button {
+  margin-top: -2px;
 }
 
 .plus-minus-neurons {
