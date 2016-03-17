@@ -151,7 +151,7 @@ header h1 {
 #top-controls .control {
   width: 300px;
   margin-left: 20px;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 #top-controls .control .label,
@@ -163,7 +163,7 @@ header h1 {
 }
 
 #top-controls .control .value {
-  font-size: 20px;
+  font-size: 22px;
   margin: 0;
 }
 
@@ -177,6 +177,7 @@ header h1 {
   border-radius: 4px;
   padding: 4px 8px;
   width: 100%;
+  font-size: 13px;
 }
 
 
@@ -378,13 +379,17 @@ g.column rect {
 }
 
 g.train circle {
-  stroke: black;
+  stroke: white;
   stroke-width: 1;
+  stroke-opacity: 0.8;
+  fill-opacity: 0.9;
 }
 
 g.test circle {
   stroke-width: 1;
-  stroke: red;
+  stroke: black;
+  stroke-opacity: 0.6;
+  fill-opacity: 0.9;
 }
 
 
@@ -395,6 +400,7 @@ footer {
   color: #ccc;
   font-weight: 300;
   padding: 40px 0;
+  margin-top: 80px;
   height: 30px;
 }
 
