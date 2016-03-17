@@ -1,15 +1,98 @@
+/* General Typography */
+
 body {
   font-family: 'Roboto', sans-serif;
 }
 
-#container {
-  margin: 0px auto;
-  width: 970px;
+h1 {
+  font-weight: 300;
+  font-size: 38px;
+  line-height: 1.4em;
 }
+
+h2 {
+  margin: 5px 0;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+h3 {
+  margin: 10px 0;
+}
+
+
+/* Layout */
+
+body {
+  margin: 0;
+}
+
+.l--page {
+  width: 970px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#container {
+  /*margin: 0px auto;*/
+  /*width: 970px;*/
+}
+
+/* Buttons */
+
+.button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-size: 23px;
+  border-radius: 3px;
+  margin: 0 2px;
+  background-color: #e4e4e4;
+  outline: none;
+  border: none;
+  padding: 0;
+}
+
+.button i {
+  font-size: 18px;
+}
+
+.hide-button {
+  cursor: pointer;
+  padding: 6px 4px 8px 4px;
+  border-left: 1px solid #2c2c2c;
+  border-bottom: 1px solid #2c2c2c;
+  position: fixed;
+  right: 0px;
+  background: #1a1a1a;
+  color: #eee;
+  font: 11px 'Lucida Grande', sans-serif;
+  display: table;
+}
+
+/* Header */
+
+header {
+  border-bottom: solid 1px #eee;
+  background-color: #36474f;
+  color: white;
+  overflow: hidden;
+}
+
+header h1 {
+  margin-top: 60px;
+  margin-bottom: 40px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Top Controls */
 
 #top-controls {
   margin-top: 20px;
-  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
   padding: 16px 0;
   display: flex;
   justify-content: space-between;
@@ -70,6 +153,7 @@ body {
   display: inherit;
 }
 
+/* Main Part*/
 
 #main-part {
   display: flex;
@@ -155,23 +239,6 @@ body {
   border: 3px solid #666;
   top: -3px;
   left: -3px;
-}
-
-h1 {
-  margin-top: 24px;
-  margin-bottom: 15px;
-  font-weight: 300;
-  font-size: 36px;
-}
-
-h2 {
-  margin: 5px 0;
-  font-weight: 300;
-  font-size: 18px;
-}
-
-h3 {
-  margin: 10px 0;
 }
 
 svg text {
@@ -278,39 +345,6 @@ g.column rect {
   font-size: 12px;
 }
 
-.button {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  font-size: 23px;
-  border-radius: 3px;
-  margin: 0 2px;
-  background-color: #e4e4e4;
-  outline: none;
-  border: none;
-  padding: 0;
-}
-
-.button i {
-  font-size: 18px;
-}
-
-.hide-button {
-  cursor: pointer;
-  padding: 6px 4px 8px 4px;
-  border-left: 1px solid #2c2c2c;
-  border-bottom: 1px solid #2c2c2c;
-  position: fixed;
-  right: 0px;
-  background: #1a1a1a;
-  color: #eee;
-  font: 11px 'Lucida Grande', sans-serif;
-  display: table;
-}
-
 g.train circle {
   stroke: black;
   stroke-width: 1;
@@ -319,4 +353,36 @@ g.train circle {
 g.test circle {
   stroke-width: 1;
   stroke: red;
+}
+
+
+/* Footer */
+
+footer {
+  border-top: solid 1px #eee;
+  color: #ccc;
+  font-weight: 300;
+  padding: 40px 0;
+  height: 30px;
+}
+
+footer svg {
+  float: left;
+  width: 78px;
+  height: 30px;
+  fill: #aaa;
+}
+
+footer .links {
+  float: left;
+  font-size: 13px;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 20px;
+}
+
+footer .links a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #999;
 }
