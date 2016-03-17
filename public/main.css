@@ -94,6 +94,8 @@ header h1 {
   margin-top: 20px;
   border-bottom: 1px solid #ddd;
   padding: 16px 0;
+}
+#top-controls .container {
   display: flex;
   justify-content: space-between;
 }
@@ -187,7 +189,7 @@ header h1 {
 }
 
 #main-part .column {
-  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   padding-top: 20px;
 }
 
@@ -239,6 +241,10 @@ header h1 {
   border: 3px solid #666;
   top: -3px;
   left: -3px;
+}
+
+#main-part svg {
+  border: solid 1px magenta;
 }
 
 svg text {

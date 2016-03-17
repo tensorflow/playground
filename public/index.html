@@ -19,54 +19,59 @@
   </header>
 
   <!-- Top Controls -->
-  <div id="top-controls" class="l--page">
-    <div class="control">
-      <button class="circle-button small" id="reset-button">
-        <i class="material-icons">replay</i>
-      </button>
-      <button class="circle-button large" id="play-pause-button">
-        <i class="material-icons">play_arrow</i>
-        <i class="material-icons">pause</i>
-      </button>
-      <button class="circle-button small" id="next-step-button">
-        <i class="material-icons">skip_next</i>
-      </button>
-    </div>
-    <div class="control"><span class="label">Iterations</span><span class="value" id="iter-number"></span></div>
-    <div>
+  <div id="top-controls">
+    <div class="container l--page">
+      <div class="control">
+        <button class="circle-button small" id="reset-button">
+          <i class="material-icons">replay</i>
+        </button>
+        <button class="circle-button large" id="play-pause-button">
+          <i class="material-icons">play_arrow</i>
+          <i class="material-icons">pause</i>
+        </button>
+        <button class="circle-button small" id="next-step-button">
+          <i class="material-icons">skip_next</i>
+        </button>
+      </div>
+      <div class="control"><span class="label">Iterations</span><span class="value" id="iter-number"></span></div>
+      <div class="control">
 
-      <label for="activations">Activation</label>
-      <select id="activations">
-        <option value="relu">ReLU</option>
-        <option value="tanh">Tanh</option>
-        <option value="sigmoid">Sigmoid</option>
-        <option value="linear">Linear</option>
-      </select>
-
-      <label for="learningRate">Learning rate</label>
-      <select id="learningRate">
-        <option value="0.001">0.001</option>
-        <option value="0.01">0.01</option>
-        <option value="0.1">0.1</option>
-        <option value="1">1</option>
-        <option value="10">10</option>
-      </select>
-      <br/>
-      <label for="regularizations">Regularization</label>
-      <select id="regularizations">
-        <option value="none">None</option>
-        <option value="L1">L1</option>
-        <option value="L2">L2</option>
-      </select>
-
-      <label for="regularRate">Regularization rate</label>
-      <select id="regularRate">
-        <option value="0.001">0.001</option>
-        <option value="0.01">0.01</option>
-        <option value="0.1">0.1</option>
-        <option value="1">1</option>
-        <option value="10">10</option>
-      </select>
+        <label for="activations">Activation</label>
+        <select id="activations">
+          <option value="relu">ReLU</option>
+          <option value="tanh">Tanh</option>
+          <option value="sigmoid">Sigmoid</option>
+          <option value="linear">Linear</option>
+        </select>
+      </div>
+      <div class="control">
+        <label for="learningRate">Learning rate</label>
+        <select id="learningRate">
+          <option value="0.001">0.001</option>
+          <option value="0.01">0.01</option>
+          <option value="0.1">0.1</option>
+          <option value="1">1</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="control">
+        <label for="regularizations">Regularization</label>
+        <select id="regularizations">
+          <option value="none">None</option>
+          <option value="L1">L1</option>
+          <option value="L2">L2</option>
+        </select>
+      </div>
+      <div class="control">
+        <label for="regularRate">Regularization rate</label>
+        <select id="regularRate">
+          <option value="0.001">0.001</option>
+          <option value="0.01">0.01</option>
+          <option value="0.1">0.1</option>
+          <option value="1">1</option>
+          <option value="10">10</option>
+        </select>
+      </div>
     </div>
   </div>
 
