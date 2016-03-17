@@ -93,6 +93,7 @@ header h1 {
 #top-controls {
   border-bottom: 1px solid #ddd;
   padding: 25px 0;
+  box-shadow: 0 1px 3px rgba(0 ,0 ,0 ,0.1);
 }
 
 #top-controls .container {
@@ -218,7 +219,6 @@ header h1 {
 }
 
 #main-part .column {
-  border-bottom: 1px solid #ccc;
   padding-top: 20px;
 }
 
@@ -367,7 +367,7 @@ g.column rect {
 .hidden-layers .title {
   position: relative;
   border-bottom: solid 1px#ddd;
-  padding-bottom: 18px;
+  padding-bottom: 14px;
 }
 
 .hidden-layers .title .control {
