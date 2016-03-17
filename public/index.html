@@ -15,13 +15,13 @@
 <body>
   <!-- Header -->
   <header>
-    <h1 class="l--page">Meet Deep Playground, <br> A Live Neural Network That Runs In Your Browser</h1>
+    <h1 class="l--page">Meet Deep Playground, <br>A Live Neural Network That Runs In Your Browser</h1>
   </header>
 
   <!-- Top Controls -->
   <div id="top-controls">
     <div class="container l--page">
-      <div class="control">
+      <div class="timeline-controls">
         <button class="circle-button small" id="reset-button">
           <i class="material-icons">replay</i>
         </button>
@@ -33,9 +33,10 @@
           <i class="material-icons">skip_next</i>
         </button>
       </div>
-      <div class="control"><span class="label">Iterations</span><span class="value" id="iter-number"></span></div>
       <div class="control">
-
+        <span class="label">Iterations</span>
+        <span class="value" id="iter-number"></span></div>
+      <div class="control">
         <label for="activations">Activation</label>
         <select id="activations">
           <option value="relu">ReLU</option>
@@ -169,7 +170,7 @@
       </svg>
       <div class="links">
         <a href="">About</a>
-        <a href="">Source on Github</a>
+        <a href="">Source on GitHub</a>
       </div>
     </div>
   </footer>

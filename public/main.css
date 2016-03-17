@@ -20,7 +20,6 @@ h3 {
   margin: 10px 0;
 }
 
-
 /* Layout */
 
 body {
@@ -94,31 +93,13 @@ header h1 {
   border-bottom: 1px solid #ddd;
   padding: 25px 0;
 }
+
 #top-controls .container {
   display: flex;
   justify-content: space-between;
 }
 
-.label {
-  color: #666;
-  font-size: 13px;
-}
-
-.control .label {
-  margin-right: 15px;
-}
-
-#top-controls .value {
-  font-size: 26px;
-  font-weight: 300;
-}
-
-#top-controls .control {
-  display: flex;
-  align-items: center;
-}
-
-.circle-button {
+#top-controls .circle-button {
   cursor: pointer;
   margin: 0 3px;
   display: flex;
@@ -131,33 +112,53 @@ header h1 {
   outline: none;
 }
 
-.circle-button:hover {
+#top-controls .circle-button:hover {
   border: 1px solid #aaa;
 }
 
-.circle-button.small {
+#top-controls .circle-button.small {
   width: 46px;
   height: 46px;
 }
 
-.circle-button.large {
+#top-controls .circle-button.large {
   width: 60px;
   height: 60px;
 }
 
-.circle-button.large i {
+#top-controls .circle-button.large i {
   font-size: 36px;
 }
 
 #play-pause-button i:nth-of-type(2) {
   display: none;
 }
+
 #play-pause-button.playing i:nth-of-type(1) {
   display: none;
 }
+
 #play-pause-button.playing i:nth-of-type(2) {
   display: inherit;
 }
+
+#top-controls .timeline-controls {
+  display: flex;
+  align-items: center;
+}
+
+#top-controls .control .label,
+#top-controls .control label {
+  color: #666;
+  font-size: 13px;
+  display: block;
+}
+
+#top-controls .control select {
+  display: block;
+}
+
+
 
 /* Main Part*/
 
