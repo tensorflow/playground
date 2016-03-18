@@ -243,7 +243,8 @@ header h1 {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
-  height: 550px;
+  margin-bottom: 50px;
+  height: 470px;
   overflow: hidden;
 }
 
