@@ -238,6 +238,8 @@ header h1 {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
+  height: 550px;
+  overflow: hidden;
 }
 
 #main-part .column {
@@ -269,10 +271,6 @@ header h1 {
 #main-part .column label .value {
   font-weight: 400;
   color: #999;
-}
-
-.main-label {
-  font-size: 14px;
 }
 
 
@@ -456,6 +454,16 @@ g.column rect {
   left: 0;
 }
 
+#network svg .main-label {
+  font-size: 13px;
+  fill: #333;
+  font-weight: 300;
+}
+
+#network svg .active .main-label {
+  fill: #333
+}
+
 #network .node {
   cursor: default;
 }
@@ -466,20 +474,19 @@ g.column rect {
 }
 
 #network .node.inactive {
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 #network .node.hovered {
   opacity: 1.0;
 }
 
-@-webkit-keyframes flowing { from { stroke-dashoffset: 1; } to { stroke-dashoffset: -60; }  }
+@-webkit-keyframes flowing { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -10; }  }
 #network .core path {
   stroke-dasharray: 9 1;
   stroke-dashoffset: 1;
-  -webkit-animation: 4s linear 0s infinite flowing;
+  -webkit-animation: 0.5s linear 0s infinite flowing;
 }
-
 
 #network .canvas canvas {
   position: absolute;
@@ -487,7 +494,11 @@ g.column rect {
   left: -2px;
   border: 2px solid black;
   border-radius: 3px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#network .canvas.inactive canvas {
+  box-shadow: inherit;
 }
 
 #network .canvas.inactive canvas {
@@ -546,7 +557,6 @@ g.column rect {
 
 #main-part .output .output-stats p {
   margin-bottom: 10px;
-  font-size: 12px;
 }
 
 .output .output-stats .value {
@@ -569,6 +579,34 @@ g.train circle {
   fill-opacity: 0.9;
 }
 
+/* Article */
+
+article {
+  background: white;
+  padding: 80px 0;
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+article h2 {
+  margin: 60px 0 20px 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+article :first-child h2 {
+  margin-top: 0;
+}
+
+article p {
+  width: 550px;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.7);
+
+}
+
 /* Footer */
 
 footer {
@@ -576,7 +614,6 @@ footer {
   color: #ccc;
   font-weight: 300;
   padding: 40px 0;
-  margin-top: 80px;
   height: 30px;
 }
 
