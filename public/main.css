@@ -260,10 +260,15 @@ header h1 {
 #main-part .column .label,
 #main-part .column label {
   font-weight: 300;
-  line-height: 1.4em;
+  line-height: 1.38em;
   margin: 0;
   color: #999;
   font-size: 13px;
+}
+
+#main-part .column label .value {
+  font-weight: 400;
+  color: #999;
 }
 
 .main-label {
@@ -363,17 +368,29 @@ g.column rect {
   width: 90px;
 }
 
+.data.column .dataset-list {
+  margin: 20px 0 10px;
+  overflow: hidden;
+}
+
 .data.column .dataset {
-  margin-bottom: 10px;
+  position: relative;
+  float: left;
+  width: 34px;
+  height: 34px;
+  margin: 0 14px 14px 0;
+}
+
+.data.column .dataset:nth-of-type(2n) {
+  margin-right: 0;
 }
 
 .data.column .data-thumbnail {
   cursor: pointer;
-  width: 50px;
-  height: 50px;
-  margin: 2px 12px 2px 2px;
+  width: 100%;
+  height: 100%;
   opacity: 0.5;
-  border: 1px solid #999;
+  border: 2px solid rgba(0,0,0,0.1);
   border-radius: 3px;
 }
 
@@ -382,19 +399,34 @@ g.column rect {
   height: 100%;
 }
 
+/*.data.column .dataset:first-of-type {
+  margin-top: 8px;
+}
+
+.data.column .dataset:last-of-type {
+  margin-bottom: 20px;
+}*/
+
 .data.column .data-thumbnail:hover {
-  border: 2px solid black;
-  margin: 0 10px 0 0;
+  border: 2px solid #999;
 }
 
 .data.column .data-thumbnail.selected {
   border: 2px solid black;
   opacity: 1;
-  margin: 0 10px 0 0;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
 }
 
-.data input {
+#main-part .data.column .dataset .label {
+  position: absolute;
+  left: 48px;
+  top: calc(50% - 9px);
+  display: none;
+}
+
+.data.column input {
   width: 100%;
+  margin-bottom: 20px;
 }
 
 /* Features column */

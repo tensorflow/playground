@@ -6,6 +6,7 @@
   <!--  TODO add Twitter and Facebook Cards etc...-->
   <link rel="stylesheet" href="main.css" type="text/css">
   <link rel="stylesheet" href="fonts.css" type="text/css">
+  <link rel="stylesheet" href="components.css" type="text/css">
   <!--  TODO maybe bundle these lib js files with bundle.js, or at least together. -->
   <script src="lib/d3.min.js"></script>
   <script src="lib/seedrandom.min.js"></script>
@@ -89,27 +90,27 @@
     <!--  Data Column-->
     <div class="column data">
       <h4>Dataset</h4>
-      <!-- <p>Choose a dataset to try to classify.</p> -->
-      <div class="list">
-        <div class="dataset">
+      <p>Which data to send to the network.</p>
+      <div class="dataset-list">
+        <div class="dataset" title="Circle">
           <div class="data-thumbnail" data-dataset="circle">
             <img src="images/circle.png"/>
           </div>
           <div class="label">Circle</div>
         </div>
-        <div class="dataset">
+        <div class="dataset" title="Exclusive or">
           <div class="data-thumbnail" data-dataset="xor">
             <img src="images/xor.png"/>
           </div>
           <div class="label">XOR</div>
         </div>
-        <div class="dataset">
+        <div class="dataset" title="Gaussian">
           <div class="data-thumbnail" data-dataset="gauss">
             <img src="images/gauss.png"/>
           </div>
           <div class="label">Guassian</div>
         </div>
-        <div class="dataset">
+        <div class="dataset" title="Spiral">
           <div class="data-thumbnail" data-dataset="spiral">
             <img src="images/spiral.png"/>
           </div>
@@ -117,13 +118,13 @@
         </div>
       </div>
       <div>
-        <label for="percTrainData">Percentage of data to use for training</label>
+        <label for="percTrainData">Amount of data to use for training <span class="value">XX%</span></label>
         <input type="range" id="percTrainData" min="10" max="90" step="10">
 
-        <label for="noise">Noise level</label>
+        <label for="noise">Noise level <span class="value">XX</span></label>
         <input type="range" id="noise" min="0" max="50" step="5">
 
-        <label for="batchSize">Batch size</label>
+        <label for="batchSize">Batch size <span class="value">XX</span></label>
         <input type="range" id="batchSize" min="1" max="30" step="1">
       </div>
     </div>
@@ -131,7 +132,7 @@
     <!-- Features Column -->
     <div class="column features">
       <h4>Features</h4>
-      <p>Choose which properties to classify.</p>
+      <p>Which properties of the data to classify.</p>
       <div id="network">
         <svg id="svg" width="510" height="450">
           <defs>
