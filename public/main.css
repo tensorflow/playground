@@ -546,9 +546,10 @@ footer {
 }
 
 footer svg {
+  margin-top: 2px;
   float: left;
-  width: 78px;
-  height: 30px;
+  width: 110px;
+  height: 18px;
   fill: #aaa;
 }
 
