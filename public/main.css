@@ -9,7 +9,12 @@ h1 {
   font-size: 36px;
   line-height: 1.4em;
   font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+}
 
+h1 b {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
 }
 
 h2 {
@@ -98,8 +103,8 @@ header {
 }
 
 header h1 {
-  margin-top: 60px;
-  margin-bottom: 40px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -585,13 +590,13 @@ article {
   background: white;
   padding: 80px 0;
   box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  /*border-top: 1px solid rgba(0, 0, 0, 0.08);*/
 }
 
 article h2 {
   margin: 60px 0 20px 0;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 article :first-child h2 {
