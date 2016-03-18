@@ -113,7 +113,7 @@ header h1 {
 #top-controls {
   border-bottom: 1px solid #ddd;
   padding: 24px 0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
   background: white;
 }
 
@@ -597,6 +597,7 @@ article h2 {
   margin: 60px 0 20px 0;
   font-size: 22px;
   font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 article :first-child h2 {
