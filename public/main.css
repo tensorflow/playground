@@ -359,7 +359,7 @@ g.column rect {
 }
 
 .data.column {
-  width: 100px;
+  width: 90px;
 }
 
 .data.column .dataset {
@@ -390,6 +390,10 @@ g.column rect {
   border: 2px solid black;
   opacity: 1;
   margin: 0 10px 0 0;
+}
+
+.data input {
+  width: 100%;
 }
 
 /* Features column */
@@ -440,7 +444,7 @@ g.column rect {
 #network .core path {
   stroke-dasharray: 9 1;
   stroke-dashoffset: 1;
-  -webkit-animation: 2s linear 0s infinite flowing;
+  -webkit-animation: 4s linear 0s infinite flowing;
 }
 
 
