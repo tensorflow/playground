@@ -84,29 +84,31 @@
 
   <!-- Main Part -->
   <div id="main-part" class="l--page">
-    <div class="column" style="width: 120px;">
-      <div class="title">Data</div>
-      <div class="label">Choose a dataset to try to classify.</div>
+
+    <!--  Data Column-->
+    <div class="column data">
+      <h4>Data</h4>
+      <!-- <p>Choose a dataset to try to classify.</p> -->
       <div class="list">
-        <div class="vcenter">
+        <div class="dataset">
           <div class="data-thumbnail" data-dataset="circle">
             <img src="images/circle.png"/>
           </div>
           <div class="label">Circle</div>
         </div>
-        <div class="vcenter">
+        <div class="dataset">
           <div class="data-thumbnail" data-dataset="xor">
             <img src="images/xor.png"/>
           </div>
           <div class="label">XOR</div>
         </div>
-        <div class="vcenter">
+        <div class="dataset">
           <div class="data-thumbnail" data-dataset="gauss">
             <img src="images/gauss.png"/>
           </div>
           <div class="label">Guassian</div>
         </div>
-        <div class="vcenter">
+        <div class="dataset">
           <div class="data-thumbnail" data-dataset="spiral">
             <img src="images/spiral.png"/>
           </div>
@@ -124,9 +126,11 @@
         <input type="range" id="batchSize" min="1" max="30" step="1">
       </div>
     </div>
-    <div class="column" style="width: 100px;">
-      <div class="title">Features</div>
-      <div class="label">Choose features of the data.</div>
+
+    <!-- Features Column -->
+    <div class="column features">
+      <h4>Features</h4>
+      <p>Choose which properties to classify.</p>
       <div id="network">
         <svg id="svg" width="510" height="450">
           <defs>
@@ -137,8 +141,10 @@
         </svg>
       </div>
     </div>
-    <div class="column hidden-layers" style="width: 380px;">
-      <div class="title">
+
+    <!-- Hidden Layers Column -->
+    <div class="column hidden-layers">
+      <h4>
         <span id="layers-label"></span>
         <div class="control">
           <span id="num-layers"></span>
@@ -149,12 +155,20 @@
             <i class="material-icons">remove</i>
           </button>
         </div>
-      </div>
+      </h4>
     </div>
-    <div class="column" style="width: 30%; margin-right: 0;">
-      <div class="title">Output</div>
-      <div class="control"><span class="label">Train accuracy</span><span class="value" id="accuracy-train"></span></div>
-      <div class="control"><span class="label">Test accuracy</span><span class="value" id="accuracy-test"></span></div>
+
+    <!-- Output Column -->
+    <div class="column output">
+      <h4>Output</h4>
+      <div class="output-stats train">
+        <div class="value" id="accuracy-train"></div>
+        <p>Training accuracy</p>
+      </div>
+      <div class="output-stats">
+        <div class="value" id="accuracy-test"></div>
+        <p>Test accuracy</p>
+      </div>
       <div id="heatmap"></div>
       <div>
         <div class="label">Colors shows classification confidence.</div>

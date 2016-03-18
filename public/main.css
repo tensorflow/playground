@@ -6,9 +6,10 @@ body {
 }
 
 h1 {
-  font-weight: 300;
-  font-size: 38px;
+  font-size: 36px;
   line-height: 1.4em;
+  font-weight: 300;
+
 }
 
 h2 {
@@ -55,7 +56,7 @@ body {
   border: none;
   padding: 0;
   color: #666;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .button:hover {
@@ -200,7 +201,7 @@ header h1 {
   -moz-appearance: none;
   appearance: none;
   display: block;
-  background-color: white;
+  background: none;
   border: none;
   border-radius: 0;
   padding: 6px 0;
@@ -239,89 +240,35 @@ header h1 {
   margin-top: 50px;
 }
 
-.vcenter {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.data-thumbnail {
-  cursor: pointer;
-  width:40px;
-  height:40px;
-  margin: 2px 12px 2px 2px;
-  opacity: 0.5;
-  border: 1px solid black;
-}
-
-.data-thumbnail:hover {
-  border: 3px solid black;
-  margin: 0 10px 0 0;
-}
-
-.data-thumbnail.selected {
-  border: 3px solid black;
-  opacity: 1;
-  margin: 0 10px 0 0;
-}
-
 #main-part .column {
 }
 
-.column .label {
-  margin-bottom: 30px;
-  font-weight: 300;
-  color: #666;
-  font-size: 14px;
-  line-height: 1.5em;
-}
-
-#main-part .title {
+#main-part h4 {
   display: flex;
   align-items: center;
   font-weight: 400;
   font-size: 16px;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 12px;
+  margin: 0;
+}
+
+#main-part p,
+#main-part .column .label,
+#main-part .column label {
+  margin-bottom: 30px;
+  font-weight: 300;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.4em;
+  margin: 0;
 }
 
 .main-label {
   font-size: 14px;
 }
 
-.node rect {
-  fill: white;
-  stroke-width: 0;
-}
-
-.node.inactive {
-  opacity: 0.4;
-}
-
-.node.hovered {
-  opacity: 1.0;
-}
-
-.canvas canvas {
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  border: 3px solid black;
-}
-
-.canvas.inactive canvas {
-  opacity: 0.4;
-  border: 0;
-  top: 0;
-  left: 0;
-}
-
-.canvas.hovered canvas {
-  opacity: 1.0;
-  border: 3px solid #666;
-  top: -3px;
-  left: -3px;
-}
 
 svg text {
   dominant-baseline: middle;
@@ -348,6 +295,7 @@ svg text {
 canvas {
   display: block;
   image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 .link {
@@ -374,10 +322,6 @@ canvas {
   width: 38px;
 }
 
-.node {
-  cursor: default;
-}
-
 #node-output {
   font-weight: bold;
 }
@@ -389,10 +333,6 @@ g.column rect {
 #heatmap {
   position: relative;
   float: left;
-}
-
-#network {
-  position: relative;
 }
 
 #time-matrix-container {
@@ -411,27 +351,55 @@ g.column rect {
   font-family: 'Roboto', sans-serif;
 }
 
-#num-layers {
-  margin-right: 10px;
-}
+/* Data column */
 
-.hidden-layers .title {
-  position: relative;
-  border-bottom: solid 1px #ddd;
-  padding-bottom: 12px;
-}
-
-.hidden-layers .title .control {
+.vcenter {
   display: flex;
-  position: absolute;
-  right: 0;
+  align-items: center;
 }
 
-.hidden-layers .title .control .button {
-  margin-top: -2px;
+.data.column {
+  width: 100px;
 }
 
-.plus-minus-neurons {
+.data.column .dataset {
+  margin-bottom: 10px;
+}
+
+.data.column .data-thumbnail {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  margin: 2px 12px 2px 2px;
+  opacity: 0.5;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+.data.column .data-thumbnail img {
+  width: 100%;
+  height: 100%;
+}
+
+.data.column .data-thumbnail:hover {
+  border: 2px solid black;
+  margin: 0 10px 0 0;
+}
+
+.data.column .data-thumbnail.selected {
+  border: 2px solid black;
+  opacity: 1;
+  margin: 0 10px 0 0;
+}
+
+/* Features column */
+
+.features.column {
+  width: 100px;
+  position: relative;
+}
+
+.features.column .plus-minus-neurons {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -443,6 +411,111 @@ g.column rect {
   font-size: 12px;
 }
 
+/* Network (inside features column) */
+
+#network {
+  position: absolute;
+  top: 100px;
+  left: 0;
+}
+
+#network .node {
+  cursor: default;
+}
+
+#network .node rect {
+  fill: white;
+  stroke-width: 0;
+}
+
+#network .node.inactive {
+  opacity: 0.4;
+}
+
+#network .node.hovered {
+  opacity: 1.0;
+}
+
+@-webkit-keyframes flowing { from { stroke-dashoffset: 1; } to { stroke-dashoffset: -60; }  }
+#network .core path {
+  stroke-dasharray: 9 1;
+  stroke-dashoffset: 1;
+  -webkit-animation: 2s linear 0s infinite flowing;
+}
+
+
+#network .canvas canvas {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  border: 2px solid black;
+  border-radius: 3px;
+}
+
+#network .canvas.inactive canvas {
+  opacity: 0.4;
+  border: 0;
+  top: 0;
+  left: 0;
+}
+
+#network .canvas.hovered canvas {
+  opacity: 1.0;
+  border: 2px solid #666;
+  top: -2px;
+  left: -2px;
+}
+
+/* Hidden layers column */
+
+.hidden-layers.column {
+  width: 320px;
+}
+
+.hidden-layers h4 {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+}
+
+.hidden-layers #num-layers {
+  margin-right: 10px;
+}
+
+.hidden-layers h4 .control {
+  display: flex;
+  position: absolute;
+  right: 0;
+}
+
+.hidden-layers h4 .control .button {
+  margin-top: -2px;
+}
+
+/* Output column */
+
+.output.column {
+  width: 300px;
+}
+
+.output .output-stats {
+  width: 45%;
+  float: left;
+}
+
+.output .output-stats.train {
+  margin-right: 10%;
+}
+
+#main-part .output .output-stats p {
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.output .output-stats .value {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 20px;
+  font-weight: 300;
+}
+
 g.train circle {
   stroke: white;
   stroke-width: 1;
@@ -450,13 +523,12 @@ g.train circle {
   fill-opacity: 0.9;
 }
 
-g.test circle {
+ g.test circle {
   stroke-width: 1;
   stroke: black;
   stroke-opacity: 0.6;
   fill-opacity: 0.9;
 }
-
 
 /* Footer */
 
