@@ -118,7 +118,6 @@ let iter = 0;
 let trainData: Example2D[] = [];
 let testData: Example2D[] = [];
 let network: nn.Node[][] = null;
-let timeMatrix: TimeMatrix = null;
 let accuracyTrain = 0;
 let accuracyTest = 0;
 let player = new Player();
@@ -263,9 +262,6 @@ function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
       }
     }
   }
-  if (state.collectStats && iter > 0) {
-    timeMatrix.addColumn(values);
-  }
 }
 
 function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
@@ -322,7 +318,6 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
     })
     .on("mouseenter", function() {
       selectedNodeId = nodeId;
-      d3.select("#node-output").text("node " + nodeId);
       div.classed("hovered", true);
       nodeGroup.classed("hovered", true);
       updateDecisionBoundary(network, false);
@@ -330,7 +325,6 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
     })
     .on("mouseleave", function() {
       selectedNodeId = null;
-      d3.select("#node-output").text("the network");
       div.classed("hovered", false);
       nodeGroup.classed("hovered", false);
       updateDecisionBoundary(network, false);
@@ -681,15 +675,10 @@ function reset() {
   network = nn.buildNetwork(shape, state.activation, nn.Activations.TANH,
       state.regularization, constructInputIds());
 
-  timeMatrix = new TimeMatrix(d3.select("#time-matrix"),
-      getOutputLabels(network));
   accuracyTrain = getAccuracy(network, trainData);
   accuracyTest = getAccuracy(network, testData);
 
   drawNetwork(network);
-  d3.select("#time-matrix-container")
-      .style("display", state.collectStats || timeMatrix.numColumns > 0 ?
-        "block" : "none");
   updateUI(true);
 };
 
