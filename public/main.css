@@ -452,6 +452,7 @@ g.column rect {
   width: 55px;
   height: 44px;
   font-size: 12px;
+  z-index: 100;
 }
 
 /* Network (inside features column) */
@@ -527,6 +528,7 @@ g.column rect {
 
 .hidden-layers.column {
   width: 380px;
+  position: relative;
 }
 
 #main-part .hidden-layers h4 {
@@ -546,6 +548,21 @@ g.column rect {
 
 .hidden-layers h4 .control .button {
   margin-top: -2px;
+}
+
+.hidden-layers .callout {
+  position: absolute;
+  width: 120px;
+}
+
+.hidden-layers .callout svg {
+  width: 30px;
+  height: 30px;
+}
+
+.hidden-layers .callout svg path {
+  fill: none;
+  stroke: black;
 }
 
 /* Output column */

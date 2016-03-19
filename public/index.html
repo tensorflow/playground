@@ -14,7 +14,7 @@
 <body>
   <!-- Header -->
   <header>
-    <h1 class="l--page">Meet <b>Deep Playground</b>, A Real Neural Network<br>That You Can Tinker With In Your Browser.<br>Don’t Worry, You Can’t Break Anything.</h1>
+    <h1 class="l--page">Meet <b>Deep Playground</b>, A Deep Neural Network<br>That You Can Tinker With In Your Browser.<br>Go Ahead, Jump In There. You Can’t Break It.</h1>
   </header>
 
   <!-- Top Controls -->
@@ -158,6 +158,20 @@
           </button>
         </div>
       </h4>
+      <div class="callout" style="left: 0px; bottom: 0;">
+        <svg viewBox="0 0 30 30">
+          <path d="M0,30L0,0">
+          <path d="M0,30L0,0">
+          </svg>
+          <div class="label">These thumbnails show the output from one <b>neuron</b>. Hover to see it larger. </div>
+        </div>
+      <div class="callout" style="left: 250px; bottom: 0;">
+        <svg viewBox="0 0 30 30">
+          <path d="M0,30L0,0">
+          <path d="M0,30L0,0">
+        </svg>
+        <div class="label">The outputs from the neurons are mixed with varying <b>weights</b>, shown by the thickness of the lines.</div>
+      </div>
     </div>
 
     <!-- Output Column -->
@@ -190,37 +204,27 @@
 
   <article>
     <div class="l--page">
-      <h2>What Is a Neural Network?</h2>
-      <p>An artificial neural network is a technique used to build computer systems that learn from data. It is based very loosely on how we think the human brain works — a collection of “neurons” are connected in a network, sending messages back and forth to one another. Over time it strengthens the connections that lead to success and diminishes those that lead to failure. It is one of many machine learning techniques, but it is the one that has achieved particularly impressive results recently.</p>
+      <h2>What Is This Network Trying To Do?</h2>
+      <p>This is a very simple deep neural network whose only goal in life is to try to guess if a circle should be orange or blue. To teach it how to do that well, we first give it a some colored circles to train with. We then test it on the remaining data and grade how well it does.</p>
     </div>
     <div class="l--page">
-      <h2>What Is This Network Trying To Do?</h2>
-      <p>This is a very simple deep neural network — its only goal in life is to try to guess if a circle should be orange or blue. To teach it how to do that well, we first give it a some colored circles to train with. Next, we give it some circles but don't tell it what color they are, we only tell it it's position. We then grade the network on how accurate it was with its guesses.</p>
+      <h2>Um, What Is a Neural Network?</h2>
+      <p>It’s a technique for building a computer program that learns from data. It is based very loosely on how we think the human brain works — a collection of software “neurons” are connected together, allowing them to send messages to each other. The network is then asked to solve a problem, which it attempts to do over and over, each time strengthening the connections that lead to success and diminishing those that lead to failure.</p>
     </div>
     <div class="l--page">
       <h2>If Hidden Layers are Hidden, Why Can I See Them?</h2>
-      <p>A short paragraph or two explaining how many layers are needed for certain types of problems. A short paragraph or two explaining how many layers are needed for certain types of problems.</p>
-      <p>Here, probably two paragraphs are need to explaining how many layers are needed for certain types of problems.</p>
     </div>
     <div class="l--page">
       <h2>How Many Hidden Layers Should I Use?</h2>
-      <p>A short paragraph or two explaining how many layers are needed for certain types of problems. A short paragraph or two explaining how many layers are needed for certain types of problems.</p>
-      <p>Here, probably two paragraphs are need to explaining how many layers are needed for certain types of problems.</p>
     </div>
     <div class="l--page">
       <h2>How Many Neurons Should a Layer Have?</h2>
-      <p>A short paragraph or two explaining how many layers are needed for certain types of problems. A short paragraph or two explaining how many layers are needed for certain types of problems.</p>
-      <p>Here, probably two paragraphs are need to explaining how many layers are needed for certain types of problems.</p>
     </div>
     <div class="l--page">
       <h2>What Is Regularization, and Why Would I Want It?</h2>
-      <p>A short paragraph or two explaining how many layers are needed for certain types of problems. A short paragraph or two explaining how many layers are needed for certain types of problems.</p>
-      <p>Here, probably two paragraphs are need to explaining how many layers are needed for certain types of problems.</p>
     </div>
     <div class="l--page">
       <h2>How Do I Pick an Activation Function?</h2>
-      <p>A short paragraph or two explaining how many layers are needed for certain types of problems. A short paragraph or two explaining how many layers are needed for certain types of problems.</p>
-      <p>Here, probably two paragraphs are need to explaining how many layers are needed for certain types of problems.</p>
     </div>
   </article>
 
@@ -247,6 +251,7 @@
       	<path d="M510.9,85.8h-10.4l-8.4-31.2c-1.3-4.7-2.6-10.2-3.2-13.2c-0.6,2.9-1.9,8.6-3.2,13.3l-8.2,31.1h-10.4L450.3,24h12l7.3,30
       		c1.2,4.7,2.5,10.6,3.1,13.5c0.7-3.1,2.1-8.7,3.4-13.5l8.2-30h9.8l8.4,30.1c1.3,4.8,2.6,10.4,3.3,13.4c0.7-3.1,1.9-8.8,3.1-13.5
       		l7.3-30h12L510.9,85.8z"/>
+      	<path d="M79.1,76.2c-6.7,0-12.7-4-14.9-13.2l40.5-12.2c-0.2-2.8-0.6-5.4-1.3-8c-3-11.6-11.1-20.1-24.7-20.1
       	<path d="M79.1,76.2c-6.7,0-12.7-4-14.9-13.2l40.5-12.2c-0.2-2.8-0.6-5.4-1.3-8c-3-11.6-11.1-20.1-24.7-20.1
       		c-16,0-27.1,11.3-27.1,32.3c0,20.5,12.2,32.1,26.7,32.1c9.4,0,15.9-2.9,21.3-8.1l-7.2-7.8C88.4,74.3,84.3,76.2,79.1,76.2z
       	 M78,33.7c7.9,0,12.1,4.5,13.8,10.5l-27.9,8.5l0-3.5C64.9,39.3,69.8,33.7,78,33.7z"/>
