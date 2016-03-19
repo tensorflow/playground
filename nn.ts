@@ -83,7 +83,10 @@ export class Errors {
 /** Built-in activation functions */
 export class Activations {
   public static TANH: ActivationFunction = {
-    output: x => (2 / (1 + Math.exp(-2 * x))) - 1,
+    output: x => {
+      let e2x = Math.exp(2 * x);
+      return (e2x - 1) / (e2x + 1);
+    },
     der: x => {
       let output = Activations.TANH.output(x);
       return 1 - output * output;

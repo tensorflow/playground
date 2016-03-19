@@ -113,7 +113,7 @@ export class State {
   discretize = false;
   tutorial: string = null;
   percTrainData = 50;
-  activation = nn.Activations.RELU;
+  activation = nn.Activations.TANH;
   regularization: nn.RegularizationFunction = null;
   collectStats = false;
   numHiddenLayers = 1;

@@ -102,9 +102,10 @@ let state = State.deserializeState();
 let boundary: {[id: string]: number[][]} = {};
 let selectedNodeId: string = null;
 // Plot the heatmap.
-let xDomain: [number, number] = [-1, 1];
+let xDomain: [number, number] = [-6, 6];
 let heatMap =
-    new HeatMap(300, DENSITY, xDomain, xDomain, d3.select("#heatmap"));
+    new HeatMap(300, DENSITY, xDomain, xDomain, d3.select("#heatmap"),
+        {showAxes: true});
 let linkWidthScale = d3.scale.linear()
   .domain([0, 5])
   .range([1, 10])
@@ -471,8 +472,8 @@ function drawLink(
   let source = node2coord[input.source.id];
   let dest = node2coord[input.dest.id];
   let datum = {
-    source: {y: source.cx + RECT_SIZE / 2, x: source.cy},
-    target: {y: dest.cx - RECT_SIZE / 2 - 10, x: dest.cy}
+    source: {y: source.cx + RECT_SIZE / 2 + 2, x: source.cy},
+    target: {y: dest.cx - RECT_SIZE / 2 - 8, x: dest.cy}
   };
   let diagonal = d3.svg.diagonal().projection(d => [d.y, d.x]);
   line.attr({
@@ -677,7 +678,7 @@ function reset() {
   heatMap.updatePoints(trainData);
   heatMap.updateTestPoints(state.showTestData ? testData : []);
 
-  network = nn.buildNetwork(shape, state.activation, nn.Activations.SIGMOID,
+  network = nn.buildNetwork(shape, state.activation, nn.Activations.TANH,
       state.regularization, constructInputIds());
 
   timeMatrix = new TimeMatrix(d3.select("#time-matrix"),
