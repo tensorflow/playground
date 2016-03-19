@@ -2,8 +2,7 @@ import {Example2D} from "./dataset";
 
 export interface HeatMapSettings {
   [key: string]: any;
-  showGridLines?: boolean;
-  numGridLines?: number;
+  showAxes?: boolean;
   noSvg?: boolean;
 }
 
@@ -17,8 +16,7 @@ const NUM_SHADES = 30;
  */
 export class HeatMap {
   private settings: HeatMapSettings = {
-    showGridLines: false,
-    numGridLines: 5,
+    showAxes: false,
     noSvg: false
   };
   private xScale: d3.scale.Linear<number, number>;
@@ -34,6 +32,8 @@ export class HeatMap {
       userSettings?: HeatMapSettings) {
     this.numSamples = numSamples;
     let height = width;
+    let padding = userSettings.showAxes ? 20 : 0;
+
     if (userSettings != null) {
       // overwrite the defaults with the user-specified settings.
       for (let prop in userSettings) {
@@ -41,13 +41,17 @@ export class HeatMap {
       }
     }
 
-    this.xScale = d3.scale.linear().domain(xDomain).range([0, width]);
+    this.xScale = d3.scale.linear()
+      .domain(xDomain)
+      .range([0, width - 2 * padding]);
 
-    this.yScale = d3.scale.linear().domain(yDomain).range([height, 0]);
+    this.yScale = d3.scale.linear()
+      .domain(yDomain)
+      .range([height - 2 * padding, 0]);
 
     // Get a range of colors.
     let tmpScale = d3.scale.linear<string, string>()
-        .domain([0, 0.5, 1])
+        .domain([0, .5, 1])
         .range(["#f59322", "#e8eaeb", "#0877bd"])
         .clamp(true);
     // Due to numerical error, we need to specify
@@ -58,14 +62,23 @@ export class HeatMap {
       return tmpScale(a);
     });
     this.color = d3.scale.quantize<string>()
-                     .domain([0, 1])
+                     .domain([-1, 1])
                      .range(colors);
 
+    container = container.append("div")
+      .style({
+        width: `${width}px`,
+        height: `${height}px`,
+        position: "relative"
+      });
     this.canvas = container.append("canvas")
-                      .attr("width", numSamples)
-                      .attr("height", numSamples)
-                      .style("width", width + "px")
-                      .style("height", height + "px");
+      .attr("width", numSamples)
+      .attr("height", numSamples)
+      .style("width", (width - 2 * padding) + "px")
+      .style("height", (height - 2 * padding) + "px")
+      .style("position", "absolute")
+      .style("top", `${padding}px`)
+      .style("left", `${padding}px`);
 
     if (!this.settings.noSvg) {
       this.svg = container.append("svg").attr({
@@ -76,35 +89,30 @@ export class HeatMap {
         "position": "absolute",
         "left": "0",
         "top": "0"
-      });
+      }).append("g")
+        .attr("transform", `translate(${padding},${padding})`);
 
       this.svg.append("g").attr("class", "train");
       this.svg.append("g").attr("class", "test");
     }
 
-    if (this.settings.showGridLines) {
+    if (this.settings.showAxes) {
       let xAxis = d3.svg.axis()
         .scale(this.xScale)
-        .orient("top")
-        .innerTickSize(height)
-        .outerTickSize(0)
-        .ticks(this.settings.numGridLines)
-        .tickFormat("");
-
-      this.svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .orient("bottom");
 
       let yAxis = d3.svg.axis()
         .scale(this.yScale)
-        .orient("right")
-        .innerTickSize(width)
-        .outerTickSize(0)
-        .ticks(this.settings.numGridLines)
-        .tickFormat("");
+        .orient("left");
 
-      this.svg.append("g").attr("class", "y axis").call(yAxis);
+      this.svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", `translate(0,${height - 2 * padding})`)
+        .call(xAxis);
+
+      this.svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
     }
   }
 

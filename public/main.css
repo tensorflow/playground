@@ -276,32 +276,8 @@ header h1 {
   font-size: 13px;
 }
 
-#main-part .column label .value {
-  /*font-weight: 400;*/
-  /*color: #999;*/
-}
-
-
 svg text {
   dominant-baseline: middle;
-}
-
-.axis text {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-}
-
-.axis path {
-  display: none;
-}
-
-.tick line {
-  opacity: 0.2;
 }
 
 canvas {
@@ -467,6 +443,21 @@ g.column rect {
   font-size: 13px;
   fill: #333;
   font-weight: 300;
+}
+
+.axis line {
+  fill: none;
+  stroke: #777;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  fill: #777;
+  font-size: 10px;
+}
+
+.axis path {
+  display: none;
 }
 
 #network svg .active .main-label {

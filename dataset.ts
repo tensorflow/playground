@@ -39,7 +39,7 @@ export function generateTwoGaussData(numSamples: number, noise: number):
     Example2D[] {
   let points: Example2D[] = [];
 
-  let varianceScale = d3.scale.linear().domain([0, .5]).range([0.03, 0.4]);
+  let varianceScale = d3.scale.linear().domain([0, .5]).range([0.5, 4]);
   let variance = varianceScale(noise);
 
   function genGauss(cx: number, cy: number, label: number) {
@@ -50,8 +50,8 @@ export function generateTwoGaussData(numSamples: number, noise: number):
     }
   }
 
-  genGauss(.4, .4, 1); // Gaussian with positive examples.
-  genGauss(-.4, -.4, 0); // Gaussian with negative examples.
+  genGauss(2, 2, 1); // Gaussian with positive examples.
+  genGauss(-2, -2, -1); // Gaussian with negative examples.
   return points;
 }
 
@@ -62,7 +62,7 @@ export function generateSpiralData(numSamples: number, noise: number):
 
   function genSpiral(deltaT: number, label: number) {
     for (let i = 0; i < n; i++) {
-      let r = i / n * 1;
+      let r = i / n * 5;
       let t = 1.75 * i / n * 2 * Math.PI + deltaT;
       let x = r * Math.sin(t) + randUniform(-.2, .2) * noise;
       let y = r * Math.cos(t) + randUniform(-.2, .2) * noise;
@@ -71,16 +71,16 @@ export function generateSpiralData(numSamples: number, noise: number):
   }
 
   genSpiral(0, 1); // Positive examples.
-  genSpiral(Math.PI, 0); // Negative examples.
+  genSpiral(Math.PI, -1); // Negative examples.
   return points;
 }
 
 export function generateCircleData(numSamples: number, noise: number):
     Example2D[] {
   let points: Example2D[] = [];
-  let radius = 1;
+  let radius = 5;
   function getCircleLabel(p: Point, center: Point) {
-    return (dist(p, center) < (radius * 0.5)) ? 1 : 0;
+    return (dist(p, center) < (radius * 0.5)) ? 1 : -1;
   }
 
   // Generate positive points inside the circle.
@@ -111,17 +111,17 @@ export function generateCircleData(numSamples: number, noise: number):
 
 export function generateXORData(numSamples: number, noise: number):
     Example2D[] {
-  function getXORLabel(p: Point) { return p.x * p.y >= 0 ? 1 : 0; }
+  function getXORLabel(p: Point) { return p.x * p.y >= 0 ? 1 : -1; }
 
   let points: Example2D[] = [];
   for (let i = 0; i < numSamples; i++) {
-    let x = randUniform(-1, 1);
-    let padding = 0.1;
+    let x = randUniform(-5, 5);
+    let padding = 0.3;
     x += x > 0 ? padding : -padding;  // Padding.
-    let y = randUniform(-1, 1);
+    let y = randUniform(-5, 5);
     y += y > 0 ? padding : -padding;
-    let noiseX = randUniform(-1, 1) * noise;
-    let noiseY = randUniform(-1, 1) * noise;
+    let noiseX = randUniform(-5, 5) * noise;
+    let noiseY = randUniform(-5, 5) * noise;
     let label = getXORLabel({x: x + noiseX, y: y + noiseY});
     points.push({x: x, y: y, label: label});
   }
