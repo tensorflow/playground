@@ -7,7 +7,7 @@ body {
 
 h1 {
   font-size: 34px;
-  line-height: 1.4em;
+  line-height: 1.45em;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.7);
 }
@@ -103,6 +103,7 @@ header {
 }
 
 header h1 {
+  text-align: center;
   margin-top: 60px;
   margin-bottom: 60px;
   -webkit-font-smoothing: antialiased;
@@ -184,7 +185,7 @@ header h1 {
 
 #top-controls .control .label,
 #top-controls .control label {
-  color: #999;
+  color: #777;
   font-size: 13px;
   display: block;
   margin-bottom: 6px;
@@ -246,6 +247,7 @@ header h1 {
   margin-bottom: 50px;
   height: 470px;
   overflow: hidden;
+  padding-top: 2px;
 }
 
 #main-part .column {
@@ -270,7 +272,7 @@ header h1 {
   font-weight: 300;
   line-height: 1.38em;
   margin: 0;
-  color: #999;
+  color: #777;
   font-size: 13px;
 }
 
