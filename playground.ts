@@ -255,6 +255,7 @@ function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
         values.push(-input.storedErrorDer);
         container.select(`#link${input.source.id}-${input.dest.id}`)
             .style({
+              "stroke-dashoffset": -iter/3,
               "stroke-width": linkWidthScale(Math.abs(input.weight)),
               "stroke": colorScale(input.weight)
             })

@@ -418,6 +418,7 @@ g.column rect {
   position: absolute;
   top: 100px;
   left: 0;
+  z-index: 100;
 }
 
 #network svg .main-label {
@@ -466,7 +467,7 @@ g.column rect {
 #network .core path {
   stroke-dasharray: 9 1;
   stroke-dashoffset: 1;
-  -webkit-animation: 0.5s linear 0s infinite flowing;
+  /*-webkit-animation: 0.5s linear 0s infinite flowing;*/
 }
 
 #network .canvas canvas {

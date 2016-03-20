@@ -1,11 +1,9 @@
 ## P1
-- Callout labels for neurons, weights, edges, etc..
-- Axis on output chart
 - Color scale on output chart
-- make animation of lines stop when not running
 - Credits
 - Checkbox styling
 - image rendering crisp/smooth?
+- write paragraphs
 
 ## P2
 - More prominent "Source on GitHub" link?
@@ -25,3 +23,6 @@
 
 #Completed
 - style sliders
+- Axis on output chart
+- Callout labels for neurons, weights, edges, etc..
+- make animation of lines stop when not running
