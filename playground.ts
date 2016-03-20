@@ -17,9 +17,6 @@ const RECT_SIZE = 30;
 const NUM_SAMPLES = 500;
 const DENSITY = 100;
 
-const HUMAN_NUM = ["no", "one", "two", "three", "four", "five", "six",
-    "seven", "eight", "nine", "ten"];
-
 interface InputFeature {
   f: (x: number, y: number) => number;
   label?: string;
@@ -576,7 +573,7 @@ function getAccuracy(network: nn.Node[][], dataPoints: Example2D[]): number {
     let dataPoint = dataPoints[i];
     let input = constructInput(dataPoint.x, dataPoint.y);
     let output = nn.forwardProp(network, input);
-    output = output >= 0.5 ? 1 : 0;
+    output = output >= 0 ? 1 : -1;
     if (output === dataPoint.label) {
       numCorrect++;
     }
@@ -698,7 +695,6 @@ function reset() {
   let suffix = state.numHiddenLayers !== 1 ? "s" : "";
   d3.select("#layers-label").text("Hidden layer" + suffix);
   d3.select("#num-layers").text(state.numHiddenLayers);
-  //HUMAN_NUM[state.numHiddenLayers] +
 
   // Make a simple network.
   iter = 0;
