@@ -393,6 +393,25 @@ g.column rect {
   z-index: 100;
 }
 
+.features.column .callout {
+  position: absolute;
+  width: 100px;
+}
+
+.features.column .callout svg {
+  width: 30px;
+  height: 30px;
+}
+
+.features.column .callout svg path {
+  fill: none;
+  stroke: black;
+}
+
+#main-part .features.column .callout .label {
+  font-size: 11px;
+}
+
 /* Network (inside features column) */
 
 #network {
@@ -481,7 +500,6 @@ g.column rect {
 
 .hidden-layers.column {
   width: 380px;
-  position: relative;
 }
 
 #main-part .hidden-layers h4 {
@@ -501,21 +519,6 @@ g.column rect {
 
 .hidden-layers h4 .control .button {
   margin-top: -2px;
-}
-
-.hidden-layers .callout {
-  position: absolute;
-  width: 120px;
-}
-
-.hidden-layers .callout svg {
-  width: 30px;
-  height: 30px;
-}
-
-.hidden-layers .callout svg path {
-  fill: none;
-  stroke: black;
 }
 
 /* Output column */

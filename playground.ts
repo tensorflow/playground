@@ -373,6 +373,12 @@ function drawNetwork(network: nn.Node[][]): void {
       .rangePoints([featureWidth, width - RECT_SIZE], 0.7);
   let nodeIndexScale = (nodeIndex: number) => nodeIndex * (RECT_SIZE + 25);
 
+
+  let calloutThumb = d3.select(".callout.thumbnail").style("display", "none");
+  let calloutWeights = d3.select(".callout.weights").style("display", "none");
+  let idWithCallout = null;
+  let targetIdWithCallout = null;
+
   // Draw the input layer separately.
   let cx = RECT_SIZE / 2 + 50;
   let nodeIds = Object.keys(INPUTS);
@@ -394,18 +400,53 @@ function drawNetwork(network: nn.Node[][]): void {
       let cy = nodeIndexScale(i) + RECT_SIZE / 2;
       node2coord[node.id] = {cx: cx, cy: cy};
       drawNode(cx, cy, node.id, false, container);
+
+      // Show callout to thumbnails.
+      let numNodes = network[layerIdx].length;
+      let nextNumNodes = network[layerIdx + 1].length;
+      if (idWithCallout == null &&
+          i === numNodes - 1 &&
+          nextNumNodes <= numNodes) {
+        console.log(targetIdWithCallout);
+        calloutThumb.style({
+          display: null,
+          top: `${100 + 3 + cy}px`,
+          left: `${cx + 3}px`
+        });
+        idWithCallout = node.id;
+      }
+
       // Draw links.
-      for (let i = 0; i < node.inputs.length; i++) {
-        let input = node.inputs[i];
-        drawLink(input, node2coord, network, container, i === 0);
+      for (let j = 0; j < node.inputs.length; j++) {
+        let input = node.inputs[j];
+        drawLink(input, node2coord, network, container, j === 0);
+        // Show callout to weights.
+        let prevLayer = network[layerIdx - 1];
+        let lastNodePrevLayer = prevLayer[prevLayer.length - 1];
+        if (targetIdWithCallout == null &&
+            i === numNodes - 1 &&
+            input.source.id === lastNodePrevLayer.id &&
+            input.source.id !== idWithCallout &&
+            input.dest.id !== idWithCallout &&
+            prevLayer.length >= numNodes) {
+          let source = node2coord[input.source.id];
+          let dest = node2coord[input.dest.id];
+          let midX = (source.cx + dest.cx) / 2;
+          let midY = (source.cy + dest.cy) / 2;
+          calloutWeights.style({
+            display: null,
+            top: `${100 + midY + 3}px`,
+            left: `${midX}px`
+          });
+          targetIdWithCallout = input.dest.id;
+        }
       }
     }
   }
 
   // Draw the output node separately.
-  let layerIdx = numLayers - 1;
   cx = width + RECT_SIZE / 2;
-  let node = network[layerIdx][0];
+  let node = network[numLayers - 1][0];
   let cy = nodeIndexScale(0) + RECT_SIZE / 2;
   node2coord[node.id] = {cx: cx, cy: cy};
   // Draw links.
