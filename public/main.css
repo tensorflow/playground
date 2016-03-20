@@ -292,28 +292,6 @@ canvas {
   stroke-width: 1;
 }
 
-#hovercard {
-  display: none;
-  position: absolute;
-  padding: 5px;
-  border: 1px solid #aaa;
-  z-index: 1000;
-  background: #fff;
-  cursor: default;
-  border-radius: 5px;
-  left: 240px;
-  width: 175px;
-  top: -20px;
-}
-
-#hovercard input {
-  width: 38px;
-}
-
-#node-output {
-  font-weight: bold;
-}
-
 g.column rect {
   stroke: none;
 }
@@ -321,22 +299,6 @@ g.column rect {
 #heatmap {
   position: relative;
   float: left;
-}
-
-#time-matrix-container {
-  display: none;
-}
-
-#time-matrix {
-  width: 100%;
-  overflow-x: auto;
-}
-
-#time-matrix text {
-  alignment-baseline: hanging;
-  text-anchor: end;
-  font-size: 9px;
-  font-family: 'Roboto', sans-serif;
 }
 
 /* Data column */
@@ -486,7 +448,7 @@ g.column rect {
 #network .core path {
   stroke-dasharray: 9 1;
   stroke-dashoffset: 1;
-  -webkit-animation: 0.5s linear 0s infinite flowing;
+  /*-webkit-animation: 0.5s linear 0s infinite flowing;*/
 }
 
 #network .canvas canvas {
