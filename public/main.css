@@ -437,6 +437,7 @@ g.column rect {
   position: absolute;
   top: 100px;
   left: 0;
+  z-index: 100;
 }
 
 #network svg .main-label {
