@@ -151,8 +151,8 @@ header h1 {
   justify-content: center;
   align-items: center;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 50%;
   outline: none;
 }
