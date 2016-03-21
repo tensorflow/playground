@@ -163,7 +163,7 @@ export class HeatMap {
       for (let x = 0; x < dx; ++x) {
         let value = data[x][y];
         if (discretize) {
-          value = (value >= 0.5 ? 1 : 0);
+          value = (value >= 0 ? 1 : -1);
         }
         let c = d3.rgb(this.color(value));
         image.data[++p] = c.r;
