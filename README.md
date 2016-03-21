@@ -10,3 +10,5 @@ Then run `npm run watch` to start a watcher that automatically compiles the type
 whenever they change. Finally, run `npm run serve` which starts an HTTP server serving all files in the `public` folder.
 To see the visualization, visit `http://localhost:8080/` on your browser.
 To produce a minified javascript file for production, run `npm run build`.
+
+This is not an official Google product.
