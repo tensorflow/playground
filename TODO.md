@@ -4,8 +4,10 @@
 - Checkbox styling
 - image rendering crisp/smooth?
 - write paragraphs
+- Change height of #main-part for >5 neurons
 
 ## P2
+- High Noise values makes dots draw outside of -6 +6 domain
 - More prominent "Source on GitHub" link?
 - make play always play (even when fiddling with settings). Similarly, make pause always pause.
 - Some responsive styles so it looks better on chromebook small screens and tablets
