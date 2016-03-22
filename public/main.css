@@ -150,9 +150,8 @@ header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
   background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 50%;
   outline: none;
 }
@@ -163,20 +162,29 @@ header h1 {
 
 #top-controls .timeline-controls .circle-button:hover {
   /*border: 1px solid #ccc;*/
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);*/
 }
 
 #top-controls .timeline-controls .circle-button.small {
   width: 44px;
   height: 44px;
+  margin: 0;
+}
+
+#top-controls .timeline-controls .circle-button:first-of-type {
+  margin-left: -10px;
 }
 
 #top-controls .timeline-controls .circle-button.large {
+  background-color: #36474f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0,0,0,0.2);
   width: 58px;
   height: 58px;
 }
 
 #top-controls .timeline-controls .circle-button.large i {
+  color: white;
   font-size: 36px;
 }
 
