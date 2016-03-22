@@ -2,3 +2,4 @@ node_modules
 typings
 public/lib
 *.js
+*.log
