@@ -396,6 +396,7 @@ g.column rect {
   border: 2px solid black;
   opacity: 1;
   box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+  background-color: white;
 }
 
 #main-part .data.column .dataset .label {
