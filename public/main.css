@@ -378,6 +378,11 @@ g.column rect {
 .data.column .data-thumbnail img {
   width: 100%;
   height: 100%;
+  -moz-filter: saturate(300%);
+  -webkit-filter: saturate(300%);
+  -o-filter: saturate(300%);
+  -ms-filter: saturate(300%);
+  filter: saturate(300%);
 }
 
 /*.data.column .dataset:first-of-type {
