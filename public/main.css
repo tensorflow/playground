@@ -466,6 +466,12 @@ g.column rect {
   fill: #333
 }
 
+#network svg #markerArrow {
+  fill: none;
+  stroke: black;
+  stroke-opacity: 0.2;
+}
+
 #network .node {
   cursor: default;
 }
