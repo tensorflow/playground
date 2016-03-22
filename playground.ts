@@ -46,6 +46,7 @@ const INPUTS: {[name: string]: InputFeature} = {
   "sinX": {f: (x, y) => Math.sin(x), label: "sin(X)"},
   "sinY": {f: (x, y) => Math.sin(y), label: "sin(Y)"},
 };
+
 let learningRates: {[key: string]: number} = {
   "l=0.001": 0.001,
   "l=0.01": 0.01,
