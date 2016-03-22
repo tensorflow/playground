@@ -118,7 +118,7 @@ export class HeatMap {
 
       let yAxis = d3.svg.axis()
         .scale(this.yScale)
-        .orient("left");
+        .orient("right");
 
       this.svg.append("g")
         .attr("class", "x axis")
@@ -127,6 +127,7 @@ export class HeatMap {
 
       this.svg.append("g")
         .attr("class", "y axis")
+        .attr("transform", "translate(" + (width - 2 * padding) + ",0)")
         .call(yAxis);
     }
   }

@@ -321,6 +321,23 @@ g.column rect {
   float: left;
 }
 
+#heatmap .tick line {
+  stroke: #ddd;
+}
+
+#heatmap .tick text {
+  fill: #bbb;
+  dominant-baseline: auto;
+}
+
+#heatmap .tick:nth-child(7) text {
+  fill: #333;
+}
+
+#heatmap .tick:nth-child(7) line {
+  stroke: #999;
+}
+
 /* Data column */
 
 .vcenter {
