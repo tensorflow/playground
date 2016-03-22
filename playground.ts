@@ -211,21 +211,27 @@ function makeGUI() {
 
   let percTrain = d3.select("#percTrainData").on("input", function() {
     state.percTrainData = this.value;
+    d3.select("label[for='percTrainData'] .value").text(this.value);
     reset();
   });
   percTrain.property("value", state.percTrainData);
+  d3.select("label[for='percTrainData'] .value").text(state.percTrainData);
 
   let noise = d3.select("#noise").on("input", function() {
     state.noise = this.value;
+    d3.select("label[for='noise'] .value").text(this.value);
     reset();
   });
   noise.property("value", state.noise);
+  d3.select("label[for='noise'] .value").text(state.noise);
 
   let batchSize = d3.select("#batchSize").on("input", function() {
     state.batchSize = this.value;
+    d3.select("label[for='batchSize'] .value").text(this.value);
     reset();
   });
   batchSize.property("value", state.batchSize);
+  d3.select("label[for='batchSize'] .value").text(state.batchSize);
 
   let activationDropdown = d3.select("#activations").on("change", function() {
     state.activation = activations[this.value];
