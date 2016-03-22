@@ -268,7 +268,6 @@ header h1 {
   justify-content: space-between;
   margin-top: 50px;
   margin-bottom: 50px;
-  height: 470px;
   overflow: hidden;
   padding-top: 2px;
 }
@@ -305,8 +304,6 @@ svg text {
 
 canvas {
   display: block;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
 }
 
 .link {
@@ -438,8 +435,8 @@ g.column rect {
 /* Network (inside features column) */
 
 #network {
-  position: absolute;
-  top: 100px;
+  position: relative;
+  top: 20px;
   left: 0;
   z-index: 100;
 }
