@@ -161,8 +161,8 @@ header h1 {
 }
 
 #top-controls .timeline-controls .circle-button:hover {
-  /*border: 1px solid #ccc;*/
-  /*box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);*/
+  background-color: #ccc;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
 }
 
 #top-controls .timeline-controls .circle-button.small {
@@ -170,6 +170,7 @@ header h1 {
   height: 44px;
   margin: 0;
 }
+
 
 #top-controls .timeline-controls .circle-button:first-of-type {
   margin-left: -15px;
@@ -181,6 +182,12 @@ header h1 {
   border: 1px solid rgba(0,0,0,0.2);
   width: 58px;
   height: 58px;
+}
+
+#top-controls .timeline-controls .circle-button.large:hover {
+  background-color: #999;
+  border: 0;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
 }
 
 #top-controls .timeline-controls .circle-button.large i {
