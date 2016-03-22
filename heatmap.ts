@@ -84,7 +84,9 @@ export class HeatMap {
       .style({
         width: `${width}px`,
         height: `${height}px`,
-        position: "relative"
+        position: "relative",
+        top: `-${padding}px`,
+        left: `-${padding}px`
       });
     this.canvas = container.append("canvas")
       .attr("width", numSamples)
