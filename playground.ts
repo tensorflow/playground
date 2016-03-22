@@ -420,7 +420,6 @@ function drawNetwork(network: nn.Node[][]): void {
       if (idWithCallout == null &&
           i === numNodes - 1 &&
           nextNumNodes <= numNodes) {
-        console.log(targetIdWithCallout);
         calloutThumb.style({
           display: null,
           top: `${100 + 3 + cy}px`,
@@ -469,6 +468,19 @@ function drawNetwork(network: nn.Node[][]): void {
   }
   // Adjust the height of the svg.
   svg.attr("height", maxY);
+
+  // Adjust the height of the features column.
+  let height = Math.max(
+    getRelativeHeight(calloutThumb),
+    getRelativeHeight(calloutWeights),
+    getRelativeHeight(d3.select("#network"))
+  );
+  d3.select(".column.features").style("height", height + "px");
+}
+
+function getRelativeHeight(selection: d3.Selection<any>) {
+  let node = <HTMLAnchorElement> selection.node();
+  return node.offsetHeight + node.offsetTop;
 }
 
 function addPlusMinusControl(x: number, layerIdx: number) {
