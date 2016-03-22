@@ -273,7 +273,7 @@ function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
         values.push(-input.storedErrorDer);
         container.select(`#link${input.source.id}-${input.dest.id}`)
             .style({
-              "stroke-dashoffset": -iter/3,
+              "stroke-dashoffset": -iter / 3,
               "stroke-width": linkWidthScale(Math.abs(input.weight)),
               "stroke": colorScale(input.weight)
             })
@@ -437,7 +437,7 @@ function drawNetwork(network: nn.Node[][]): void {
       // Draw links.
       for (let j = 0; j < node.inputs.length; j++) {
         let input = node.inputs[j];
-        drawLink(input, node2coord, network, container, j === 0);
+        drawLink(input, node2coord, network, container, j === 0, j, node.inputs.length);
         // Show callout to weights.
         let prevLayer = network[layerIdx - 1];
         let lastNodePrevLayer = prevLayer[prevLayer.length - 1];
@@ -470,7 +470,7 @@ function drawNetwork(network: nn.Node[][]): void {
   // Draw links.
   for (let i = 0; i < node.inputs.length; i++) {
     let input = node.inputs[i];
-    drawLink(input, node2coord, network, container, i === 0);
+    drawLink(input, node2coord, network, container, i === 0, i, node.inputs.length);
   }
   // Adjust the height of the svg.
   svg.attr("height", maxY);
@@ -533,17 +533,17 @@ function addPlusMinusControl(x: number, layerIdx: number) {
 function drawLink(
     input: nn.Link, node2coord: {[id: string]: {cx: number, cy: number}},
     network: nn.Node[][], container: d3.Selection<any>,
-    isFirst: boolean) {
+    isFirst: boolean, index: number, length: number) {
   let line = container.append("path");
   let source = node2coord[input.source.id];
   let dest = node2coord[input.dest.id];
   let datum = {
-    source: {y: source.cx + RECT_SIZE / 2 + 2, x: source.cy},
-    target: {y: dest.cx - RECT_SIZE / 2 - 8, x: dest.cy}
+    source: {y: source.cx + RECT_SIZE / 2 + 2, x: source.cy },
+    target: {y: dest.cx - RECT_SIZE / 2, x: dest.cy + ((index - (length - 1) / 2) / length) * 12 }
   };
   let diagonal = d3.svg.diagonal().projection(d => [d.y, d.x]);
   line.attr({
-    "marker-end": "url(#markerArrow)",
+    "marker-start": "url(#markerArrow)",
     class: "link",
     id: "link" + input.source.id + "-" + input.dest.id,
     d: diagonal(datum, 0)
