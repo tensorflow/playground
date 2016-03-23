@@ -326,6 +326,7 @@ g.column rect {
 #heatmap {
   position: relative;
   float: left;
+  margin-top: 10px;
 }
 
 #heatmap .tick line {
