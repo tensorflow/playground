@@ -154,23 +154,18 @@ header h1 {
   background: #fff;
   border-radius: 50%;
   outline: none;
+  transition: background-color 0.15s linear, box-shadow 0.15s linear;
 }
 
 #top-controls .timeline-controls .circle-button .material-icons {
   color: #666;
 }
 
-#top-controls .timeline-controls .circle-button:hover {
-  background-color: #ccc;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
-}
-
 #top-controls .timeline-controls .circle-button.small {
-  width: 44px;
-  height: 44px;
-  margin: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0 4px;
 }
-
 
 #top-controls .timeline-controls .circle-button:first-of-type {
   margin-left: -15px;
@@ -184,10 +179,15 @@ header h1 {
   height: 58px;
 }
 
+#top-controls .timeline-controls .circle-button.small:hover i {
+  color: black;
+}
+#top-controls .timeline-controls .circle-button.small:active {
+  background-color: #eee;
+}
+
 #top-controls .timeline-controls .circle-button.large:hover {
-  background-color: #999;
-  border: 0;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
 }
 
 #top-controls .timeline-controls .circle-button.large i {
