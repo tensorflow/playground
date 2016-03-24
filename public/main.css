@@ -20,7 +20,7 @@ body {
   background-color: #f7f7f7;
 }
 
-h1 {
+header h1 {
   font-size: 34px;
   line-height: 1.45em;
   font-weight: 300;
@@ -275,7 +275,6 @@ header h1 {
   justify-content: space-between;
   margin-top: 50px;
   margin-bottom: 50px;
-  overflow: hidden;
   padding-top: 2px;
 }
 
@@ -419,9 +418,8 @@ g.column rect {
   display: none;
 }
 
-.data.column input {
-  width: 100%;
-  margin-bottom: 20px;
+#main-part .data.column p.slider {
+  margin: 0 -25px 20px;
 }
 
 /* Features column */
@@ -616,6 +614,10 @@ g.train circle {
   stroke: black;
   stroke-opacity: 0.6;
   fill-opacity: 0.9;
+}
+
+#main-part .output .mdl-checkbox__label.label {
+  line-height: 1.7em;
 }
 
 /* Article */
