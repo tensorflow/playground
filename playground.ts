@@ -385,7 +385,8 @@ function drawNetwork(network: nn.Node[][]): void {
   // Remove all svg elements.
   svg.select("g.core").remove();
   // Remove all div elements.
-  d3.select("#network").selectAll("div").remove();
+  d3.select("#network").selectAll("div.canvas").remove();
+  d3.select("#network").selectAll("div.plus-minus-neurons").remove();
 
   // Get the width of the svg container.
   let boundingRect = (<SVGElement>svg.node()).getBoundingClientRect();
@@ -441,7 +442,7 @@ function drawNetwork(network: nn.Node[][]): void {
           nextNumNodes <= numNodes) {
         calloutThumb.style({
           display: null,
-          top: `${100 + 3 + cy}px`,
+          top: `${10 + 3 + cy}px`,
           left: `${cx + 3}px`
         });
         idWithCallout = node.id;
@@ -450,7 +451,8 @@ function drawNetwork(network: nn.Node[][]): void {
       // Draw links.
       for (let j = 0; j < node.inputs.length; j++) {
         let input = node.inputs[j];
-        drawLink(input, node2coord, network, container, j === 0, j, node.inputs.length);
+        let linkCoord = drawLink(input, node2coord, network, container,
+            j === 0, j, node.inputs.length);
         // Show callout to weights.
         let prevLayer = network[layerIdx - 1];
         let lastNodePrevLayer = prevLayer[prevLayer.length - 1];
@@ -460,13 +462,11 @@ function drawNetwork(network: nn.Node[][]): void {
             input.source.id !== idWithCallout &&
             input.dest.id !== idWithCallout &&
             prevLayer.length >= numNodes) {
-          let source = node2coord[input.source.id];
-          let dest = node2coord[input.dest.id];
-          let midX = (source.cx + dest.cx) / 2;
-          let midY = (source.cy + dest.cy) / 2;
+          let midX = (linkCoord.source.y + linkCoord.target.y) / 2;
+          let midY = (linkCoord.source.x + linkCoord.target.x) / 2;
           calloutWeights.style({
             display: null,
-            top: `${100 + midY + 3}px`,
+            top: `${midY + 5}px`,
             left: `${midX}px`
           });
           targetIdWithCallout = input.dest.id;
@@ -561,6 +561,7 @@ function drawLink(
     id: "link" + input.source.id + "-" + input.dest.id,
     d: diagonal(datum, 0)
   });
+  return datum;
 }
 
 /**
