@@ -451,8 +451,8 @@ function drawNetwork(network: nn.Node[][]): void {
       // Draw links.
       for (let j = 0; j < node.inputs.length; j++) {
         let input = node.inputs[j];
-        let linkCoord = drawLink(input, node2coord, network, container,
-            j === 0, j, node.inputs.length);
+        let path: SVGPathElement = <any> drawLink(input, node2coord, network,
+            container, j === 0, j, node.inputs.length).node();
         // Show callout to weights.
         let prevLayer = network[layerIdx - 1];
         let lastNodePrevLayer = prevLayer[prevLayer.length - 1];
@@ -462,12 +462,11 @@ function drawNetwork(network: nn.Node[][]): void {
             input.source.id !== idWithCallout &&
             input.dest.id !== idWithCallout &&
             prevLayer.length >= numNodes) {
-          let midX = (linkCoord.source.y + linkCoord.target.y) / 2;
-          let midY = (linkCoord.source.x + linkCoord.target.x) / 2;
+          let midPoint = path.getPointAtLength(path.getTotalLength() / 2);
           calloutWeights.style({
             display: null,
-            top: `${midY + 5}px`,
-            left: `${midX}px`
+            top: `${midPoint.y + 3}px`,
+            left: `${midPoint.x + 3}px`
           });
           targetIdWithCallout = input.dest.id;
         }
@@ -561,7 +560,7 @@ function drawLink(
     id: "link" + input.source.id + "-" + input.dest.id,
     d: diagonal(datum, 0)
   });
-  return datum;
+  return line;
 }
 
 /**
