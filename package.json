@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf public/lib/*",
-    "prep": "typings install && mkdir -p public/lib && cp node_modules/d3/d3.min.js node_modules/seedrandom/seedrandom.min.js public/lib/.",
+    "prep": "typings install && mkdir -p public/lib && cp node_modules/material-design-lite/material.min.js node_modules/material-design-lite/material.min.css node_modules/d3/d3.min.js node_modules/seedrandom/seedrandom.min.js public/lib/.",
     "build": "npm run prep && browserify playground.ts -p [tsify] | uglifyjs -c > public/lib/bundle.min.js",
     "watch": "npm run prep && watchify playground.ts -p [tsify] -v --debug -o public/lib/bundle.js",
     "serve": "http-server public/"

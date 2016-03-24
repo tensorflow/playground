@@ -20,10 +20,11 @@ limitations under the License.
   <!--  TODO add Twitter and Facebook Cards etc...-->
   <link rel="stylesheet" href="main.css" type="text/css">
   <link rel="stylesheet" href="fonts.css" type="text/css">
-  <link rel="stylesheet" href="components.css" type="text/css">
+  <link rel="stylesheet" href="lib/material.min.css" type="text/css">
   <!--  TODO maybe bundle these lib js files with bundle.js, or at least together. -->
   <script src="lib/d3.min.js"></script>
   <script src="lib/seedrandom.min.js"></script>
+  <script src="lib/material.min.js"></script>
 </head>
 <body>
   <!-- Header -->
@@ -134,13 +135,19 @@ limitations under the License.
       </div>
       <div>
         <label for="percTrainData">Ratio of training vs. test data:&nbsp;&nbsp;<span class="value">XX</span>%</label>
-        <input type="range" id="percTrainData" min="10" max="90" step="10">
+        <p class="slider">
+        <input class="mdl-slider mdl-js-slider" type="range" id="percTrainData" min="10" max="90" step="10">
+        </p>
 
         <label for="noise">Noise:&nbsp;&nbsp;<span class="value">XX</span></label>
-        <input type="range" id="noise" min="0" max="50" step="5">
+        <p class="slider">
+        <input class="mdl-slider mdl-js-slider" type="range" id="noise" min="0" max="50" step="5">
+        </p>
 
         <label for="batchSize">Batch size:&nbsp;&nbsp;<span class="value">XX</span></label>
-        <input type="range" id="batchSize" min="1" max="30" step="1">
+        <p class="slider">
+        <input class="mdl-slider mdl-js-slider" type="range" id="batchSize" min="1" max="30" step="1">
+        </p>
       </div>
     </div>
 
@@ -203,9 +210,14 @@ limitations under the License.
       <div id="heatmap"></div>
       <div style="float:left;margin-top:20px">
         <div class="label">Colors shows classification confidence.</div>
-        <input type="checkbox" id="show-test-data"><label for="show-test-data">Show test data</label>
-        <br>
-        <input type="checkbox" id="discretize"><label for="discretize">Discretize output</label>
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for"show-test-data">
+          <input type="checkbox" id="show-test-data" class="mdl-checkbox__input" checked>
+          <span class="mdl-checkbox__label label">Show test data</span>
+        </label>
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for"discretize">
+          <input type="checkbox" id="discretize" class="mdl-checkbox__input" checked>
+          <span class="mdl-checkbox__label label">Discretize output</span>
+        </label>
       </div>
     </div>
   </div>
