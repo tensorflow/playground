@@ -260,6 +260,18 @@ function makeGUI() {
     reset();
   });
   regularRate.property("value", state.regularizationRate);
+
+  // Add scale to the gradient color map.
+  let x = d3.scale.linear().domain([-1, 1]).range([0, 144]);
+  let xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .tickValues([-1, 0, 1])
+    .tickFormat(d3.format("d"));
+  d3.select("#colormap g.core").append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0,10)")
+    .call(xAxis);
 }
 
 function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {

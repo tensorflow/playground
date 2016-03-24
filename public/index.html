@@ -201,8 +201,27 @@ limitations under the License.
         <p>Test accuracy</p>
       </div>
       <div id="heatmap"></div>
-      <div style="float:left;margin-top:20px">
-        <div class="label">Colors shows classification confidence.</div>
+      <div style="float:left;margin-top:10px">
+        <div style="display:flex; align-items:center;">
+
+          <!-- Gradient color scale -->
+          <div class="label" style="width:105px; margin-right: 10px">
+            Colors shows data, neuron and weight values.
+          </div>
+          <svg width="150" height="30" id="colormap">
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="100%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f59322" stop-opacity="1"></stop>
+                <stop offset="50%" stop-color="#e8eaeb" stop-opacity="1"></stop>
+                <stop offset="100%" stop-color="#0877bd" stop-opacity="1"></stop>
+              </linearGradient>
+            </defs>
+            <g class="core" transform="translate(3, 0)">
+              <rect width="144" height="10" style="fill: url('#gradient');"></rect>
+            </g>
+          </svg>
+        </div>
+        <br/>
         <input type="checkbox" id="show-test-data"><label for="show-test-data">Show test data</label>
         <br>
         <input type="checkbox" id="discretize"><label for="discretize">Discretize output</label>
