@@ -265,6 +265,7 @@ header h1 {
   position: absolute;
   right: 0;
   top: 6px;
+  pointer-events: none;
 }
 
 
