@@ -1,5 +1,15 @@
 /* TODO outlines (on focus) are still default color */
 
+/* Buttons */
+
+.mdl-button--fab.mdl-button--colored,
+.mdl-button--fab.mdl-button--colored:hover,
+.mdl-button--fab.mdl-button--colored:active,
+.mdl-button--fab.mdl-button--colored:focus,
+.mdl-button--fab.mdl-button--colored:focus:not(:active) {
+    background: #183D4E;
+}
+
 /* Checkbox */
 
 #main-part .mdl-checkbox__box-outline {

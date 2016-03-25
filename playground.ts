@@ -509,7 +509,7 @@ function addPlusMinusControl(x: number, layerIdx: number) {
   let i = layerIdx - 1;
   let firstRow = div.append("div").style("display", "flex");
   firstRow.append("button")
-      .classed("button", true)
+      .attr("class", "mdl-button mdl-js-button mdl-button--icon")
       .on("click", () => {
         let numNeurons = state.networkShape[i];
         if (numNeurons >= 8) {
@@ -523,7 +523,7 @@ function addPlusMinusControl(x: number, layerIdx: number) {
       .text("add");
 
   firstRow.append("button")
-      .classed("button", true)
+      .attr("class", "mdl-button mdl-js-button mdl-button--icon")
       .on("click", () => {
         let numNeurons = state.networkShape[i];
         if (numNeurons <= 1) {

@@ -78,6 +78,31 @@ body {
 
 /* Buttons */
 
+#main-part .mdl-button {
+  background-color: rgba(158,158,158,.1);
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+}
+
+#main-part .mdl-button:hover {
+  background-color: rgba(158,158,158,.3);
+}
+
+#main-part .mdl-button:focus:not(:active) {
+    background-color: rgba(158,158,158,.4);
+}
+
+#main-part .mdl-button:active {
+    background-color: rgba(158,158,158,.5);
+}
+
+#main-part .mdl-button .material-icons {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+
 .button {
   cursor: pointer;
   display: flex;
@@ -191,71 +216,26 @@ header h1 .optional {
   display: flex;
   align-items: center;
   margin-right: 20px;
-  width: 285px;
+  margin-left: -10px;
+  width: 265px;
 }
 
-#top-controls .timeline-controls .circle-button {
-  cursor: pointer;
-  margin: 0 3px;
-  /*display: flex;*/
-  /*justify-content: center;*/
-  /*align-items: center;*/
-  border: none;
-  background: #fff;
-  border-radius: 50%;
-  outline: none;
-  transition: background-color 0.15s linear, box-shadow 0.15s linear;
-}
-
-#top-controls .timeline-controls .circle-button .material-icons {
-  color: #666;
-  position: relative;
-  top: 1px;
-}
-
-#top-controls .timeline-controls .circle-button.small {
-  width: 40px;
-  height: 40px;
-  margin: 0 4px;
-}
-
-#top-controls .timeline-controls .circle-button:first-of-type {
-  margin-left: -15px;
-}
-
-#top-controls .timeline-controls .circle-button.large {
-  background-color: #183D4E;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(0,0,0,0.2);
-  width: 58px;
-  height: 58px;
-}
-
-#top-controls .timeline-controls .circle-button.small:hover i {
-  color: black;
-}
-#top-controls .timeline-controls .circle-button.small:active {
-  background-color: #eee;
-}
-
-#top-controls .timeline-controls .circle-button.large:hover {
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
-}
-
-#top-controls .timeline-controls .circle-button.large i {
+#play-pause-button .material-icons {
   color: white;
   font-size: 36px;
+  transform: translate(-18px,-12px);
 }
 
-#play-pause-button i:nth-of-type(2) {
+
+#play-pause-button .material-icons:nth-of-type(2) {
   display: none;
 }
 
-#play-pause-button.playing i:nth-of-type(1) {
+#play-pause-button.playing .material-icons:nth-of-type(1) {
   display: none;
 }
 
-#play-pause-button.playing i:nth-of-type(2) {
+#play-pause-button.playing .material-icons:nth-of-type(2) {
   display: inherit;
 }
 
@@ -631,18 +611,22 @@ g.column rect {
 
 #main-part .hidden-layers h4 {
   justify-content: center;
+  margin-top: -5px;
+}
+
+.hidden-layers #layers-label {
+  width: 125px;
+  display: inline-block;
 }
 
 .hidden-layers #num-layers {
   margin: 0 10px;
+  width: 10px;
+  display: inline-block;
 }
 
-.hidden-layers h4 .control {
-  display: flex;
-}
-
-.hidden-layers h4 .control .button {
-  margin-top: -2px;
+.hidden-layers h4 .mdl-button {
+  margin-right: 5px;
 }
 
 .hidden-layers .bracket {
