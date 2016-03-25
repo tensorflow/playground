@@ -54,6 +54,7 @@ body {
 }
 
 .l--page {
+  transition: width 0.2s;
   width: 944px;
   margin-left: auto;
   margin-right: auto;
@@ -495,7 +496,7 @@ g.column rect {
 
 .features.column .callout {
   position: absolute;
-  width: 100px;
+  width: 83px;
 }
 
 .features.column .callout svg {

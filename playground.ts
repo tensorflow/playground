@@ -272,6 +272,12 @@ function makeGUI() {
     .attr("class", "x axis")
     .attr("transform", "translate(0,10)")
     .call(xAxis);
+
+  // Listen for css-responsive changes and redraw the svg network.
+  d3.select("#main-part").on("transitionend", () => {
+    drawNetwork(network);
+    updateUI(true);
+  });
 }
 
 function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
@@ -389,9 +395,11 @@ function drawNetwork(network: nn.Node[][]): void {
   d3.select("#network").selectAll("div.plus-minus-neurons").remove();
 
   // Get the width of the svg container.
-  let boundingRect = (<SVGElement>svg.node()).getBoundingClientRect();
   let padding = 3;
-  let width = boundingRect.width - padding;
+  let co = <HTMLDivElement> d3.select(".column.output").node();
+  let cf = <HTMLDivElement> d3.select(".column.features").node();
+  let width = co.offsetLeft - cf.offsetLeft;
+  svg.attr("width", width);
 
   // Map of all node coordinates.
   let node2coord: {[id: string]: {cx: number, cy: number}} = {};
@@ -443,7 +451,7 @@ function drawNetwork(network: nn.Node[][]): void {
         calloutThumb.style({
           display: null,
           top: `${10 + 3 + cy}px`,
-          left: `${cx + 3}px`
+          left: `${cx}px`
         });
         idWithCallout = node.id;
       }
@@ -459,10 +467,10 @@ function drawNetwork(network: nn.Node[][]): void {
         if (targetIdWithCallout == null &&
             i === numNodes - 1 &&
             input.source.id === lastNodePrevLayer.id &&
-            input.source.id !== idWithCallout &&
+            (input.source.id !== idWithCallout || numLayers <= 5) &&
             input.dest.id !== idWithCallout &&
             prevLayer.length >= numNodes) {
-          let midPoint = path.getPointAtLength(path.getTotalLength() / 2);
+          let midPoint = path.getPointAtLength(path.getTotalLength() * 0.7);
           calloutWeights.style({
             display: null,
             top: `${midPoint.y + 3}px`,
@@ -482,7 +490,8 @@ function drawNetwork(network: nn.Node[][]): void {
   // Draw links.
   for (let i = 0; i < node.inputs.length; i++) {
     let input = node.inputs[i];
-    drawLink(input, node2coord, network, container, i === 0, i, node.inputs.length);
+    drawLink(input, node2coord, network, container, i === 0, i,
+        node.inputs.length);
   }
   // Adjust the height of the svg.
   svg.attr("height", maxY);
