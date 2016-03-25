@@ -48,9 +48,21 @@ body {
 }
 
 .l--page {
-  width: 970px;
+  width: 944px;
   margin-left: auto;
   margin-right: auto;
+}
+
+@media (min-width: 1180px) {
+  .l--page {
+    width: 1100px;
+  }
+}
+
+@media (min-width: 1400px) {
+  #main-part.l--page {
+    width: 1220px;
+  }
 }
 
 #container {
@@ -122,6 +134,16 @@ header h1 {
   margin-top: 30px;
   margin-bottom: 30px;
   -webkit-font-smoothing: antialiased;
+}
+
+header h1 .optional {
+  display: none;
+}
+
+@media (min-width: 1064px) {
+  header h1 .optional {
+    display: inline;
+  }
 }
 
 @media (min-height: 700px) {
@@ -296,14 +318,13 @@ header h1 {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   padding-top: 2px;
 }
 
 @media (min-height: 700px) {
   #main-part {
     margin-top: 50px;
-    margin-bottom: 50px;
   }
 }
 
