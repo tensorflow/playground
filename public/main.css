@@ -191,9 +191,9 @@ header h1 .optional {
 #top-controls .timeline-controls .circle-button {
   cursor: pointer;
   margin: 0 3px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
   border: none;
   background: #fff;
   border-radius: 50%;
@@ -203,6 +203,8 @@ header h1 .optional {
 
 #top-controls .timeline-controls .circle-button .material-icons {
   color: #666;
+  position: relative;
+  top: 1px;
 }
 
 #top-controls .timeline-controls .circle-button.small {
@@ -492,6 +494,12 @@ g.column rect {
   height: 44px;
   font-size: 12px;
   z-index: 100;
+}
+
+.plus-minus-neurons .material-icons,
+#add-layers .material-icons,
+#remove-layers .material-icons {
+  margin: 0 auto;
 }
 
 .features.column .callout {
