@@ -789,6 +789,26 @@ function initTutorial() {
   }
 }
 
+function drawDatasetThumbnails() {
+  for (var dataset in datasets) {
+    let canvas:any = document.querySelector("canvas[data-dataset=" + dataset + "]");
+    let w = 100;
+    let h = 100;
+    canvas.setAttribute("width", w)
+    canvas.setAttribute("height", h)
+    var context = canvas.getContext("2d");
+
+    let data = datasets[dataset](200, 0);
+    data.forEach(function(d) {
+      console.log(d.label)
+      context.fillStyle = colorScale(d.label);
+      context.fillRect(w * (d.x + 6) / 12, h * (d.y + 6) / 12, 4, 4);
+      //x,y,label:1|0
+    });
+  }
+}
+
+drawDatasetThumbnails();
 initTutorial();
 makeGUI();
 reset();
