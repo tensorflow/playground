@@ -516,7 +516,7 @@ function addPlusMinusControl(x: number, layerIdx: number) {
     .style("left", `${x - 10}px`);
 
   let i = layerIdx - 1;
-  let firstRow = div.append("div").style("display", "flex");
+  let firstRow = div.append("div");
   firstRow.append("button")
       .attr("class", "mdl-button mdl-js-button mdl-button--icon")
       .on("click", () => {

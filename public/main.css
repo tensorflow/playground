@@ -476,22 +476,18 @@ g.column rect {
 }
 
 .features.column .plus-minus-neurons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
   position: absolute;
+  text-align: center;
+  line-height: 28px;
   top: -58px;
-  width: 55px;
+  width: 65px;
   height: 44px;
   font-size: 12px;
   z-index: 100;
 }
 
-.plus-minus-neurons .material-icons,
-#add-layers .material-icons,
-#remove-layers .material-icons {
-  margin: 0 auto;
+.plus-minus-neurons .mdl-button:first-of-type {
+  margin-right: 5px;
 }
 
 .features.column .callout {
