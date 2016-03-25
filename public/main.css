@@ -47,6 +47,12 @@ body {
   margin: 0;
 }
 
+.l--body {
+  width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .l--page {
   width: 944px;
   margin-left: auto;
@@ -524,8 +530,8 @@ g.column rect {
 /* Network (inside features column) */
 
 #network {
-  position: relative;
-  top: 20px;
+  position: absolute;
+  top: 110px;
   left: 0;
   z-index: 100;
 }
@@ -700,7 +706,6 @@ article :first-child h2 {
 }
 
 article p {
-  width: 550px;
   font-weight: 400;
   font-size: 17px;
   line-height: 1.6;
@@ -727,7 +732,7 @@ footer svg {
 }
 
 footer .links {
-  float: left;
+  float: right;
   font-size: 13px;
   height: 30px;
   line-height: 30px;
