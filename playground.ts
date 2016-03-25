@@ -797,13 +797,10 @@ function drawDatasetThumbnails() {
     canvas.setAttribute("width", w)
     canvas.setAttribute("height", h)
     var context = canvas.getContext("2d");
-
     let data = datasets[dataset](200, 0);
     data.forEach(function(d) {
-      console.log(d.label)
       context.fillStyle = colorScale(d.label);
       context.fillRect(w * (d.x + 6) / 12, h * (d.y + 6) / 12, 4, 4);
-      //x,y,label:1|0
     });
   }
 }
