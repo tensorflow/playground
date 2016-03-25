@@ -185,6 +185,7 @@ header h1 .optional {
   display: flex;
   align-items: center;
   margin-right: 20px;
+  width: 285px;
 }
 
 #top-controls .timeline-controls .circle-button {
