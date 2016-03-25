@@ -297,6 +297,11 @@ header h1 .optional {
   font-size: 14px;
   border-bottom: solid 1px #eee;
   color: #333;
+  outline: none;
+}
+
+#top-controls .control select:focus {
+  border-bottom-color: #183D4E;
 }
 
 #top-controls .control .select::after {
@@ -621,7 +626,7 @@ g.column rect {
 /* Hidden layers column */
 
 .hidden-layers.column {
-  width: 380px;
+  width: 40%;
 }
 
 #main-part .hidden-layers h4 {
@@ -698,6 +703,7 @@ article h2 {
   margin: 60px 0 20px 0;
   font-size: 22px;
   font-weight: 500;
+  line-height: 1.45em;
   color: rgba(0, 0, 0, 0.7);
 }
 
