@@ -450,7 +450,7 @@ function drawNetwork(network: nn.Node[][]): void {
           nextNumNodes <= numNodes) {
         calloutThumb.style({
           display: null,
-          top: `${10 + 3 + cy}px`,
+          top: `${20 + 3 + cy}px`,
           left: `${cx}px`
         });
         idWithCallout = node.id;
@@ -473,7 +473,7 @@ function drawNetwork(network: nn.Node[][]): void {
           let midPoint = path.getPointAtLength(path.getTotalLength() * 0.7);
           calloutWeights.style({
             display: null,
-            top: `${midPoint.y + 3}px`,
+            top: `${midPoint.y + 5}px`,
             left: `${midPoint.x + 3}px`
           });
           targetIdWithCallout = input.dest.id;

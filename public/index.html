@@ -168,8 +168,12 @@ limitations under the License.
         </svg>
         <div class="callout thumbnail">
           <svg viewBox="0 0 30 30">
-            <path d="M0,30L0,0">
-            <path d="M0,30L0,0">
+            <defs>
+              <marker id="arrow" markerWidth="5" markerHeight="5" refx="5" refy="2.5" orient="auto" markerUnits="userSpaceOnUse">
+                <path d="M0,0 L5,2.5 L0,5 z"/>
+              </marker>
+            </defs>
+            <path d="M12,30C5,20 2,15 12,0" marker-end="url(#arrow)">
           </svg>
           <div class="label">
             This is the output from one <b>neuron</b>. Hover to see it larger.
@@ -177,8 +181,12 @@ limitations under the License.
         </div>
         <div class="callout weights">
           <svg viewBox="0 0 30 30">
-            <path d="M0,30L0,0">
-            <path d="M0,30L0,0">
+            <defs>
+              <marker id="arrow" markerWidth="5" markerHeight="5" refx="5" refy="2.5" orient="auto" markerUnits="userSpaceOnUse">
+                <path d="M0,0 L5,2.5 L0,5 z"/>
+              </marker>
+            </defs>
+            <path d="M12,30C5,20 2,15 12,0" marker-end="url(#arrow)">
           </svg>
           <div class="label">
             The outputs are mixed with varying <b>weights</b>, shown by the thickness of the lines.

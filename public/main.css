@@ -492,10 +492,13 @@ g.column rect {
 
 .features.column .callout {
   position: absolute;
-  width: 83px;
+  width: 95px;
+  font-style: italic;
 }
 
 .features.column .callout svg {
+  position: absolute;
+  left: -15px;
   width: 30px;
   height: 30px;
 }
@@ -503,9 +506,19 @@ g.column rect {
 .features.column .callout svg path {
   fill: none;
   stroke: black;
+  stroke-opacity: 0.4;
+}
+
+.features.column .callout svg defs path {
+  fill: black;
+  stroke: none;
+  fill-opacity: 0.4;
 }
 
 #main-part .features.column .callout .label {
+  position: absolute;
+  top: 24px;
+  left: 3px;
   font-size: 11px;
 }
 
