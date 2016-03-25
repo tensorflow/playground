@@ -404,7 +404,7 @@ g.column rect {
 }
 
 .data.column {
-  width: 90px;
+  width: 10%;
 }
 
 .data.column .dataset-list {
@@ -476,7 +476,7 @@ g.column rect {
 /* Features column */
 
 .features.column {
-  width: 100px;
+  width: 10%;
   position: relative;
 }
 
