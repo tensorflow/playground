@@ -61,3 +61,7 @@
 #main-part .mdl-slider.is-upgraded.is-lowest-value::-moz-range-thumb {
   border-color: #183D4E;
 }
+/* Keep grey focus circle for non-start values */
+#main-part .mdl-slider.is-upgraded:focus:not(:active)::-webkit-slider-thumb {
+  box-shadow: 0 0 0 10px rgba(0,0,0, 0.12);
+}

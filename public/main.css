@@ -737,3 +737,7 @@ footer .links a {
   text-decoration: none;
   color: #999;
 }
+
+footer .links a:hover {
+  text-decoration: underline;
+}
