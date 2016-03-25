@@ -630,8 +630,7 @@ g.column rect {
 }
 
 #main-part .hidden-layers h4 {
-  padding-bottom: 14px;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.08);
+  justify-content: center;
 }
 
 .hidden-layers #num-layers {
@@ -644,6 +643,13 @@ g.column rect {
 
 .hidden-layers h4 .control .button {
   margin-top: -2px;
+}
+
+.hidden-layers .bracket {
+  margin-top: 5px;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  border-bottom: 0;
+  height: 4px;
 }
 
 /* Output column */
