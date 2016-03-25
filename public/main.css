@@ -21,7 +21,6 @@ body {
 }
 
 header h1 {
-  font-size: 34px;
   line-height: 1.45em;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.7);
@@ -118,19 +117,41 @@ header {
 }
 
 header h1 {
+  font-size: 30px;
   text-align: center;
-  margin-top: 60px;
-  margin-bottom: 60px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (min-height: 700px) {
+  header h1 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-height: 800px) {
+  header h1 {
+    font-size: 34px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
 }
 
 /* Top Controls */
 
 #top-controls {
   border-bottom: 1px solid #ddd;
-  padding: 24px 0;
+  padding: 18px 0;
   box-shadow: 0 1px 4px rgba(0,0,0,0.08);
   background: white;
+}
+
+@media (min-height: 700px) {
+  #top-controls {
+    padding: 24px 0;
+  }
 }
 
 #top-controls .container {
@@ -274,9 +295,16 @@ header h1 {
 #main-part {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   padding-top: 2px;
+}
+
+@media (min-height: 700px) {
+  #main-part {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 }
 
 #main-part .column {
@@ -594,6 +622,7 @@ g.column rect {
 
 #main-part .output .output-stats p {
   margin-bottom: 10px;
+  margin-top: 6px;
 }
 
 .output .output-stats .value {
