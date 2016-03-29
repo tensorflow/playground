@@ -519,6 +519,24 @@ g.column rect {
   top: 110px;
   left: 0;
   z-index: 100;
+  /*border: solid 1px cyan;*/
+}
+
+#network .layer {
+  /*border: solid 1px magenta;*/
+  position: absolute;
+}
+
+#network .layer .node {
+  position: absolute;
+  /*border: solid 1px magenta;*/
+}
+
+#network .layer .node div {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: white;
 }
 
 #network svg .main-label {

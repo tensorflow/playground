@@ -274,10 +274,10 @@ function makeGUI() {
     .call(xAxis);
 
   // Listen for css-responsive changes and redraw the svg network.
-  d3.select("#main-part").on("transitionend", () => {
-    drawNetwork(network);
-    updateUI(true);
-  });
+  // d3.select("#main-part").on("transitionend", () => {
+  //   drawNetwork(network);
+  //   updateUI(true);
+  // });
 }
 
 function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
@@ -290,11 +290,13 @@ function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
       for (let j = 0; j < node.inputs.length; j++) {
         let input = node.inputs[j];
         values.push(-input.storedErrorDer);
+        console.log(`#link${input.source.id}-${input.dest.id}`)
         container.select(`#link${input.source.id}-${input.dest.id}`)
             .style({
               "stroke-dashoffset": -iter / 3,
               "stroke-width": linkWidthScale(Math.abs(input.weight)),
-              "stroke": colorScale(input.weight)
+              "stroke": "red"
+              //colorScale(input.weight)
             })
             .datum(input);
       }
@@ -387,122 +389,260 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
 
 // Draw network
 function drawNetwork(network: nn.Node[][]): void {
-  let svg = d3.select("#svg");
-  // Remove all svg elements.
-  svg.select("g.core").remove();
-  // Remove all div elements.
-  d3.select("#network").selectAll("div.canvas").remove();
-  d3.select("#network").selectAll("div.plus-minus-neurons").remove();
+  var nodeWidth = 34;
+  var leftPadding = 100;
+  var height = 500;
+  var width;
+
+  var net = network.map(function(d, i) {
+    var layerKey = i === (network.length - 1) ? "o-0" : "l-" + i
+    d.forEach(function(node: any, j) {
+      node.key = layerKey + "n-" + j;
+    });
+    return {
+      key: layerKey,
+      nodes: d
+    };
+  });
+  net = net.slice(0, -1)
+  console.log(net);
+
+  var html = d3.select("#network");
 
   // Get the width of the svg container.
-  let padding = 3;
-  let co = <HTMLDivElement> d3.select(".column.output").node();
-  let cf = <HTMLDivElement> d3.select(".column.features").node();
-  let width = co.offsetLeft - cf.offsetLeft;
-  svg.attr("width", width);
+  var padding = 3;
+  var co = <HTMLDivElement> d3.select(".column.output").node();
+  var cf = <HTMLDivElement> d3.select(".column.features").node();
+  width = co.offsetLeft - cf.offsetLeft;
+  html.style("width", width + "px");
 
-  // Map of all node coordinates.
-  let node2coord: {[id: string]: {cx: number, cy: number}} = {};
-  let container = svg.append("g")
-    .classed("core", true)
-    .attr("transform", `translate(${padding},${padding})`);
-  // Draw the network layer by layer.
-  let numLayers = network.length;
-  let featureWidth = 118;
-  let layerScale = d3.scale.ordinal<number, number>()
-      .domain(d3.range(1, numLayers - 1))
-      .rangePoints([featureWidth, width - RECT_SIZE], 0.7);
-  let nodeIndexScale = (nodeIndex: number) => nodeIndex * (RECT_SIZE + 25);
+  var layerXScale = d3.scale.linear()
+      .domain([0, net.length])
+      .range([leftPadding, width]);
 
+  var neuronYScale = d3.scale.linear()
+      .domain([0, 7])
+      .range([nodeWidth / 2, height]);
 
+  const duration = 500;
+
+  var stage = html;
+
+  // Layer
+  var layer = html.selectAll(".layer").data(net, (d) => d.key);
+  layer.transition().duration(duration)
+      .style("opacity", 1)
+      .style("left", function(d, i) { return layerXScale(i) + "px"; });
+  var layerEnter = layer.enter().append("div")
+      .attr("class", "layer")
+      .style("opacity", 0)
+      .style("left", function(d, i) { return layerXScale(i) + "px"; });
+  layerEnter.transition().duration(duration).style("opacity", 1);
+  layer.exit().transition().duration(duration).style("opacity", 0).remove();
+  var layerUpdate = layer;
+
+  // Plus Minus Neurons
+  var plusMinusNeuronsEnter = layerEnter.append("div")
+    .attr("class", "plus-minus-neurons")
+    .style("display", (d, i) => (i === 0 || d.key === "output") ? "none" : "block" );
+
+  plusMinusNeuronsEnter.append("button")
+      .attr("class", "mdl-button mdl-js-button mdl-button--icon")
+      .on("click", addNeuron)
+    .append("i")
+      .attr("class", "material-icons")
+      .text("add");
+
+  plusMinusNeuronsEnter.append("button")
+      .attr("class", "mdl-button mdl-js-button mdl-button--icon")
+      .on("click", removeNeuron)
+    .append("i")
+      .attr("class", "material-icons")
+      .text("remove");
+
+  plusMinusNeuronsEnter.append("div")
+      .attr("class", "num-neurons-label");
+
+  var plusMinusNeuronsUpdate = layerUpdate.select(".num-neurons-label")
+      .text(function(d: any) {
+        let suffix = d.nodes.length > 1 ? "s" : "";
+        return d.nodes.length + " neuron" + suffix;
+      });
+
+  // Node
+  var node = layerUpdate.selectAll(".node").data((d) => d.nodes, (d: any) => d.key);
+  var nodeEnter = node.enter().append("div").attr("class", "node");
+  node.exit().transition().duration(duration).style("opacity", 0).remove();
+  var nodeUpdate = node;
+
+  nodeEnter.append("div")
+      .attr("id", (d) => "canvas-" + d.id)
+      .style("top", (d, i) => neuronYScale(i) - nodeWidth / 2 + "px")
+      .style("left", (d, i) => -nodeWidth / 2 + "px")
+      .style("width", nodeWidth + "px")
+      .style("height", nodeWidth + "px")
+      .attr("class", "canvas")
+      .each(function(d: any) {
+        d.heatmap = new HeatMap(RECT_SIZE, DENSITY / 10, xDomain,
+          xDomain, d3.select(this), {noSvg: true});
+      });
+
+  var columnWidth = layerXScale(1) - layerXScale(0);
+  var linkSvgEnter = nodeEnter.append("svg")
+      .attr("class", "link-svg")
+      .attr("height", 500);
+  var linkSvgUpdate = nodeUpdate.select(".link-svg")
+
+  linkSvgUpdate.transition().duration(duration).attr("width", columnWidth);
+
+  var diagonal = d3.svg.diagonal()
+      .source(function(d: any) { return { y: 0, x: neuronYScale(d.source.key.split("-")[2])}; })
+      .target(function(d: any) { return { y: columnWidth, x: neuronYScale(d.dest.key.split("-")[2])}; })
+      .projection(function(d) { return [d.y, d.x]; });
+
+  var link = linkSvgUpdate.selectAll(".link").data((d) => d.outputs, (d: any) => d.source.key + d.dest.key);
+  link.enter().append("path")
+      .attr("class", "link")
+      .attr("id", (d) => "link" + d.source.id + "-" + d.dest.id);
+  link.exit().remove();
+  link.transition().duration(duration).attr("d", diagonal);
+
+  // Hiding for now
   let calloutThumb = d3.select(".callout.thumbnail").style("display", "none");
   let calloutWeights = d3.select(".callout.weights").style("display", "none");
-  let idWithCallout = null;
-  let targetIdWithCallout = null;
 
-  // Draw the input layer separately.
-  let cx = RECT_SIZE / 2 + 50;
-  let nodeIds = Object.keys(INPUTS);
-  let maxY = nodeIndexScale(nodeIds.length);
-  nodeIds.forEach((nodeId, i) => {
-    let cy = nodeIndexScale(i) + RECT_SIZE / 2;
-    node2coord[nodeId] = {cx: cx, cy: cy};
-    drawNode(cx, cy, nodeId, true, container);
-  });
-
-  // Draw the intermediate layers.
-  for (let layerIdx = 1; layerIdx < numLayers - 1; layerIdx++) {
-    let numNodes = network[layerIdx].length;
-    let cx = layerScale(layerIdx) + RECT_SIZE / 2;
-    maxY = Math.max(maxY, nodeIndexScale(numNodes));
-    addPlusMinusControl(layerScale(layerIdx), layerIdx);
-    for (let i = 0; i < numNodes; i++) {
-      let node = network[layerIdx][i];
-      let cy = nodeIndexScale(i) + RECT_SIZE / 2;
-      node2coord[node.id] = {cx: cx, cy: cy};
-      drawNode(cx, cy, node.id, false, container);
-
-      // Show callout to thumbnails.
-      let numNodes = network[layerIdx].length;
-      let nextNumNodes = network[layerIdx + 1].length;
-      if (idWithCallout == null &&
-          i === numNodes - 1 &&
-          nextNumNodes <= numNodes) {
-        calloutThumb.style({
-          display: null,
-          top: `${20 + 3 + cy}px`,
-          left: `${cx}px`
-        });
-        idWithCallout = node.id;
-      }
-
-      // Draw links.
-      for (let j = 0; j < node.inputs.length; j++) {
-        let input = node.inputs[j];
-        let path: SVGPathElement = <any> drawLink(input, node2coord, network,
-            container, j === 0, j, node.inputs.length).node();
-        // Show callout to weights.
-        let prevLayer = network[layerIdx - 1];
-        let lastNodePrevLayer = prevLayer[prevLayer.length - 1];
-        if (targetIdWithCallout == null &&
-            i === numNodes - 1 &&
-            input.source.id === lastNodePrevLayer.id &&
-            (input.source.id !== idWithCallout || numLayers <= 5) &&
-            input.dest.id !== idWithCallout &&
-            prevLayer.length >= numNodes) {
-          let midPoint = path.getPointAtLength(path.getTotalLength() * 0.7);
-          calloutWeights.style({
-            display: null,
-            top: `${midPoint.y + 5}px`,
-            left: `${midPoint.x + 3}px`
-          });
-          targetIdWithCallout = input.dest.id;
-        }
-      }
+  // Utils
+  function addNeuron(d, i) {
+    let numNeurons = state.networkShape[i - 1];
+    if (numNeurons >= 8) {
+      return;
     }
+    state.networkShape[i - 1]++;
+    reset();
   }
 
-  // Draw the output node separately.
-  cx = width + RECT_SIZE / 2;
-  let node = network[numLayers - 1][0];
-  let cy = nodeIndexScale(0) + RECT_SIZE / 2;
-  node2coord[node.id] = {cx: cx, cy: cy};
-  // Draw links.
-  for (let i = 0; i < node.inputs.length; i++) {
-    let input = node.inputs[i];
-    drawLink(input, node2coord, network, container, i === 0, i,
-        node.inputs.length);
+  function removeNeuron(d, i) {
+    let numNeurons = state.networkShape[i - 1];
+    if (numNeurons <= 1) {
+      return;
+    }
+    state.networkShape[i - 1]--;
+    reset();
   }
-  // Adjust the height of the svg.
-  svg.attr("height", maxY);
 
-  // Adjust the height of the features column.
-  let height = Math.max(
-    getRelativeHeight(calloutThumb),
-    getRelativeHeight(calloutWeights),
-    getRelativeHeight(d3.select("#network"))
-  );
-  d3.select(".column.features").style("height", height + "px");
+  // var link = nodeUpdate.selectAll(".link")
+  //     .data((d: any) => d.outputs, (d: any) => d.id );
+  // var linkEnter = link.enter().append("g").attr("class", "link");
+  // link.exit().transition().duration(duration).style("opacity", 0).remove();
+  // var linkUpdate = link;
+  //
+  // linkEnter.append("line")
+  //     .attr("x1", 0)
+  //     .attr("x2", 50)
+  //     .attr("y1", 0)
+  //     .attr("y2", 0)
+
+  // Map of all node coordinates.
+  // let node2coord: {[id: string]: {cx: number, cy: number}} = {};
+  // let container = svg.append("g")
+  //   .classed("core", true)
+  //   .attr("transform", `translate(${padding},${padding})`);
+  // // Draw the network layer by layer.
+  // let numLayers = network.length;
+  // let featureWidth = 118;
+  // let layerScale = d3.scale.ordinal<number, number>()
+  //     .domain(d3.range(1, numLayers - 1))
+  //     .rangePoints([featureWidth, width - RECT_SIZE], 0.7);
+  // let nodeIndexScale = (nodeIndex: number) => nodeIndex * (RECT_SIZE + 25);
+  //
+  //
+
+  // let idWithCallout = null;
+  // let targetIdWithCallout = null;
+  //
+  // // Draw the input layer separately.
+  // let cx = RECT_SIZE / 2 + 50;
+  // let nodeIds = Object.keys(INPUTS);
+  // let maxY = nodeIndexScale(nodeIds.length);
+  // nodeIds.forEach((nodeId, i) => {
+  //   let cy = nodeIndexScale(i) + RECT_SIZE / 2;
+  //   node2coord[nodeId] = {cx: cx, cy: cy};
+  //   drawNode(cx, cy, nodeId, true, container);
+  // });
+  //
+  // // Draw the intermediate layers.
+  // for (let layerIdx = 1; layerIdx < numLayers - 1; layerIdx++) {
+  //   let numNodes = network[layerIdx].length;
+  //   let cx = layerScale(layerIdx) + RECT_SIZE / 2;
+  //   maxY = Math.max(maxY, nodeIndexScale(numNodes));
+  //   addPlusMinusControl(layerScale(layerIdx), layerIdx);
+  //   for (let i = 0; i < numNodes; i++) {
+  //     let node = network[layerIdx][i];
+  //     let cy = nodeIndexScale(i) + RECT_SIZE / 2;
+  //     node2coord[node.id] = {cx: cx, cy: cy};
+  //     drawNode(cx, cy, node.id, false, container);
+  //
+  //     // Show callout to thumbnails.
+  //     let numNodes = network[layerIdx].length;
+  //     let nextNumNodes = network[layerIdx + 1].length;
+  //     if (idWithCallout == null &&
+  //         i === numNodes - 1 &&
+  //         nextNumNodes <= numNodes) {
+  //       calloutThumb.style({
+  //         display: null,
+  //         top: `${20 + 3 + cy}px`,
+  //         left: `${cx}px`
+  //       });
+  //       idWithCallout = node.id;
+  //     }
+  //
+  //     // Draw links.
+  //     for (let j = 0; j < node.inputs.length; j++) {
+  //       let input = node.inputs[j];
+  //       let path: SVGPathElement = <any> drawLink(input, node2coord, network,
+  //           container, j === 0, j, node.inputs.length).node();
+  //       // Show callout to weights.
+  //       let prevLayer = network[layerIdx - 1];
+  //       let lastNodePrevLayer = prevLayer[prevLayer.length - 1];
+  //       if (targetIdWithCallout == null &&
+  //           i === numNodes - 1 &&
+  //           input.source.id === lastNodePrevLayer.id &&
+  //           (input.source.id !== idWithCallout || numLayers <= 5) &&
+  //           input.dest.id !== idWithCallout &&
+  //           prevLayer.length >= numNodes) {
+  //         let midPoint = path.getPointAtLength(path.getTotalLength() * 0.7);
+  //         calloutWeights.style({
+  //           display: null,
+  //           top: `${midPoint.y + 5}px`,
+  //           left: `${midPoint.x + 3}px`
+  //         });
+  //         targetIdWithCallout = input.dest.id;
+  //       }
+  //     }
+  //   }
+  // }
+  //
+  // // Draw the output node separately.
+  // cx = width + RECT_SIZE / 2;
+  // let node = network[numLayers - 1][0];
+  // let cy = nodeIndexScale(0) + RECT_SIZE / 2;
+  // node2coord[node.id] = {cx: cx, cy: cy};
+  // // Draw links.
+  // for (let i = 0; i < node.inputs.length; i++) {
+  //   let input = node.inputs[i];
+  //   drawLink(input, node2coord, network, container, i === 0, i,
+  //       node.inputs.length);
+  // }
+  // // Adjust the height of the svg.
+  // svg.attr("height", maxY);
+  //
+  // // Adjust the height of the features column.
+  // let height = Math.max(
+  //   getRelativeHeight(calloutThumb),
+  //   getRelativeHeight(calloutWeights),
+  //   getRelativeHeight(d3.select("#network"))
+  // );
+  // d3.select(".column.features").style("height", height + "px");
 }
 
 function getRelativeHeight(selection: d3.Selection<any>) {
@@ -510,46 +650,46 @@ function getRelativeHeight(selection: d3.Selection<any>) {
   return node.offsetHeight + node.offsetTop;
 }
 
-function addPlusMinusControl(x: number, layerIdx: number) {
-  let div = d3.select("#network").append("div")
-    .classed("plus-minus-neurons", true)
-    .style("left", `${x - 10}px`);
-
-  let i = layerIdx - 1;
-  let firstRow = div.append("div");
-  firstRow.append("button")
-      .attr("class", "mdl-button mdl-js-button mdl-button--icon")
-      .on("click", () => {
-        let numNeurons = state.networkShape[i];
-        if (numNeurons >= 8) {
-          return;
-        }
-        state.networkShape[i]++;
-        reset();
-      })
-    .append("i")
-      .attr("class", "material-icons")
-      .text("add");
-
-  firstRow.append("button")
-      .attr("class", "mdl-button mdl-js-button mdl-button--icon")
-      .on("click", () => {
-        let numNeurons = state.networkShape[i];
-        if (numNeurons <= 1) {
-          return;
-        }
-        state.networkShape[i]--;
-        reset();
-      })
-    .append("i")
-      .attr("class", "material-icons")
-      .text("remove");
-
-  let suffix = state.networkShape[i] > 1 ? "s" : "";
-  div.append("div").text(
-    state.networkShape[i] + " neuron" + suffix
-  );
-}
+// function addPlusMinusControl(x: number, layerIdx: number) {
+//   let div = d3.select("#network").append("div")
+//     .classed("plus-minus-neurons", true)
+//     .style("left", `${x - 10}px`);
+//
+//   let i = layerIdx - 1;
+//   let firstRow = div.append("div");
+//   firstRow.append("button")
+//       .attr("class", "mdl-button mdl-js-button mdl-button--icon")
+//       .on("click", () => {
+//         let numNeurons = state.networkShape[i];
+//         if (numNeurons >= 8) {
+//           return;
+//         }
+//         state.networkShape[i]++;
+//         reset();
+//       })
+//     .append("i")
+//       .attr("class", "material-icons")
+//       .text("add");
+//
+//   firstRow.append("button")
+//       .attr("class", "mdl-button mdl-js-button mdl-button--icon")
+//       .on("click", () => {
+//         let numNeurons = state.networkShape[i];
+//         if (numNeurons <= 1) {
+//           return;
+//         }
+//         state.networkShape[i]--;
+//         reset();
+//       })
+//     .append("i")
+//       .attr("class", "material-icons")
+//       .text("remove");
+//
+//   let suffix = state.networkShape[i] > 1 ? "s" : "";
+//   div.append("div").text(
+//     state.networkShape[i] + " neuron" + suffix
+//   );
+// }
 
 function drawLink(
     input: nn.Link, node2coord: {[id: string]: {cx: number, cy: number}},
@@ -648,6 +788,7 @@ function updateUI(firstStep = false) {
   // Update all decision boundaries.
   d3.select("#network").selectAll("div.canvas")
       .each(function(data: {heatmap: HeatMap, id: string}) {
+        console.log(data)
     data.heatmap.updateBackground(reduceMatrix(boundary[data.id], 10),
         state.discretize);
   });
