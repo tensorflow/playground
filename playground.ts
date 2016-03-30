@@ -47,22 +47,6 @@ let INPUTS: {[name: string]: InputFeature} = {
   "sinY": {f: (x, y) => Math.sin(y), label: "sin(Y)"},
 };
 
-let learningRates: {[key: string]: number} = {
-  "l=0.001": 0.001,
-  "l=0.01": 0.01,
-  "l=0.1": 0.1,
-  "l=1": 1,
-  "l=10": 10
-};
-
-let regularizationRates: {[key: string]: number} = {
-  "r=0.001": 0.001,
-  "r=0.01": 0.01,
-  "r=0.1": 0.1,
-  "r=1": 1,
-  "r=10": 10
-};
-
 class Player {
   private timerIndex = 0;
   private isPlaying = false;
@@ -527,7 +511,7 @@ function addPlusMinusControl(x: number, layerIdx: number) {
     .style("left", `${x - 10}px`);
 
   let i = layerIdx - 1;
-  let firstRow = div.append("div").attr("id", `ui-numNodes${layerIdx}`);
+  let firstRow = div.append("div").attr("class", `ui-numNodes${layerIdx}`);
   firstRow.append("button")
       .attr("class", "mdl-button mdl-js-button mdl-button--icon")
       .on("click", () => {
@@ -807,7 +791,7 @@ function drawDatasetThumbnails() {
 function hideControls() {
   // Set display:none to all the UI elements that are hidden.
   state.getHiddenProps().forEach(prop => {
-    d3.select(`#ui-${prop}`).style("display", "none");
+    d3.selectAll(`.ui-${prop}`).style("display", "none");
   });
 }
 

@@ -55,19 +55,23 @@ limitations under the License.
         <span class="label">Iterations</span>
         <span class="value" id="iter-number"></span>
       </div>
-      <div class="control" id="ui-learningRate">
+      <div class="control ui-learningRate">
         <label for="learningRate">Learning rate</label>
         <div class="select">
           <select id="learningRate">
             <option value="0.001">0.001</option>
+            <option value="0.003">0.003</option>
             <option value="0.01">0.01</option>
+            <option value="0.03">0.03</option>
             <option value="0.1">0.1</option>
+            <option value="0.3">0.3</option>
             <option value="1">1</option>
+            <option value="3">3</option>
             <option value="10">10</option>
           </select>
       </div>
       </div>
-      <div class="control" id="ui-activation">
+      <div class="control ui-activation">
         <label for="activations">Activation</label>
         <div class="select">
           <select id="activations">
@@ -78,7 +82,7 @@ limitations under the License.
           </select>
       </div>
       </div>
-      <div class="control" id="ui-regularization">
+      <div class="control ui-regularization">
         <label for="regularizations">Regularization</label>
         <div class="select">
           <select id="regularizations">
@@ -88,14 +92,19 @@ limitations under the License.
           </select>
       </div>
       </div>
-      <div class="control" id="ui-regularizationRate">
+      <div class="control ui-regularizationRate">
         <label for="regularRate">Regularization coefficent</label>
         <div class="select">
           <select id="regularRate">
+            <option value="0">0</option>
             <option value="0.001">0.001</option>
+            <option value="0.003">0.003</option>
             <option value="0.01">0.01</option>
+            <option value="0.03">0.03</option>
             <option value="0.1">0.1</option>
+            <option value="0.3">0.3</option>
             <option value="1">1</option>
+            <option value="3">3</option>
             <option value="10">10</option>
           </select>
       </div>
@@ -117,7 +126,7 @@ limitations under the License.
           </button>
         </span>
       </h4>
-      <div id="ui-dataset">
+      <div class="ui-dataset">
         <p>Which dataset do you want to use?</p>
         <div class="dataset-list">
           <div class="dataset" title="Circle">
@@ -139,19 +148,19 @@ limitations under the License.
         </div>
       </div>
       <div>
-        <div id="ui-percTrainData">
+        <div class="ui-percTrainData">
           <label for="percTrainData">Ratio of training to test data:&nbsp;&nbsp;<span class="value">XX</span>%</label>
           <p class="slider">
             <input class="mdl-slider mdl-js-slider" type="range" id="percTrainData" min="10" max="90" step="10">
           </p>
         </div>
-        <div id="ui-noise">
+        <div class="ui-noise">
           <label for="noise">Noise:&nbsp;&nbsp;<span class="value">XX</span></label>
           <p class="slider">
             <input class="mdl-slider mdl-js-slider" type="range" id="noise" min="0" max="50" step="5">
           </p>
         </div>
-        <div id="ui-batchSize">
+        <div class="ui-batchSize">
           <label for="batchSize">Batch size:&nbsp;&nbsp;<span class="value">XX</span></label>
           <p class="slider">
             <input class="mdl-slider mdl-js-slider" type="range" id="batchSize" min="1" max="30" step="1">
@@ -204,7 +213,7 @@ limitations under the License.
     <!-- Hidden Layers Column -->
     <div class="column hidden-layers">
       <h4>
-        <div id="ui-numHiddenLayers">
+        <div class="ui-numHiddenLayers">
           <button id="add-layers" class="mdl-button mdl-js-button mdl-button--icon">
             <i class="material-icons">add</i>
           </button>
@@ -225,7 +234,7 @@ limitations under the License.
         <div class="value" id="accuracy-train"></div>
         <p>Training accuracy</p>
       </div>
-      <div class="output-stats">
+      <div class="output-stats ui-percTrainData">
         <div class="value" id="accuracy-test"></div>
         <p>Test accuracy</p>
       </div>
@@ -252,11 +261,11 @@ limitations under the License.
         </div>
         <br/>
         <div style="display:flex;">
-          <label id="ui-showTestData" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for"show-test-data">
+          <label class="ui-showTestData mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for"show-test-data">
             <input type="checkbox" id="show-test-data" class="mdl-checkbox__input" checked>
             <span class="mdl-checkbox__label label">Show test data</span>
           </label>
-          <label id="ui-discretize" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for"discretize">
+          <label class="ui-discretize mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for"discretize">
             <input type="checkbox" id="discretize" class="mdl-checkbox__input" checked>
             <span class="mdl-checkbox__label label">Discretize output</span>
           </label>

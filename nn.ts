@@ -95,13 +95,22 @@ export class Errors {
   };
 }
 
+/** Polyfill for TANH */
+(<any>Math).tanh = (<any>Math).tanh || function(x) {
+  if (x === Infinity) {
+    return 1;
+  } else if (x === -Infinity) {
+    return -1;
+  } else {
+    let e2x = Math.exp(2 * x);
+    return (e2x - 1) / (e2x + 1);
+  }
+};
+
 /** Built-in activation functions */
 export class Activations {
   public static TANH: ActivationFunction = {
-    output: x => {
-      let e2x = Math.exp(2 * x);
-      return (e2x - 1) / (e2x + 1);
-    },
+    output: x => (<any>Math).tanh(x),
     der: x => {
       let output = Activations.TANH.output(x);
       return 1 - output * output;

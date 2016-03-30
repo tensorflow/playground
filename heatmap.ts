@@ -179,6 +179,14 @@ export class HeatMap {
   }
 
   private updateCircles(container: d3.Selection<any>, points: Example2D[]) {
+    // Keep only points that are inside the bounds.
+    let xDomain = this.xScale.domain();
+    let yDomain = this.yScale.domain();
+    points = points.filter(p => {
+      return p.x >= xDomain[0] && p.x <= xDomain[1]
+        && p.y >= yDomain[0] && p.y <= yDomain[1];
+    });
+
     // Attach data to initially empty selection.
     let selection = container.selectAll("circle").data(points);
 

@@ -121,7 +121,7 @@ export class State {
 
   [key: string]: any;
   learningRate = 0.1;
-  regularizationRate = 0.01;
+  regularizationRate = 0;
   showTestData = false;
   noise = 0;
   batchSize = 10;

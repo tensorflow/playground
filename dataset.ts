@@ -79,8 +79,8 @@ export function generateSpiralData(numSamples: number, noise: number):
     for (let i = 0; i < n; i++) {
       let r = i / n * 5;
       let t = 1.75 * i / n * 2 * Math.PI + deltaT;
-      let x = r * Math.sin(t) + randUniform(-.2, .2) * noise;
-      let y = r * Math.cos(t) + randUniform(-.2, .2) * noise;
+      let x = r * Math.sin(t) + randUniform(-1, 1) * noise;
+      let y = r * Math.cos(t) + randUniform(-1, 1) * noise;
       points.push({x: x, y: y, label: label});
     }
   }
