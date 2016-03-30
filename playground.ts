@@ -290,7 +290,6 @@ function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
       for (let j = 0; j < node.inputs.length; j++) {
         let input = node.inputs[j];
         values.push(-input.storedErrorDer);
-        console.log(`#link${input.source.id}-${input.dest.id}`)
         container.select(`#link${input.source.id}-${input.dest.id}`)
             .style({
               "stroke-dashoffset": -iter / 3,
@@ -391,7 +390,7 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
 function drawNetwork(network: nn.Node[][]): void {
   var nodeWidth = 34;
   var leftPadding = 100;
-  var height = 500;
+  var height = 400;
   var width;
 
   var net = network.map(function(d, i) {
@@ -424,21 +423,31 @@ function drawNetwork(network: nn.Node[][]): void {
       .domain([0, 7])
       .range([nodeWidth / 2, height]);
 
-  const duration = 500;
+  const duration = 2000;
 
   var stage = html;
 
   // Layer
-  var layer = html.selectAll(".layer").data(net, (d) => d.key);
-  layer.transition().duration(duration)
+  var layer = html.selectAll(".layer.active").data(net, (d) => d.key);
+  layer.transition().duration(duration).ease("cubic-out")
       .style("opacity", 1)
       .style("left", function(d, i) { return layerXScale(i) + "px"; });
   var layerEnter = layer.enter().append("div")
-      .attr("class", "layer")
+      .attr("class", "layer active")
+      .style("position", "absolute")
       .style("opacity", 0)
+      .style("top", "0")
+      .style("left", function(d, i) { return layerXScale(i + 1) + "px"; });
+  layerEnter.transition("enter").duration(duration).ease("cubic-out")
+      .style("opacity", 1)
+      .style("top", "0px")
       .style("left", function(d, i) { return layerXScale(i) + "px"; });
-  layerEnter.transition().duration(duration).style("opacity", 1);
-  layer.exit().transition().duration(duration).style("opacity", 0).remove();
+  layer.exit()
+      .classed("active", false)
+    .transition("exit").duration(duration / 1.5).ease("quad-in")
+      .style("top", "100px")
+      // .style("left", function(d, i) { return layerXScale(i) + "px"; })
+      .style("opacity", 0).remove();
   var layerUpdate = layer;
 
   // Plus Minus Neurons
@@ -470,9 +479,20 @@ function drawNetwork(network: nn.Node[][]): void {
       });
 
   // Node
-  var node = layerUpdate.selectAll(".node").data((d) => d.nodes, (d: any) => d.key);
-  var nodeEnter = node.enter().append("div").attr("class", "node");
-  node.exit().transition().duration(duration).style("opacity", 0).remove();
+  var node = layerUpdate.selectAll(".node.active").data((d) => d.nodes, (d: any) => d.key);
+  var nodeEnter = node.enter().append("div")
+      .style("top", "-50px")
+      .style("opacity", 0)
+      .attr("class", "node active");
+  nodeEnter
+        .transition().duration(duration)//.ease("cubic-out")
+      .style("top", "0px")
+      .style("opacity", 1);
+  node.exit()
+      .classed("active", false)
+    .transition().duration(duration / 1.5).ease("quad-in")
+      .style("top", "100px")
+      .style("opacity", 0).remove();
   var nodeUpdate = node;
 
   nodeEnter.append("div")
@@ -486,6 +506,7 @@ function drawNetwork(network: nn.Node[][]): void {
         d.heatmap = new HeatMap(RECT_SIZE, DENSITY / 10, xDomain,
           xDomain, d3.select(this), {noSvg: true});
       });
+
 
   var columnWidth = layerXScale(1) - layerXScale(0);
   var linkSvgEnter = nodeEnter.append("svg")
@@ -503,9 +524,15 @@ function drawNetwork(network: nn.Node[][]): void {
   var link = linkSvgUpdate.selectAll(".link").data((d) => d.outputs, (d: any) => d.source.key + d.dest.key);
   link.enter().append("path")
       .attr("class", "link")
-      .attr("id", (d) => "link" + d.source.id + "-" + d.dest.id);
-  link.exit().remove();
-  link.transition().duration(duration).attr("d", diagonal);
+      .attr("d", "M0,0")
+      .attr("id", (d) => "link" + d.source.id + "-" + d.dest.id)
+      .style("opacity", 0)
+  link.exit().transition().duration(duration)
+      .style("opacity", 0)
+      .remove();
+  link.transition().duration(duration)
+      .attr("d", diagonal)
+      .style("opacity", 1);
 
   // Hiding for now
   let calloutThumb = d3.select(".callout.thumbnail").style("display", "none");
@@ -788,7 +815,6 @@ function updateUI(firstStep = false) {
   // Update all decision boundaries.
   d3.select("#network").selectAll("div.canvas")
       .each(function(data: {heatmap: HeatMap, id: string}) {
-        console.log(data)
     data.heatmap.updateBackground(reduceMatrix(boundary[data.id], 10),
         state.discretize);
   });
