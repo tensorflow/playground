@@ -37,7 +37,7 @@ interface InputFeature {
   label?: string;
 }
 
-const INPUTS: {[name: string]: InputFeature} = {
+let INPUTS: {[name: string]: InputFeature} = {
   "x": {f: (x, y) => x, label: "X"},
   "y": {f: (x, y) => y, label: "Y"},
   "xSquared": {f: (x, y) => x * x, label: "X^2"},
@@ -112,6 +112,14 @@ class Player {
 }
 
 let state = State.deserializeState();
+
+// Filter out inputs that are hidden.
+state.getHiddenProps().forEach(prop => {
+  if (prop in INPUTS) {
+    delete INPUTS[prop];
+  }
+});
+
 let boundary: {[id: string]: number[][]} = {};
 let selectedNodeId: string = null;
 // Plot the heatmap.
