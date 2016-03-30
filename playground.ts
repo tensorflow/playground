@@ -290,12 +290,11 @@ function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
       for (let j = 0; j < node.inputs.length; j++) {
         let input = node.inputs[j];
         values.push(-input.storedErrorDer);
-        container.select(`#link${input.source.id}-${input.dest.id}`)
+        d3.select(`#link${input.source.id}-${input.dest.id}`)
             .style({
               "stroke-dashoffset": -iter / 3,
               "stroke-width": linkWidthScale(Math.abs(input.weight)),
-              "stroke": "red"
-              //colorScale(input.weight)
+              "stroke": colorScale(input.weight)
             })
             .datum(input);
       }

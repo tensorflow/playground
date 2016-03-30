@@ -587,11 +587,9 @@ g.column rect {
   opacity: 1.0;
 }
 
-@-webkit-keyframes flowing { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -10; }  }
-#network .core path {
+#network path {
   stroke-dasharray: 9 1;
   stroke-dashoffset: 1;
-  /*-webkit-animation: 0.5s linear 0s infinite flowing;*/
 }
 
 #network .canvas canvas {
