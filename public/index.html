@@ -40,7 +40,7 @@ limitations under the License.
   <div id="top-controls">
     <div class="container l--page">
       <div class="timeline-controls">
-        <button class="mdl-button mdl-js-button mdl-button--icon" id="reset-button" title="Reset">
+        <button class="mdl-button mdl-js-button mdl-button--icon" id="reset-button" title="Reset the network">
           <i class="material-icons">replay</i>
         </button>
         <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" id="play-pause-button" title="Run/Pause">
@@ -55,7 +55,7 @@ limitations under the License.
         <span class="label">Iterations</span>
         <span class="value" id="iter-number"></span>
       </div>
-      <div class="control">
+      <div class="control" id="ui-learningRate">
         <label for="learningRate">Learning rate</label>
         <div class="select">
           <select id="learningRate">
@@ -67,7 +67,7 @@ limitations under the License.
           </select>
       </div>
       </div>
-      <div class="control">
+      <div class="control" id="ui-activation">
         <label for="activations">Activation</label>
         <div class="select">
           <select id="activations">
@@ -78,7 +78,7 @@ limitations under the License.
           </select>
       </div>
       </div>
-      <div class="control">
+      <div class="control" id="ui-regularization">
         <label for="regularizations">Regularization</label>
         <div class="select">
           <select id="regularizations">
@@ -88,7 +88,7 @@ limitations under the License.
           </select>
       </div>
       </div>
-      <div class="control">
+      <div class="control" id="ui-regularizationRate">
         <label for="regularRate">Regularization coefficent</label>
         <div class="select">
           <select id="regularRate">
@@ -108,41 +108,55 @@ limitations under the License.
 
     <!--  Data Column-->
     <div class="column data">
-      <h4>Data</h4>
-      <p>Which dataset do you want to use?</p>
-      <div class="dataset-list">
-        <div class="dataset" title="Circle">
-          <canvas class="data-thumbnail" data-dataset="circle"></canvas>
-          <div class="label">Circle</div>
-        </div>
-        <div class="dataset" title="Exclusive or">
-          <canvas class="data-thumbnail" data-dataset="xor"></canvas>
-          <div class="label">XOR</div>
-        </div>
-        <div class="dataset" title="Gaussian">
-          <canvas class="data-thumbnail" data-dataset="gauss"></canvas>
-          <div class="label">Guassian</div>
-        </div>
-        <div class="dataset" title="Spiral">
-          <canvas class="data-thumbnail" data-dataset="spiral"></canvas>
-          <div class="label">Spiral</div>
+      <h4>
+        <span>Data</span>
+        &nbsp;&nbsp;
+        <span>
+          <button class="mdl-button mdl-js-button mdl-button--icon" id="data-regen-button" title="Regenerate data">
+            <i class="material-icons">replay</i>
+          </button>
+        </span>
+      </h4>
+      <div id="ui-dataset">
+        <p>Which dataset do you want to use?</p>
+        <div class="dataset-list">
+          <div class="dataset" title="Circle">
+            <canvas class="data-thumbnail" data-dataset="circle"></canvas>
+            <div class="label">Circle</div>
+          </div>
+          <div class="dataset" title="Exclusive or">
+            <canvas class="data-thumbnail" data-dataset="xor"></canvas>
+            <div class="label">XOR</div>
+          </div>
+          <div class="dataset" title="Gaussian">
+            <canvas class="data-thumbnail" data-dataset="gauss"></canvas>
+            <div class="label">Guassian</div>
+          </div>
+          <div class="dataset" title="Spiral">
+            <canvas class="data-thumbnail" data-dataset="spiral"></canvas>
+            <div class="label">Spiral</div>
+          </div>
         </div>
       </div>
       <div>
-        <label for="percTrainData">Ratio of training to test data:&nbsp;&nbsp;<span class="value">XX</span>%</label>
-        <p class="slider">
-        <input class="mdl-slider mdl-js-slider" type="range" id="percTrainData" min="10" max="90" step="10">
-        </p>
-
-        <label for="noise">Noise:&nbsp;&nbsp;<span class="value">XX</span></label>
-        <p class="slider">
-        <input class="mdl-slider mdl-js-slider" type="range" id="noise" min="0" max="50" step="5">
-        </p>
-
-        <label for="batchSize">Batch size:&nbsp;&nbsp;<span class="value">XX</span></label>
-        <p class="slider">
-        <input class="mdl-slider mdl-js-slider" type="range" id="batchSize" min="1" max="30" step="1">
-        </p>
+        <div id="ui-percTrainData">
+          <label for="percTrainData">Ratio of training to test data:&nbsp;&nbsp;<span class="value">XX</span>%</label>
+          <p class="slider">
+            <input class="mdl-slider mdl-js-slider" type="range" id="percTrainData" min="10" max="90" step="10">
+          </p>
+        </div>
+        <div id="ui-noise">
+          <label for="noise">Noise:&nbsp;&nbsp;<span class="value">XX</span></label>
+          <p class="slider">
+            <input class="mdl-slider mdl-js-slider" type="range" id="noise" min="0" max="50" step="5">
+          </p>
+        </div>
+        <div id="ui-batchSize">
+          <label for="batchSize">Batch size:&nbsp;&nbsp;<span class="value">XX</span></label>
+          <p class="slider">
+            <input class="mdl-slider mdl-js-slider" type="range" id="batchSize" min="1" max="30" step="1">
+          </p>
+        </div>
       </div>
     </div>
 
@@ -190,12 +204,14 @@ limitations under the License.
     <!-- Hidden Layers Column -->
     <div class="column hidden-layers">
       <h4>
-        <button id="add-layers" class="mdl-button mdl-js-button mdl-button--icon">
-          <i class="material-icons">add</i>
-        </button>
-        <button id="remove-layers" class="mdl-button mdl-js-button mdl-button--icon">
-          <i class="material-icons">remove</i>
-        </button>
+        <div id="ui-numHiddenLayers">
+          <button id="add-layers" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">add</i>
+          </button>
+          <button id="remove-layers" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">remove</i>
+          </button>
+        </div>
         <span id="num-layers"></span>
         <span id="layers-label"></span>
       </h4>
@@ -236,11 +252,11 @@ limitations under the License.
         </div>
         <br/>
         <div style="display:flex;">
-          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for"show-test-data">
+          <label id="ui-showTestData" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for"show-test-data">
             <input type="checkbox" id="show-test-data" class="mdl-checkbox__input" checked>
             <span class="mdl-checkbox__label label">Show test data</span>
           </label>
-          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for"discretize">
+          <label id="ui-discretize" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for"discretize">
             <input type="checkbox" id="discretize" class="mdl-checkbox__input" checked>
             <span class="mdl-checkbox__label label">Discretize output</span>
           </label>

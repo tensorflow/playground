@@ -246,4 +246,15 @@ export class State {
     });
     window.location.hash = props.join("&");
   }
+
+  /** Returns all the hidden properties. */
+  getHiddenProps(): string[] {
+    let result: string[] = [];
+    for (let prop in this) {
+      if (endsWith(prop, HIDE_STATE_SUFFIX) && this[prop] === true) {
+        result.push(prop.replace(HIDE_STATE_SUFFIX, ""));
+      }
+    }
+    return result;
+  }
 }

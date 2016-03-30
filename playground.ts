@@ -136,11 +136,7 @@ let accuracyTest = 0;
 let player = new Player();
 
 function makeGUI() {
-
   d3.select("#reset-button").on("click", () => {
-    // Change the seed.
-    state.seed = Math.random().toFixed(5);
-    Math.seedrandom(state.seed);
     reset();
     d3.select("#play-pause-button");
   });
@@ -159,6 +155,10 @@ function makeGUI() {
     oneStep();
   });
 
+  d3.select("#data-regen-button").on("click", () => {
+    generateData();
+  });
+
   let dataThumbnails = d3.selectAll(".data-thumbnail");
   dataThumbnails.on("click", function() {
     let newDataset = datasets[this.dataset.dataset];
@@ -168,6 +168,7 @@ function makeGUI() {
     state.dataset =  newDataset;
     dataThumbnails.classed("selected", false);
     d3.select(this).classed("selected", true);
+    generateData();
     reset();
   });
 
@@ -213,6 +214,7 @@ function makeGUI() {
   let percTrain = d3.select("#percTrainData").on("input", function() {
     state.percTrainData = this.value;
     d3.select("label[for='percTrainData'] .value").text(this.value);
+    generateData();
     reset();
   });
   percTrain.property("value", state.percTrainData);
@@ -221,6 +223,7 @@ function makeGUI() {
   let noise = d3.select("#noise").on("input", function() {
     state.noise = this.value;
     d3.select("label[for='noise'] .value").text(this.value);
+    generateData();
     reset();
   });
   noise.property("value", state.noise);
@@ -516,7 +519,7 @@ function addPlusMinusControl(x: number, layerIdx: number) {
     .style("left", `${x - 10}px`);
 
   let i = layerIdx - 1;
-  let firstRow = div.append("div");
+  let firstRow = div.append("div").attr("id", `ui-numNodes${layerIdx}`);
   firstRow.append("button")
       .attr("class", "mdl-button mdl-js-button mdl-button--icon")
       .on("click", () => {
@@ -755,22 +758,10 @@ function reset() {
   iter = 0;
   let numInputs = constructInput(0 , 0).length;
   let shape = [numInputs].concat(state.networkShape).concat([1]);
-  let data = state.dataset(NUM_SAMPLES, state.noise / 100);
-  // Shuffle the data in-place.
-  shuffle(data);
-  // Split into train and test data.
-  let splitIndex = Math.floor(NUM_SAMPLES * state.percTrainData / 100);
-  trainData = data.slice(0, splitIndex);
-  testData = data.slice(splitIndex);
-  heatMap.updatePoints(trainData);
-  heatMap.updateTestPoints(state.showTestData ? testData : []);
-
   network = nn.buildNetwork(shape, state.activation, nn.Activations.TANH,
       state.regularization, constructInputIds());
-
   accuracyTrain = getAccuracy(network, trainData);
   accuracyTest = getAccuracy(network, testData);
-
   drawNetwork(network);
   updateUI(true);
 };
@@ -805,7 +796,34 @@ function drawDatasetThumbnails() {
   }
 }
 
+function hideControls() {
+  // Set display:none to all the UI elements that are hidden.
+  state.getHiddenProps().forEach(prop => {
+    d3.select(`#ui-${prop}`).style("display", "none");
+  });
+}
+
+function generateData(firstTime = false) {
+  if (!firstTime) {
+    // Change the seed.
+    state.seed = Math.random().toFixed(5);
+    state.serialize();
+  }
+  Math.seedrandom(state.seed);
+  let data = state.dataset(NUM_SAMPLES, state.noise / 100);
+  // Shuffle the data in-place.
+  shuffle(data);
+  // Split into train and test data.
+  let splitIndex = Math.floor(NUM_SAMPLES * state.percTrainData / 100);
+  trainData = data.slice(0, splitIndex);
+  testData = data.slice(splitIndex);
+  heatMap.updatePoints(trainData);
+  heatMap.updateTestPoints(state.showTestData ? testData : []);
+}
+
 drawDatasetThumbnails();
 initTutorial();
 makeGUI();
+generateData(true);
 reset();
+hideControls();
