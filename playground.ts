@@ -392,18 +392,12 @@ function drawNetwork(network: nn.Node[][]): void {
   var height = 400;
   var width;
 
-  var net = network.map(function(d, i) {
-    var layerKey = i === (network.length - 1) ? "o-0" : "l-" + i
-    d.forEach(function(node: any, j) {
-      node.key = layerKey + "n-" + j;
-    });
-    return {
-      key: layerKey,
-      nodes: d
-    };
-  });
-  net = net.slice(0, -1)
-  console.log(net);
+  var layerData = network.map(function(layer: any, i) {
+    layer.index = i;
+    layer.key = i === (network.length - 1) ? "l:o" : "l:" + i;
+    return layer;
+  }).slice(0, -1);
+  console.log(layerData);
 
   var html = d3.select("#network");
 
@@ -415,39 +409,49 @@ function drawNetwork(network: nn.Node[][]): void {
   html.style("width", width + "px");
 
   var layerXScale = d3.scale.linear()
-      .domain([0, net.length])
+      .domain([0, layerData.length])
       .range([leftPadding, width]);
 
   var neuronYScale = d3.scale.linear()
       .domain([0, 7])
       .range([nodeWidth / 2, height]);
 
-  const duration = 2000;
+  const duration = 300;
 
   var stage = html;
 
-  // Layer
-  var layer = html.selectAll(".layer.active").data(net, (d) => d.key);
-  layer.transition().duration(duration).ease("cubic-out")
-      .style("opacity", 1)
-      .style("left", function(d, i) { return layerXScale(i) + "px"; });
+  //
+  // layers
+  //
+  var layer = html.selectAll(".layer.active").data(layerData, (d: any) => d.key);
+
   var layerEnter = layer.enter().append("div")
       .attr("class", "layer active")
       .style("position", "absolute")
       .style("opacity", 0)
       .style("top", "0")
-      .style("left", function(d, i) { return layerXScale(i + 1) + "px"; });
-  layerEnter.transition("enter").duration(duration).ease("cubic-out")
+      .style("left", function(d, i) { return layerXScale(i) + "px"; });
+  var layerHasEntered = !layerEnter[0].every((d) => d === null);
+
+  layerEnter.transition("enter").duration(duration).delay(duration)
       .style("opacity", 1)
       .style("top", "0px")
       .style("left", function(d, i) { return layerXScale(i) + "px"; });
-  layer.exit()
-      .classed("active", false)
-    .transition("exit").duration(duration / 1.5).ease("quad-in")
-      .style("top", "100px")
-      // .style("left", function(d, i) { return layerXScale(i) + "px"; })
+
+  var layerExit = layer.exit()
+      .classed("active", false);
+  var layerHasExited = false;
+  layerExit[0].forEach(function(d) { layerHasExited = true; });
+
+  layerExit.transition("exit").duration(duration)
       .style("opacity", 0).remove();
+
   var layerUpdate = layer;
+  layerUpdate.transition("update").duration(duration).delay(() => layerHasExited ? duration : 0)
+      .style("left", function(d, i) { return layerXScale(i) + "px"; });
+
+  console.log(layerHasExited, "exit");
+  console.log(layerHasEntered, "enter");
 
   // Plus Minus Neurons
   var plusMinusNeuronsEnter = layerEnter.append("div")
@@ -473,65 +477,102 @@ function drawNetwork(network: nn.Node[][]): void {
 
   var plusMinusNeuronsUpdate = layerUpdate.select(".num-neurons-label")
       .text(function(d: any) {
-        let suffix = d.nodes.length > 1 ? "s" : "";
-        return d.nodes.length + " neuron" + suffix;
+        let suffix = d.length > 1 ? "s" : "";
+        return d.length + " neuron" + suffix;
       });
 
-  // Node
-  var node = layerUpdate.selectAll(".node.active").data((d) => d.nodes, (d: any) => d.key);
-  var nodeEnter = node.enter().append("div")
-      .style("top", "-50px")
-      .style("opacity", 0)
-      .attr("class", "node active");
-  nodeEnter
-        .transition().duration(duration)//.ease("cubic-out")
-      .style("top", "0px")
-      .style("opacity", 1);
-  node.exit()
-      .classed("active", false)
-    .transition().duration(duration / 1.5).ease("quad-in")
-      .style("top", "100px")
-      .style("opacity", 0).remove();
-  var nodeUpdate = node;
+  //
+  // nodes
+  //
 
-  nodeEnter.append("div")
+  var nodeData = [];
+  network.forEach(function(layer: any, i) {
+    layer.forEach(function(node: any, j) {
+      node.key = layer.key + ",n:" + j;
+      node.layerIndex = layer.index;
+      node.index = j;
+      nodeData.push(node);
+    });
+  });
+
+  var node = html.selectAll(".node.active").data((d) => nodeData, (d: any) => d.key);
+  var nodeEnter = node.enter().append("div")
+      .style("top", (d) => neuronYScale(d.index) + "px")
+      .style("left", (d) => layerXScale(d.layerIndex) + "px")
+      .style("opacity", 0)
+      .attr("class", "node canvas active")
       .attr("id", (d) => "canvas-" + d.id)
-      .style("top", (d, i) => neuronYScale(i) - nodeWidth / 2 + "px")
-      .style("left", (d, i) => -nodeWidth / 2 + "px")
       .style("width", nodeWidth + "px")
       .style("height", nodeWidth + "px")
-      .attr("class", "canvas")
       .each(function(d: any) {
         d.heatmap = new HeatMap(RECT_SIZE, DENSITY / 10, xDomain,
           xDomain, d3.select(this), {noSvg: true});
       });
+  nodeEnter.transition().duration(duration).delay(() => layerHasEntered ? duration : 0)//.ease("cubic-out")
+      // .style("top", (d) => neuronYScale(d.index) + "px")
+      // .style("left", (d) => layerXScale(d.layerIndex) + "px")
+      .style("opacity", 1);
+  node.exit()
+      .classed("active", false)
+    .transition().duration(duration)//.ease("quad-in")
+      // .style("top", "100px")
+      // .style("top", (d) => neuronYScale(d.index) + "px")
+      // .style("left", (d) => layerXScale(d.layerIndex) + "px")
+      .style("opacity", 0).remove();
 
+  node.transition("position").duration(duration).delay(() => layerHasExited ? duration : 0)
+      .style("top", (d) => neuronYScale(d.index) + "px")
+      .style("left", (d) => layerXScale(d.layerIndex) + "px");
+  var nodeUpdate = node;
+
+  // nodeEnter.append("div")
+  //     .attr("id", (d) => "canvas-" + d.id)
+  //     .style("top", (d, i) => neuronYScale(i) - nodeWidth / 2 + "px")
+  //     .style("left", (d, i) => -nodeWidth / 2 + "px")
+  //     .style("width", nodeWidth + "px")
+  //     .style("height", nodeWidth + "px")
+  //     .attr("class", "canvas")
+  //     .each(function(d: any) {
+  //       d.heatmap = new HeatMap(RECT_SIZE, DENSITY / 10, xDomain,
+  //         xDomain, d3.select(this), {noSvg: true});
+  //     });
+
+  //
+  // Links
+  //
+  var linkData = [];
+  nodeData.forEach(function(node, i) {
+    node.outputs.forEach(function(link: any, k) {
+      link.key = link.source.key + "->" + link.dest.key;
+      linkData.push(link);
+    });
+  });
 
   var columnWidth = layerXScale(1) - layerXScale(0);
-  var linkSvgEnter = nodeEnter.append("svg")
-      .attr("class", "link-svg")
-      .attr("height", 500);
-  var linkSvgUpdate = nodeUpdate.select(".link-svg")
-
-  linkSvgUpdate.transition().duration(duration).attr("width", columnWidth);
 
   var diagonal = d3.svg.diagonal()
-      .source(function(d: any) { return { y: 0, x: neuronYScale(d.source.key.split("-")[2])}; })
-      .target(function(d: any) { return { y: columnWidth, x: neuronYScale(d.dest.key.split("-")[2])}; })
-      .projection(function(d) { return [d.y, d.x]; });
+      .source(function(d: any) { return { y: layerXScale(d.source.layerIndex), x: neuronYScale(d.source.index)}; })
+      .target(function(d: any) { return { y: layerXScale(d.dest.layerIndex), x: neuronYScale(d.dest.index)}; })
+      .projection(function(d) { return [d.y + nodeWidth / 2, d.x + nodeWidth / 2]; });
 
-  var link = linkSvgUpdate.selectAll(".link").data((d) => d.outputs, (d: any) => d.source.key + d.dest.key);
-  link.enter().append("path")
+  var svg = d3.select("#network-svg");
+  var link = svg.selectAll(".link").data((d) => linkData, function(d: any) { return d.key; });
+  var linkEnter = link.enter().append("path")
       .attr("class", "link")
-      .attr("d", "M0,0")
+      .attr("d", diagonal)
       .attr("id", (d) => "link" + d.source.id + "-" + d.dest.id)
       .style("opacity", 0)
+
+  linkEnter.transition("enter").duration(duration).delay(() => layerHasEntered || layerHasExited ? duration : 0)
+      .attr("d", diagonal)
+      .style("opacity", 1);
+
   link.exit().transition().duration(duration)
       .style("opacity", 0)
       .remove();
-  link.transition().duration(duration)
-      .attr("d", diagonal)
-      .style("opacity", 1);
+
+  link.transition("update").duration(duration).delay(() => layerHasExited ? duration : 0)
+      .attr("d", diagonal);
 
   // Hiding for now
   let calloutThumb = d3.select(".callout.thumbnail").style("display", "none");
@@ -717,26 +758,26 @@ function getRelativeHeight(selection: d3.Selection<any>) {
 //   );
 // }
 
-function drawLink(
-    input: nn.Link, node2coord: {[id: string]: {cx: number, cy: number}},
-    network: nn.Node[][], container: d3.Selection<any>,
-    isFirst: boolean, index: number, length: number) {
-  let line = container.append("path");
-  let source = node2coord[input.source.id];
-  let dest = node2coord[input.dest.id];
-  let datum = {
-    source: {y: source.cx + RECT_SIZE / 2 + 2, x: source.cy },
-    target: {y: dest.cx - RECT_SIZE / 2, x: dest.cy + ((index - (length - 1) / 2) / length) * 12 }
-  };
-  let diagonal = d3.svg.diagonal().projection(d => [d.y, d.x]);
-  line.attr({
-    "marker-start": "url(#markerArrow)",
-    class: "link",
-    id: "link" + input.source.id + "-" + input.dest.id,
-    d: diagonal(datum, 0)
-  });
-  return line;
-}
+// function drawLink(
+  //   input: nn.Link, node2coord: {[id: string]: {cx: number, cy: number}},
+  //   network: nn.Node[][], container: d3.Selection<any>,
+  //   isFirst: boolean, index: number, length: number) {
+  // let line = container.append("path");
+  // let source = node2coord[input.source.id];
+  // let dest = node2coord[input.dest.id];
+  // let datum = {
+  //   source: {y: source.cx + RECT_SIZE / 2 + 2, x: source.cy },
+  //   target: {y: dest.cx - RECT_SIZE / 2, x: dest.cy + ((index - (length - 1) / 2) / length) * 12 }
+  // };
+  // let diagonal = d3.svg.diagonal().projection(d => [d.y, d.x]);
+  // line.attr({
+  //   "marker-start": "url(#markerArrow)",
+  //   class: "link",
+  //   id: "link" + input.source.id + "-" + input.dest.id,
+  //   d: diagonal(datum, 0)
+  // });
+  // return line;
+// }
 
 /**
  * Given a neural network, it asks the network for the output (prediction)
@@ -804,7 +845,7 @@ function getAccuracy(network: nn.Node[][], dataPoints: Example2D[]): number {
 
 function updateUI(firstStep = false) {
   // Update the links visually.
-  updateWeightsUI(network, d3.select("g.core"));
+  // updateWeightsUI(network, d3.select("g.core"));
   // Get the decision boundary of the network.
   updateDecisionBoundary(network, firstStep);
   let selectedId = selectedNodeId != null ?
@@ -814,8 +855,11 @@ function updateUI(firstStep = false) {
   // Update all decision boundaries.
   d3.select("#network").selectAll("div.canvas")
       .each(function(data: {heatmap: HeatMap, id: string}) {
+        //TODO shan remove
+        if(data.heatmap && boundary[data.id]) {
     data.heatmap.updateBackground(reduceMatrix(boundary[data.id], 10),
         state.discretize);
+      }
   });
 
   function zeroPad(n: number): string {
