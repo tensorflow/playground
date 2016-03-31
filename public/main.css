@@ -311,10 +311,11 @@ header h1 .optional {
 
 #main-part {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 30px;
   margin-bottom: 50px;
   padding-top: 2px;
+  position: relative;
 }
 
 @media (min-height: 700px) {
@@ -401,7 +402,8 @@ g.column rect {
 }
 
 .data.column {
-  width: 10%;
+  width: 130px;
+  margin-right: 40px;
 }
 
 .data.column .dataset-list {
@@ -463,7 +465,6 @@ g.column rect {
 /* Features column */
 
 .features.column {
-  width: 10%;
   position: relative;
 }
 
@@ -518,11 +519,13 @@ g.column rect {
 /* Network (inside features column) */
 
 #network {
-  position: absolute;
-  top: 110px;
-  left: 0;
+  margin-top: 85px;
+  position: relative;
+  /*top: 110px;*/
+  /*left: 0;*/
   z-index: 100;
-  height: 400px;
+  height: 380px;
+  width: 650px;
   /*border: solid 1px cyan;*/
 }
 
@@ -629,12 +632,18 @@ g.column rect {
 
 /* Hidden layers column */
 
-.hidden-layers.column {
-  width: 40%;
+.hidden-layers {
+  position: absolute;
+  width: 0;
+  top: 0;
+  right: 40px;
 }
 
 #main-part .hidden-layers h4 {
   justify-content: center;
+  positi0n: absolute;
+  left: calc(50% - 120px);
+  width: 240px;
   margin-top: -5px;
 }
 
@@ -654,7 +663,7 @@ g.column rect {
 }
 
 .hidden-layers .bracket {
-  width: 0;
+  width: 100%;
   margin: 5px auto 0;
   border: solid 1px rgba(0, 0, 0, 0.15);
   border-bottom: 0;

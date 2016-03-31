@@ -148,15 +148,9 @@ limitations under the License.
     <!-- Features Column -->
     <div class="column features">
       <h4>Input</h4>
-      <p>Which properties do you want to feed in?</p>
+      <!-- <p>Which properties do you want to feed in?</p> -->
       <div id="network">
-        <svg id="network-svg">
-          <!-- <defs>
-            <marker id="markerArrow" markerWidth="7" markerHeight="13" refX="1" refY="6" orient="auto" markerUnits="userSpaceOnUse">
-              <path d="M2,11 L7,6 L2,2" />
-            </marker>
-          </defs> -->
-        </svg>
+        <svg id="network-svg"></svg>
         <div class="callout thumbnail">
           <svg viewBox="0 0 30 30">
             <defs>
@@ -184,21 +178,22 @@ limitations under the License.
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Hidden Layers Column -->
-    <div class="column hidden-layers">
-      <h4>
-        <button id="add-layers" class="mdl-button mdl-js-button mdl-button--icon">
-          <i class="material-icons">add</i>
-        </button>
-        <button id="remove-layers" class="mdl-button mdl-js-button mdl-button--icon">
-          <i class="material-icons">remove</i>
-        </button>
-        <span id="num-layers"></span>
-        <span id="layers-label"></span>
-      </h4>
-      <div class="bracket"></div>
+      <!-- Hidden Layers Column -->
+      <div class="hidden-layers">
+        <h4>
+          <button id="add-layers" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">add</i>
+          </button>
+          <button id="remove-layers" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">remove</i>
+          </button>
+          <span id="num-layers"></span>
+          <span id="layers-label"></span>
+        </h4>
+        <div class="bracket"></div>
+      </div>
+
     </div>
 
     <!-- Output Column -->

@@ -387,10 +387,11 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
 
 // Draw network
 function drawNetwork(network: nn.Node[][]): void {
-  var nodeWidth = 34;
-  var leftPadding = 120;
-  var height = 400;
-  var width;
+
+  const outputWidth = 300;
+  const columnWidth = 130;
+  const columnMargin = 40;
+  const preferredLayerWidth = 170;
 
   var layerData = network.map(function(layer: any, i) {
     layer.index = i;
@@ -399,27 +400,56 @@ function drawNetwork(network: nn.Node[][]): void {
   }).slice(0, -1);
   console.log(layerData);
 
+  var nodeData = [];
+  network.forEach(function(layer: any, i) {
+    layer.forEach(function(node: any, j) {
+      node.key = layer.key + ",n:" + j;
+      node.layerIndex = layer.index;
+      node.index = j;
+      nodeData.push(node);
+    });
+  });
+
+  var linkData = [];
+  nodeData.forEach(function(node, i) {
+    node.outputs.forEach(function(link: any, k) {
+      link.key = link.source.key + "->" + link.dest.key;
+      linkData.push(link);
+    });
+  });
   var html = d3.select("#network");
+  var svg = d3.select("#network-svg");
+  var htmlBBox = document.querySelector("#network").getBoundingClientRect();
+  var height = htmlBBox.height;
+  var width = htmlBBox.width;
+  var maxDepth = d3.max(layerData, (d) => d.length);
+  var nodeWidth = Math.min(40, Math.min(width / layerData.length / 2.5, height / maxDepth / 1.5));
+  console.log(htmlBBox)
+  svg.attr("width", width);
+
+  var hiddenLayersColumn = d3.select(".hidden-layers.column");
+  var mainPartWidth = document.querySelector("#main-part").getBoundingClientRect().width;
+
+  // hiddenLayersColumn.style("width", mainPartWidth - outputWidth * 2 + "px");
+
 
   // Get the width of the svg container.
-  var padding = 3;
-  var co = <HTMLDivElement> d3.select(".column.output").node();
-  var cf = <HTMLDivElement> d3.select(".column.features").node();
-  width = co.offsetLeft - cf.offsetLeft;
-  html.style("width", width + "px");
+  // var co = <HTMLDivElement> d3.select(".column.output").node();
+  // var cf = <HTMLDivElement> d3.select(".column.features").node();
+  // width = co.offsetLeft - cf.offsetLeft;
 
+console.log(layerData.length, width)
   var layerXScale = d3.scale.linear()
       .domain([0, layerData.length])
-      .range([leftPadding, width]);
+      .range([nodeWidth / 2, width]);
 
   var neuronYScale = d3.scale.linear()
-      .domain([0, 7])
+      .domain([0, Math.max(3, maxDepth)])
       .range([nodeWidth / 2 + 5, height]);
 
   const duration = 300;
 
-  var stage = html;
-  var bracket = d3.select(".hidden-layers .bracket");
+  var hiddenLayers = d3.select(".hidden-layers");
 
   //
   // layers
@@ -481,24 +511,21 @@ function drawNetwork(network: nn.Node[][]): void {
         return d.length + " neuron" + suffix;
       });
 
-  bracket
+  hiddenLayers
     .transition().duration(duration).delay(() => layerHasExited ? duration : 0)
+      .style("left", layerXScale(1) + "px")
+      .style("width", (d) => layerXScale(layerData.length - 1) - layerXScale(1) + "px" )
+    .select(".bracket")
       .style("opacity", () => layerData.length > 2 ? 1 : 0)
-      .style("width", (d) => layerXScale(layerData.length - 1) - layerXScale(1) + 60 + "px" )
+
+
+  // hiddenLayersColumn
+  //     .transition().duration(duration)
+  //     .style("width", width - preferredLayerWidth - columnMargin + "px");
 
   //
   // nodes
   //
-
-  var nodeData = [];
-  network.forEach(function(layer: any, i) {
-    layer.forEach(function(node: any, j) {
-      node.key = layer.key + ",n:" + j;
-      node.layerIndex = layer.index;
-      node.index = j;
-      nodeData.push(node);
-    });
-  });
 
   var node = html.selectAll(".node.active").data((d) => nodeData, (d: any) => d.key);
   var nodeEnter = node.enter().append("div")
@@ -528,7 +555,10 @@ function drawNetwork(network: nn.Node[][]): void {
       .style("height", "0px")
       .remove();
 
-  node.transition("position").duration(duration).delay(() => layerHasExited ? duration : 0)
+  node.transition().duration(duration).delay(() => layerHasExited ? duration : 0)
+      .style("width", nodeWidth + "px")
+      .style("height", nodeWidth + "px")
+      .style("opacity", 1)
       .style("top", (d) => neuronYScale(d.index) + "px")
       .style("left", (d) => layerXScale(d.layerIndex) + "px");
 
@@ -537,15 +567,6 @@ function drawNetwork(network: nn.Node[][]): void {
   //
   // Links
   //
-  var linkData = [];
-  nodeData.forEach(function(node, i) {
-    node.outputs.forEach(function(link: any, k) {
-      link.key = link.source.key + "->" + link.dest.key;
-      linkData.push(link);
-    });
-  });
-
-  var columnWidth = layerXScale(1) - layerXScale(0);
 
   var originDiagonal = d3.svg.diagonal()
       .source(function(d: any) { return { y: (layerXScale(d.dest.layerIndex) + layerXScale(d.dest.layerIndex)) / 2, x: (neuronYScale(d.dest.index) + neuronYScale(d.dest.index)) / 2 }; })
@@ -557,7 +578,6 @@ function drawNetwork(network: nn.Node[][]): void {
       .target(function(d: any) { return { y: layerXScale(d.dest.layerIndex), x: neuronYScale(d.dest.index)}; })
       .projection(function(d) { return [d.y, d.x]; });
 
-  var svg = d3.select("#network-svg");
   var link = svg.selectAll(".link").data((d) => linkData, function(d: any) { return d.key; });
   var linkEnter = link.enter().append("path")
       .attr("class", "link")
@@ -565,7 +585,7 @@ function drawNetwork(network: nn.Node[][]): void {
       .attr("id", (d) => "link" + d.source.id + "-" + d.dest.id)
       .style("opacity", 0)
 
-  linkEnter.transition("enter").duration(duration).delay((d) => layerHasEntered || layerHasExited ? duration + Math.max(d.source.index, d.dest.index) * 30 : 0)
+  linkEnter.transition("enter").duration(duration).delay((d) => layerHasEntered || layerHasExited ? duration : 0)
       .attr("d", diagonal)
       .style("opacity", 1);
 
