@@ -444,7 +444,7 @@ console.log(layerData.length, width)
       .range([nodeWidth / 2, width]);
 
   var neuronYScale = d3.scale.linear()
-      .domain([0, Math.max(3, maxDepth)])
+      .domain([0, Math.max(4, maxDepth)])
       .range([nodeWidth / 2 + 5, height]);
 
   const duration = 300;

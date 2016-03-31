@@ -66,12 +66,6 @@ body {
   }
 }
 
-@media (min-width: 1400px) {
-  #main-part.l--page {
-    width: 1220px;
-  }
-}
-
 #container {
   /*margin: 0px auto;*/
   /*width: 970px;*/
@@ -324,6 +318,18 @@ header h1 .optional {
   }
 }
 
+@media (min-width: 1280px) {
+  #main-part {
+    width: 1200px;
+  }
+}
+
+@media (min-width: 1400px) {
+  #main-part {
+    width: 1300px;
+  }
+}
+
 #main-part .column {
   /*border-left: solid 1px cyan;*/
   /*border-right: solid 1px cyan;*/
@@ -466,6 +472,7 @@ g.column rect {
 
 .features.column {
   position: relative;
+  flex-grow: 2;
 }
 
 .features.column .plus-minus-neurons {
@@ -525,7 +532,7 @@ g.column rect {
   /*left: 0;*/
   z-index: 100;
   height: 380px;
-  width: 650px;
+  width: 100%;
   /*border: solid 1px cyan;*/
 }
 
