@@ -656,9 +656,19 @@ g.column rect {
 .hidden-layers .bracket {
   width: 0;
   margin: 5px auto 0;
-  border: solid 1px rgba(0, 0, 0, 0.2);
+  border: solid 1px rgba(0, 0, 0, 0.15);
   border-bottom: 0;
-  height: 4px;
+  height: 5px;
+  position: relative;
+}
+
+.hidden-layers .bracket::after {
+  content: " ";
+  height: 8px;
+  border-left: solid 1px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  left: 50%;
+  top: -8px;
 }
 
 /* Output column */
