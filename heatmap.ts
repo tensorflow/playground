@@ -58,11 +58,11 @@ export class HeatMap {
 
     this.xScale = d3.scale.linear()
       .domain(xDomain)
-      .range([0, width - 2 * padding]);
+      .range([0, width - padding]);
 
     this.yScale = d3.scale.linear()
       .domain(yDomain)
-      .range([height - 2 * padding, 0]);
+      .range([height - padding, 0]);
 
     // Get a range of colors.
     let tmpScale = d3.scale.linear<string, string>()
@@ -99,8 +99,7 @@ export class HeatMap {
         "position": "absolute",
         "left": "0",
         "top": "0"
-      }).append("g")
-        .attr("transform", `translate(${padding},${padding})`);
+      }).append("g");
 
       this.svg.append("g").attr("class", "train");
       this.svg.append("g").attr("class", "test");
@@ -117,12 +116,12 @@ export class HeatMap {
 
       this.svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", `translate(0,${height - 2 * padding})`)
+        .attr("transform", `translate(0,${height - padding})`)
         .call(xAxis);
 
       this.svg.append("g")
         .attr("class", "y axis")
-        .attr("transform", "translate(" + (width - 2 * padding) + ",0)")
+        .attr("transform", "translate(" + (width - padding) + ",0)")
         .call(yAxis);
     }
   }
