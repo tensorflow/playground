@@ -115,7 +115,7 @@ let state = State.deserializeState();
 let boundary: {[id: string]: number[][]} = {};
 let selectedNodeId: string = null;
 // Plot the heatmap.
-let xDomain: [number, number] = [-6, 6];
+let xDomain: [number, number] = [-6.5, 6.5];
 let heatMap =
     new HeatMap(300, DENSITY, xDomain, xDomain, d3.select("#heatmap"),
         {showAxes: true});
@@ -515,7 +515,7 @@ function drawNetwork(network: nn.Node[][]): void {
           xDomain, d3.select(this), {noSvg: true});
       });
 
-  nodeEnter.transition().duration(duration).delay(() => layerHasEntered ? duration : 0)//.ease("cubic-out")
+  nodeEnter.transition().duration(duration).delay((d) => layerHasEntered ? duration * 0.6 + d.index * 30  : 0)//.ease("cubic-out")
       .style("width", nodeWidth + "px")
       .style("height", nodeWidth + "px")
       .style("opacity", 1);
@@ -565,7 +565,7 @@ function drawNetwork(network: nn.Node[][]): void {
       .attr("id", (d) => "link" + d.source.id + "-" + d.dest.id)
       .style("opacity", 0)
 
-  linkEnter.transition("enter").duration(duration).delay(() => layerHasEntered || layerHasExited ? duration : 0)
+  linkEnter.transition("enter").duration(duration).delay((d) => layerHasEntered || layerHasExited ? duration + Math.max(d.source.index, d.dest.index) * 30 : 0)
       .attr("d", diagonal)
       .style("opacity", 1);
 
