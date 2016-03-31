@@ -414,7 +414,7 @@ function drawNetwork(network: nn.Node[][]): void {
 
   var neuronYScale = d3.scale.linear()
       .domain([0, 7])
-      .range([nodeWidth / 2, height]);
+      .range([nodeWidth / 2 + 5, height]);
 
   const duration = 300;
 
@@ -435,9 +435,7 @@ function drawNetwork(network: nn.Node[][]): void {
   var layerHasEntered = !layerEnter[0].every((d) => d === null);
 
   layerEnter.transition("enter").duration(duration).delay(duration)
-      .style("opacity", 1)
-      .style("top", "0px")
-      .style("left", function(d, i) { return layerXScale(i) + "px"; });
+      .style("opacity", 1);
 
   var layerExit = layer.exit()
       .classed("active", false);
@@ -448,6 +446,7 @@ function drawNetwork(network: nn.Node[][]): void {
       .style("opacity", 0).remove();
 
   var layerUpdate = layer;
+
   layerUpdate.transition("update").duration(duration).delay(() => layerHasExited ? duration : 0)
       .style("left", function(d, i) { return layerXScale(i) + "px"; });
 
