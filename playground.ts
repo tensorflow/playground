@@ -535,18 +535,6 @@ function drawNetwork(network: nn.Node[][]): void {
 
   var nodeUpdate = node;
 
-  // nodeEnter.append("div")
-  //     .attr("id", (d) => "canvas-" + d.id)
-  //     .style("top", (d, i) => neuronYScale(i) - nodeWidth / 2 + "px")
-  //     .style("left", (d, i) => -nodeWidth / 2 + "px")
-  //     .style("width", nodeWidth + "px")
-  //     .style("height", nodeWidth + "px")
-  //     .attr("class", "canvas")
-  //     .each(function(d: any) {
-  //       d.heatmap = new HeatMap(RECT_SIZE, DENSITY / 10, xDomain,
-  //         xDomain, d3.select(this), {noSvg: true});
-  //     });
-
   //
   // Links
   //
@@ -560,6 +548,11 @@ function drawNetwork(network: nn.Node[][]): void {
 
   var columnWidth = layerXScale(1) - layerXScale(0);
 
+  var originDiagonal = d3.svg.diagonal()
+      .source(function(d: any) { return { y: (layerXScale(d.dest.layerIndex) + layerXScale(d.dest.layerIndex)) / 2, x: (neuronYScale(d.dest.index) + neuronYScale(d.dest.index)) / 2 }; })
+      .target(function(d: any) { return { y: (layerXScale(d.dest.layerIndex) + layerXScale(d.dest.layerIndex)) / 2, x: (neuronYScale(d.dest.index) + neuronYScale(d.dest.index)) / 2}; })
+      .projection(function(d) { return [d.y, d.x]; });
+
   var diagonal = d3.svg.diagonal()
       .source(function(d: any) { return { y: layerXScale(d.source.layerIndex), x: neuronYScale(d.source.index)}; })
       .target(function(d: any) { return { y: layerXScale(d.dest.layerIndex), x: neuronYScale(d.dest.index)}; })
@@ -569,7 +562,7 @@ function drawNetwork(network: nn.Node[][]): void {
   var link = svg.selectAll(".link").data((d) => linkData, function(d: any) { return d.key; });
   var linkEnter = link.enter().append("path")
       .attr("class", "link")
-      .attr("d", diagonal)
+      .attr("d", (layerHasExited ? originDiagonal : diagonal))
       .attr("id", (d) => "link" + d.source.id + "-" + d.dest.id)
       .style("opacity", 0)
 
@@ -579,6 +572,7 @@ function drawNetwork(network: nn.Node[][]): void {
 
   link.exit().transition().duration(duration)
       .style("opacity", 0)
+      // .attr("d", originDiagonal)
       .remove();
 
   link.transition("update").duration(duration).delay(() => layerHasExited ? duration : 0)
