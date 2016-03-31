@@ -370,8 +370,10 @@ g.column rect {
 
 #heatmap {
   position: relative;
-  float: left;
+  clear: both;
   margin-top: 10px;
+  width: 300px;
+  height: 300px;
 }
 
 #heatmap .tick line {
@@ -470,6 +472,7 @@ g.column rect {
   text-align: center;
   line-height: 28px;
   top: -58px;
+  left: -32.5px;
   width: 65px;
   height: 44px;
   font-size: 12px;
@@ -537,17 +540,13 @@ g.column rect {
 }
 
 #network .node {
-  /*border: solid 1px magenta;*/
+  width: 0;
+  height: 0;
 }
 
 #network .node {
   position: absolute;
   cursor: default;
-}
-
-#network .node rect {
-  fill: white;
-  stroke-width: 0;
 }
 
 #network .node.inactive {
@@ -558,11 +557,15 @@ g.column rect {
   opacity: 1.0;
 }
 
-#network .layer .node div {
+#network .node .heatmap-container {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  left: -50%;
+  top: -50%;
   background: white;
+  border: 2px solid black;
+  border-radius: 3px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-sizing: border-box;
 }
 
 #network svg .main-label {
@@ -603,11 +606,7 @@ g.column rect {
 
 #network .canvas canvas {
   position: absolute;
-  top: -2px;
-  left: -2px;
-  border: 2px solid black;
-  border-radius: 3px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-sizing: border-box;
 }
 
 #network .canvas.inactive canvas {
@@ -655,7 +654,8 @@ g.column rect {
 }
 
 .hidden-layers .bracket {
-  margin-top: 5px;
+  width: 0;
+  margin: 5px auto 0;
   border: solid 1px rgba(0, 0, 0, 0.2);
   border-bottom: 0;
   height: 4px;

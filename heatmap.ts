@@ -81,21 +81,14 @@ export class HeatMap {
                      .range(colors);
 
     container = container.append("div")
-      .style({
-        width: `${width}px`,
-        height: `${height}px`,
-        position: "relative",
-        top: `-${padding}px`,
-        left: `-${padding}px`
-      });
+      .attr("class", "heatmap-container")
+      .style("width", "100%")
+      .style("height", "100%");
     this.canvas = container.append("canvas")
       .attr("width", numSamples)
       .attr("height", numSamples)
-      .style("width", (width - 2 * padding) + "px")
-      .style("height", (height - 2 * padding) + "px")
-      .style("position", "absolute")
-      .style("top", `${padding}px`)
-      .style("left", `${padding}px`);
+      .style("width", "calc(100% - " + padding + "px)")
+      .style("height", "calc(100% - " + padding + "px)");
 
     if (!this.settings.noSvg) {
       this.svg = container.append("svg").attr({

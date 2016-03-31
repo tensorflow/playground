@@ -419,6 +419,7 @@ function drawNetwork(network: nn.Node[][]): void {
   const duration = 300;
 
   var stage = html;
+  var bracket = d3.select(".hidden-layers .bracket");
 
   //
   // layers
@@ -481,6 +482,11 @@ function drawNetwork(network: nn.Node[][]): void {
         return d.length + " neuron" + suffix;
       });
 
+  bracket
+    .transition().duration(duration).delay(() => layerHasExited ? duration : 0)
+      .style("opacity", () => layerData.length > 1 ? 1 : 0)
+      .style("width", (d) => layerXScale(layerData.length - 1) - layerXScale(1) + 60 + "px" )
+
   //
   // nodes
   //
@@ -499,30 +505,34 @@ function drawNetwork(network: nn.Node[][]): void {
   var nodeEnter = node.enter().append("div")
       .style("top", (d) => neuronYScale(d.index) + "px")
       .style("left", (d) => layerXScale(d.layerIndex) + "px")
+      .style("display", (d) => d.key.indexOf("l:o") === 0 ? "none" : "")
       .style("opacity", 0)
       .attr("class", "node canvas active")
       .attr("id", (d) => "canvas-" + d.id)
-      .style("width", nodeWidth + "px")
-      .style("height", nodeWidth + "px")
+      .style("width", "0px")
+      .style("height", "0px")
       .each(function(d: any) {
         d.heatmap = new HeatMap(RECT_SIZE, DENSITY / 10, xDomain,
           xDomain, d3.select(this), {noSvg: true});
       });
+
   nodeEnter.transition().duration(duration).delay(() => layerHasEntered ? duration : 0)//.ease("cubic-out")
-      // .style("top", (d) => neuronYScale(d.index) + "px")
-      // .style("left", (d) => layerXScale(d.layerIndex) + "px")
+      .style("width", nodeWidth + "px")
+      .style("height", nodeWidth + "px")
       .style("opacity", 1);
-  node.exit()
+
+  var nodeExit = node.exit()
       .classed("active", false)
     .transition().duration(duration)//.ease("quad-in")
-      // .style("top", "100px")
-      // .style("top", (d) => neuronYScale(d.index) + "px")
-      // .style("left", (d) => layerXScale(d.layerIndex) + "px")
-      .style("opacity", 0).remove();
+      .style("opacity", 0)
+      .style("width", "0px")
+      .style("height", "0px")
+      .remove();
 
   node.transition("position").duration(duration).delay(() => layerHasExited ? duration : 0)
       .style("top", (d) => neuronYScale(d.index) + "px")
       .style("left", (d) => layerXScale(d.layerIndex) + "px");
+
   var nodeUpdate = node;
 
   // nodeEnter.append("div")
@@ -553,7 +563,7 @@ function drawNetwork(network: nn.Node[][]): void {
   var diagonal = d3.svg.diagonal()
       .source(function(d: any) { return { y: layerXScale(d.source.layerIndex), x: neuronYScale(d.source.index)}; })
       .target(function(d: any) { return { y: layerXScale(d.dest.layerIndex), x: neuronYScale(d.dest.index)}; })
-      .projection(function(d) { return [d.y + nodeWidth / 2, d.x + nodeWidth / 2]; });
+      .projection(function(d) { return [d.y, d.x]; });
 
   var svg = d3.select("#network-svg");
   var link = svg.selectAll(".link").data((d) => linkData, function(d: any) { return d.key; });
