@@ -388,7 +388,7 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
 // Draw network
 function drawNetwork(network: nn.Node[][]): void {
   var nodeWidth = 34;
-  var leftPadding = 100;
+  var leftPadding = 120;
   var height = 400;
   var width;
 
