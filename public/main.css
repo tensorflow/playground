@@ -408,8 +408,8 @@ g.column rect {
 }
 
 .data.column {
-  width: 130px;
-  margin-right: 40px;
+  width: 100px;
+  margin-right: 70px;
 }
 
 .data.column .dataset-list {
@@ -420,9 +420,10 @@ g.column rect {
 .data.column .dataset {
   position: relative;
   float: left;
-  width: 34px;
-  height: 34px;
-  margin: 0 14px 14px 0;
+  width: 43px;
+  height: 43px;
+  margin: 0 12px 12px 0;
+  box-sizing: border-box;
 }
 
 .data.column .dataset:nth-of-type(2n) {
@@ -436,6 +437,7 @@ g.column rect {
   opacity: 0.2;
   border: 2px solid rgba(0,0,0,0.1);
   border-radius: 3px;
+  box-sizing: border-box;
 }
 
 /*.data.column .dataset:first-of-type {
