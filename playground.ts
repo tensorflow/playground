@@ -484,7 +484,7 @@ function drawNetwork(network: nn.Node[][]): void {
 
   bracket
     .transition().duration(duration).delay(() => layerHasExited ? duration : 0)
-      .style("opacity", () => layerData.length > 1 ? 1 : 0)
+      .style("opacity", () => layerData.length > 2 ? 1 : 0)
       .style("width", (d) => layerXScale(layerData.length - 1) - layerXScale(1) + 60 + "px" )
 
   //
