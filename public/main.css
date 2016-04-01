@@ -408,7 +408,7 @@ g.column rect {
 }
 
 .data.column {
-  width: 100px;
+  width: 105px;
   margin-right: 70px;
 }
 
@@ -420,9 +420,9 @@ g.column rect {
 .data.column .dataset {
   position: relative;
   float: left;
-  width: 43px;
-  height: 43px;
-  margin: 0 12px 12px 0;
+  width: 44px;
+  height: 44px;
+  margin: 0 15.5px 15.5px 0;
   box-sizing: border-box;
 }
 
@@ -477,6 +477,10 @@ g.column rect {
   flex-grow: 2;
 }
 
+.features.column p {
+  width:100px;
+}
+
 .features.column .plus-minus-neurons {
   position: absolute;
   text-align: center;
@@ -528,14 +532,12 @@ g.column rect {
 /* Network (inside features column) */
 
 #network {
-  margin-top: 85px;
-  position: relative;
-  /*top: 110px;*/
-  /*left: 0;*/
+  position: absolute;
+  top: 110px;
+  left: 0;
   z-index: 100;
   height: 380px;
   width: 100%;
-  /*border: solid 1px cyan;*/
 }
 
 #network #network-svg {
