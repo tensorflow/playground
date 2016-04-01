@@ -273,11 +273,12 @@ function makeGUI() {
     .attr("transform", "translate(0,10)")
     .call(xAxis);
 
-  // Listen for css-responsive changes and redraw the svg network.
-  // d3.select("#main-part").on("transitionend", () => {
-  //   drawNetwork(network);
-  //   updateUI(true);
-  // });
+  // Listen for css-responsive changes and redraw the network.
+  // TODO(shancarter) throttle this and remove transitions. Also it sticks.
+  window.addEventListener("resize", () => {
+    drawNetwork(network);
+    updateUI(true);
+  });
 }
 
 function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
