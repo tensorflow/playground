@@ -629,30 +629,46 @@ g.column rect {
   margin-right: 5px;
 }
 
-.hidden-layers .bracket {
+.bracket {
   margin-top: 5px;
   border: solid 1px rgba(0, 0, 0, 0.2);
   border-bottom: 0;
   height: 4px;
 }
 
+.bracket.reverse {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+  border-top: 0;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
 /* Output column */
 
 .output.column {
-  width: 300px;
+  width: 275px;
 }
 
-.output .output-stats {
-  width: 45%;
-  float: left;
+#linechart {
+  width: 73px;
+  height: 53px;
 }
 
-.output .output-stats.train {
-  margin-right: 10%;
+.metrics {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#accuracy-train {
+  color: #777;
+}
+
+#accuracy-test {
+  color: black;
 }
 
 #main-part .output .output-stats p {
-  margin-bottom: 10px;
   margin-top: 6px;
 }
 

@@ -230,14 +230,19 @@ limitations under the License.
     <!-- Output Column -->
     <div class="column output">
       <h4>Output</h4>
-      <div class="output-stats train">
-        <div class="value" id="accuracy-train"></div>
-        <p>Training accuracy</p>
+      <div class="bracket"></div>
+      <div class="metrics">
+        <div id="linechart"></div>
+        <div class="output-stats train">
+          <div class="value" id="accuracy-train"></div>
+          <p>Training accuracy</p>
+        </div>
+        <div class="output-stats ui-percTrainData">
+          <div class="value" id="accuracy-test"></div>
+          <p>Test accuracy</p>
+        </div>
       </div>
-      <div class="output-stats ui-percTrainData">
-        <div class="value" id="accuracy-test"></div>
-        <p>Test accuracy</p>
-      </div>
+      <div class="bracket reverse"></div>
       <div id="heatmap"></div>
       <div style="float:left;margin-top:20px">
         <div style="display:flex; align-items:center;">

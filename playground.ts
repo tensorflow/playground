@@ -27,6 +27,7 @@ import {
   getKeyFromValue
 } from "./state";
 import {Example2D, shuffle} from "./dataset";
+import {AppendingLineChart} from "./linechart";
 
 const RECT_SIZE = 30;
 const NUM_SAMPLES = 500;
@@ -126,6 +127,8 @@ let network: nn.Node[][] = null;
 let accuracyTrain = 0;
 let accuracyTest = 0;
 let player = new Player();
+let lineChart = new AppendingLineChart(d3.select("#linechart"), [0, 1],
+    ["#777", "black"]);
 
 function makeGUI() {
   d3.select("#reset-button").on("click", () => {
@@ -664,6 +667,7 @@ function updateUI(firstStep = false) {
   d3.select("#accuracy-train").text(toPercentage(accuracyTrain));
   d3.select("#accuracy-test").text(toPercentage(accuracyTest));
   d3.select("#iter-number").text(addCommas(zeroPad(iter)));
+  lineChart.addDataPoint([accuracyTrain, accuracyTest]);
 }
 
 function constructInputIds(): string[] {
@@ -739,6 +743,7 @@ export function getOutputLabels(network: nn.Node[][]): TimeLabel[] {
 }
 
 function reset() {
+  lineChart.reset();
   state.serialize();
   player.pause();
 
@@ -773,13 +778,14 @@ function initTutorial() {
 }
 
 function drawDatasetThumbnails() {
-  for (var dataset in datasets) {
-    let canvas:any = document.querySelector("canvas[data-dataset=" + dataset + "]");
+  for (let dataset in datasets) {
+    let canvas: any =
+        document.querySelector(`canvas[data-dataset=${dataset}]`);
     let w = 100;
     let h = 100;
     canvas.setAttribute("width", w)
     canvas.setAttribute("height", h)
-    var context = canvas.getContext("2d");
+    let context = canvas.getContext("2d");
     let data = datasets[dataset](200, 0);
     data.forEach(function(d) {
       context.fillStyle = colorScale(d.label);
