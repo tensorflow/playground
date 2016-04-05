@@ -777,6 +777,11 @@ function initTutorial() {
       throw err;
     }
     (<any>tutorial.node()).appendChild(htmlFragment);
+    // If the tutorial has a <title> tag, set the page title to that.
+    let title = tutorial.select("title");
+    if (title.size()) {
+      document.title = title.text();
+    }
   });
 }
 
