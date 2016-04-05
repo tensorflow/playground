@@ -662,11 +662,11 @@ g.column rect {
   align-items: center;
 }
 
-#accuracy-train {
+#loss-train {
   color: #777;
 }
 
-#accuracy-test {
+#loss-test {
   color: black;
 }
 

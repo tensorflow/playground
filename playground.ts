@@ -128,10 +128,10 @@ let iter = 0;
 let trainData: Example2D[] = [];
 let testData: Example2D[] = [];
 let network: nn.Node[][] = null;
-let accuracyTrain = 0;
-let accuracyTest = 0;
+let lossTrain = 0;
+let lossTest = 0;
 let player = new Player();
-let lineChart = new AppendingLineChart(d3.select("#linechart"), [0, 1],
+let lineChart = new AppendingLineChart(d3.select("#linechart"),
     ["#777", "black"]);
 
 function makeGUI() {
@@ -665,18 +665,15 @@ function updateDecisionBoundary(network: nn.Node[][], firstTime: boolean) {
   }
 }
 
-function getAccuracy(network: nn.Node[][], dataPoints: Example2D[]): number {
-  let numCorrect = 0;
+function getLoss(network: nn.Node[][], dataPoints: Example2D[]): number {
+  let loss = 0;
   for (let i = 0; i < dataPoints.length; i++) {
     let dataPoint = dataPoints[i];
     let input = constructInput(dataPoint.x, dataPoint.y);
     let output = nn.forwardProp(network, input);
-    output = output >= 0 ? 1 : -1;
-    if (output === dataPoint.label) {
-      numCorrect++;
-    }
+    loss += nn.Errors.SQUARE.error(output, dataPoint.label);
   }
-  return numCorrect / dataPoints.length;
+  return loss / dataPoints.length;
 }
 
 function updateUI(firstStep = false) {
@@ -704,15 +701,15 @@ function updateUI(firstStep = false) {
     return s.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  function toPercentage(n: number): string {
-    return (n * 100).toFixed(1) + "%";
+  function humanReadable(n: number): string {
+    return n.toFixed(3);
   }
 
-  // Update accuracy and iteration number.
-  d3.select("#accuracy-train").text(toPercentage(accuracyTrain));
-  d3.select("#accuracy-test").text(toPercentage(accuracyTest));
+  // Update loss and iteration number.
+  d3.select("#loss-train").text(humanReadable(lossTrain));
+  d3.select("#loss-test").text(humanReadable(lossTest));
   d3.select("#iter-number").text(addCommas(zeroPad(iter)));
-  lineChart.addDataPoint([accuracyTrain, accuracyTest]);
+  lineChart.addDataPoint([lossTrain, lossTest]);
 }
 
 function constructInputIds(): string[] {
@@ -745,9 +742,9 @@ function oneStep(): void {
       nn.updateWeights(network, state.learningRate, state.regularizationRate);
     }
   });
-  // Compute the accuracy.
-  accuracyTrain = getAccuracy(network, trainData);
-  accuracyTest = getAccuracy(network, testData);
+  // Compute the loss.
+  lossTrain = getLoss(network, trainData);
+  lossTest = getLoss(network, testData);
   updateUI();
   nn.resetStoredErrorDer(network);
 }
@@ -804,8 +801,8 @@ function reset() {
       nn.Activations.LINEAR : nn.Activations.TANH;
   network = nn.buildNetwork(shape, state.activation, outputActivation,
       state.regularization, constructInputIds());
-  accuracyTrain = getAccuracy(network, trainData);
-  accuracyTest = getAccuracy(network, testData);
+  lossTrain = getLoss(network, trainData);
+  lossTest = getLoss(network, testData);
   drawNetwork(network);
   updateUI(true);
 };
