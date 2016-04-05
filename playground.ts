@@ -764,17 +764,20 @@ function reset() {
 };
 
 function initTutorial() {
-  let tutorial = d3.select("#tutorial");
-  tutorial.style("width", document.body.clientWidth - 385 + "px");
-  // Replace tutorial text.
-  if (state.tutorial != null) {
-    d3.html(`tutorials/${state.tutorial}.html`, (err, htmlFragment) => {
-      if (err) {
-        throw err;
-      }
-      (<any>tutorial.node()).appendChild(htmlFragment);
-    });
+  if (state.tutorial == null) {
+    return;
   }
+  // Remove all other text.
+  d3.selectAll("article div.l--body").remove();
+  let tutorial = d3.select("article").append("div")
+    .attr("class", "l--body");
+  // Insert tutorial text.
+  d3.html(`tutorials/${state.tutorial}.html`, (err, htmlFragment) => {
+    if (err) {
+      throw err;
+    }
+    (<any>tutorial.node()).appendChild(htmlFragment);
+  });
 }
 
 function drawDatasetThumbnails() {
