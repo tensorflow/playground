@@ -43,7 +43,7 @@ limitations under the License.
         <button class="mdl-button mdl-js-button mdl-button--icon" id="reset-button" title="Reset the network">
           <i class="material-icons">replay</i>
         </button>
-        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" id="play-pause-button" title="Run/Pause">
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored ui-playButton" id="play-pause-button" title="Run/Pause">
           <i class="material-icons">play_arrow</i>
           <i class="material-icons">pause</i>
         </button>
@@ -232,7 +232,6 @@ limitations under the License.
       <h4>Output</h4>
       <div class="bracket"></div>
       <div class="metrics">
-        <div id="linechart"></div>
         <div class="output-stats train">
           <div class="value" id="accuracy-train"></div>
           <p>Training accuracy</p>
@@ -241,6 +240,7 @@ limitations under the License.
           <div class="value" id="accuracy-test"></div>
           <p>Test accuracy</p>
         </div>
+        <div id="linechart"></div>
       </div>
       <div class="bracket reverse"></div>
       <div id="heatmap"></div>
