@@ -241,7 +241,9 @@ header h1 .optional {
 }
 
 #top-controls .control {
-  width: 300px;
+  flex-grow: 1;
+  max-width: 180px;
+  min-width: 80px;
   margin-left: 30px;
   margin-top: 6px;
 }
@@ -276,7 +278,7 @@ header h1 .optional {
   padding: 6px 0;
   width: 100%;
   font-size: 14px;
-  border-bottom: solid 1px #eee;
+  border-bottom: solid 1px #aaa;
   color: #333;
   outline: none;
 }
