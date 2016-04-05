@@ -69,7 +69,7 @@ limitations under the License.
             <option value="3">3</option>
             <option value="10">10</option>
           </select>
-      </div>
+        </div>
       </div>
       <div class="control ui-activation">
         <label for="activations">Activation</label>
@@ -80,7 +80,7 @@ limitations under the License.
             <option value="sigmoid">Sigmoid</option>
             <option value="linear">Linear</option>
           </select>
-      </div>
+        </div>
       </div>
       <div class="control ui-regularization">
         <label for="regularizations">Regularization</label>
@@ -90,7 +90,7 @@ limitations under the License.
             <option value="L1">L1</option>
             <option value="L2">L2</option>
           </select>
-      </div>
+        </div>
       </div>
       <div class="control ui-regularizationRate">
         <label for="regularRate">Regularization coefficent</label>
@@ -107,7 +107,16 @@ limitations under the License.
             <option value="3">3</option>
             <option value="10">10</option>
           </select>
+        </div>
       </div>
+      <div class="control ui-problem">
+        <label for="problem">Problem type</label>
+        <div class="select">
+          <select id="problem">
+            <option value="classification">Classification</option>
+            <option value="regression">Regression</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -131,19 +140,21 @@ limitations under the License.
         <div class="dataset-list">
           <div class="dataset" title="Circle">
             <canvas class="data-thumbnail" data-dataset="circle"></canvas>
-            <div class="label">Circle</div>
           </div>
           <div class="dataset" title="Exclusive or">
             <canvas class="data-thumbnail" data-dataset="xor"></canvas>
-            <div class="label">XOR</div>
           </div>
           <div class="dataset" title="Gaussian">
             <canvas class="data-thumbnail" data-dataset="gauss"></canvas>
-            <div class="label">Guassian</div>
           </div>
           <div class="dataset" title="Spiral">
             <canvas class="data-thumbnail" data-dataset="spiral"></canvas>
-            <div class="label">Spiral</div>
+          </div>
+          <div class="dataset" title="Plane">
+            <canvas class="data-thumbnail" data-regDataset="reg-plane"></canvas>
+          </div>
+          <div class="dataset" title="Multi gaussian">
+            <canvas class="data-thumbnail" data-regDataset="reg-gauss"></canvas>
           </div>
         </div>
       </div>

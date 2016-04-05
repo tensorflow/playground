@@ -243,7 +243,7 @@ header h1 .optional {
 #top-controls .control {
   flex-grow: 1;
   max-width: 180px;
-  min-width: 80px;
+  min-width: 110px;
   margin-left: 30px;
   margin-top: 6px;
 }

@@ -242,6 +242,7 @@ export function buildNetwork(
  * @param network The neural network.
  * @param inputs The input array. Its length should match the number of input
  *     nodes in the network.
+ * @return The final output of the network.
  */
 export function forwardProp(network: Node[][], inputs: number[]): number {
   let inputLayer = network[0];

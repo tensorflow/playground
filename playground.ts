@@ -22,15 +22,19 @@ import {TimeMatrix, TimeLabel} from "./time_matrix";
 import {
   State,
   datasets,
+  regDatasets,
   activations,
+  problems,
   regularizations,
-  getKeyFromValue
+  getKeyFromValue,
+  Problem
 } from "./state";
 import {Example2D, shuffle} from "./dataset";
 import {AppendingLineChart} from "./linechart";
 
 const RECT_SIZE = 30;
-const NUM_SAMPLES = 500;
+const NUM_SAMPLES_CLASSIFY = 500;
+const NUM_SAMPLES_REGRESS = 1200;
 const DENSITY = 100;
 
 interface InputFeature {
@@ -39,13 +43,13 @@ interface InputFeature {
 }
 
 let INPUTS: {[name: string]: InputFeature} = {
-  "x": {f: (x, y) => x, label: "X"},
-  "y": {f: (x, y) => y, label: "Y"},
-  "xSquared": {f: (x, y) => x * x, label: "X^2"},
-  "ySquared": {f: (x, y) => y * y,  label: "Y^2"},
-  "xTimesY": {f: (x, y) => x * y, label: "XY"},
-  "sinX": {f: (x, y) => Math.sin(x), label: "sin(X)"},
-  "sinY": {f: (x, y) => Math.sin(y), label: "sin(Y)"},
+  "x": {f: (x, y) => x, label: "X_1"},
+  "y": {f: (x, y) => y, label: "X_2"},
+  "xSquared": {f: (x, y) => x * x, label: "X_1^2"},
+  "ySquared": {f: (x, y) => y * y,  label: "X_2^2"},
+  "xTimesY": {f: (x, y) => x * y, label: "X_1X_2"},
+  "sinX": {f: (x, y) => Math.sin(x), label: "sin(X_1)"},
+  "sinY": {f: (x, y) => Math.sin(y), label: "sin(X_2)"},
 };
 
 class Player {
@@ -154,7 +158,7 @@ function makeGUI() {
     generateData();
   });
 
-  let dataThumbnails = d3.selectAll(".data-thumbnail");
+  let dataThumbnails = d3.selectAll("canvas[data-dataset]");
   dataThumbnails.on("click", function() {
     let newDataset = datasets[this.dataset.dataset];
     if (newDataset === state.dataset) {
@@ -169,7 +173,25 @@ function makeGUI() {
 
   let datasetKey = getKeyFromValue(datasets, state.dataset);
   // Select the dataset according to the current state.
-  d3.select(`.data-thumbnail[data-dataset=${datasetKey}]`)
+  d3.select(`canvas[data-dataset=${datasetKey}]`)
+    .classed("selected", true);
+
+  let regDataThumbnails = d3.selectAll("canvas[data-regDataset]");
+  regDataThumbnails.on("click", function() {
+    let newDataset = regDatasets[this.dataset.regdataset];
+    if (newDataset === state.regDataset) {
+      return; // No-op.
+    }
+    state.regDataset =  newDataset;
+    regDataThumbnails.classed("selected", false);
+    d3.select(this).classed("selected", true);
+    generateData();
+    reset();
+  });
+
+  let regDatasetKey = getKeyFromValue(regDatasets, state.regDataset);
+  // Select the dataset according to the current state.
+  d3.select(`canvas[data-regDataset=${regDatasetKey}]`)
     .classed("selected", true);
 
   d3.select("#add-layers").on("click", () => {
@@ -259,6 +281,14 @@ function makeGUI() {
   });
   regularRate.property("value", state.regularizationRate);
 
+  let problem = d3.select("#problem").on("change", function() {
+    state.problem = problems[this.value];
+    generateData();
+    drawDatasetThumbnails();
+    reset();
+  });
+  problem.property("value", getKeyFromValue(problems, state.problem));
+
   // Add scale to the gradient color map.
   let x = d3.scale.linear().domain([-1, 1]).range([0, 144]);
   let xAxis = d3.svg.axis()
@@ -330,13 +360,28 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
       x: -10,
       y: RECT_SIZE / 2, "text-anchor": "end"
     });
-    let a = label.split("^");
-    text.append("tspan").text(a[0]);
-    if (a[1]) {
-      text.append("tspan")
-        .attr("baseline-shift", "super")
+    if (/[_^]/.test(label)) {
+      let myRe = /(.*?)([_^])(.)/g;
+      let myArray;
+      let lastIndex;
+      while ((myArray = myRe.exec(label)) !== null) {
+        lastIndex = myRe.lastIndex;
+        let prefix = myArray[1];
+        let sep = myArray[2];
+        let suffix = myArray[3];
+        if (prefix) {
+          text.append("tspan").text(prefix);
+        }
+        text.append("tspan")
+        .attr("baseline-shift", sep == "_" ? "sub" : "super")
         .style("font-size", "9px")
-        .text(a[1]);
+        .text(suffix);
+      }
+      if (label.substring(lastIndex)) {
+        text.append("tspan").text(label.substring(lastIndex));
+      }
+    } else {
+      text.append("tspan").text(label);
     }
     nodeGroup.classed(activeOrNotClass, true);
   }
@@ -755,7 +800,9 @@ function reset() {
   iter = 0;
   let numInputs = constructInput(0 , 0).length;
   let shape = [numInputs].concat(state.networkShape).concat([1]);
-  network = nn.buildNetwork(shape, state.activation, nn.Activations.TANH,
+  let outputActivation = (state.problem == Problem.REGRESSION) ?
+      nn.Activations.LINEAR : nn.Activations.TANH;
+  network = nn.buildNetwork(shape, state.activation, outputActivation,
       state.regularization, constructInputIds());
   accuracyTrain = getAccuracy(network, trainData);
   accuracyTest = getAccuracy(network, testData);
@@ -786,19 +833,36 @@ function initTutorial() {
 }
 
 function drawDatasetThumbnails() {
-  for (let dataset in datasets) {
-    let canvas: any =
-        document.querySelector(`canvas[data-dataset=${dataset}]`);
+  function renderThumbnail(canvas, dataGenerator) {
     let w = 100;
     let h = 100;
     canvas.setAttribute("width", w)
     canvas.setAttribute("height", h)
     let context = canvas.getContext("2d");
-    let data = datasets[dataset](200, 0);
+    let data = dataGenerator(200, 0);
     data.forEach(function(d) {
       context.fillStyle = colorScale(d.label);
       context.fillRect(w * (d.x + 6) / 12, h * (d.y + 6) / 12, 4, 4);
     });
+    d3.select(canvas.parentNode).style("display", null);
+  }
+  d3.selectAll(".dataset").style("display", "none");
+
+  if (state.problem == Problem.CLASSIFICATION) {
+    for (let dataset in datasets) {
+      let canvas: any =
+          document.querySelector(`canvas[data-dataset=${dataset}]`);
+      let dataGenerator = datasets[dataset];
+      renderThumbnail(canvas, dataGenerator);
+    }
+  }
+  if (state.problem == Problem.REGRESSION) {
+    for (let regDataset in regDatasets) {
+      let canvas: any =
+          document.querySelector(`canvas[data-regDataset=${regDataset}]`);
+      let dataGenerator = regDatasets[regDataset];
+      renderThumbnail(canvas, dataGenerator);
+    }
   }
 }
 
@@ -816,11 +880,15 @@ function generateData(firstTime = false) {
     state.serialize();
   }
   Math.seedrandom(state.seed);
-  let data = state.dataset(NUM_SAMPLES, state.noise / 100);
+  let numSamples = (state.problem == Problem.REGRESSION) ?
+      NUM_SAMPLES_REGRESS : NUM_SAMPLES_CLASSIFY;
+  let generator = state.problem == Problem.CLASSIFICATION ?
+      state.dataset : state.regDataset;
+  let data = generator(numSamples, state.noise / 100);
   // Shuffle the data in-place.
   shuffle(data);
   // Split into train and test data.
-  let splitIndex = Math.floor(NUM_SAMPLES * state.percTrainData / 100);
+  let splitIndex = Math.floor(data.length * state.percTrainData / 100);
   trainData = data.slice(0, splitIndex);
   testData = data.slice(splitIndex);
   heatMap.updatePoints(trainData);

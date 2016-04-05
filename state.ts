@@ -14,13 +14,7 @@ limitations under the License.
 ==============================================================================*/
 
 import * as nn from "./nn";
-import {
-  generateCircleData,
-  generateSpiralData,
-  generateTwoGaussData,
-  generateXORData,
-  DataGenerator
-} from "./dataset";
+import * as dataset from "./dataset";
 
 /** Suffix added to the state when storing if a control is hidden or not. */
 const HIDE_STATE_SUFFIX = "_hide";
@@ -40,12 +34,18 @@ export let regularizations: {[key: string]: nn.RegularizationFunction} = {
   "L2": nn.RegularizationFunction.L2
 };
 
-/** A map between dataset names and functions that generate data. */
-export let datasets: {[key: string]: DataGenerator} = {
-  "circle": generateCircleData,
-  "xor": generateXORData,
-  "gauss": generateTwoGaussData,
-  "spiral": generateSpiralData
+/** A map between dataset names and functions that generate classification data. */
+export let datasets: {[key: string]: dataset.DataGenerator} = {
+  "circle": dataset.classifyCircleData,
+  "xor": dataset.classifyXORData,
+  "gauss": dataset.classifyTwoGaussData,
+  "spiral": dataset.classifySpiralData,
+};
+
+/** A map between dataset names and functions that generate regression data. */
+export let regDatasets: {[key: string]: dataset.DataGenerator} = {
+  "reg-plane": dataset.regressPlane,
+  "reg-gauss": dataset.regressGaussian
 };
 
 export function getKeyFromValue(obj: any, value: any): string {
@@ -84,6 +84,16 @@ export enum Type {
   OBJECT
 }
 
+export enum Problem {
+  CLASSIFICATION,
+  REGRESSION
+}
+
+export let problems = {
+  "classification": Problem.CLASSIFICATION,
+  "regression": Problem.REGRESSION
+};
+
 export interface Property {
   name: string;
   type: Type;
@@ -98,6 +108,7 @@ export class State {
     {name: "regularization", type: Type.OBJECT, keyMap: regularizations},
     {name: "batchSize", type: Type.NUMBER},
     {name: "dataset", type: Type.OBJECT, keyMap: datasets},
+    {name: "regDataset", type: Type.OBJECT, keyMap: regDatasets},
     {name: "learningRate", type: Type.NUMBER},
     {name: "regularizationRate", type: Type.NUMBER},
     {name: "noise", type: Type.NUMBER},
@@ -117,6 +128,7 @@ export class State {
     {name: "sinY", type: Type.BOOLEAN},
     {name: "collectStats", type: Type.BOOLEAN},
     {name: "tutorial", type: Type.STRING},
+    {name: "problem", type: Type.OBJECT, keyMap: problems}
   ];
 
   [key: string]: any;
@@ -130,6 +142,7 @@ export class State {
   percTrainData = 50;
   activation = nn.Activations.TANH;
   regularization: nn.RegularizationFunction = null;
+  problem = Problem.CLASSIFICATION;
   collectStats = false;
   numHiddenLayers = 1;
   hiddenLayerControls: any[] = [];
@@ -143,7 +156,8 @@ export class State {
   sinX = false;
   cosY = false;
   sinY = false;
-  dataset: DataGenerator = generateCircleData;
+  dataset: dataset.DataGenerator = dataset.classifyCircleData;
+  regDataset: dataset.DataGenerator = dataset.regressPlane;
   seed: string;
 
   /**

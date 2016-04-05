@@ -50,7 +50,7 @@ export function shuffle(array: any[]): void {
 
 export type DataGenerator = (numSamples: number, noise: number) => Example2D[];
 
-export function generateTwoGaussData(numSamples: number, noise: number):
+export function classifyTwoGaussData(numSamples: number, noise: number):
     Example2D[] {
   let points: Example2D[] = [];
 
@@ -70,7 +70,68 @@ export function generateTwoGaussData(numSamples: number, noise: number):
   return points;
 }
 
-export function generateSpiralData(numSamples: number, noise: number):
+export function regressPlane(numSamples: number, noise: number):
+  Example2D[] {
+  let radius = 6;
+  let labelScale = d3.scale.linear()
+    .domain([-10, 10])
+    .range([-1, 1]);
+  let getLabel = (x, y) => labelScale(x + y);
+
+  let points: Example2D[] = [];
+  for (let i = 0; i < numSamples; i++) {
+    let x = randUniform(-radius, radius);
+    let y = randUniform(-radius, radius);
+    let noiseX = randUniform(-radius, radius) * noise;
+    let noiseY = randUniform(-radius, radius) * noise;
+    let label = getLabel(x + noiseX, y + noiseY);
+    points.push({x: x, y: y, label: label});
+  }
+  return points;
+}
+
+export function regressGaussian(numSamples: number, noise: number):
+  Example2D[] {
+  let points: Example2D[] = [];
+
+  let labelScale = d3.scale.linear()
+    .domain([0, 2])
+    .range([1, 0])
+    .clamp(true);
+
+  let gaussians = [
+    [-4, 2.5, 1],
+    [0, 2.5, -1],
+    [4, 2.5, 1],
+    [-4, -2.5, -1],
+    [0, -2.5, 1],
+    [4, -2.5, -1]
+  ];
+
+  function getLabel(x, y) {
+    // Choose the one that is maximum in abs value.
+    let label = 0;
+    gaussians.forEach(([cx, cy, sign]) => {
+      let newLabel = sign * labelScale(dist({x: x, y: y}, {x: cx, y: cy}));
+      if (Math.abs(newLabel) > Math.abs(label)) {
+        label = newLabel;
+      }
+    });
+    return label;
+  }
+  let radius = 6;
+  for (let i = 0; i < numSamples; i++) {
+    let x = randUniform(-radius, radius);
+    let y = randUniform(-radius, radius);
+    let noiseX = randUniform(-radius, radius) * noise;
+    let noiseY = randUniform(-radius, radius) * noise;
+    let label = getLabel(x + noiseX, y + noiseY);
+    points.push({x: x, y: y, label: label});
+  };
+  return points;
+}
+
+export function classifySpiralData(numSamples: number, noise: number):
     Example2D[] {
   let points: Example2D[] = [];
   let n = numSamples / 2;
@@ -90,7 +151,7 @@ export function generateSpiralData(numSamples: number, noise: number):
   return points;
 }
 
-export function generateCircleData(numSamples: number, noise: number):
+export function classifyCircleData(numSamples: number, noise: number):
     Example2D[] {
   let points: Example2D[] = [];
   let radius = 5;
@@ -124,7 +185,7 @@ export function generateCircleData(numSamples: number, noise: number):
   return points;
 }
 
-export function generateXORData(numSamples: number, noise: number):
+export function classifyXORData(numSamples: number, noise: number):
     Example2D[] {
   function getXORLabel(p: Point) { return p.x * p.y >= 0 ? 1 : -1; }
 
