@@ -75,6 +75,8 @@ export class AppendingLineChart {
   reset() {
     this.data = [];
     this.redraw();
+    this.minY = Number.MAX_VALUE;
+    this.maxY = Number.MIN_VALUE;
   }
 
   addDataPoint(dataPoint: number[]) {
