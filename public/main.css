@@ -217,8 +217,7 @@ header h1 .optional {
   display: flex;
   align-items: center;
   margin-right: 20px;
-  margin-left: -10px;
-  width: 265px;
+  width: 140px;
 }
 
 #play-pause-button .material-icons {
