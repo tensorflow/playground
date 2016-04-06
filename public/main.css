@@ -67,7 +67,7 @@ body {
 }
 
 @media (min-width: 1400px) {
-  #main-part.l--page {
+  .l--page {
     width: 1220px;
   }
 }
@@ -277,7 +277,7 @@ header h1 .optional {
   padding: 6px 0;
   width: 100%;
   font-size: 14px;
-  border-bottom: solid 1px #aaa;
+  border-bottom: solid 1px #ccc;
   color: #333;
   outline: none;
 }
@@ -457,6 +457,39 @@ g.column rect {
 
 #main-part .data.column p.slider {
   margin: 0 -25px 20px;
+}
+
+#main-part .basic-button {
+  margin-top: 25px;
+  height: 34px;
+  margin-right: 0;
+  width: 100%;
+  display: block;
+  color: rgba(0, 0, 0, 0.5);
+  border: none;
+  background: rgba(158,158,158,.1);
+  border-radius: 3px;
+  padding: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+  outline: none;
+  transition: background 0.3s linear;
+}
+
+#main-part .basic-button:hover {
+  background: rgba(158,158,158,.3);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+#main-part .basic-button:focus {
+  background: rgba(158,158,158,.4);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#main-part .basic-button:active {
+  background: rgba(158,158,158,.5);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 /* Features column */
@@ -650,18 +683,21 @@ g.column rect {
   width: 275px;
 }
 
-#linechart {
-  width: 73px;
-  height: 53px;
-}
-
 .metrics {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  position: relative;
+  font-weight: 300;
+  font-size: 13px;
+  height: 60px;
 }
 
-#loss-train {
+#linechart {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 55px;
+}
+.metrics .train {
   color: #777;
 }
 
@@ -669,14 +705,15 @@ g.column rect {
   color: black;
 }
 
-#main-part .output .output-stats p {
-  margin-top: 6px;
+#main-part .output .output-stats {
 }
 
 .output .output-stats .value {
   color: rgba(0, 0, 0, 0.6);
-  font-size: 20px;
+  /*font-size: 20px;*/
   font-weight: 300;
+  display: inline;
+
 }
 
 g.train circle {

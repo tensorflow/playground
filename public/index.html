@@ -127,12 +127,6 @@ limitations under the License.
     <div class="column data">
       <h4>
         <span>Data</span>
-        &nbsp;&nbsp;
-        <span>
-          <button class="mdl-button mdl-js-button mdl-button--icon" id="data-regen-button" title="Regenerate data">
-            <i class="material-icons">replay</i>
-          </button>
-        </span>
       </h4>
       <div class="ui-dataset">
         <p>Which dataset do you want to use?</p>
@@ -176,6 +170,9 @@ limitations under the License.
             <input class="mdl-slider mdl-js-slider" type="range" id="batchSize" min="1" max="30" step="1">
           </p>
         </div>
+          <button class="basic-button" id="data-regen-button" title="Regenerate data">
+            Regenerate
+          </button>
       </div>
     </div>
 
@@ -240,19 +237,17 @@ limitations under the License.
     <!-- Output Column -->
     <div class="column output">
       <h4>Output</h4>
-      <div class="bracket"></div>
       <div class="metrics">
         <div class="output-stats train">
+          <span>Training loss</span>
           <div class="value" id="loss-train"></div>
-          <p>Training loss</p>
         </div>
         <div class="output-stats ui-percTrainData">
+          <span>Test loss</span>
           <div class="value" id="loss-test"></div>
-          <p>Test loss</p>
         </div>
         <div id="linechart"></div>
       </div>
-      <div class="bracket reverse"></div>
       <div id="heatmap"></div>
       <div style="float:left;margin-top:20px">
         <div style="display:flex; align-items:center;">
