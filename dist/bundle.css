@@ -25,8 +25,12 @@ limitations under the License.
 /* General Type */
 
 body {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: "Helvetica", "Arial", sans-serif;
   background-color: #f7f7f7;
+}
+
+h1 {
+  font-size: 34px;
 }
 
 header h1 {
@@ -469,6 +473,7 @@ g.column rect {
 }
 
 #main-part .basic-button {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   margin-top: 25px;
   height: 34px;
   margin-right: 0;
@@ -484,6 +489,7 @@ g.column rect {
   font-weight: 500;
   outline: none;
   transition: background 0.3s linear;
+  cursor: pointer;
 }
 
 #main-part .basic-button:hover {

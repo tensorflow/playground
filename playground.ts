@@ -18,7 +18,6 @@ limitations under the License.
 
 import * as nn from "./nn";
 import {HeatMap, reduceMatrix} from "./heatmap";
-import {TimeMatrix, TimeLabel} from "./time_matrix";
 import {
   State,
   datasets,
@@ -309,22 +308,20 @@ function makeGUI() {
 }
 
 function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
-  let values: number[] = [];
   for (let layerIdx = 1; layerIdx < network.length; layerIdx++) {
     let currentLayer = network[layerIdx];
     // Update all the nodes in this layer.
     for (let i = 0; i < currentLayer.length; i++) {
       let node = currentLayer[i];
-      for (let j = 0; j < node.inputs.length; j++) {
-        let input = node.inputs[j];
-        values.push(-input.storedErrorDer);
-        container.select(`#link${input.source.id}-${input.dest.id}`)
+      for (let j = 0; j < node.inputLinks.length; j++) {
+        let link = node.inputLinks[j];
+        container.select(`#link${link.source.id}-${link.dest.id}`)
             .style({
               "stroke-dashoffset": -iter / 3,
-              "stroke-width": linkWidthScale(Math.abs(input.weight)),
-              "stroke": colorScale(input.weight)
+              "stroke-width": linkWidthScale(Math.abs(link.weight)),
+              "stroke": colorScale(link.weight)
             })
-            .datum(input);
+            .datum(link);
       }
     }
   }
@@ -500,18 +497,18 @@ function drawNetwork(network: nn.Node[][]): void {
       }
 
       // Draw links.
-      for (let j = 0; j < node.inputs.length; j++) {
-        let input = node.inputs[j];
-        let path: SVGPathElement = <any> drawLink(input, node2coord, network,
-            container, j === 0, j, node.inputs.length).node();
+      for (let j = 0; j < node.inputLinks.length; j++) {
+        let link = node.inputLinks[j];
+        let path: SVGPathElement = <any> drawLink(link, node2coord, network,
+            container, j === 0, j, node.inputLinks.length).node();
         // Show callout to weights.
         let prevLayer = network[layerIdx - 1];
         let lastNodePrevLayer = prevLayer[prevLayer.length - 1];
         if (targetIdWithCallout == null &&
             i === numNodes - 1 &&
-            input.source.id === lastNodePrevLayer.id &&
-            (input.source.id !== idWithCallout || numLayers <= 5) &&
-            input.dest.id !== idWithCallout &&
+            link.source.id === lastNodePrevLayer.id &&
+            (link.source.id !== idWithCallout || numLayers <= 5) &&
+            link.dest.id !== idWithCallout &&
             prevLayer.length >= numNodes) {
           let midPoint = path.getPointAtLength(path.getTotalLength() * 0.7);
           calloutWeights.style({
@@ -519,7 +516,7 @@ function drawNetwork(network: nn.Node[][]): void {
             top: `${midPoint.y + 5}px`,
             left: `${midPoint.x + 3}px`
           });
-          targetIdWithCallout = input.dest.id;
+          targetIdWithCallout = link.dest.id;
         }
       }
     }
@@ -531,10 +528,10 @@ function drawNetwork(network: nn.Node[][]): void {
   let cy = nodeIndexScale(0) + RECT_SIZE / 2;
   node2coord[node.id] = {cx: cx, cy: cy};
   // Draw links.
-  for (let i = 0; i < node.inputs.length; i++) {
-    let input = node.inputs[i];
-    drawLink(input, node2coord, network, container, i === 0, i,
-        node.inputs.length);
+  for (let i = 0; i < node.inputLinks.length; i++) {
+    let link = node.inputLinks[i];
+    drawLink(link, node2coord, network, container, i === 0, i,
+        node.inputLinks.length);
   }
   // Adjust the height of the svg.
   svg.attr("height", maxY);
@@ -602,8 +599,14 @@ function drawLink(
   let source = node2coord[input.source.id];
   let dest = node2coord[input.dest.id];
   let datum = {
-    source: {y: source.cx + RECT_SIZE / 2 + 2, x: source.cy },
-    target: {y: dest.cx - RECT_SIZE / 2, x: dest.cy + ((index - (length - 1) / 2) / length) * 12 }
+    source: {
+      y: source.cx + RECT_SIZE / 2 + 2,
+      x: source.cy
+    },
+    target: {
+      y: dest.cx - RECT_SIZE / 2,
+      x: dest.cy + ((index - (length - 1) / 2) / length) * 12
+    }
   };
   let diagonal = d3.svg.diagonal().projection(d => [d.y, d.x]);
   line.attr({
@@ -746,7 +749,6 @@ function oneStep(): void {
   lossTrain = getLoss(network, trainData);
   lossTest = getLoss(network, testData);
   updateUI();
-  nn.resetStoredErrorDer(network);
 }
 
 export function getOutputWeights(network: nn.Node[][]): number[] {
@@ -762,26 +764,6 @@ export function getOutputWeights(network: nn.Node[][]): number[] {
     }
   }
   return weights;
-}
-
-export function getOutputLabels(network: nn.Node[][]): TimeLabel[] {
-  let labels: TimeLabel[] = [];
-  for (let layerIdx = 0; layerIdx < network.length - 1; layerIdx++) {
-    let currentLayer = network[layerIdx];
-    for (let i = 0; i < currentLayer.length; i++) {
-      let node = currentLayer[i];
-      let label: TimeLabel = {
-        mainLabel: node.id,
-        subLabels: []
-      };
-      for (let j = 0; j < node.outputs.length; j++) {
-        let output = node.outputs[j];
-        label.subLabels.push(output.dest.id);
-      }
-      labels.push(label);
-    }
-  }
-  return labels;
 }
 
 function reset() {
@@ -824,6 +806,7 @@ function initTutorial() {
     // If the tutorial has a <title> tag, set the page title to that.
     let title = tutorial.select("title");
     if (title.size()) {
+      tutorial.insert("h1", ":first-child").text(title.text());
       document.title = title.text();
     }
   });
@@ -833,8 +816,8 @@ function drawDatasetThumbnails() {
   function renderThumbnail(canvas, dataGenerator) {
     let w = 100;
     let h = 100;
-    canvas.setAttribute("width", w)
-    canvas.setAttribute("height", h)
+    canvas.setAttribute("width", w);
+    canvas.setAttribute("height", h);
     let context = canvas.getContext("2d");
     let data = dataGenerator(200, 0);
     data.forEach(function(d) {
