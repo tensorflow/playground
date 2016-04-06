@@ -21,7 +21,7 @@ limitations under the License.
 export class Node {
   id: string;
   /** List of input links. */
-  inputs: Link[] = [];
+  inputLinks: Link[] = [];
   bias = 0.1;
   /** List of output links. */
   outputs: Link[] = [];
@@ -57,9 +57,9 @@ export class Node {
   updateOutput(): number {
     // Stores total input into the node.
     this.totalInput = this.bias;
-    for (let j = 0; j < this.inputs.length; j++) {
-      let input = this.inputs[j];
-      this.totalInput += input.weight * input.source.output;
+    for (let j = 0; j < this.inputLinks.length; j++) {
+      let link = this.inputLinks[j];
+      this.totalInput += link.weight * link.source.output;
     }
     this.output = this.activation.output(this.totalInput);
     return this.output;
@@ -162,7 +162,6 @@ export class Link {
   accErrorDer = 0;
   /** Number of accumulated derivatives since the last update. */
   numAccumulatedDers = 0;
-  storedErrorDer = 0;
   regularization: RegularizationFunction;
 
   /**
@@ -226,7 +225,7 @@ export function buildNetwork(
           let prevNode = network[layerIdx - 1][j];
           let link = new Link(prevNode, node, regularization);
           prevNode.outputs.push(link);
-          node.inputs.push(link);
+          node.inputLinks.push(link);
         }
       }
     }
@@ -296,11 +295,11 @@ export function backProp(network: Node[][], target: number,
     // Error derivative with respect to each weight coming into the node.
     for (let i = 0; i < currentLayer.length; i++) {
       let node = currentLayer[i];
-      for (let j = 0; j < node.inputs.length; j++) {
-        let input = node.inputs[j];
-        input.errorDer = node.inputDer * input.source.output;
-        input.accErrorDer += input.errorDer;
-        input.numAccumulatedDers++;
+      for (let j = 0; j < node.inputLinks.length; j++) {
+        let link = node.inputLinks[j];
+        link.errorDer = node.inputDer * link.source.output;
+        link.accErrorDer += link.errorDer;
+        link.numAccumulatedDers++;
       }
     }
     if (layerIdx === 1) {
@@ -330,36 +329,22 @@ export function updateWeights(network: Node[][], learningRate: number,
     for (let i = 0; i < currentLayer.length; i++) {
       let node = currentLayer[i];
       // Update the node's bias.
-      node.bias -= learningRate * node.accInputDer / node.numAccumulatedDers;
-      node.accInputDer = 0;
-      node.numAccumulatedDers = 0;
-      // Update the weights coming into this node.
-      for (let j = 0; j < node.inputs.length; j++) {
-        let input = node.inputs[j];
-        let regulDer = input.regularization ?
-            input.regularization.der(input.weight) : 0;
-        input.weight -= (learningRate / input.numAccumulatedDers) *
-            (input.accErrorDer + regularizationRate * regulDer);
-        input.storedErrorDer += input.accErrorDer;
-        input.accErrorDer = 0;
-        input.numAccumulatedDers = 0;
+      if (node.numAccumulatedDers > 0) {
+        node.bias -= learningRate * node.accInputDer / node.numAccumulatedDers;
+        node.accInputDer = 0;
+        node.numAccumulatedDers = 0;
       }
-    }
-  }
-}
-
-/**
- * Resets the stored error derivatives with respect to every weight.
- * Stored error derivatives are useful for analysing/visualizing
- * accumulated derivatives over a period of several batches.
- */
-export function resetStoredErrorDer(network: Node[][]) {
-  for (let layerIdx = 1; layerIdx < network.length; layerIdx++) {
-    let currentLayer = network[layerIdx];
-    for (let i = 0; i < currentLayer.length; i++) {
-      let node = currentLayer[i];
-      for (let j = 0; j < node.inputs.length; j++) {
-        node.inputs[j].storedErrorDer = 0;
+      // Update the weights coming into this node.
+      for (let j = 0; j < node.inputLinks.length; j++) {
+        let link = node.inputLinks[j];
+        let regulDer = link.regularization ?
+            link.regularization.der(link.weight) : 0;
+        if (link.numAccumulatedDers > 0) {
+          link.weight -= (learningRate / link.numAccumulatedDers) *
+            (link.accErrorDer + regularizationRate * regulDer);
+          link.accErrorDer = 0;
+          link.numAccumulatedDers = 0;
+        }
       }
     }
   }

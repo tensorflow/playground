@@ -15,6 +15,10 @@
         "no-internal-module": true,
         "no-trailing-whitespace": true,
         "no-var-keyword": true,
+        "no-unused-variable": true,
+        "no-unused-expression": true,
+        "no-switch-case-fall-through": true,
+        "no-unreachable": true,
         "one-line": [
             true,
             "check-open-brace",
@@ -28,10 +32,7 @@
             true,
             "always"
         ],
-        "triple-equals": [
-            true,
-            "allow-null-check"
-        ],
+        "triple-equals": false,
         "typedef-whitespace": [
             true,
             {
