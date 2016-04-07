@@ -806,7 +806,11 @@ function initTutorial() {
     // If the tutorial has a <title> tag, set the page title to that.
     let title = tutorial.select("title");
     if (title.size()) {
-      tutorial.insert("h1", ":first-child").text(title.text());
+      d3.select("header h1").style({
+        "margin-top": "20px",
+        "margin-bottom": "20px",
+      })
+      .text(title.text());
       document.title = title.text();
     }
   });
