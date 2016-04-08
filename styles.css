@@ -45,6 +45,10 @@ h3 {
   margin: 10px 0;
 }
 
+p a {
+  color: #0D658C;
+}
+
 /* Layout */
 
 body {
