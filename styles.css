@@ -784,12 +784,17 @@ article {
   /*border-top: 1px solid rgba(0, 0, 0, 0.08);*/
 }
 
-article h2 {
+article h2, article h3 {
   margin: 60px 0 20px 0;
   font-size: 22px;
   font-weight: 500;
   line-height: 1.45em;
   color: rgba(0, 0, 0, 0.7);
+}
+
+article h3 {
+  margin: 40px 0 20px 0;
+  font-size: 18px;
 }
 
 article :first-child h2 {
@@ -838,6 +843,21 @@ footer .links a {
 
 footer .links a:hover {
   text-decoration: underline;
+}
+
+.hide-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.hide-controls label.mdl-checkbox {
+  width: 145px;
+  height: 30px;
+}
+
+.hide-controls .mdl-checkbox__label {
+  font-size: 13px;
 }
 
 /* Material Overrides */
