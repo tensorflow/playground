@@ -51,6 +51,22 @@ let INPUTS: {[name: string]: InputFeature} = {
   "sinY": {f: (x, y) => Math.sin(y), label: "sin(X_2)"},
 };
 
+let HIDABLE_CONTROLS = [
+  ["Show test data", "showTestData"],
+  ["Discretize output", "discretize"],
+  ["Play button", "playButton"],
+  ["Learning rate", "learningRate"],
+  ["Activation", "activation"],
+  ["Regularization", "regularization"],
+  ["Regularization rate", "regularizationRate"],
+  ["Problem type", "problem"],
+  ["Which dataset", "dataset"],
+  ["Ratio train data", "percTrainData"],
+  ["Noise level", "noise"],
+  ["Batch size", "batchSize"],
+  ["# of hidden layers", "numHiddenLayers"],
+];
+
 class Player {
   private timerIndex = 0;
   private isPlaying = false;
@@ -852,9 +868,41 @@ function drawDatasetThumbnails() {
 
 function hideControls() {
   // Set display:none to all the UI elements that are hidden.
-  state.getHiddenProps().forEach(prop => {
-    d3.selectAll(`.ui-${prop}`).style("display", "none");
+  let hiddenProps = state.getHiddenProps();
+  hiddenProps.forEach(prop => {
+    let controls = d3.selectAll(`.ui-${prop}`);
+    if (controls.size() == 0) {
+      console.warn(`0 html elements found with class .ui-${prop}`);
+    }
+    controls.style("display", "none");
   });
+
+  // Also add checkbox for each hidable control in the "use it in classrom"
+  // section.
+  let hideControls = d3.select(".hide-controls");
+  HIDABLE_CONTROLS.forEach(([text, id]) => {
+    let label = hideControls.append("label")
+      .attr("class", "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect");
+    let input = label.append("input")
+      .attr({
+        type: "checkbox",
+        class: "mdl-checkbox__input",
+      });
+    if (hiddenProps.indexOf(id) == -1) {
+      input.attr("checked", "true");
+    }
+    input.on("change", function() {
+      state.setHideProperty(id, !this.checked);
+      state.serialize();
+      d3.select(".hide-controls-link")
+        .attr("href", window.location.href);
+    });
+    label.append("span")
+      .attr("class", "mdl-checkbox__label label")
+      .text(text);
+  });
+  d3.select(".hide-controls-link")
+    .attr("href", window.location.href);
 }
 
 function generateData(firstTime = false) {

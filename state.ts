@@ -271,4 +271,8 @@ export class State {
     }
     return result;
   }
+
+  setHideProperty(name: string, hidden: boolean) {
+    this[name + HIDE_STATE_SUFFIX] = hidden;
+  }
 }
