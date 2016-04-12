@@ -15,4 +15,6 @@ whenever they change.
 
 To produce a minified javascript file for production, run `npm run build`.
 
+To push to production: `git subtree push --prefix dist origin gh-pages`.
+
 This is not an official Google product.
