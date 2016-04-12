@@ -31,6 +31,21 @@ import {
 import {Example2D, shuffle} from "./dataset";
 import {AppendingLineChart} from "./linechart";
 
+// More scrolling
+d3.select(".more button").on("click", function() {
+  var position = 800;
+  d3.transition()
+    .duration(1000)
+    .tween("scroll", scrollTween(position));
+});
+
+function scrollTween(offset) {
+  return function() {
+    var i = d3.interpolateNumber(window.pageYOffset || document.documentElement.scrollTop, offset);
+    return function(t) { scrollTo(0, i(t)); };
+  };
+}
+
 const RECT_SIZE = 30;
 const NUM_SAMPLES_CLASSIFY = 500;
 const NUM_SAMPLES_REGRESS = 1200;

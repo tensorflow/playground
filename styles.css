@@ -355,6 +355,7 @@ header h1 .optional {
   margin-top: 30px;
   margin-bottom: 50px;
   padding-top: 2px;
+  position: relative;
 }
 
 @media (min-height: 700px) {
@@ -388,6 +389,25 @@ header h1 .optional {
   margin: 0;
   color: #777;
   font-size: 13px;
+}
+
+.more {
+  position: absolute;
+  left: 50%;
+}
+
+.more button {
+  position: absolute;
+  left: -28px;
+  top: -28px;
+  background: white;
+}
+
+.more button:hover,
+.more button:active,
+.more button:focus,
+.more button:focus:not(:active) {
+  background: white;
 }
 
 svg text {
