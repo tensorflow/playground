@@ -71,7 +71,6 @@ body {
 }
 
 .l--page {
-  transition: width 0.0001s;
   width: 944px;
   margin-left: auto;
   margin-right: auto;
