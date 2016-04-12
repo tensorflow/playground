@@ -3,3 +3,4 @@ typings
 *.log
 .vscode
 playground.js
+state.js
