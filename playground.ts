@@ -31,6 +31,8 @@ import {
 import {Example2D, shuffle} from "./dataset";
 import {AppendingLineChart} from "./linechart";
 
+var mainWidth;
+
 // More scrolling
 d3.select(".more button").on("click", function() {
   var position = 800;
@@ -332,9 +334,14 @@ function makeGUI() {
     .call(xAxis);
 
   // Listen for css-responsive changes and redraw the svg network.
-  d3.select("#main-part").on("transitionend", () => {
-    drawNetwork(network);
-    updateUI(true);
+
+  window.addEventListener("resize", () => {
+    var newWidth = document.querySelector("#main-part").getBoundingClientRect().width;
+    if (newWidth !== mainWidth) {
+      mainWidth = newWidth;
+      drawNetwork(network);
+      updateUI(true);
+    }
   });
 }
 

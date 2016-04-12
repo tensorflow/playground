@@ -4,6 +4,7 @@ var heatmap_1 = require("./heatmap");
 var state_1 = require("./state");
 var dataset_1 = require("./dataset");
 var linechart_1 = require("./linechart");
+var mainWidth;
 d3.select(".more button").on("click", function () {
     var position = 800;
     d3.transition()
@@ -252,9 +253,13 @@ function makeGUI() {
         .attr("class", "x axis")
         .attr("transform", "translate(0,10)")
         .call(xAxis);
-    d3.select("#main-part").on("transitionend", function () {
-        drawNetwork(network);
-        updateUI(true);
+    window.addEventListener("resize", function () {
+        var newWidth = document.querySelector("#main-part").getBoundingClientRect().width;
+        if (newWidth !== mainWidth) {
+            mainWidth = newWidth;
+            drawNetwork(network);
+            updateUI(true);
+        }
     });
 }
 function updateWeightsUI(network, container) {
