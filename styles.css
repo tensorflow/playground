@@ -113,8 +113,13 @@ body {
 
 .button {
   cursor: pointer;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   align-items: center;
+  -webkit-justify-content: center;
   justify-content: center;
   width: 24px;
   height: 24px;
@@ -247,11 +252,20 @@ header h1 .optional {
 }
 
 #top-controls .container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
+  -webkit-justify-content: space-betweenspace-between;
   justify-content: space-between;
 }
 
 #top-controls .timeline-controls {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   align-items: center;
   margin-right: 20px;
@@ -349,7 +363,12 @@ header h1 .optional {
 /* Main Part*/
 
 #main-part {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
+  -webkit-justify-content: space-between;
   justify-content: space-between;
   margin-top: 30px;
   margin-bottom: 50px;
@@ -369,6 +388,10 @@ header h1 .optional {
 }
 
 #main-part h4 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   align-items: center;
   font-weight: 400;
@@ -453,6 +476,10 @@ g.column rect {
 /* Data column */
 
 .vcenter {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   align-items: center;
 }
@@ -704,6 +731,7 @@ g.column rect {
 }
 
 #main-part .hidden-layers h4 {
+  -webkit-justify-content: center;
   justify-content: center;
   margin-top: -5px;
 }
@@ -865,8 +893,13 @@ footer .links a:hover {
 }
 
 .hide-controls {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-wrap: wrap;
+  -webkit-justify-content: space-between;
   justify-content: space-between;
 }
 
