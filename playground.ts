@@ -295,7 +295,6 @@ function makeGUI() {
 
   let learningRate = d3.select("#learningRate").on("change", function() {
     state.learningRate = +this.value;
-    reset();
   });
   learningRate.property("value", state.learningRate);
 
