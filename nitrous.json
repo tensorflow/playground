@@ -1,0 +1,10 @@
+{
+  "template": "nodejs",
+  "ports": [8080],
+  "name": "Tensorflow Playground",
+  "description": "Play with neural networks!",
+  "scripts": {
+    "post-create": "echo 'running npm install - this might take awhile...' && npm install",
+    "Start Tensorflow PlayGround": "cd ~/code/playground && npm run serve"
+  }
+}

@@ -18,3 +18,13 @@ To produce a minified javascript file for production, run `npm run build`.
 To push to production: `git subtree push --prefix dist origin gh-pages`.
 
 This is not an official Google product.
+
+## Cloud Development
+
+Create a free development environment for this neural network project in the cloud on [Nitrous.io](https://www.nitrous.io) by clicking the button below.
+
+<a href="https://www.nitrous.io/quickstart">
+  <img src="https://nitrous-image-icons.s3.amazonaws.com/quickstart.png" alt="Nitrous Quickstart" width=142 height=34>
+</a>
+
+In the IDE, start Tensorflow Playground via `Run > Start Tensorflow Playground` and access your site via `Preview > 8080`.
