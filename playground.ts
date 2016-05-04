@@ -49,8 +49,6 @@ function scrollTween(offset) {
 }
 
 const RECT_SIZE = 30;
-const NUM_SAMPLES_CLASSIFY = 500;
-const NUM_SAMPLES_REGRESS = 1200;
 const DENSITY = 100;
 
 interface InputFeature {
@@ -285,6 +283,14 @@ function makeGUI() {
   });
   batchSize.property("value", state.batchSize);
   d3.select("label[for='batchSize'] .value").text(state.batchSize);
+
+  let numSamples = d3.select("#numSamples").on("input", function() {
+    state.numSamples = this.value;
+    d3.select("label[for='numSamples'] .value").text(this.value);
+    reset();
+  });
+  numSamples.property("value", state.numSamples);
+  d3.select("label[for='numSamples'] .value").text(state.numSamples);
 
   let activationDropdown = d3.select("#activations").on("change", function() {
     state.activation = activations[this.value];
@@ -933,11 +939,9 @@ function generateData(firstTime = false) {
     state.serialize();
   }
   Math.seedrandom(state.seed);
-  let numSamples = (state.problem == Problem.REGRESSION) ?
-      NUM_SAMPLES_REGRESS : NUM_SAMPLES_CLASSIFY;
   let generator = state.problem == Problem.CLASSIFICATION ?
       state.dataset : state.regDataset;
-  let data = generator(numSamples, state.noise / 100);
+  let data = generator(state.numSamples, state.noise / 100);
   // Shuffle the data in-place.
   shuffle(data);
   // Split into train and test data.
