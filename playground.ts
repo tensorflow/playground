@@ -50,9 +50,14 @@ function scrollTween(offset) {
 }
 
 const RECT_SIZE = 30;
+const BIAS_SIZE = 5;
 const NUM_SAMPLES_CLASSIFY = 500;
 const NUM_SAMPLES_REGRESS = 1200;
 const DENSITY = 100;
+
+enum HoverType {
+  BIAS, WEIGHT
+}
 
 interface InputFeature {
   f: (x: number, y: number) => number;
@@ -348,6 +353,12 @@ function makeGUI() {
   });
 }
 
+function updateBiasesUI(network: nn.Node[][]) {
+  nn.forEachNode(network, true, node => {
+    d3.select(`rect#bias-${node.id}`).style("fill", colorScale(node.bias));
+  });
+}
+
 function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
   for (let layerIdx = 1; layerIdx < network.length; layerIdx++) {
     let currentLayer = network[layerIdx];
@@ -369,7 +380,7 @@ function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
 }
 
 function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
-    container: d3.Selection<any>) {
+    container: d3.Selection<any>, node?: nn.Node) {
   let x = cx - RECT_SIZE / 2;
   let y = cy - RECT_SIZE / 2;
 
@@ -422,6 +433,21 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
       text.append("tspan").text(label);
     }
     nodeGroup.classed(activeOrNotClass, true);
+  }
+  if (!isInput) {
+    // Draw the node's bias.
+    nodeGroup.append("rect")
+      .attr({
+        id: `bias-${nodeId}`,
+        x: -BIAS_SIZE - 2,
+        y: RECT_SIZE - BIAS_SIZE + 3,
+        width: BIAS_SIZE,
+        height: BIAS_SIZE,
+      }).on("mouseenter", function() {
+        updateHoverCard(HoverType.BIAS, node, d3.mouse(container.node()));
+      }).on("mouseleave", function() {
+        updateHoverCard(null);
+      });
   }
 
   // Draw the node's canvas.
@@ -521,7 +547,7 @@ function drawNetwork(network: nn.Node[][]): void {
       let node = network[layerIdx][i];
       let cy = nodeIndexScale(i) + RECT_SIZE / 2;
       node2coord[node.id] = {cx: cx, cy: cy};
-      drawNode(cx, cy, node.id, false, container);
+      drawNode(cx, cy, node.id, false, container, node);
 
       // Show callout to thumbnails.
       let numNodes = network[layerIdx].length;
@@ -632,40 +658,50 @@ function addPlusMinusControl(x: number, layerIdx: number) {
   );
 }
 
-function updateHoverCard(link: nn.Link, coordinates?: [number, number]) {
+function updateHoverCard(type: HoverType, nodeOrLink?: nn.Node | nn.Link,
+    coordinates?: [number, number]) {
   let hovercard = d3.select("#hovercard");
-  if (link == null) {
+  if (type == null) {
     hovercard.style("display", "none");
     d3.select("#svg").on("click", null);
     return;
   }
   d3.select("#svg").on("click", () => {
-    hovercard.select(".weight-value").style("display", "none");
+    hovercard.select(".value").style("display", "none");
     let input = hovercard.select("input");
     input.style("display", null);
     input.on("input", function() {
       if (this.value != null && this.value !== "") {
-        link.weight = +this.value;
+        if (type == HoverType.WEIGHT) {
+          (<nn.Link>nodeOrLink).weight = +this.value;
+        } else {
+          (<nn.Node>nodeOrLink).bias = +this.value;
+        }
         updateUI();
       }
     });
     input.on("keypress", () => {
       if ((<any>d3.event).keyCode == 13) {
-        updateHoverCard(link, coordinates);
+        updateHoverCard(type, nodeOrLink, coordinates);
       }
     });
     (<HTMLInputElement>input.node()).focus();
   });
+  let value = type == HoverType.WEIGHT ?
+    (<nn.Link>nodeOrLink).weight :
+    (<nn.Node>nodeOrLink).bias;
+  let name = type == HoverType.WEIGHT ? "Weight" : "Bias";
   hovercard.style({
     "left": `${coordinates[0] + 20}px`,
     "top": `${coordinates[1]}px`,
     "display": "block"
   });
-  hovercard.select(".weight-value")
+  hovercard.select(".type").text(name);
+  hovercard.select(".value")
     .style("display", null)
-    .text(link.weight.toPrecision(2));
+    .text(value.toPrecision(2));
   hovercard.select("input")
-    .property("value", link.weight.toPrecision(2))
+    .property("value", value.toPrecision(2))
     .style("display", "none");
 }
 
@@ -700,7 +736,7 @@ function drawLink(
     .attr("d", diagonal(datum, 0))
     .attr("class", "link-hover")
     .on("mouseenter", function() {
-      updateHoverCard(input, d3.mouse(this));
+      updateHoverCard(HoverType.WEIGHT, input, d3.mouse(this));
     }).on("mouseleave", function() {
       updateHoverCard(null);
     });
@@ -771,6 +807,8 @@ function getLoss(network: nn.Node[][], dataPoints: Example2D[]): number {
 function updateUI(firstStep = false) {
   // Update the links visually.
   updateWeightsUI(network, d3.select("g.core"));
+  // Update the bias values visually.
+  updateBiasesUI(network);
   // Get the decision boundary of the network.
   updateDecisionBoundary(network, firstStep);
   let selectedId = selectedNodeId != null ?
