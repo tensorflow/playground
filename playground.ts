@@ -898,7 +898,7 @@ function reset() {
   state.serialize();
   player.pause();
 
-  let suffix = state.numHiddenLayers !== 1 ? "s" : "";
+  let suffix = state.numHiddenLayers > 1 ? "s" : "";
   d3.select("#layers-label").text("Hidden layer" + suffix);
   d3.select("#num-layers").text(state.numHiddenLayers);
 
