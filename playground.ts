@@ -31,11 +31,11 @@ import {
 import {Example2D, shuffle} from "./dataset";
 import {AppendingLineChart} from "./linechart";
 
-var mainWidth;
+let mainWidth;
 
 // More scrolling
 d3.select(".more button").on("click", function() {
-  var position = 800;
+  let position = 800;
   d3.transition()
     .duration(1000)
     .tween("scroll", scrollTween(position));
@@ -43,7 +43,8 @@ d3.select(".more button").on("click", function() {
 
 function scrollTween(offset) {
   return function() {
-    var i = d3.interpolateNumber(window.pageYOffset || document.documentElement.scrollTop, offset);
+    let i = d3.interpolateNumber(window.pageYOffset ||
+        document.documentElement.scrollTop, offset);
     return function(t) { scrollTo(0, i(t)); };
   };
 }
@@ -72,6 +73,8 @@ let HIDABLE_CONTROLS = [
   ["Show test data", "showTestData"],
   ["Discretize output", "discretize"],
   ["Play button", "playButton"],
+  ["Step button", "stepButton"],
+  ["Reset button", "resetButton"],
   ["Learning rate", "learningRate"],
   ["Activation", "activation"],
   ["Regularization", "regularization"],
@@ -335,7 +338,8 @@ function makeGUI() {
   // Listen for css-responsive changes and redraw the svg network.
 
   window.addEventListener("resize", () => {
-    var newWidth = document.querySelector("#main-part").getBoundingClientRect().width;
+    let newWidth = document.querySelector("#main-part")
+        .getBoundingClientRect().width;
     if (newWidth !== mainWidth) {
       mainWidth = newWidth;
       drawNetwork(network);
@@ -628,11 +632,48 @@ function addPlusMinusControl(x: number, layerIdx: number) {
   );
 }
 
+function updateHoverCard(link: nn.Link, coordinates?: [number, number]) {
+  let hovercard = d3.select("#hovercard");
+  if (link == null) {
+    hovercard.style("display", "none");
+    d3.select("#svg").on("click", null);
+    return;
+  }
+  d3.select("#svg").on("click", () => {
+    hovercard.select(".weight-value").style("display", "none");
+    let input = hovercard.select("input");
+    input.style("display", null);
+    input.on("input", function() {
+      if (this.value != null && this.value !== "") {
+        link.weight = +this.value;
+        updateUI();
+      }
+    });
+    input.on("keypress", () => {
+      if ((<any>d3.event).keyCode == 13) {
+        updateHoverCard(link, coordinates);
+      }
+    });
+    (<HTMLInputElement>input.node()).focus();
+  });
+  hovercard.style({
+    "left": `${coordinates[0] + 20}px`,
+    "top": `${coordinates[1]}px`,
+    "display": "block"
+  });
+  hovercard.select(".weight-value")
+    .style("display", null)
+    .text(link.weight.toPrecision(2));
+  hovercard.select("input")
+    .property("value", link.weight.toPrecision(2))
+    .style("display", "none");
+}
+
 function drawLink(
     input: nn.Link, node2coord: {[id: string]: {cx: number, cy: number}},
     network: nn.Node[][], container: d3.Selection<any>,
     isFirst: boolean, index: number, length: number) {
-  let line = container.append("path");
+  let line = container.insert("path", ":first-child");
   let source = node2coord[input.source.id];
   let dest = node2coord[input.dest.id];
   let datum = {
@@ -652,6 +693,17 @@ function drawLink(
     id: "link" + input.source.id + "-" + input.dest.id,
     d: diagonal(datum, 0)
   });
+
+  // Add an invisible thick link that will be used for
+  // showing the weight value on hover.
+  container.append("path")
+    .attr("d", diagonal(datum, 0))
+    .attr("class", "link-hover")
+    .on("mouseenter", function() {
+      updateHoverCard(input, d3.mouse(this));
+    }).on("mouseleave", function() {
+      updateHoverCard(null);
+    });
   return line;
 }
 

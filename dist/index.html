@@ -57,14 +57,14 @@ limitations under the License.
   <div id="top-controls">
     <div class="container l--page">
       <div class="timeline-controls">
-        <button class="mdl-button mdl-js-button mdl-button--icon" id="reset-button" title="Reset the network">
+        <button class="mdl-button mdl-js-button mdl-button--icon ui-resetButton" id="reset-button" title="Reset the network">
           <i class="material-icons">replay</i>
         </button>
         <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored ui-playButton" id="play-pause-button" title="Run/Pause">
           <i class="material-icons">play_arrow</i>
           <i class="material-icons">pause</i>
         </button>
-        <button class="mdl-button mdl-js-button mdl-button--icon" id="next-step-button" title="Step">
+        <button class="mdl-button mdl-js-button mdl-button--icon ui-stepButton" id="next-step-button" title="Step">
           <i class="material-icons">skip_next</i>
         </button>
       </div>
@@ -198,7 +198,7 @@ limitations under the License.
 
     <!-- Features Column -->
     <div class="column features">
-      <h4>Input</h4>
+      <h4>Features</h4>
       <p>Which properties do you want to feed in?</p>
       <div id="network">
         <svg id="svg" width="510" height="450">
@@ -208,6 +208,11 @@ limitations under the License.
             </marker>
           </defs>
         </svg>
+        <!-- Hover card -->
+        <div id="hovercard">
+          <div style="font-size:10px">Click anywhere to edit.</div>
+          <div>Weight is <span class="weight-value">0.002</span><span><input type="number"/></span>.</div>
+        </div>
         <div class="callout thumbnail">
           <svg viewBox="0 0 30 30">
             <defs>
