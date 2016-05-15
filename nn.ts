@@ -118,7 +118,7 @@ export class Activations {
   };
   public static RELU: ActivationFunction = {
     output: x => Math.max(0, x),
-    der: x => x < 0 ? 0 : 1
+    der: x => x <= 0 ? 0 : 1
   };
   public static SIGMOID: ActivationFunction = {
     output: x => 1 / (1 + Math.exp(-x)),
