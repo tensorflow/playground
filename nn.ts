@@ -48,9 +48,12 @@ export class Node {
   /**
    * Creates a new node with the provided id and activation function.
    */
-  constructor(id: string, activation: ActivationFunction) {
+  constructor(id: string, activation: ActivationFunction, initZero?: boolean) {
     this.id = id;
     this.activation = activation;
+    if (initZero) {
+      this.bias = 0;
+    }
   }
 
   /** Recomputes the node's output and returns it. */
@@ -173,11 +176,14 @@ export class Link {
    *     penalty for this weight. If null, there will be no regularization.
    */
   constructor(source: Node, dest: Node,
-      regularization: RegularizationFunction) {
+      regularization: RegularizationFunction, initZero?: boolean) {
     this.id = source.id + "-" + dest.id;
     this.source = source;
     this.dest = dest;
     this.regularization = regularization;
+    if (initZero) {
+      this.weight = 0;
+    }
   }
 }
 
@@ -198,7 +204,7 @@ export function buildNetwork(
     networkShape: number[], activation: ActivationFunction,
     outputActivation: ActivationFunction,
     regularization: RegularizationFunction,
-    inputIds: string[]): Node[][] {
+    inputIds: string[], initZero?: boolean): Node[][] {
   let numLayers = networkShape.length;
   let id = 1;
   /** List of layers, with each layer being a list of nodes. */
@@ -217,13 +223,13 @@ export function buildNetwork(
         id++;
       }
       let node = new Node(nodeId,
-          isOutputLayer ? outputActivation : activation);
+          isOutputLayer ? outputActivation : activation, initZero);
       currentLayer.push(node);
       if (layerIdx >= 1) {
         // Add links from nodes in the previous layer to this node.
         for (let j = 0; j < network[layerIdx - 1].length; j++) {
           let prevNode = network[layerIdx - 1][j];
-          let link = new Link(prevNode, node, regularization);
+          let link = new Link(prevNode, node, regularization, initZero);
           prevNode.outputs.push(link);
           node.inputLinks.push(link);
         }
