@@ -196,6 +196,7 @@ function makeGUI() {
 
   d3.select("#data-regen-button").on("click", () => {
     generateData();
+    reset();
   });
 
   let dataThumbnails = d3.selectAll("canvas[data-dataset]");
