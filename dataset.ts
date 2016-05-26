@@ -36,7 +36,7 @@ export function shuffle(array: any[]): void {
   let temp = 0;
   let index = 0;
   // While there are elements in the array
-  while (counter > 0) {
+  while (counter > 1) {
     // Pick a random index
     index = Math.floor(Math.random() * counter);
     // Decrease counter by 1
