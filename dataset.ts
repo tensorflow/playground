@@ -219,7 +219,7 @@ function randUniform(a: number, b: number) {
  * @param mean The mean. Default is 0.
  * @param variance The variance. Default is 1.
  */
-function normalRandom(mean = 0, variance = 1): number {
+export function normalRandom(mean = 0, variance = 1): number {
   let v1: number, v2: number, s: number;
   do {
     v1 = 2 * Math.random() - 1;
@@ -229,6 +229,16 @@ function normalRandom(mean = 0, variance = 1): number {
 
   let result = Math.sqrt(-2 * Math.log(s) / s) * v1;
   return mean + Math.sqrt(variance) * result;
+}
+
+/** Returns squared eucledian distance between two vectors */
+export function dist2(a: number[], b: number[]): number {
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    let diff = a[i] - b[i];
+    result += diff * diff;
+  }
+  return result;
 }
 
 /** Returns the eucledian distance between two points in space. */

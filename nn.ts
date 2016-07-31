@@ -12,6 +12,369 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
+import {normalRandom} from "./dataset";
+
+function flatten(arr: any[], ret?: number[]): number[] {
+  ret = (ret === undefined ? [] : ret);
+  for (let i = 0; i < arr.length; ++i) {
+    if (Array.isArray(arr[i])) {
+      flatten(arr[i], ret);
+    } else {
+      ret.push(arr[i]);
+    }
+  }
+  return ret;
+}
+
+export class Tensor {
+  shape: number[];
+  values: Float32Array;
+
+  constructor(shape: number[], values: Float32Array) {
+    assert(Tensor.sizeFromShape(shape) == values.length,
+        "shape should match the length of values");
+    this.shape = shape;
+    this.values = values;
+  }
+
+  reshape<T extends Tensor>(newShape: number[]): T {
+    assert(Tensor.sizeFromShape(this.shape) == Tensor.sizeFromShape(newShape),
+        "new shape and old shape must have the same number of elements.");
+    return Tensor.new(newShape, this.values) as T;
+  }
+
+  private static new(shape: number[], values: Float32Array) {
+    switch (shape.length) {
+      case 1:
+        return new Tensor1D(shape as [number], values);
+      case 2:
+        return new Tensor2D(shape as [number, number], values);
+      case 3:
+        return new Tensor3D(shape as [number, number, number], values);
+      case 4:
+        return new Tensor4D(shape as [number, number, number, number], values);
+      default:
+        return new Tensor(shape, values);
+    }
+  }
+
+  private static sizeFromShape(shape: number[]): number {
+    let size = 1;
+    for (let i = 0; i < shape.length; i++) {
+      size *= shape[i];
+    }
+    return size;
+  }
+
+  static zeros<T extends Tensor>(shape: number[]): T {
+    let values = new Float32Array(Tensor.sizeFromShape(shape));
+    return Tensor.new(shape, values) as T;
+  }
+
+  static like<T extends Tensor>(another: T): T {
+    return Tensor.new(another.shape, new Float32Array(another.values)) as T;
+  }
+
+  get rank(): number {
+    return this.shape.length;
+  }
+
+  get size(): number {
+    return Tensor.sizeFromShape(this.shape);
+  }
+
+  get(...locs: number[]) {
+    let index = 0;
+    let mul = 1;
+    for (let i = locs.length - 1; i >= 0; --i) {
+      index += mul * locs[i];
+      mul *= this.shape[i];
+    }
+    return this.values[index];
+  }
+
+  set(value: number, ...locs: number[]) {
+    let index = 0;
+    let mul = 1;
+    for (let i = locs.length - 1; i >= 0; --i) {
+      index += mul * locs[i];
+      mul *= this.shape[i];
+    }
+    this.values[index] = value;
+  }
+
+  toString(): string {
+    // TODO(smilkov): Implement.
+    return "";
+  }
+}
+
+export class Tensor1D extends Tensor {
+  shape: [number];
+
+  constructor(shape: [number], values: Float32Array) {
+    assert(shape.length == 1, "Shape should be of length 1");
+    super(shape, values);
+  }
+
+  get(i: number): number {
+    return this.values[i];
+  }
+
+  set(value: number, i: number) {
+    this.values[i] = value;
+  }
+}
+
+export class Tensor2D extends Tensor {
+  shape: [number, number];
+
+  constructor(shape: [number, number], values: Float32Array) {
+    assert(shape.length == 2, "Shape should be of length 2");
+    super(shape, values);
+  }
+
+  get(i: number, j: number) {
+    return this.values[j + this.shape[1] * i];
+  }
+
+  set(value: number, i: number, j: number) {
+    this.values[j + this.shape[1] * i] = value;
+  }
+}
+
+export class Tensor3D extends Tensor {
+  shape: [number, number, number];
+
+  constructor(shape: [number, number, number], values: Float32Array) {
+    assert(shape.length == 3, "Shape should be of length 3");
+    super(shape, values);
+  }
+
+  get(i: number, j: number, k: number) {
+    return this.values[k + this.shape[2] * j +
+        this.shape[2] * this.shape[1] * i];
+  }
+
+  set(value: number, i: number, j: number, k: number) {
+    this.values[k + this.shape[2] * j +
+        this.shape[2] * this.shape[1] * i] = value;
+  }
+}
+
+export class Tensor4D extends Tensor {
+  shape: [number, number, number, number];
+
+  constructor(shape: [number, number, number, number], values: Float32Array) {
+    assert(shape.length == 4, "Shape should be of length 4");
+    super(shape, values);
+  }
+
+  get(i: number, j: number, k: number, l: number) {
+    let shape3Times2 = this.shape[3] * this.shape[2];
+    return this.values[l + this.shape[3] * k +
+        shape3Times2 * j +
+        shape3Times2 * this.shape[1] * i];
+  }
+
+  set(value: number, i: number, j: number, k: number, l: number) {
+    let shape3Times2 = this.shape[3] * this.shape[2];
+    this.values[l + this.shape[3] * k +
+        shape3Times2 * j +
+        shape3Times2 * this.shape[1] * i] = value;
+  }
+}
+
+function assert(expr: boolean, msg: string) {
+  if (!expr) {
+    throw new Error(msg);
+  }
+}
+
+function vecTimesMat(a: Tensor1D, bMat: Tensor2D): Tensor1D {
+  // Reshape the vector to a matrix.
+  let aMat = a.reshape<Tensor2D>([1, a.shape[0]]);
+  let cMat = matMul(aMat, bMat);
+  // Reshape the result back to a vector.
+  return cMat.reshape<Tensor1D>(a.shape);
+}
+
+function matTimesVec(aMat: Tensor2D, b: Tensor1D): Tensor1D {
+  // Reshape the vector to a matrix.
+  let bMat = b.reshape<Tensor2D>([b.shape[0], 1]);
+  let cMat = matMul(aMat, bMat);
+  // Reshape the result back to a vector.
+  return cMat.reshape<Tensor1D>(b.shape);
+}
+
+function matMul(a: Tensor2D, b: Tensor2D): Tensor2D {
+  assert(a.shape[1] == b.shape[0], "Inner dimensions must match");
+  let c = Tensor.zeros<Tensor2D>([a.shape[0], b.shape[1]]);
+  for (let i = 0; i < a.shape[0]; ++i) {
+    for (let j = 0; j < b.shape[1]; ++j) {
+      let sum = 0;
+      for (let k = 0; k < a.shape[1]; ++k) {
+        sum += a.get(i, k) * b.get(k, j);
+      }
+      c.set(sum, i, j);
+    }
+  }
+  return c;
+}
+
+interface Operation {
+  feedForward(x: Tensor): Tensor;
+  backProp(dy: Tensor): Tensor;
+  updateParams(): void;
+}
+
+class FCLayer implements Operation {
+  weights: Tensor2D;
+  biases: Tensor1D;
+  dW: Tensor2D;
+  x: Tensor1D;
+  /** Number of accumulated err. derivatives since the last update. */
+  numAccumulatedDers = 0;
+
+  constructor(inputSize: number, outputSize: number) {
+    // Initialize the weights to random gauss(0, 1).
+    let values = new Float32Array(inputSize * outputSize);
+    for (let i = 0; i < values.length; ++i) {
+      values[i] = normalRandom();
+    }
+    this.weights = new Tensor2D([inputSize, outputSize], values);
+  }
+
+  feedForward(x: Tensor1D): Tensor1D {
+    // Matrix multiply the input tensor by the weights.
+    this.x = x;
+    return vecTimesMat(x, this.weights);
+  }
+
+  /**
+   * Return the error derivative with respect to the input.
+   *
+   * @param dy: Error derivative with respect to the output.
+   */
+  backProp(dy: Tensor1D): Tensor1D {
+    let [inputSize, outputSize] = this.dW.shape;
+    let dx = Tensor.zeros<Tensor1D>([inputSize]);
+    for (let i = 0; i < inputSize; ++i) {
+      let sum = 0;
+      for (let j = 0; j < outputSize; ++j) {
+        // dE/dx_i = sum_j dE/dy_j * dy_j/dx_i =
+        //           sum_j dE/dy_j * w_ij
+        sum += dy.get(j) * this.weights.get(i, j);
+        let derWij = this.dW.get(i, j);
+        // dE/dw_ij = dE/dy_j * dy_j/dw_ij
+        //          = dE/dy_j * x_i
+        this.dW.set(derWij + dy.get(j) * this.x.get(i),
+            i, j);
+      }
+      dx.set(sum, i);
+    }
+    return dx;
+  }
+
+  updateParams() {
+    // Use the derWeights.
+    // TODO(smilkov): Implement.
+  }
+}
+
+function logSumExp(tensor: Tensor1D): number {
+  let xMax = Number.NEGATIVE_INFINITY;
+  for (let i = 0; i < tensor.shape[0]; ++i) {
+    xMax = Math.max(xMax, tensor.get(i));
+  }
+  let sum = 0;
+  for (let i = 0; i < tensor.shape[0]; i++) {
+    sum += Math.exp(tensor.get(i) - xMax);
+  }
+  return xMax + Math.log(sum);
+}
+
+class Activation implements Operation {
+  x: Tensor;
+  func: ActivationFunction;
+
+  constructor(func: ActivationFunction) {
+    this.func = func;
+  }
+
+  feedForward(x: Tensor): Tensor {
+    this.x = x;
+    let y = Tensor.zeros(x.shape);
+    for (let i = 0; i < x.size; ++i) {
+      y.values[i] = this.func.output(x.values[i]);
+    }
+    return y;
+  }
+
+  backProp(dy: Tensor): Tensor {
+    // dE/dx_i = sum_j dE/dy_j * dy_j/dx_i
+    //         = dE/dy_i * dy_i/dx_i
+    let dx = Tensor.zeros(dy.shape);
+    for (let i = 0; i < dx.size; ++i) {
+      dx.values[i] = dy.values[i] * this.func.der(this.x.values[i]);
+    }
+    return dx;
+  }
+
+  updateParams() {
+
+  }
+}
+
+class Softmax implements Operation {
+  y: Tensor1D;
+
+  feedForward(x: Tensor1D): Tensor1D {
+    // Do it in log space for numerical stability.
+    let logSum = logSumExp(x);
+    this.y = Tensor.zeros<Tensor1D>(x.shape);
+    for (let i = 0; i < x.shape[0]; ++i) {
+      this.y.set(Math.exp(x.get(i) - logSum), i);
+    }
+    return this.y;
+  }
+
+  backProp(dy: Tensor1D): Tensor1D {
+    // dE/dx_i = sum_j dE/dy_j * dy_j/dx_i
+    let dx = Tensor.zeros<Tensor1D>(dy.shape);
+    for (let i = 0; i < dx.shape[0]; ++i) {
+      let sum = 0;
+      for (let j = 0; j < dx.shape[0]; ++j) {
+        sum += dy.get(j) * (i == j ?
+          this.y.get(j) * (1 - this.y.get(j)) : -this.y.get(j) * this.y.get(i));
+      }
+      dx.set(sum, i);
+    }
+    return dx;
+  }
+
+  updateParams() {
+    // TODO(smilkov): Implement.
+  }
+}
+
+class ReLU extends Activation {
+  constructor() {
+    super(Activations.RELU);
+  }
+}
+
+class TanH extends Activation {
+  constructor() {
+    super(Activations.TANH);
+  }
+}
+
+class Sigmoid extends Activation {
+  constructor() {
+    super(Activations.SIGMOID);
+  }
+}
 
 /**
  * A node in a neural network. Each node has a state
