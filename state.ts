@@ -21,10 +21,10 @@ const HIDE_STATE_SUFFIX = "_hide";
 
 /** A map between names and activation functions. */
 export let activations: {[key: string]: nn.ActivationFunction} = {
-  "relu": nn.Activations.RELU,
-  "tanh": nn.Activations.TANH,
-  "sigmoid": nn.Activations.SIGMOID,
-  "linear": nn.Activations.LINEAR
+  "relu": nn.ActivationFunctions.RELU,
+  "tanh": nn.ActivationFunctions.TANH,
+  "sigmoid": nn.ActivationFunctions.SIGMOID,
+  "linear": nn.ActivationFunctions.LINEAR
 };
 
 /** A map between names and regularization functions. */
@@ -34,7 +34,7 @@ export let regularizations: {[key: string]: nn.RegularizationFunction} = {
   "L2": nn.RegularizationFunction.L2
 };
 
-/** A map between dataset names and functions that generate classification data. */
+/** Map from dataset names to functions that generate classification data. */
 export let datasets: {[key: string]: dataset.DataGenerator} = {
   "circle": dataset.classifyCircleData,
   "xor": dataset.classifyXORData,
@@ -141,7 +141,7 @@ export class State {
   discretize = false;
   tutorial: string = null;
   percTrainData = 50;
-  activation = nn.Activations.TANH;
+  activation = nn.ActivationFunctions.TANH;
   regularization: nn.RegularizationFunction = null;
   problem = Problem.CLASSIFICATION;
   initZero = false;

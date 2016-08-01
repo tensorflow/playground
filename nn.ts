@@ -26,61 +26,71 @@ function flatten(arr: any[], ret?: number[]): number[] {
   return ret;
 }
 
-export class Tensor {
-  shape: number[];
-  values: Float32Array;
-
-  constructor(shape: number[], values: Float32Array) {
-    assert(Tensor.sizeFromShape(shape) == values.length,
-        "shape should match the length of values");
-    this.shape = shape;
-    this.values = values;
-  }
-
-  reshape<T extends Tensor>(newShape: number[]): T {
-    assert(Tensor.sizeFromShape(this.shape) == Tensor.sizeFromShape(newShape),
-        "new shape and old shape must have the same number of elements.");
-    return Tensor.new(newShape, this.values) as T;
-  }
-
-  private static new(shape: number[], values: Float32Array) {
+export let Tensor = {
+  make<T extends TensorBase>(shape: number[],
+      values: Float32Array|number[]): T {
     switch (shape.length) {
       case 1:
-        return new Tensor1D(shape as [number], values);
+        return new Tensor1D(values) as any;
       case 2:
-        return new Tensor2D(shape as [number, number], values);
+        return new Tensor2D(shape as [number, number], values) as any;
       case 3:
-        return new Tensor3D(shape as [number, number, number], values);
+        return new Tensor3D(shape as [number, number, number], values) as any;
       case 4:
-        return new Tensor4D(shape as [number, number, number, number], values);
+        return new Tensor4D(shape as [number, number, number, number],
+            values) as any;
       default:
-        return new Tensor(shape, values);
+        return new TensorBase(shape, values) as any;
+    }
+  },
+
+  zeros<T extends TensorBase>(shape: number[]): T {
+    let values = new Float32Array(sizeFromShape(shape));
+    return Tensor.make(shape, values) as T;
+  },
+
+  zerosLike<T extends TensorBase>(another: T): T {
+    return Tensor.zeros(another.shape) as T;
+  },
+
+  like<T extends TensorBase>(another: T): T {
+    return Tensor.make(another.shape, new Float32Array(another.values)) as T;
+  }
+};
+
+function sizeFromShape(shape: number[]): number {
+  let size = shape[0];
+  for (let i = 1; i < shape.length; i++) {
+    size *= shape[i];
+  }
+  return size;
+}
+
+class TensorBase {
+  shape: number[];
+  values: Float32Array;
+  size: number;
+
+  constructor(shape: number[], values: Float32Array|number[]) {
+    this.shape = shape;
+    this.size = sizeFromShape(shape);
+    assert(this.size == values.length,
+        "shape should match the length of values");
+    if (values instanceof Float32Array) {
+      this.values = values;
+    } else {
+     this.values = new Float32Array(values);
     }
   }
 
-  private static sizeFromShape(shape: number[]): number {
-    let size = 1;
-    for (let i = 0; i < shape.length; i++) {
-      size *= shape[i];
-    }
-    return size;
-  }
-
-  static zeros<T extends Tensor>(shape: number[]): T {
-    let values = new Float32Array(Tensor.sizeFromShape(shape));
-    return Tensor.new(shape, values) as T;
-  }
-
-  static like<T extends Tensor>(another: T): T {
-    return Tensor.new(another.shape, new Float32Array(another.values)) as T;
+  reshape<T extends TensorBase>(newShape: number[]): T {
+    assert(this.size == sizeFromShape(newShape),
+        "new shape and old shape must have the same number of elements.");
+    return Tensor.make(newShape, this.values) as T;
   }
 
   get rank(): number {
     return this.shape.length;
-  }
-
-  get size(): number {
-    return Tensor.sizeFromShape(this.shape);
   }
 
   get(...locs: number[]) {
@@ -93,6 +103,10 @@ export class Tensor {
     return this.values[index];
   }
 
+  add(value: number, ...locs: number[]) {
+    this.set(this.get(...locs) + value, ...locs);
+  }
+
   set(value: number, ...locs: number[]) {
     let index = 0;
     let mul = 1;
@@ -102,19 +116,13 @@ export class Tensor {
     }
     this.values[index] = value;
   }
-
-  toString(): string {
-    // TODO(smilkov): Implement.
-    return "";
-  }
 }
 
-export class Tensor1D extends Tensor {
+export class Tensor1D extends TensorBase {
   shape: [number];
 
-  constructor(shape: [number], values: Float32Array) {
-    assert(shape.length == 1, "Shape should be of length 1");
-    super(shape, values);
+  constructor(values: Float32Array|number[]) {
+    super([values.length], values);
   }
 
   get(i: number): number {
@@ -126,10 +134,10 @@ export class Tensor1D extends Tensor {
   }
 }
 
-export class Tensor2D extends Tensor {
+export class Tensor2D extends TensorBase {
   shape: [number, number];
 
-  constructor(shape: [number, number], values: Float32Array) {
+  constructor(shape: [number, number], values: Float32Array|number[]) {
     assert(shape.length == 2, "Shape should be of length 2");
     super(shape, values);
   }
@@ -143,10 +151,10 @@ export class Tensor2D extends Tensor {
   }
 }
 
-export class Tensor3D extends Tensor {
+export class Tensor3D extends TensorBase {
   shape: [number, number, number];
 
-  constructor(shape: [number, number, number], values: Float32Array) {
+  constructor(shape: [number, number, number], values: Float32Array|number[]) {
     assert(shape.length == 3, "Shape should be of length 3");
     super(shape, values);
   }
@@ -162,10 +170,11 @@ export class Tensor3D extends Tensor {
   }
 }
 
-export class Tensor4D extends Tensor {
+export class Tensor4D extends TensorBase {
   shape: [number, number, number, number];
 
-  constructor(shape: [number, number, number, number], values: Float32Array) {
+  constructor(shape: [number, number, number, number],
+      values: Float32Array|number[]) {
     assert(shape.length == 4, "Shape should be of length 4");
     super(shape, values);
   }
@@ -193,15 +202,15 @@ function assert(expr: boolean, msg: string) {
 
 function vecTimesMat(a: Tensor1D, bMat: Tensor2D): Tensor1D {
   // Reshape the vector to a matrix.
-  let aMat = a.reshape<Tensor2D>([1, a.shape[0]]);
+  let aMat = a.reshape<Tensor2D>([1, a.size]);
   let cMat = matMul(aMat, bMat);
   // Reshape the result back to a vector.
-  return cMat.reshape<Tensor1D>(a.shape);
+  return cMat.reshape<Tensor1D>([bMat.shape[1]]);
 }
 
 function matTimesVec(aMat: Tensor2D, b: Tensor1D): Tensor1D {
   // Reshape the vector to a matrix.
-  let bMat = b.reshape<Tensor2D>([b.shape[0], 1]);
+  let bMat = b.reshape<Tensor2D>([b.size, 1]);
   let cMat = matMul(aMat, bMat);
   // Reshape the result back to a vector.
   return cMat.reshape<Tensor1D>(b.shape);
@@ -223,12 +232,12 @@ function matMul(a: Tensor2D, b: Tensor2D): Tensor2D {
 }
 
 interface Operation {
-  feedForward(x: Tensor): Tensor;
-  backProp(dy: Tensor): Tensor;
+  feedForward(x: TensorBase, target?: TensorBase): TensorBase;
+  backProp(dy: TensorBase, target?: TensorBase): TensorBase;
   updateParams(): void;
 }
 
-class FCLayer implements Operation {
+export class FC implements Operation {
   weights: Tensor2D;
   biases: Tensor1D;
   dW: Tensor2D;
@@ -236,13 +245,20 @@ class FCLayer implements Operation {
   /** Number of accumulated err. derivatives since the last update. */
   numAccumulatedDers = 0;
 
-  constructor(inputSize: number, outputSize: number) {
+  constructor(inputSize: number, outputSize: number, weights?: Tensor2D) {
     // Initialize the weights to random gauss(0, 1).
     let values = new Float32Array(inputSize * outputSize);
     for (let i = 0; i < values.length; ++i) {
       values[i] = normalRandom();
     }
-    this.weights = new Tensor2D([inputSize, outputSize], values);
+    if (weights) {
+      assert(weights.shape[0] == inputSize && weights.shape[1] == outputSize,
+        "Weights must be of shape [inputSize, outputSize]");
+      this.weights = weights;
+    } else {
+      this.weights = new Tensor2D([inputSize, outputSize], values);
+    }
+    this.dW = Tensor.zerosLike(this.weights);
   }
 
   feedForward(x: Tensor1D): Tensor1D {
@@ -257,22 +273,24 @@ class FCLayer implements Operation {
    * @param dy: Error derivative with respect to the output.
    */
   backProp(dy: Tensor1D): Tensor1D {
-    let [inputSize, outputSize] = this.dW.shape;
-    let dx = Tensor.zeros<Tensor1D>([inputSize]);
+    let [inputSize, outputSize] = this.weights.shape;
+    assert(dy.size == outputSize,
+        "dE/dy should be the same size as the output");
+    let dx = Tensor.zerosLike(this.x);
     for (let i = 0; i < inputSize; ++i) {
       let sum = 0;
       for (let j = 0; j < outputSize; ++j) {
         // dE/dx_i = sum_j dE/dy_j * dy_j/dx_i =
         //           sum_j dE/dy_j * w_ij
         sum += dy.get(j) * this.weights.get(i, j);
-        let derWij = this.dW.get(i, j);
         // dE/dw_ij = dE/dy_j * dy_j/dw_ij
         //          = dE/dy_j * x_i
-        this.dW.set(derWij + dy.get(j) * this.x.get(i),
+        this.dW.add(dy.get(j) * this.x.get(i),
             i, j);
       }
       dx.set(sum, i);
     }
+    this.numAccumulatedDers++;
     return dx;
   }
 
@@ -284,37 +302,79 @@ class FCLayer implements Operation {
 
 function logSumExp(tensor: Tensor1D): number {
   let xMax = Number.NEGATIVE_INFINITY;
-  for (let i = 0; i < tensor.shape[0]; ++i) {
+  for (let i = 0; i < tensor.size; ++i) {
     xMax = Math.max(xMax, tensor.get(i));
   }
   let sum = 0;
-  for (let i = 0; i < tensor.shape[0]; i++) {
+  for (let i = 0; i < tensor.size; i++) {
     sum += Math.exp(tensor.get(i) - xMax);
   }
   return xMax + Math.log(sum);
 }
 
-class Activation implements Operation {
-  x: Tensor;
+class ElementWiseCost<T extends TensorBase> implements Operation {
+  func: CostFunction;
+
+  constructor(func: CostFunction) {
+    this.func = func;
+  }
+
+  feedForward(y: T, target: T): Tensor1D {
+    assert(y.size == target.size,
+      "The output and target must be the same size");
+    let cost = 0;
+    for (let i = 0; i < y.size; ++i) {
+      cost += this.func.cost(y.values[i], target.values[i]);
+    }
+    return new Tensor1D([cost / y.size]);
+  }
+
+  backProp(y: T, target: T): T {
+    assert(y.size == target.size,
+      "The output and target must be the same size");
+    let errorDer = Tensor.zerosLike(y);
+    for (let i = 0; i < y.size; ++i) {
+      errorDer.values[i] = this.func.der(y.values[i], target.values[i]);
+    }
+    return errorDer;
+  }
+
+  updateParams() {}
+}
+
+class MeanSquaredCost extends ElementWiseCost<Tensor1D> {
+  constructor() {
+    super(CostFunctions.SQUARE);
+  }
+}
+
+export class CrossEntropyCost extends ElementWiseCost<Tensor1D> {
+  constructor() {
+    super(CostFunctions.CROSS_ENTROPY);
+  }
+}
+
+class ElementWiseActivation implements Operation {
+  x: TensorBase;
   func: ActivationFunction;
 
   constructor(func: ActivationFunction) {
     this.func = func;
   }
 
-  feedForward(x: Tensor): Tensor {
+  feedForward(x: TensorBase): TensorBase {
     this.x = x;
-    let y = Tensor.zeros(x.shape);
+    let y = Tensor.zerosLike(x);
     for (let i = 0; i < x.size; ++i) {
       y.values[i] = this.func.output(x.values[i]);
     }
     return y;
   }
 
-  backProp(dy: Tensor): Tensor {
+  backProp(dy: TensorBase): TensorBase {
     // dE/dx_i = sum_j dE/dy_j * dy_j/dx_i
     //         = dE/dy_i * dy_i/dx_i
-    let dx = Tensor.zeros(dy.shape);
+    let dx = Tensor.zerosLike(dy);
     for (let i = 0; i < dx.size; ++i) {
       dx.values[i] = dy.values[i] * this.func.der(this.x.values[i]);
     }
@@ -322,31 +382,32 @@ class Activation implements Operation {
   }
 
   updateParams() {
-
+    // Activation functions don't have parameters so no update needed.
   }
 }
 
-class Softmax implements Operation {
+export class Softmax implements Operation {
   y: Tensor1D;
 
   feedForward(x: Tensor1D): Tensor1D {
     // Do it in log space for numerical stability.
     let logSum = logSumExp(x);
-    this.y = Tensor.zeros<Tensor1D>(x.shape);
-    for (let i = 0; i < x.shape[0]; ++i) {
+    this.y = Tensor.zerosLike(x);
+    for (let i = 0; i < x.size; ++i) {
       this.y.set(Math.exp(x.get(i) - logSum), i);
     }
     return this.y;
   }
 
   backProp(dy: Tensor1D): Tensor1D {
+    assert(dy.size == this.y.size, "dy and y must have the same size");
     // dE/dx_i = sum_j dE/dy_j * dy_j/dx_i
-    let dx = Tensor.zeros<Tensor1D>(dy.shape);
-    for (let i = 0; i < dx.shape[0]; ++i) {
+    //         = sum_j dE/dy_j * (y_j * (kron_ij - y_i))
+    let dx = Tensor.zerosLike(dy);
+    for (let i = 0; i < dx.size; ++i) {
       let sum = 0;
-      for (let j = 0; j < dx.shape[0]; ++j) {
-        sum += dy.get(j) * (i == j ?
-          this.y.get(j) * (1 - this.y.get(j)) : -this.y.get(j) * this.y.get(i));
+      for (let j = 0; j < dx.size; ++j) {
+        sum += dy.get(j) * this.y.get(j) * ((i == j ? 1 : 0) - this.y.get(i));
       }
       dx.set(sum, i);
     }
@@ -354,25 +415,49 @@ class Softmax implements Operation {
   }
 
   updateParams() {
-    // TODO(smilkov): Implement.
+    // Softmax doesn't have parameters so no update needed.
   }
 }
 
-class ReLU extends Activation {
+
+class SoftmaxCrossEntropyCost implements Operation {
+  private softmax = new Softmax();
+  private crossEntropy = new CrossEntropyCost();
+  private y: Tensor1D;
+
+  feedForward(x: Tensor1D, target: Tensor1D): Tensor1D {
+    assert(target.size == x.size, "x, y and target must have the same size");
+    this.y = this.softmax.feedForward(x);
+    return this.crossEntropy.feedForward(this.y, target);
+  }
+
+  backProp(y: Tensor1D, target: Tensor1D): Tensor1D {
+    assert(target.size == y.size, "y and target must have the same size");
+    let dx = Tensor.zerosLike(this.y);
+    for (let i = 0; i < this.y.size; ++i) {
+      dx.set(this.y.get(i) - target.get(i), i);
+    }
+    return dx;
+  }
+
+  updateParams() {}
+}
+
+export class ReLU extends ElementWiseActivation {
   constructor() {
-    super(Activations.RELU);
+    super(ActivationFunctions.RELU);
   }
 }
 
-class TanH extends Activation {
+export class TanH extends ElementWiseActivation {
   constructor() {
-    super(Activations.TANH);
+    super(ActivationFunctions.TANH);
   }
 }
 
-class Sigmoid extends Activation {
+export class Sigmoid extends ElementWiseActivation {
   constructor() {
-    super(Activations.SIGMOID);
+    super(ActivationFunctions.SIGMOID);
   }
 }
 
@@ -435,8 +520,8 @@ export class Node {
 /**
  * An error function and its derivative.
  */
-export interface ErrorFunction {
-  error: (output: number, target: number) => number;
+export interface CostFunction {
+  cost: (output: number, target: number) => number;
   der: (output: number, target: number) => number;
 }
 
@@ -453,11 +538,34 @@ export interface RegularizationFunction {
 }
 
 /** Built-in error functions */
-export class Errors {
-  public static SQUARE: ErrorFunction = {
-    error: (output: number, target: number) =>
-               0.5 * Math.pow(output - target, 2),
+export class CostFunctions {
+  public static SQUARE: CostFunction = {
+    cost: (output: number, target: number) => {
+      let diff = output - target;
+      return 0.5 * diff * diff;
+    },
     der: (output: number, target: number) => output - target
+  };
+
+  public static CROSS_ENTROPY: CostFunction = {
+    cost: (output: number, target: number) => {
+      if (target == 0) {
+        return 0;
+      }
+      if (output == 0) {
+        return target * 9;
+      }
+      return -target * Math.log(output);
+    },
+    der: (output: number, target: number) => {
+      if (target == 0) {
+        return 0;
+      }
+      if (output == 0) {
+        return -target * 1e9;
+      }
+      return - target / output;
+    }
   };
 }
 
@@ -474,11 +582,11 @@ export class Errors {
 };
 
 /** Built-in activation functions */
-export class Activations {
+export class ActivationFunctions {
   public static TANH: ActivationFunction = {
     output: x => (<any>Math).tanh(x),
     der: x => {
-      let output = Activations.TANH.output(x);
+      let output = ActivationFunctions.TANH.output(x);
       return 1 - output * output;
     }
   };
@@ -489,7 +597,7 @@ export class Activations {
   public static SIGMOID: ActivationFunction = {
     output: x => 1 / (1 + Math.exp(-x)),
     der: x => {
-      let output = Activations.SIGMOID.output(x);
+      let output = ActivationFunctions.SIGMOID.output(x);
       return output * (1 - output);
     }
   };
@@ -642,11 +750,11 @@ export function forwardProp(network: Node[][], inputs: number[]): number {
  * in the network.
  */
 export function backProp(network: Node[][], target: number,
-    errorFunc: ErrorFunction): void {
+    costFunc: CostFunction): void {
   // The output node is a special case. We use the user-defined error
   // function for the derivative.
   let outputNode = network[network.length - 1][0];
-  outputNode.outputDer = errorFunc.der(outputNode.output, target);
+  outputNode.outputDer = costFunc.der(outputNode.output, target);
 
   // Go through the layers backwards.
   for (let layerIdx = network.length - 1; layerIdx >= 1; layerIdx--) {
