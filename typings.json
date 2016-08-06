@@ -1,8 +1,8 @@
 {
-  "ambientDependencies": {
-    "d3": "registry:dt/d3#0.0.0+20160315011939"
+  "globalDependencies": {
+    "d3": "registry:dt/d3#0.0.0+20160727131401"
   },
-  "ambientDevDependencies": {
+  "globalDevDependencies": {
     "jasmine": "registry:dt/jasmine#2.2.0+20160621224255"
   }
 }
