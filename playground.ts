@@ -351,6 +351,12 @@ function makeGUI() {
       updateUI(true);
     }
   });
+
+  // Hide the text below the visualization depending on the URL.
+  if (state.hideText) {
+    d3.select("#article-text").style("display", "none");
+    d3.select("div.more").style("display", "none");
+  }
 }
 
 function updateBiasesUI(network: nn.Node[][]) {
