@@ -709,7 +709,7 @@ g.column rect {
 #network .core .link-hover {
   stroke-width: 8;
   stroke: black;
-  fill: "none";
+  fill: none;
   opacity: 0;
 }
 
