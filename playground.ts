@@ -356,6 +356,7 @@ function makeGUI() {
   if (state.hideText) {
     d3.select("#article-text").style("display", "none");
     d3.select("div.more").style("display", "none");
+    d3.select("header").style("display", "none");
   }
 }
 
