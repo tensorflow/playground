@@ -934,7 +934,7 @@ function reset(onStartup=false) {
 };
 
 function initTutorial() {
-  if (state.tutorial == null) {
+  if (state.tutorial == null || state.tutorial == '' || state.hideText) {
     return;
   }
   // Remove all other text.
