@@ -54,6 +54,7 @@ const BIAS_SIZE = 5;
 const NUM_SAMPLES_CLASSIFY = 500;
 const NUM_SAMPLES_REGRESS = 1200;
 const DENSITY = 100;
+const NUM_NEURONS_MAX = 50;
 
 enum HoverType {
   BIAS, WEIGHT
@@ -642,7 +643,7 @@ function addPlusMinusControl(x: number, layerIdx: number) {
       .attr("class", "mdl-button mdl-js-button mdl-button--icon")
       .on("click", () => {
         let numNeurons = state.networkShape[i];
-        if (numNeurons >= 8) {
+        if (numNeurons >= NUM_NEURONS_MAX) {
           return;
         }
         state.networkShape[i]++;
