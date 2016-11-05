@@ -57,14 +57,14 @@ limitations under the License.
   <div id="top-controls">
     <div class="container l--page">
       <div class="timeline-controls">
-        <button class="mdl-button mdl-js-button mdl-button--icon" id="reset-button" title="Reset the network">
+        <button class="mdl-button mdl-js-button mdl-button--icon ui-resetButton" id="reset-button" title="Reset the network">
           <i class="material-icons">replay</i>
         </button>
         <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored ui-playButton" id="play-pause-button" title="Run/Pause">
           <i class="material-icons">play_arrow</i>
           <i class="material-icons">pause</i>
         </button>
-        <button class="mdl-button mdl-js-button mdl-button--icon" id="next-step-button" title="Step">
+        <button class="mdl-button mdl-js-button mdl-button--icon ui-stepButton" id="next-step-button" title="Step">
           <i class="material-icons">skip_next</i>
         </button>
       </div>
@@ -198,7 +198,7 @@ limitations under the License.
 
     <!-- Features Column -->
     <div class="column features">
-      <h4>Input</h4>
+      <h4>Features</h4>
       <p>Which properties do you want to feed in?</p>
       <div id="network">
         <svg id="svg" width="510" height="450">
@@ -208,6 +208,11 @@ limitations under the License.
             </marker>
           </defs>
         </svg>
+        <!-- Hover card -->
+        <div id="hovercard">
+          <div style="font-size:10px">Click anywhere to edit.</div>
+          <div><span class="type">Weight/Bias</span> is <span class="value">0.2</span><span><input type="number"/></span>.</div>
+        </div>
         <div class="callout thumbnail">
           <svg viewBox="0 0 30 30">
             <defs>
@@ -314,10 +319,10 @@ limitations under the License.
   </div>
   <!-- Article -->
 
-  <article>
+  <article id="article-text">
     <div class="l--body">
       <h2>Um, What Is a Neural Network?</h2>
-      <p>It’s a technique for building a computer program that learns from data. It is based very loosely on how we think the human brain works. First, a collection of software “neurons” are created and connected together, allowing them to send messages to each other. Next, the network is asked to solve a problem, which it attempts to do over and over, each time strengthening the connections that lead to success and diminishing those that lead to failure. For a more detailed introduction to neural networks, Michael Nielsen’s <a href="http://neuralnetworksanddeeplearning.com/index.html">Neural Networks and Deep Learning</a> is a good place to start. For more a more technical overview, try <a href="http://www.deeplearningbook.org/">Deep Learning</a> by Ian Goodfellow, Yoshua Bengio, and Aaron Courville.</p>
+      <p>It’s a technique for building a computer program that learns from data. It is based very loosely on how we think the human brain works. First, a collection of software “neurons” are created and connected together, allowing them to send messages to each other. Next, the network is asked to solve a problem, which it attempts to do over and over, each time strengthening the connections that lead to success and diminishing those that lead to failure. For a more detailed introduction to neural networks, Michael Nielsen’s <a href="http://neuralnetworksanddeeplearning.com/index.html">Neural Networks and Deep Learning</a> is a good place to start. For a more technical overview, try <a href="http://www.deeplearningbook.org/">Deep Learning</a> by Ian Goodfellow, Yoshua Bengio, and Aaron Courville.</p>
     </div>
 
     <div class="l--body">
@@ -336,10 +341,18 @@ limitations under the License.
     </div>
 
     <div class="l--body">
+      <h2>What Library Are You Using?</h2>
+      <p>We wrote a tiny neural network <a href="https://github.com/tensorflow/playground/blob/master/nn.ts">library</a>
+      that meets the demands of this educational visualization. For real-world applications, consider the
+      <a href="https://www.tensorflow.org/">TensorFlow</a> library.
+      </p>
+    </div>
+
+    <div class="l--body">
       <h2>Credits</h2>
       <p>
         This was created by Daniel Smilkov and Shan Carter.
-        This is a continuation of many people’s previous work — most notably Andrej Karpathy’s <a href="http://cs.stanford.edu/people/karpathy/convnetjs/">convnet.js</a>
+        This is a continuation of many people’s previous work — most notably Andrej Karpathy’s <a href="http://cs.stanford.edu/people/karpathy/convnetjs/demo/classify2d.html">convnet.js demo</a>
         and Chris Olah’s <a href="http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/">articles</a> about neural networks.
         Many thanks also to D. Sculley for help with the original idea and to Fernanda Viégas and Martin Wattenberg and the rest of the
         <a href="https://research.google.com/bigpicture/">Big Picture</a> and <a href="https://research.google.com/teams/brain/">Google Brain</a> teams for feedback and guidance.
@@ -391,7 +404,6 @@ limitations under the License.
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-46457317-4', 'auto');
-    ga('send', 'pageview');
   </script>
 </body>
 </html>
