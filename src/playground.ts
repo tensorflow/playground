@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-/// <reference path="typings/browser.d.ts" />
+/// <reference path="../typings/browser.d.ts" />
 /// <reference path="seedrandom.d.ts" />
 
 import * as nn from "./nn";
