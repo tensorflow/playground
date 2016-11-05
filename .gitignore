@@ -2,5 +2,3 @@ node_modules
 typings
 *.log
 .vscode
-playground.js
-state.js
