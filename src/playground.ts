@@ -104,6 +104,9 @@ class Player {
       this.pause();
     } else {
       this.isPlaying = true;
+      if (iter == 0) {
+        simulationStarted();
+      }
       this.play();
     }
   }
@@ -183,8 +186,8 @@ function makeGUI() {
 
   d3.select("#play-pause-button").on("click", function () {
     // Change the button's content.
-    player.playOrPause();
     userHasInteracted();
+    player.playOrPause();
   });
 
   player.onPlayPause(isPlaying => {
@@ -194,11 +197,15 @@ function makeGUI() {
   d3.select("#next-step-button").on("click", () => {
     player.pause();
     userHasInteracted();
+    if (iter == 0) {
+      simulationStarted();
+    }
     oneStep();
   });
 
   d3.select("#data-regen-button").on("click", () => {
     generateData();
+    parametersChanged = true;
   });
 
   let dataThumbnails = d3.selectAll("canvas[data-dataset]");
@@ -211,6 +218,7 @@ function makeGUI() {
     dataThumbnails.classed("selected", false);
     d3.select(this).classed("selected", true);
     generateData();
+    parametersChanged = true;
     reset();
   });
 
@@ -229,6 +237,7 @@ function makeGUI() {
     regDataThumbnails.classed("selected", false);
     d3.select(this).classed("selected", true);
     generateData();
+    parametersChanged = true;
     reset();
   });
 
@@ -243,6 +252,7 @@ function makeGUI() {
     }
     state.networkShape[state.numHiddenLayers] = 2;
     state.numHiddenLayers++;
+    parametersChanged = true;
     reset();
   });
 
@@ -252,6 +262,7 @@ function makeGUI() {
     }
     state.numHiddenLayers--;
     state.networkShape.splice(state.numHiddenLayers);
+    parametersChanged = true;
     reset();
   });
 
@@ -277,6 +288,7 @@ function makeGUI() {
     state.percTrainData = this.value;
     d3.select("label[for='percTrainData'] .value").text(this.value);
     generateData();
+    parametersChanged = true;
     reset();
   });
   percTrain.property("value", state.percTrainData);
@@ -286,6 +298,7 @@ function makeGUI() {
     state.noise = this.value;
     d3.select("label[for='noise'] .value").text(this.value);
     generateData();
+    parametersChanged = true;
     reset();
   });
   noise.property("value", state.noise);
@@ -294,6 +307,7 @@ function makeGUI() {
   let batchSize = d3.select("#batchSize").on("input", function() {
     state.batchSize = this.value;
     d3.select("label[for='batchSize'] .value").text(this.value);
+    parametersChanged = true;
     reset();
   });
   batchSize.property("value", state.batchSize);
@@ -301,6 +315,7 @@ function makeGUI() {
 
   let activationDropdown = d3.select("#activations").on("change", function() {
     state.activation = activations[this.value];
+    parametersChanged = true;
     reset();
   });
   activationDropdown.property("value",
@@ -310,12 +325,14 @@ function makeGUI() {
     state.learningRate = +this.value;
     state.serialize();
     userHasInteracted();
+    parametersChanged = true;
   });
   learningRate.property("value", state.learningRate);
 
   let regularDropdown = d3.select("#regularizations").on("change",
       function() {
     state.regularization = regularizations[this.value];
+    parametersChanged = true;
     reset();
   });
   regularDropdown.property("value",
@@ -323,6 +340,7 @@ function makeGUI() {
 
   let regularRate = d3.select("#regularRate").on("change", function() {
     state.regularizationRate = +this.value;
+    parametersChanged = true;
     reset();
   });
   regularRate.property("value", state.regularizationRate);
@@ -331,6 +349,7 @@ function makeGUI() {
     state.problem = problems[this.value];
     generateData();
     drawDatasetThumbnails();
+    parametersChanged = true;
     reset();
   });
   problem.property("value", getKeyFromValue(problems, state.problem));
@@ -493,6 +512,7 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
   if (isInput) {
     div.on("click", function() {
       state[nodeId] = !state[nodeId];
+      parametersChanged = true;
       reset();
     });
     div.style("cursor", "pointer");
@@ -646,6 +666,7 @@ function addPlusMinusControl(x: number, layerIdx: number) {
           return;
         }
         state.networkShape[i]++;
+        parametersChanged = true;
         reset();
       })
     .append("i")
@@ -660,6 +681,7 @@ function addPlusMinusControl(x: number, layerIdx: number) {
           return;
         }
         state.networkShape[i]--;
+        parametersChanged = true;
         reset();
       })
     .append("i")
@@ -1058,6 +1080,7 @@ function generateData(firstTime = false) {
 }
 
 let firstInteraction = true;
+let parametersChanged = false;
 
 function userHasInteracted() {
   if (!firstInteraction) {
@@ -1070,6 +1093,16 @@ function userHasInteracted() {
   }
   ga('set', 'page', page);
   ga('send', 'pageview', {'sessionControl': 'start'});
+}
+
+function simulationStarted() {
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'Starting Simulation',
+    eventAction: parametersChanged ? 'changed' : 'unchanged',
+    eventLabel: state.tutorial == null ? '' : state.tutorial
+  });
+  parametersChanged = false;
 }
 
 drawDatasetThumbnails();

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist/",
-    "prep": "typings install && mkdir -p dist && cat node_modules/material-design-lite/material.min.js node_modules/d3/d3.min.js node_modules/seedrandom/seedrandom.min.js > dist/lib.js",
+    "prep": "typings install && mkdir -p dist && cat node_modules/material-design-lite/material.min.js node_modules/d3/d3.min.js node_modules/seedrandom/seedrandom.min.js > dist/lib.js && cp analytics.js dist/.",
     "build-css": "cat node_modules/material-design-lite/material.min.css styles.css > dist/bundle.css",
     "watch-css": "node_modules/catw/bin/cmd.js node_modules/material-design-lite/material.min.css styles.css -o dist/bundle.css",
     "build-html": "cat index.html > dist/index.html",
