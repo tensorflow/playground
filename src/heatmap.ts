@@ -159,7 +159,7 @@ export class HeatMap {
     }
 
     // Compute the pixel colors; scaled by CSS.
-    let context = (<HTMLCanvasElement>this.canvas.node()).getContext("2d");
+    let context = (this.canvas.node() as HTMLCanvasElement).getContext("2d");
     let image = context.createImageData(dx, dy);
 
     for (let y = 0, p = -1; y < dy; ++y) {

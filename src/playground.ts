@@ -13,9 +13,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-/// <reference path="../typings/browser.d.ts" />
-/// <reference path="seedrandom.d.ts" />
-
 import * as nn from "./nn";
 import {HeatMap, reduceMatrix} from "./heatmap";
 import {
@@ -104,7 +101,7 @@ class Player {
       this.pause();
     } else {
       this.isPlaying = true;
-      if (iter == 0) {
+      if (iter === 0) {
         simulationStarted();
       }
       this.play();
@@ -197,7 +194,7 @@ function makeGUI() {
   d3.select("#next-step-button").on("click", () => {
     player.pause();
     userHasInteracted();
-    if (iter == 0) {
+    if (iter === 0) {
       simulationStarted();
     }
     oneStep();
@@ -446,7 +443,7 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
       let myRe = /(.*?)([_^])(.)/g;
       let myArray;
       let lastIndex;
-      while ((myArray = myRe.exec(label)) !== null) {
+      while ((myArray = myRe.exec(label)) != null) {
         lastIndex = myRe.lastIndex;
         let prefix = myArray[1];
         let sep = myArray[2];
@@ -455,7 +452,7 @@ function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
           text.append("tspan").text(prefix);
         }
         text.append("tspan")
-        .attr("baseline-shift", sep == "_" ? "sub" : "super")
+        .attr("baseline-shift", sep === "_" ? "sub" : "super")
         .style("font-size", "9px")
         .text(suffix);
       }
@@ -537,8 +534,8 @@ function drawNetwork(network: nn.Node[][]): void {
 
   // Get the width of the svg container.
   let padding = 3;
-  let co = <HTMLDivElement> d3.select(".column.output").node();
-  let cf = <HTMLDivElement> d3.select(".column.features").node();
+  let co = d3.select(".column.output").node() as HTMLDivElement;
+  let cf = d3.select(".column.features").node() as HTMLDivElement;
   let width = co.offsetLeft - cf.offsetLeft;
   svg.attr("width", width);
 
@@ -567,7 +564,7 @@ function drawNetwork(network: nn.Node[][]): void {
   let maxY = nodeIndexScale(nodeIds.length);
   nodeIds.forEach((nodeId, i) => {
     let cy = nodeIndexScale(i) + RECT_SIZE / 2;
-    node2coord[nodeId] = {cx: cx, cy: cy};
+    node2coord[nodeId] = {cx, cy};
     drawNode(cx, cy, nodeId, true, container);
   });
 
@@ -580,7 +577,7 @@ function drawNetwork(network: nn.Node[][]): void {
     for (let i = 0; i < numNodes; i++) {
       let node = network[layerIdx][i];
       let cy = nodeIndexScale(i) + RECT_SIZE / 2;
-      node2coord[node.id] = {cx: cx, cy: cy};
+      node2coord[node.id] = {cx, cy};
       drawNode(cx, cy, node.id, false, container, node);
 
       // Show callout to thumbnails.
@@ -600,8 +597,8 @@ function drawNetwork(network: nn.Node[][]): void {
       // Draw links.
       for (let j = 0; j < node.inputLinks.length; j++) {
         let link = node.inputLinks[j];
-        let path: SVGPathElement = <any> drawLink(link, node2coord, network,
-            container, j === 0, j, node.inputLinks.length).node();
+        let path: SVGPathElement = drawLink(link, node2coord, network,
+            container, j === 0, j, node.inputLinks.length).node() as any;
         // Show callout to weights.
         let prevLayer = network[layerIdx - 1];
         let lastNodePrevLayer = prevLayer[prevLayer.length - 1];
@@ -627,7 +624,7 @@ function drawNetwork(network: nn.Node[][]): void {
   cx = width + RECT_SIZE / 2;
   let node = network[numLayers - 1][0];
   let cy = nodeIndexScale(0) + RECT_SIZE / 2;
-  node2coord[node.id] = {cx: cx, cy: cy};
+  node2coord[node.id] = {cx, cy};
   // Draw links.
   for (let i = 0; i < node.inputLinks.length; i++) {
     let link = node.inputLinks[i];
@@ -647,7 +644,7 @@ function drawNetwork(network: nn.Node[][]): void {
 }
 
 function getRelativeHeight(selection: d3.Selection<any>) {
-  let node = <HTMLAnchorElement> selection.node();
+  let node = selection.node() as HTMLAnchorElement;
   return node.offsetHeight + node.offsetTop;
 }
 
@@ -708,25 +705,25 @@ function updateHoverCard(type: HoverType, nodeOrLink?: nn.Node | nn.Link,
     input.style("display", null);
     input.on("input", function() {
       if (this.value != null && this.value !== "") {
-        if (type == HoverType.WEIGHT) {
-          (<nn.Link>nodeOrLink).weight = +this.value;
+        if (type === HoverType.WEIGHT) {
+          (nodeOrLink as nn.Link).weight = +this.value;
         } else {
-          (<nn.Node>nodeOrLink).bias = +this.value;
+          (nodeOrLink as nn.Node).bias = +this.value;
         }
         updateUI();
       }
     });
     input.on("keypress", () => {
-      if ((<any>d3.event).keyCode == 13) {
+      if ((d3.event as any).keyCode === 13) {
         updateHoverCard(type, nodeOrLink, coordinates);
       }
     });
-    (<HTMLInputElement>input.node()).focus();
+    (input.node() as HTMLInputElement).focus();
   });
-  let value = type == HoverType.WEIGHT ?
-    (<nn.Link>nodeOrLink).weight :
-    (<nn.Node>nodeOrLink).bias;
-  let name = type == HoverType.WEIGHT ? "Weight" : "Bias";
+  let value = (type === HoverType.WEIGHT) ?
+    (nodeOrLink as nn.Link).weight :
+    (nodeOrLink as nn.Node).bias;
+  let name = (type === HoverType.WEIGHT) ? "Weight" : "Bias";
   hovercard.style({
     "left": `${coordinates[0] + 20}px`,
     "top": `${coordinates[1]}px`,
@@ -945,7 +942,7 @@ function reset(onStartup=false) {
   iter = 0;
   let numInputs = constructInput(0 , 0).length;
   let shape = [numInputs].concat(state.networkShape).concat([1]);
-  let outputActivation = (state.problem == Problem.REGRESSION) ?
+  let outputActivation = (state.problem === Problem.REGRESSION) ?
       nn.Activations.LINEAR : nn.Activations.TANH;
   network = nn.buildNetwork(shape, state.activation, outputActivation,
       state.regularization, constructInputIds(), state.initZero);
@@ -956,7 +953,7 @@ function reset(onStartup=false) {
 };
 
 function initTutorial() {
-  if (state.tutorial == null || state.tutorial == '' || state.hideText) {
+  if (state.tutorial == null || state.tutorial === '' || state.hideText) {
     return;
   }
   // Remove all other text.
@@ -968,7 +965,7 @@ function initTutorial() {
     if (err) {
       throw err;
     }
-    (<any>tutorial.node()).appendChild(htmlFragment);
+    tutorial.node().appendChild(htmlFragment);
     // If the tutorial has a <title> tag, set the page title to that.
     let title = tutorial.select("title");
     if (title.size()) {
@@ -998,7 +995,7 @@ function drawDatasetThumbnails() {
   }
   d3.selectAll(".dataset").style("display", "none");
 
-  if (state.problem == Problem.CLASSIFICATION) {
+  if (state.problem === Problem.CLASSIFICATION) {
     for (let dataset in datasets) {
       let canvas: any =
           document.querySelector(`canvas[data-dataset=${dataset}]`);
@@ -1006,7 +1003,7 @@ function drawDatasetThumbnails() {
       renderThumbnail(canvas, dataGenerator);
     }
   }
-  if (state.problem == Problem.REGRESSION) {
+  if (state.problem === Problem.REGRESSION) {
     for (let regDataset in regDatasets) {
       let canvas: any =
           document.querySelector(`canvas[data-regDataset=${regDataset}]`);
@@ -1021,7 +1018,7 @@ function hideControls() {
   let hiddenProps = state.getHiddenProps();
   hiddenProps.forEach(prop => {
     let controls = d3.selectAll(`.ui-${prop}`);
-    if (controls.size() == 0) {
+    if (controls.size() === 0) {
       console.warn(`0 html elements found with class .ui-${prop}`);
     }
     controls.style("display", "none");
@@ -1038,7 +1035,7 @@ function hideControls() {
         type: "checkbox",
         class: "mdl-checkbox__input",
       });
-    if (hiddenProps.indexOf(id) == -1) {
+    if (hiddenProps.indexOf(id) === -1) {
       input.attr("checked", "true");
     }
     input.on("change", function() {
@@ -1064,9 +1061,9 @@ function generateData(firstTime = false) {
     userHasInteracted();
   }
   Math.seedrandom(state.seed);
-  let numSamples = (state.problem == Problem.REGRESSION) ?
+  let numSamples = (state.problem === Problem.REGRESSION) ?
       NUM_SAMPLES_REGRESS : NUM_SAMPLES_CLASSIFY;
-  let generator = state.problem == Problem.CLASSIFICATION ?
+  let generator = state.problem === Problem.CLASSIFICATION ?
       state.dataset : state.regDataset;
   let data = generator(numSamples, state.noise / 100);
   // Shuffle the data in-place.
@@ -1088,7 +1085,7 @@ function userHasInteracted() {
   }
   firstInteraction = false;
   let page = 'index';
-  if (state.tutorial != null && state.tutorial != '') {
+  if (state.tutorial != null && state.tutorial !== '') {
     page = `/v/tutorials/${state.tutorial}`;
   }
   ga('set', 'page', page);

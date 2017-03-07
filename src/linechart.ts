@@ -15,7 +15,7 @@ limitations under the License.
 type DataPoint = {
   x: number;
   y: number[];
-}
+};
 
 /**
  * A multi-series line chart that allows you to append new data points
@@ -27,7 +27,7 @@ export class AppendingLineChart {
   private svg: d3.Selection<any>;
   private xScale: d3.scale.Linear<number, number>;
   private yScale: d3.scale.Linear<number, number>;
-  private paths: d3.Selection<any>[];
+  private paths: Array<d3.Selection<any>>;
   private lineColors: string[];
 
   private minY = Number.MAX_VALUE;
@@ -36,7 +36,7 @@ export class AppendingLineChart {
   constructor(container: d3.Selection<any>, lineColors: string[]) {
     this.lineColors = lineColors;
     this.numLines = lineColors.length;
-    let node = <HTMLElement>container.node();
+    let node = container.node() as HTMLElement;
     let totalWidth = node.offsetWidth;
     let totalHeight = node.offsetHeight;
     let margin = {top: 2, right: 0, bottom: 2, left: 2};

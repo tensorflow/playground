@@ -99,7 +99,7 @@ export class Errors {
 }
 
 /** Polyfill for TANH */
-(<any>Math).tanh = (<any>Math).tanh || function(x) {
+(Math as any).tanh = (Math as any).tanh || function(x) {
   if (x === Infinity) {
     return 1;
   } else if (x === -Infinity) {
@@ -113,7 +113,7 @@ export class Errors {
 /** Built-in activation functions */
 export class Activations {
   public static TANH: ActivationFunction = {
-    output: x => (<any>Math).tanh(x),
+    output: x => (Math as any).tanh(x),
     der: x => {
       let output = Activations.TANH.output(x);
       return 1 - output * output;

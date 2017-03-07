@@ -24,6 +24,7 @@
             "check-open-brace",
             "check-whitespace"
         ],
+        "forin": false,
         "quotemark": [
             true,
             "double"

@@ -269,7 +269,7 @@ export class State {
   getHiddenProps(): string[] {
     let result: string[] = [];
     for (let prop in this) {
-      if (endsWith(prop, HIDE_STATE_SUFFIX) && this[prop] === true) {
+      if (endsWith(prop, HIDE_STATE_SUFFIX) && String(this[prop]) === "true") {
         result.push(prop.replace(HIDE_STATE_SUFFIX, ""));
       }
     }
