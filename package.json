@@ -6,9 +6,9 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "npm run serve-watch",
-    "prep": "typings install && copyfiles analytics.js dist && catw node_modules/material-design-lite/material.min.js node_modules/d3/d3.min.js node_modules/seedrandom/seedrandom.min.js > dist/lib.js",
-    "build-css": "catw node_modules/material-design-lite/material.min.css styles.css > dist/bundle.css",
-    "watch-css": "catw node_modules/material-design-lite/material.min.css styles.css -o dist/bundle.css",
+    "prep": "typings install && copyfiles analytics.js dist && catw node_modules/material-design-lite/material.min.js node_modules/d3/d3.min.js node_modules/seedrandom/seedrandom.min.js > dist/lib.js  && copyfiles -u 2 node_modules/material-design-lite/material.min.js.map dist",
+    "build-css": "catw node_modules/material-design-lite/material.min.css styles.css > dist/bundle.css && copyfiles -u 2 node_modules/material-design-lite/material.min.css.map dist",
+    "watch-css": "catw node_modules/material-design-lite/material.min.css styles.css -o dist/bundle.css && copyfiles -u 2 node_modules/material-design-lite/material.min.css.map dist",
     "build-html": "copyfiles index.html dist",
     "watch-html": "catw index.html -o dist/index.html",
     "build-js": "browserify src/playground.ts -p [tsify] | uglifyjs -c > dist/bundle.js",
