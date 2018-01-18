@@ -298,6 +298,16 @@ function makeGUI() {
     parametersChanged = true;
     reset();
   });
+  let currentMax = parseInt(noise.property("max"));
+  if (state.noise > currentMax) {
+    if (state.noise <= 80) {
+      noise.property("max", state.noise);
+    } else {
+      state.noise = 50;
+    }
+  } else if (state.noise < 0) {
+    state.noise = 0;
+  }
   noise.property("value", state.noise);
   d3.select("label[for='noise'] .value").text(state.noise);
 
