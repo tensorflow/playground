@@ -44,6 +44,8 @@ export let datasets: {[key: string]: dataset.DataGenerator} = {
 
 /** A map between dataset names and functions that generate regression data. */
 export let regDatasets: {[key: string]: dataset.DataGenerator} = {
+  "reg-maximum": dataset.regressMaximum,
+  "reg-argmax": dataset.regressArgMax,
   "reg-plane": dataset.regressPlane,
   "reg-gauss": dataset.regressGaussian
 };

@@ -70,6 +70,42 @@ export function classifyTwoGaussData(numSamples: number, noise: number):
   return points;
 }
 
+export function regressArgMax(numSamples: number, noise: number):
+  Example2D[] {
+  let radius = 6;
+  let labelScale = d3.scale.linear()
+    .domain([-10, 10])
+    .range([-1, 1]);
+  let getLabel = (x, y) => Math.max(x,y)==x?0:1;
+
+  let points: Example2D[] = [];
+  for (let i = 0; i < numSamples; i++) {
+    let x = randUniform(-radius, radius);
+    let y = randUniform(-radius, radius);
+    let label = getLabel(x , y);
+    points.push({x, y, label});
+  }
+  return points;
+}
+
+export function regressMaximum(numSamples: number, noise: number):
+  Example2D[] {
+  let radius = 6;
+  let labelScale = d3.scale.linear()
+    .domain([-10, 10])
+    .range([-1, 1]); 
+  let getLabel = (x, y) => Math.max(x,y);
+
+  let points: Example2D[] = [];
+  for (let i = 0; i < numSamples; i++) {
+    let x = randUniform(-radius, radius);
+    let y = randUniform(-radius, radius);
+    let label = getLabel(x , y);
+    points.push({x, y, label});
+  }
+  return points;
+}
+
 export function regressPlane(numSamples: number, noise: number):
   Example2D[] {
   let radius = 6;
