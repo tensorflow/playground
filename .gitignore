@@ -1,5 +1,4 @@
 node_modules/
-typings/
 dist/
 *.log
 .vscode

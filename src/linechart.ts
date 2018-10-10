@@ -12,6 +12,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
+
+import * as d3 from 'd3';
+
 type DataPoint = {
   x: number;
   y: number[];
@@ -24,16 +27,16 @@ type DataPoint = {
 export class AppendingLineChart {
   private numLines: number;
   private data: DataPoint[] = [];
-  private svg: d3.Selection<any>;
-  private xScale: d3.scale.Linear<number, number>;
-  private yScale: d3.scale.Linear<number, number>;
-  private paths: Array<d3.Selection<any>>;
+  private svg;
+  private xScale;
+  private yScale;
+  private paths;
   private lineColors: string[];
 
   private minY = Number.MAX_VALUE;
   private maxY = Number.MIN_VALUE;
 
-  constructor(container: d3.Selection<any>, lineColors: string[]) {
+  constructor(container, lineColors: string[]) {
     this.lineColors = lineColors;
     this.numLines = lineColors.length;
     let node = container.node() as HTMLElement;
@@ -95,7 +98,7 @@ export class AppendingLineChart {
     this.yScale.domain([this.minY, this.maxY]);
     // Adjust all the <path> elements (lines).
     let getPathMap = (lineIndex: number) => {
-      return d3.svg.line<DataPoint>()
+      return d3.svg.line<{x: number, y:number}>()
       .x(d => this.xScale(d.x))
       .y(d => this.yScale(d.y[lineIndex]));
     };

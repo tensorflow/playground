@@ -14,6 +14,7 @@ limitations under the License.
 ==============================================================================*/
 
 import {Example2D} from "./dataset";
+import * as d3 from 'd3';
 
 export interface HeatMapSettings {
   [key: string]: any;
@@ -34,16 +35,16 @@ export class HeatMap {
     showAxes: false,
     noSvg: false
   };
-  private xScale: d3.scale.Linear<number, number>;
-  private yScale: d3.scale.Linear<number, number>;
+  private xScale;
+  private yScale;
   private numSamples: number;
-  private color: d3.scale.Quantize<string>;
-  private canvas: d3.Selection<any>;
-  private svg: d3.Selection<any>;
+  private color;
+  private canvas;
+  private svg;
 
   constructor(
       width: number, numSamples: number, xDomain: [number, number],
-      yDomain: [number, number], container: d3.Selection<any>,
+      yDomain: [number, number], container,
       userSettings?: HeatMapSettings) {
     this.numSamples = numSamples;
     let height = width;
@@ -65,7 +66,7 @@ export class HeatMap {
       .range([height - 2 * padding, 0]);
 
     // Get a range of colors.
-    let tmpScale = d3.scale.linear<string, string>()
+    let tmpScale = d3.scale.linear<string, number>()
         .domain([0, .5, 1])
         .range(["#f59322", "#e8eaeb", "#0877bd"])
         .clamp(true);
@@ -76,7 +77,7 @@ export class HeatMap {
     let colors = d3.range(0, 1 + 1E-9, 1 / NUM_SHADES).map(a => {
       return tmpScale(a);
     });
-    this.color = d3.scale.quantize<string>()
+    this.color = d3.scale.quantize()
                      .domain([-1, 1])
                      .range(colors);
 
@@ -178,7 +179,7 @@ export class HeatMap {
     context.putImageData(image, 0, 0);
   }
 
-  private updateCircles(container: d3.Selection<any>, points: Example2D[]) {
+  private updateCircles(container, points: Example2D[]) {
     // Keep only points that are inside the bounds.
     let xDomain = this.xScale.domain();
     let yDomain = this.yScale.domain();

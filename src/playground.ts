@@ -27,6 +27,7 @@ import {
 } from "./state";
 import {Example2D, shuffle} from "./dataset";
 import {AppendingLineChart} from "./linechart";
+import * as d3 from 'd3';
 
 let mainWidth;
 
@@ -160,7 +161,7 @@ let linkWidthScale = d3.scale.linear()
   .domain([0, 5])
   .range([1, 10])
   .clamp(true);
-let colorScale = d3.scale.linear<string>()
+let colorScale = d3.scale.linear<string, number>()
                      .domain([-1, 0, 1])
                      .range(["#f59322", "#e8eaeb", "#0877bd"])
                      .clamp(true);
@@ -399,7 +400,7 @@ function updateBiasesUI(network: nn.Node[][]) {
   });
 }
 
-function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
+function updateWeightsUI(network: nn.Node[][], container) {
   for (let layerIdx = 1; layerIdx < network.length; layerIdx++) {
     let currentLayer = network[layerIdx];
     // Update all the nodes in this layer.
@@ -420,7 +421,7 @@ function updateWeightsUI(network: nn.Node[][], container: d3.Selection<any>) {
 }
 
 function drawNode(cx: number, cy: number, nodeId: string, isInput: boolean,
-    container: d3.Selection<any>, node?: nn.Node) {
+    container, node?: nn.Node) {
   let x = cx - RECT_SIZE / 2;
   let y = cy - RECT_SIZE / 2;
 
@@ -653,7 +654,7 @@ function drawNetwork(network: nn.Node[][]): void {
   d3.select(".column.features").style("height", height + "px");
 }
 
-function getRelativeHeight(selection: d3.Selection<any>) {
+function getRelativeHeight(selection) {
   let node = selection.node() as HTMLAnchorElement;
   return node.offsetHeight + node.offsetTop;
 }
@@ -750,7 +751,7 @@ function updateHoverCard(type: HoverType, nodeOrLink?: nn.Node | nn.Link,
 
 function drawLink(
     input: nn.Link, node2coord: {[id: string]: {cx: number, cy: number}},
-    network: nn.Node[][], container: d3.Selection<any>,
+    network: nn.Node[][], container,
     isFirst: boolean, index: number, length: number) {
   let line = container.insert("path", ":first-child");
   let source = node2coord[input.source.id];
