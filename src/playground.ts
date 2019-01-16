@@ -111,7 +111,7 @@ class Player {
 
   onPlayPause(callback: (isPlaying: boolean) => void) {
     this.callback = callback;
-  }
+  };
 
   play() {
     this.pause();
@@ -220,7 +220,11 @@ function makeGUI() {
     reset();
   });
 
+  console.log("SUP");
+  console.log(datasets);
+  console.log(state.dataset);
   let datasetKey = getKeyFromValue(datasets, state.dataset);
+  console.log(datasetKey);
   // Select the dataset according to the current state.
   d3.select(`canvas[data-dataset=${datasetKey}]`)
     .classed("selected", true);
@@ -1010,7 +1014,7 @@ function drawDatasetThumbnails() {
     for (let dataset in datasets) {
       let canvas: any =
           document.querySelector(`canvas[data-dataset=${dataset}]`);
-      let dataGenerator = datasets[dataset];
+      let dataGenerator = datasets[dataset].trainGenerator;
       renderThumbnail(canvas, dataGenerator);
     }
   }
@@ -1018,7 +1022,7 @@ function drawDatasetThumbnails() {
     for (let regDataset in regDatasets) {
       let canvas: any =
           document.querySelector(`canvas[data-regDataset=${regDataset}]`);
-      let dataGenerator = regDatasets[regDataset];
+      let dataGenerator = regDatasets[regDataset].trainGenerator;
       renderThumbnail(canvas, dataGenerator);
     }
   }
@@ -1076,13 +1080,10 @@ function generateData(firstTime = false) {
       NUM_SAMPLES_REGRESS : NUM_SAMPLES_CLASSIFY;
   let generator = state.problem === Problem.CLASSIFICATION ?
       state.dataset : state.regDataset;
-  let data = generator(numSamples, state.noise / 100);
-  // Shuffle the data in-place.
-  shuffle(data);
-  // Split into train and test data.
-  let splitIndex = Math.floor(data.length * state.percTrainData / 100);
-  trainData = data.slice(0, splitIndex);
-  testData = data.slice(splitIndex);
+  let numTrainSamples = numSamples * state.percTrainData / 100;
+  let numTestSamples = numSamples * (100 - state.percTrainData) / 100;
+  trainData = generator.trainGenerator(numTrainSamples, state.noise / 100);
+  testData = generator.testGenerator(numTestSamples, state.noise / 100);
   heatMap.updatePoints(trainData);
   heatMap.updateTestPoints(state.showTestData ? testData : []);
 }

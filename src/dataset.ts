@@ -140,8 +140,9 @@ export function classifySpiralData(numSamples: number, noise: number):
 
   function genSpiral(deltaT: number, label: number) {
     for (let i = 0; i < n; i++) {
-      let r = i / n * 5;
-      let t = 1.75 * i / n * 2 * Math.PI + deltaT;
+      let j = randUniform(0, n);
+      let r = j / n * 5;
+      let t = 1.75 * j / n * 2 * Math.PI + deltaT;
       let x = r * Math.sin(t) + randUniform(-1, 1) * noise;
       let y = r * Math.cos(t) + randUniform(-1, 1) * noise;
       points.push({x, y, label});

@@ -34,24 +34,51 @@ export let regularizations: {[key: string]: nn.RegularizationFunction} = {
   "L2": nn.RegularizationFunction.L2
 };
 
-/** A map between dataset names and functions that generate classification data. */
-export let datasets: {[key: string]: dataset.DataGenerator} = {
-  "circle": dataset.classifyCircleData,
-  "xor": dataset.classifyXORData,
-  "gauss": dataset.classifyTwoGaussData,
-  "spiral": dataset.classifySpiralData,
+/** DatasetGenerator class contains generator functions for training and
+ *  testing data. */
+class DatasetGenerator {
+  trainGenerator: dataset.DataGenerator;
+  testGenerator: dataset.DataGenerator;
+
+  // if only one generator is supplied it is used for training and testing
+  constructor(trainGenerator: dataset.DataGenerator,
+              testGenerator ?: dataset.DataGenerator) {
+    this.trainGenerator = trainGenerator;
+    this.testGenerator = testGenerator == null ? trainGenerator : testGenerator;
+  }
+
+   equals(other: DatasetGenerator) {
+     return (this.trainGenerator === other.trainGenerator &&
+             this.testGenerator === other.testGenerator);
+   }
+}
+
+/** A map between dataset names and the DatasetGenerator that contains
+ *  functions to geneterate classification data. */
+export let datasets: {[key: string]: DatasetGenerator} = {
+  "circle": new DatasetGenerator(dataset.classifyCircleData),
+  "xor": new DatasetGenerator(dataset.classifyXORData),
+  "gauss": new DatasetGenerator(dataset.classifyTwoGaussData),
+  "spiral": new DatasetGenerator(dataset.classifySpiralData),
 };
 
-/** A map between dataset names and functions that generate regression data. */
-export let regDatasets: {[key: string]: dataset.DataGenerator} = {
-  "reg-plane": dataset.regressPlane,
-  "reg-gauss": dataset.regressGaussian
+/** A map between dataset names and the DatasetGenerator that contains
+ *  functions to geneterate regression data. */
+export let regDatasets: {[key: string]: DatasetGenerator} = {
+  "reg-plane": new DatasetGenerator(dataset.regressPlane),
+  "reg-gauss": new DatasetGenerator(dataset.regressGaussian),
 };
 
 export function getKeyFromValue(obj: any, value: any): string {
   for (let key in obj) {
-    if (obj[key] === value) {
-      return key;
+    if (value instanceof DatasetGenerator) {
+      if (obj[key].equals(value)) {
+        return key;
+      }
+    } else {
+      if (obj[key] === value) {
+        return key;
+      }
     }
   }
   return undefined;
@@ -98,7 +125,7 @@ export interface Property {
   name: string;
   type: Type;
   keyMap?: {[key: string]: any};
-};
+}
 
 // Add the GUI state.
 export class State {
@@ -160,8 +187,8 @@ export class State {
   sinX = false;
   cosY = false;
   sinY = false;
-  dataset: dataset.DataGenerator = dataset.classifyCircleData;
-  regDataset: dataset.DataGenerator = dataset.regressPlane;
+  dataset: DatasetGenerator = new DatasetGenerator(dataset.classifyCircleData);
+  regDataset: DatasetGenerator = new DatasetGenerator(dataset.regressPlane);
   seed: string;
 
   /**
