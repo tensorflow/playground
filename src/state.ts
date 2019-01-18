@@ -60,6 +60,7 @@ export let datasets: {[key: string]: DatasetGenerator} = {
   "xor": new DatasetGenerator(dataset.classifyXORData),
   "gauss": new DatasetGenerator(dataset.classifyTwoGaussData),
   "spiral": new DatasetGenerator(dataset.classifySpiralData),
+  "diagonal": new DatasetGenerator(dataset.classifyDiagonalTrainData, dataset.classifyDiagonalTestData),
 };
 
 /** A map between dataset names and the DatasetGenerator that contains
