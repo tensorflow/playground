@@ -19,16 +19,16 @@
     "serve-watch": "concurrently \"http-server -o -c-1 dist/\" \"npm run watch\""
   },
   "devDependencies": {
+    "@types/d3": "^3.5.34",
+    "concat": "^1.0.3",
     "concurrently": "3.1.0",
     "copyfiles": "1.0.0",
     "http-server": "^0.11.1",
     "rimraf": "2.5.4",
     "tsify": "^4.0.0",
-    "watchify": "^3.11.0",
-    "uglify-js": "^2.8.29",
     "typescript": "^2.9",
-    "@types/d3": "^3.5.34",
-    "concat": "^1.0.3"
+    "uglify-js": "^2.8.29",
+    "watchify": "^3.11.1"
   },
   "dependencies": {
     "d3": "^3.5.16",
