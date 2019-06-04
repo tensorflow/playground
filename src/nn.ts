@@ -119,6 +119,13 @@ export class Activations {
       return 1 - output * output;
     }
   };
+  public static SWISH: ActivationFunction = {
+    output: x => x / (1 + Math.exp(-x)),
+    der: x => {
+      let output = Activations.SWISH.output(x);
+      return output * (1 - output);
+    }
+  };
   public static RELU: ActivationFunction = {
     output: x => Math.max(0, x),
     der: x => x <= 0 ? 0 : 1
