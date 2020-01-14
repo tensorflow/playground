@@ -264,6 +264,18 @@ function makeGUI() {
     reset();
   });
 
+  let selectOrangeEdit = d3.select("#select-orange").on("change", function() {
+    state.editColor = this.checked ? this.value : "blue"
+    state.serialize()
+    userHasInteracted()
+  });
+
+  let selectBlueEdit = d3.select("#select-blue").on("change", function() {
+    state.editColor = this.checked ? this.value : "orange"
+    state.serialize()
+    userHasInteracted()
+  });
+
   let showTestData = d3.select("#show-test-data").on("change", function() {
     state.showTestData = this.checked;
     state.serialize();
