@@ -97,7 +97,6 @@ class Player {
 
   /** Plays/pauses the player. */
   playOrPause() {
-    debugger;
     if (this.isPlaying) {
       this.isPlaying = false;
       this.pause();
@@ -275,8 +274,7 @@ function makeGUI() {
     userHasInteracted()
   });
 
-
-  d3.select("#heatmap").on("click", function() {
+  let dragBehavior = d3.behavior.drag().on("drag", function() {
         let [x, y] = d3.mouse(this)
         const label = state.editColor
         const padding = 20
@@ -289,6 +287,8 @@ function makeGUI() {
         state.trainData.push({x, y, label})
         heatMap.updatePoints(state.trainData);
   });
+
+  d3.select("#heatmap").call(dragBehavior);
 
   let showTestData = d3.select("#show-test-data").on("change", function() {
     state.showTestData = this.checked;
