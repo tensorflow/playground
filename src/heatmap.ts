@@ -41,6 +41,7 @@ export class HeatMap {
   private color;
   private canvas;
   private svg;
+  private points: Example2D[];
 
   constructor(
       width: number, numSamples: number, xDomain: [number, number],
@@ -88,11 +89,7 @@ export class HeatMap {
         position: "relative",
         top: `-${padding}px`,
         left: `-${padding}px`
-      }).on("click" , function() {
-        const [x, y]= d3.mouse(this)
-        console.log(x)
-        console.log(y)
-      });
+      })
     this.canvas = container.append("canvas")
       .attr("width", numSamples)
       .attr("height", numSamples)
@@ -146,10 +143,20 @@ export class HeatMap {
     this.updateCircles(this.svg.select("g.test"), points);
   }
 
+  addPointToCanvas(point: Example2D): void {
+    if (this.settings.noSvg) {
+      throw Error("Can't add points since noSvg=true");
+    }
+    this.points.push(point)
+    this.updateCircles(this.svg.select("g.train"), this.points);
+  }
+
   updatePoints(points: Example2D[]): void {
     if (this.settings.noSvg) {
       throw Error("Can't add points since noSvg=true");
     }
+    console.log("GOT HERE ONCE AT LEAST")
+    this.points = points.map(point => point);
     this.updateCircles(this.svg.select("g.train"), points);
   }
 

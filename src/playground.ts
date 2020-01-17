@@ -264,16 +264,30 @@ function makeGUI() {
     reset();
   });
 
-  let selectOrangeEdit = d3.select("#select-orange").on("change", function() {
-    state.editColor = this.checked ? this.value : "blue"
+  d3.select("#select-orange").on("change", function() {
+    state.editColor = this.checked ? -1 : 1
     state.serialize()
     userHasInteracted()
   });
 
-  let selectBlueEdit = d3.select("#select-blue").on("change", function() {
-    state.editColor = this.checked ? this.value : "orange"
+  d3.select("#select-blue").on("change", function() {
+    state.editColor = this.checked ? 1 : -1
     state.serialize()
     userHasInteracted()
+  });
+
+
+  d3.select("#heatmap").on("click", function() {
+        let [x, y] = d3.mouse(this)
+        const label = state.editColor
+        const padding = 20
+        const maxScale = 5.0
+        const factor = 23.07
+        x -= padding
+        y -= padding
+        x = x/factor - maxScale
+        y = maxScale - y/factor
+        heatMap.addPointToCanvas({x, y, label})
   });
 
   let showTestData = d3.select("#show-test-data").on("change", function() {
