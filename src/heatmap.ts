@@ -41,7 +41,6 @@ export class HeatMap {
   private color;
   private canvas;
   private svg;
-  private points: Example2D[];
 
   constructor(
       width: number, numSamples: number, xDomain: [number, number],
@@ -143,19 +142,10 @@ export class HeatMap {
     this.updateCircles(this.svg.select("g.test"), points);
   }
 
-  addPointToCanvas(point: Example2D): void {
-    if (this.settings.noSvg) {
-      throw Error("Can't add points since noSvg=true");
-    }
-    this.points.push(point)
-    this.updateCircles(this.svg.select("g.train"), this.points);
-  }
-
   updatePoints(points: Example2D[]): void {
     if (this.settings.noSvg) {
       throw Error("Can't add points since noSvg=true");
     }
-    this.points = points.map(point => point);
     this.updateCircles(this.svg.select("g.train"), points);
   }
 

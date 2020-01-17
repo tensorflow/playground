@@ -164,6 +164,8 @@ export class State {
   editColor = -1;
   dataset: dataset.DataGenerator = dataset.classifyCircleData;
   regDataset: dataset.DataGenerator = dataset.regressPlane;
+  trainData: dataset.Example2D[] = [];
+  testData: dataset.Example2D[] = [];
   seed: string;
 
   /**

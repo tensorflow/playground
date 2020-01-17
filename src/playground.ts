@@ -97,6 +97,7 @@ class Player {
 
   /** Plays/pauses the player. */
   playOrPause() {
+    debugger;
     if (this.isPlaying) {
       this.isPlaying = false;
       this.pause();
@@ -166,8 +167,6 @@ let colorScale = d3.scale.linear<string, number>()
                      .range(["#f59322", "#e8eaeb", "#0877bd"])
                      .clamp(true);
 let iter = 0;
-let trainData: Example2D[] = [];
-let testData: Example2D[] = [];
 let network: nn.Node[][] = null;
 let lossTrain = 0;
 let lossTest = 0;
@@ -287,15 +286,15 @@ function makeGUI() {
         y -= padding
         x = x/factor - maxScale
         y = maxScale - y/factor
-        console.log(label)
-        heatMap.addPointToCanvas({x, y, label})
+        state.trainData.push({x, y, label})
+        heatMap.updatePoints(state.trainData);
   });
 
   let showTestData = d3.select("#show-test-data").on("change", function() {
     state.showTestData = this.checked;
     state.serialize();
     userHasInteracted();
-    heatMap.updateTestPoints(state.showTestData ? testData : []);
+    heatMap.updateTestPoints(state.showTestData ? state.testData : []);
   });
   // Check/uncheck the checkbox according to the current state.
   showTestData.property("checked", state.showTestData);
@@ -935,7 +934,7 @@ function constructInput(x: number, y: number): number[] {
 
 function oneStep(): void {
   iter++;
-  trainData.forEach((point, i) => {
+  state.trainData.forEach((point, i) => {
     let input = constructInput(point.x, point.y);
     nn.forwardProp(network, input);
     nn.backProp(network, point.label, nn.Errors.SQUARE);
@@ -944,8 +943,8 @@ function oneStep(): void {
     }
   });
   // Compute the loss.
-  lossTrain = getLoss(network, trainData);
-  lossTest = getLoss(network, testData);
+  lossTrain = getLoss(network, state.trainData);
+  lossTest = getLoss(network, state.testData);
   updateUI();
 }
 
@@ -988,8 +987,8 @@ function reset(onStartup=false) {
       nn.Activations.LINEAR : nn.Activations.TANH;
   network = nn.buildNetwork(shape, state.activation, outputActivation,
       state.regularization, constructInputIds(), state.initZero);
-  lossTrain = getLoss(network, trainData);
-  lossTest = getLoss(network, testData);
+  lossTrain = getLoss(network, state.trainData);
+  lossTest = getLoss(network, state.testData);
   drawNetwork(network);
   updateUI(true);
 };
@@ -1112,10 +1111,10 @@ function generateData(firstTime = false) {
   shuffle(data);
   // Split into train and test data.
   let splitIndex = Math.floor(data.length * state.percTrainData / 100);
-  trainData = data.slice(0, splitIndex);
-  testData = data.slice(splitIndex);
-  heatMap.updatePoints(trainData);
-  heatMap.updateTestPoints(state.showTestData ? testData : []);
+  state.trainData = data.slice(0, splitIndex);
+  state.testData = data.slice(splitIndex);
+  heatMap.updatePoints(state.trainData);
+  heatMap.updateTestPoints(state.showTestData ? state.testData : []);
 }
 
 let firstInteraction = true;
