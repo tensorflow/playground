@@ -287,6 +287,7 @@ function makeGUI() {
         y -= padding
         x = x/factor - maxScale
         y = maxScale - y/factor
+        console.log(label)
         heatMap.addPointToCanvas({x, y, label})
   });
 
@@ -975,6 +976,10 @@ function reset(onStartup=false) {
   d3.select("#layers-label").text("Hidden layer" + suffix);
   d3.select("#num-layers").text(state.numHiddenLayers);
 
+  // Correct radio button on reset
+  let radioColor = state.editColor === - 1 ? "#select-orange" : "#select-blue";
+  d3.select(radioColor).attr("checked", "checked")
+  
   // Make a simple network.
   iter = 0;
   let numInputs = constructInput(0 , 0).length;

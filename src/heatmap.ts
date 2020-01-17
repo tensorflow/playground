@@ -155,7 +155,6 @@ export class HeatMap {
     if (this.settings.noSvg) {
       throw Error("Can't add points since noSvg=true");
     }
-    console.log("GOT HERE ONCE AT LEAST")
     this.points = points.map(point => point);
     this.updateCircles(this.svg.select("g.train"), points);
   }
