@@ -274,18 +274,21 @@ function makeGUI() {
     userHasInteracted()
   });
 
+  // On drag, we want to paint our canvas with the dots.
   let dragBehavior = d3.behavior.drag().on("drag", function() {
-        let [x, y] = d3.mouse(this)
-        const label = state.editColor
-        const padding = 20
-        const maxScale = 5.0
-        const factor = 23.07
-        x -= padding
-        y -= padding
-        x = x/factor - maxScale
-        y = maxScale - y/factor
-        state.trainData.push({x, y, label})
-        heatMap.updatePoints(state.trainData);
+    if(state.problem === Problem.CLASSIFICATION) {
+      let [x, y] = d3.mouse(this)
+      const label = state.editColor
+      const padding = 20
+      const maxScale = 5.0
+      const factor = 23.07
+      x -= padding
+      y -= padding
+      x = x/factor - maxScale
+      y = maxScale - y/factor
+      state.trainData.push({x, y, label})
+      heatMap.updatePoints(state.trainData);
+    }
   });
 
   d3.select("#heatmap").call(dragBehavior);
