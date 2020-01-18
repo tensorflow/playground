@@ -262,6 +262,7 @@ function makeGUI() {
     reset();
   });
 
+  // For changing state on different selections
   d3.select("#select-orange").on("change", function() {
     state.editColor = this.checked ? -1 : 1
     state.serialize()
@@ -384,6 +385,7 @@ function makeGUI() {
 
   let problem = d3.select("#problem").on("change", function() {
     state.problem = problems[this.value];
+    togglePaintSelection();
     generateData();
     drawDatasetThumbnails();
     parametersChanged = true;
@@ -978,10 +980,12 @@ function reset(onStartup=false) {
   d3.select("#layers-label").text("Hidden layer" + suffix);
   d3.select("#num-layers").text(state.numHiddenLayers);
 
+  togglePaintSelection()
+
   // Correct radio button on reset
   let radioColor = state.editColor === - 1 ? "#select-orange" : "#select-blue";
   d3.select(radioColor).attr("checked", "checked")
-  
+
   // Make a simple network.
   iter = 0;
   let numInputs = constructInput(0 , 0).length;
@@ -1095,6 +1099,11 @@ function hideControls() {
   });
   d3.select(".hide-controls-link")
     .attr("href", window.location.href);
+}
+
+function togglePaintSelection() {
+  let visiblity = state.problem === Problem.CLASSIFICATION ? "visible" : "hidden"
+  d3.select("#select-platform").style("visibility", visiblity);
 }
 
 function generateData(firstTime = false) {
