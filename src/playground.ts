@@ -88,6 +88,7 @@ let HIDABLE_CONTROLS = [
   ["Noise level", "noise"],
   ["Batch size", "batchSize"],
   ["# of hidden layers", "numHiddenLayers"],
+  ["Paint Platform", "paintPlatform"],
 ];
 
 class Player {
@@ -277,12 +278,13 @@ function makeGUI() {
 
   // On drag, we want to paint our canvas with the dots.
   let dragBehavior = d3.behavior.drag().on("drag", function() {
-    if(state.problem === Problem.CLASSIFICATION) {
+    let isVisible = d3.select("#select-platform").style("display") === "block"
+    if(state.problem === Problem.CLASSIFICATION && isVisible) {
       let [x, y] = d3.mouse(this)
-      const label = state.editColor
-      const padding = 20
-      const maxScale = 5.0
-      const factor = 23.07
+      let label = state.editColor
+      let padding = 20
+      let maxScale = 5.0
+      let factor = 23.07
       x -= padding
       y -= padding
       x = x/factor - maxScale
@@ -981,7 +983,6 @@ function reset(onStartup=false) {
   d3.select("#num-layers").text(state.numHiddenLayers);
 
   togglePaintSelection()
-
   // Correct radio button on reset
   let radioColor = state.editColor === - 1 ? "#select-orange" : "#select-blue";
   d3.select(radioColor).attr("checked", "checked")
@@ -1102,8 +1103,8 @@ function hideControls() {
 }
 
 function togglePaintSelection() {
-  let visiblity = state.problem === Problem.CLASSIFICATION ? "visible" : "hidden"
-  d3.select("#select-platform").style("visibility", visiblity);
+  let visiblity = state.problem === Problem.CLASSIFICATION ? "" : "none"
+  d3.select("#select-platform").style("display", visiblity);
 }
 
 function generateData(firstTime = false) {
