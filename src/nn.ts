@@ -134,6 +134,10 @@ export class Activations {
     output: x => x,
     der: x => 1
   };
+  public static SINE: ActivationFunction = {
+    output: x => (Math as any).sin(x),
+    der: x => (Math as any).cos(x)
+  };
 }
 
 /** Build-in regularization functions */
