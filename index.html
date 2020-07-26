@@ -14,17 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================-->
 <html>
+
 <head lang="en">
   <link rel="icon" type="image/png" href="favicon.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=1024">
   <meta name="keywords" content="neural networks,machine learning,javascript">
 
-  <meta property="og:type" content="article"/>
-  <meta property="og:title" content="Tensorflow — Neural Network Playground"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Tensorflow — Neural Network Playground" />
   <meta property="og:description" content="Tinker with a real neural network right here in your browser.">
-  <meta property="og:url" content="http://playground.tensorflow.org"/>
-  <meta property="og:image" content="http://playground.tensorflow.org/preview.png"/>
+  <meta property="og:url" content="http://playground.tensorflow.org" />
+  <meta property="og:image" content="http://playground.tensorflow.org/preview.png" />
 
   <meta name="twitter:card" value="summary_large_image">
   <meta name="twitter:title" content="Tensorflow — Neural Network Playground">
@@ -37,30 +38,37 @@ limitations under the License.
   <meta name="author" content="Daniel Smilkov and Shan Carter">
   <title>A Neural Network Playground</title>
   <link rel="stylesheet" href="bundle.css" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons" rel="stylesheet"
+    type="text/css">
   <script src="lib.js"></script>
 </head>
+
 <body>
   <!-- GitHub link -->
   <a class="github-link" href="https://github.com/tensorflow/playground" title="Source on GitHub" target="_blank">
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60.5 60.5" width="60" height="60">
-      <polygon class="bg" points="60.5,60.5 0,0 60.5,0 "/>
-      <path class="icon" d="M43.1,5.8c-6.6,0-12,5.4-12,12c0,5.3,3.4,9.8,8.2,11.4c0.6,0.1,0.8-0.3,0.8-0.6c0-0.3,0-1,0-2c-3.3,0.7-4-1.6-4-1.6c-0.5-1.4-1.3-1.8-1.3-1.8c-1.1-0.7,0.1-0.7,0.1-0.7c1.2,0.1,1.8,1.2,1.8,1.2c1.1,1.8,2.8,1.3,3.5,1c0.1-0.8,0.4-1.3,0.8-1.6c-2.7-0.3-5.5-1.3-5.5-5.9c0-1.3,0.5-2.4,1.2-3.2c-0.1-0.3-0.5-1.5,0.1-3.2c0,0,1-0.3,3.3,1.2c1-0.3,2-0.4,3-0.4c1,0,2,0.1,3,0.4c2.3-1.6,3.3-1.2,3.3-1.2c0.7,1.7,0.2,2.9,0.1,3.2c0.8,0.8,1.2,1.9,1.2,3.2c0,4.6-2.8,5.6-5.5,5.9c0.4,0.4,0.8,1.1,0.8,2.2c0,1.6,0,2.9,0,3.3c0,0.3,0.2,0.7,0.8,0.6c4.8-1.6,8.2-6.1,8.2-11.4C55.1,11.2,49.7,5.8,43.1,5.8z"/>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60.5 60.5"
+      width="60" height="60">
+      <polygon class="bg" points="60.5,60.5 0,0 60.5,0 " />
+      <path class="icon"
+        d="M43.1,5.8c-6.6,0-12,5.4-12,12c0,5.3,3.4,9.8,8.2,11.4c0.6,0.1,0.8-0.3,0.8-0.6c0-0.3,0-1,0-2c-3.3,0.7-4-1.6-4-1.6c-0.5-1.4-1.3-1.8-1.3-1.8c-1.1-0.7,0.1-0.7,0.1-0.7c1.2,0.1,1.8,1.2,1.8,1.2c1.1,1.8,2.8,1.3,3.5,1c0.1-0.8,0.4-1.3,0.8-1.6c-2.7-0.3-5.5-1.3-5.5-5.9c0-1.3,0.5-2.4,1.2-3.2c-0.1-0.3-0.5-1.5,0.1-3.2c0,0,1-0.3,3.3,1.2c1-0.3,2-0.4,3-0.4c1,0,2,0.1,3,0.4c2.3-1.6,3.3-1.2,3.3-1.2c0.7,1.7,0.2,2.9,0.1,3.2c0.8,0.8,1.2,1.9,1.2,3.2c0,4.6-2.8,5.6-5.5,5.9c0.4,0.4,0.8,1.1,0.8,2.2c0,1.6,0,2.9,0,3.3c0,0.3,0.2,0.7,0.8,0.6c4.8-1.6,8.2-6.1,8.2-11.4C55.1,11.2,49.7,5.8,43.1,5.8z" />
     </svg>
   </a>
   <!-- Header -->
   <header>
-    <h1 class="l--page">Tinker With a <b>Neural Network</b> <span class="optional">Right Here </span>in Your Browser.<br>Don’t Worry, You Can’t Break It. We Promise.</h1>
+    <h1 class="l--page">Tinker With a <b>Neural Network</b> <span class="optional">Right Here </span>in Your
+      Browser.<br>Don’t Worry, You Can’t Break It. We Promise.</h1>
   </header>
 
   <!-- Top Controls -->
   <div id="top-controls">
     <div class="container l--page">
       <div class="timeline-controls">
-        <button class="mdl-button mdl-js-button mdl-button--icon ui-resetButton" id="reset-button" title="Reset the network">
+        <button class="mdl-button mdl-js-button mdl-button--icon ui-resetButton" id="reset-button"
+          title="Reset the network">
           <i class="material-icons">replay</i>
         </button>
-        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored ui-playButton" id="play-pause-button" title="Run/Pause">
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored ui-playButton"
+          id="play-pause-button" title="Run/Pause">
           <i class="material-icons">play_arrow</i>
           <i class="material-icons">pause</i>
         </button>
@@ -163,6 +171,9 @@ limitations under the License.
           <div class="dataset" title="Spiral">
             <canvas class="data-thumbnail" data-dataset="spiral"></canvas>
           </div>
+          <div class="dataset" title="Custom">
+            <canvas class="data-thumbnail" data-dataset="custom"></canvas>
+          </div>
           <div class="dataset" title="Plane">
             <canvas class="data-thumbnail" data-regDataset="reg-plane"></canvas>
           </div>
@@ -190,9 +201,9 @@ limitations under the License.
             <input class="mdl-slider mdl-js-slider" type="range" id="batchSize" min="1" max="30" step="1">
           </p>
         </div>
-          <button class="basic-button" id="data-regen-button" title="Regenerate data">
-            Regenerate
-          </button>
+        <button class="basic-button" id="data-regen-button" title="Regenerate data">
+          Regenerate
+        </button>
       </div>
     </div>
 
@@ -203,7 +214,8 @@ limitations under the License.
       <div id="network">
         <svg id="svg" width="510" height="450">
           <defs>
-            <marker id="markerArrow" markerWidth="7" markerHeight="13" refX="1" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+            <marker id="markerArrow" markerWidth="7" markerHeight="13" refX="1" refY="6" orient="auto"
+              markerUnits="userSpaceOnUse">
               <path d="M2,11 L7,6 L2,2" />
             </marker>
           </defs>
@@ -211,13 +223,15 @@ limitations under the License.
         <!-- Hover card -->
         <div id="hovercard">
           <div style="font-size:10px">Click anywhere to edit.</div>
-          <div><span class="type">Weight/Bias</span> is <span class="value">0.2</span><span><input type="number"/></span>.</div>
+          <div><span class="type">Weight/Bias</span> is <span class="value">0.2</span><span><input
+                type="number" /></span>.</div>
         </div>
         <div class="callout thumbnail">
           <svg viewBox="0 0 30 30">
             <defs>
-              <marker id="arrow" markerWidth="5" markerHeight="5" refx="5" refy="2.5" orient="auto" markerUnits="userSpaceOnUse">
-                <path d="M0,0 L5,2.5 L0,5 z"/>
+              <marker id="arrow" markerWidth="5" markerHeight="5" refx="5" refy="2.5" orient="auto"
+                markerUnits="userSpaceOnUse">
+                <path d="M0,0 L5,2.5 L0,5 z" />
               </marker>
             </defs>
             <path d="M12,30C5,20 2,15 12,0" marker-end="url(#arrow)">
@@ -229,8 +243,9 @@ limitations under the License.
         <div class="callout weights">
           <svg viewBox="0 0 30 30">
             <defs>
-              <marker id="arrow" markerWidth="5" markerHeight="5" refx="5" refy="2.5" orient="auto" markerUnits="userSpaceOnUse">
-                <path d="M0,0 L5,2.5 L0,5 z"/>
+              <marker id="arrow" markerWidth="5" markerHeight="5" refx="5" refy="2.5" orient="auto"
+                markerUnits="userSpaceOnUse">
+                <path d="M0,0 L5,2.5 L0,5 z" />
               </marker>
             </defs>
             <path d="M12,30C5,20 2,15 12,0" marker-end="url(#arrow)">
@@ -294,7 +309,7 @@ limitations under the License.
             </g>
           </svg>
         </div>
-        <br/>
+        <br />
         <div style="display:flex;">
           <label class="ui-showTestData mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="show-test-data">
             <input type="checkbox" id="show-test-data" class="mdl-checkbox__input" checked>
@@ -322,29 +337,49 @@ limitations under the License.
   <article id="article-text">
     <div class="l--body">
       <h2>Um, What Is a Neural Network?</h2>
-      <p>It’s a technique for building a computer program that learns from data. It is based very loosely on how we think the human brain works. First, a collection of software “neurons” are created and connected together, allowing them to send messages to each other. Next, the network is asked to solve a problem, which it attempts to do over and over, each time strengthening the connections that lead to success and diminishing those that lead to failure. For a more detailed introduction to neural networks, Michael Nielsen’s <a href="http://neuralnetworksanddeeplearning.com/index.html">Neural Networks and Deep Learning</a> is a good place to start. For a more technical overview, try <a href="http://www.deeplearningbook.org/">Deep Learning</a> by Ian Goodfellow, Yoshua Bengio, and Aaron Courville.</p>
+      <p>It’s a technique for building a computer program that learns from data. It is based very loosely on how we
+        think the human brain works. First, a collection of software “neurons” are created and connected together,
+        allowing them to send messages to each other. Next, the network is asked to solve a problem, which it attempts
+        to do over and over, each time strengthening the connections that lead to success and diminishing those that
+        lead to failure. For a more detailed introduction to neural networks, Michael Nielsen’s <a
+          href="http://neuralnetworksanddeeplearning.com/index.html">Neural Networks and Deep Learning</a> is a good
+        place to start. For a more technical overview, try <a href="http://www.deeplearningbook.org/">Deep Learning</a>
+        by Ian Goodfellow, Yoshua Bengio, and Aaron Courville.</p>
     </div>
 
     <div class="l--body">
       <h2>This Is Cool, Can I Repurpose It?</h2>
-      <p>Please do! We’ve open sourced it on <a href="https://github.com/tensorflow/playground">GitHub</a> with the hope that it can make neural networks a little more accessible and easier to learn. You’re free to use it in any way that follows our <a href="https://github.com/tensorflow/playground/blob/master/LICENSE">Apache License</a>. And if you have any suggestions for additions or changes, please <a href="https://github.com/tensorflow/playground/issues">let us know</a>.</p>
-      <p>We’ve also provided some controls below to enable you tailor the playground to a specific topic or lesson. Just choose which features you’d like to be visible below then save <a class="hide-controls-link" href="#">this link</a>, or <a href="javascript:location.reload();">refresh</a> the page.</p>
+      <p>Please do! We’ve open sourced it on <a href="https://github.com/tensorflow/playground">GitHub</a> with the hope
+        that it can make neural networks a little more accessible and easier to learn. You’re free to use it in any way
+        that follows our <a href="https://github.com/tensorflow/playground/blob/master/LICENSE">Apache License</a>. And
+        if you have any suggestions for additions or changes, please <a
+          href="https://github.com/tensorflow/playground/issues">let us know</a>.</p>
+      <p>We’ve also provided some controls below to enable you tailor the playground to a specific topic or lesson. Just
+        choose which features you’d like to be visible below then save <a class="hide-controls-link" href="#">this
+          link</a>, or <a href="javascript:location.reload();">refresh</a> the page.</p>
       <div class="hide-controls"></div>
     </div>
 
     <div class="l--body">
       <h2>What Do All the Colors Mean?</h2>
-      <p>Orange and blue are used throughout the visualization in slightly different ways, but in general orange shows negative values while blue shows positive values.</p>
-      <p>The data points (represented by small circles) are initially colored orange or blue, which correspond to positive one and negative one.</p>
-      <p>In the hidden layers, the lines are colored by the weights of the connections between neurons. Blue shows a positive weight, which means the network is using that output of the neuron as given. An orange line shows that the network is assiging a negative weight.</p>
-      <p>In the output layer, the dots are colored orange or blue depending on their original values. The background color shows what the network is predicting for a particular area. The intensity of the color shows how confident that prediction is.</p>
+      <p>Orange and blue are used throughout the visualization in slightly different ways, but in general orange shows
+        negative values while blue shows positive values.</p>
+      <p>The data points (represented by small circles) are initially colored orange or blue, which correspond to
+        positive one and negative one.</p>
+      <p>In the hidden layers, the lines are colored by the weights of the connections between neurons. Blue shows a
+        positive weight, which means the network is using that output of the neuron as given. An orange line shows that
+        the network is assiging a negative weight.</p>
+      <p>In the output layer, the dots are colored orange or blue depending on their original values. The background
+        color shows what the network is predicting for a particular area. The intensity of the color shows how confident
+        that prediction is.</p>
     </div>
 
     <div class="l--body">
       <h2>What Library Are You Using?</h2>
-      <p>We wrote a tiny neural network <a href="https://github.com/tensorflow/playground/blob/master/src/nn.ts">library</a>
-      that meets the demands of this educational visualization. For real-world applications, consider the
-      <a href="https://www.tensorflow.org/">TensorFlow</a> library.
+      <p>We wrote a tiny neural network <a
+          href="https://github.com/tensorflow/playground/blob/master/src/nn.ts">library</a>
+        that meets the demands of this educational visualization. For real-world applications, consider the
+        <a href="https://www.tensorflow.org/">TensorFlow</a> library.
       </p>
     </div>
 
@@ -352,10 +387,14 @@ limitations under the License.
       <h2>Credits</h2>
       <p>
         This was created by Daniel Smilkov and Shan Carter.
-        This is a continuation of many people’s previous work — most notably Andrej Karpathy’s <a href="http://cs.stanford.edu/people/karpathy/convnetjs/demo/classify2d.html">convnet.js demo</a>
-        and Chris Olah’s <a href="http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/">articles</a> about neural networks.
-        Many thanks also to D. Sculley for help with the original idea and to Fernanda Viégas and Martin Wattenberg and the rest of the
-        <a href="https://research.google.com/bigpicture/">Big Picture</a> and <a href="https://research.google.com/teams/brain/">Google Brain</a> teams for feedback and guidance.
+        This is a continuation of many people’s previous work — most notably Andrej Karpathy’s <a
+          href="http://cs.stanford.edu/people/karpathy/convnetjs/demo/classify2d.html">convnet.js demo</a>
+        and Chris Olah’s <a href="http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/">articles</a> about neural
+        networks.
+        Many thanks also to D. Sculley for help with the original idea and to Fernanda Viégas and Martin Wattenberg and
+        the rest of the
+        <a href="https://research.google.com/bigpicture/">Big Picture</a> and <a
+          href="https://research.google.com/teams/brain/">Google Brain</a> teams for feedback and guidance.
       </p>
     </div>
   </article>
@@ -364,29 +403,31 @@ limitations under the License.
   <footer>
     <div class="l--body">
       <a href="https://www.tensorflow.org/" class="logo">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 528 87" xml:space="preserve">
-        	<path d="M37.4,15.5v70.3H25V15.5H1V3.4h60.4v12.1H37.4z"/>
-        	<path d="M149,85.8v-35c0-12.5-4.7-16.9-12.7-16.9c-8.1,0-12.7,5.8-12.7,15.8v36.1h-12.1V24h12.1v5.9c3.1-4.5,9.2-7.2,15.5-7.2
-        		c14.4,0,22,9.4,22,27.7v35.4H149z"/>
-        	<path d="M188.7,87.1c-8.4,0-17.4-3.3-23.7-7.9l5.5-9.2c5.8,4,12.2,6.1,18,6.1c7.7,0,11.3-2.5,11.3-6.8c0-4.7-5.4-6.9-14.4-10.4
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 528 87" xml:space="preserve">
+          <path d="M37.4,15.5v70.3H25V15.5H1V3.4h60.4v12.1H37.4z" />
+          <path d="M149,85.8v-35c0-12.5-4.7-16.9-12.7-16.9c-8.1,0-12.7,5.8-12.7,15.8v36.1h-12.1V24h12.1v5.9c3.1-4.5,9.2-7.2,15.5-7.2
+        		c14.4,0,22,9.4,22,27.7v35.4H149z" />
+          <path
+            d="M188.7,87.1c-8.4,0-17.4-3.3-23.7-7.9l5.5-9.2c5.8,4,12.2,6.1,18,6.1c7.7,0,11.3-2.5,11.3-6.8c0-4.7-5.4-6.9-14.4-10.4
         		c-13.3-5.2-18.1-9.7-18.1-19.4c0-11.1,8.7-16.8,21.1-16.8c7.8,0,15.4,2.8,21,6.8l-5.3,9.3c-5.1-3.5-10.1-5.3-16-5.3
-        		c-5.9,0-8.5,2.4-8.5,5.7c0,3.1,2.1,5.3,11.4,8.9c13.8,5.3,20.8,9.1,20.8,20.7C211.9,82.5,200.8,87.1,188.7,87.1z"/>
-        	<path d="M242,87.1c-15.5,0-27.2-12.8-27.2-32.1c0-20.2,12-32.3,27.5-32.3c15.8,0,27.5,12.6,27.5,31.9
+        		c-5.9,0-8.5,2.4-8.5,5.7c0,3.1,2.1,5.3,11.4,8.9c13.8,5.3,20.8,9.1,20.8,20.7C211.9,82.5,200.8,87.1,188.7,87.1z" />
+          <path d="M242,87.1c-15.5,0-27.2-12.8-27.2-32.1c0-20.2,12-32.3,27.5-32.3c15.8,0,27.5,12.6,27.5,31.9
         		C269.9,75.1,257.9,87.1,242,87.1z M241.9,34.3c-9.2,0-14.8,8.1-14.8,20.4c0,13.5,6.2,21,15.4,21c9.2,0,15.2-9.3,15.2-20.6
-        		C257.7,42.4,251.7,34.3,241.9,34.3z"/>
-        	<path d="M310,36.8c-2.6-1.4-5.3-2.2-9.3-2.2c-7.7,0-12.1,5.4-12.1,15.9v35.3h-12.1V24h12.1v5.9c2.8-4.1,8-7.2,14.1-7.2
-        		c4.9,0,8,0.9,10.5,2.6L310,36.8z"/>
-        	<path d="M330.3,15.5v21.5H354v12.1h-23.7v36.6H318V3.4h50.3v12.1H330.3z"/>
-        	<path d="M374.5,85.8V6.4L386.6,0v85.8H374.5z"/>
-        	<path d="M421.9,87.1c-15.5,0-27.2-12.8-27.2-32.1c0-20.2,12-32.3,27.5-32.3c15.8,0,27.5,12.6,27.5,31.9
+        		C257.7,42.4,251.7,34.3,241.9,34.3z" />
+          <path d="M310,36.8c-2.6-1.4-5.3-2.2-9.3-2.2c-7.7,0-12.1,5.4-12.1,15.9v35.3h-12.1V24h12.1v5.9c2.8-4.1,8-7.2,14.1-7.2
+        		c4.9,0,8,0.9,10.5,2.6L310,36.8z" />
+          <path d="M330.3,15.5v21.5H354v12.1h-23.7v36.6H318V3.4h50.3v12.1H330.3z" />
+          <path d="M374.5,85.8V6.4L386.6,0v85.8H374.5z" />
+          <path d="M421.9,87.1c-15.5,0-27.2-12.8-27.2-32.1c0-20.2,12-32.3,27.5-32.3c15.8,0,27.5,12.6,27.5,31.9
         		C449.8,75.1,437.7,87.1,421.9,87.1z M421.7,34.3c-9.2,0-14.8,8.1-14.8,20.4c0,13.5,6.2,21,15.4,21c9.2,0,15.2-9.3,15.2-20.6
-        		C437.5,42.4,431.5,34.3,421.7,34.3z"/>
-        	<path d="M510.9,85.8h-10.4l-8.4-31.2c-1.3-4.7-2.6-10.2-3.2-13.2c-0.6,2.9-1.9,8.6-3.2,13.3l-8.2,31.1h-10.4L450.3,24h12l7.3,30
+        		C437.5,42.4,431.5,34.3,421.7,34.3z" />
+          <path d="M510.9,85.8h-10.4l-8.4-31.2c-1.3-4.7-2.6-10.2-3.2-13.2c-0.6,2.9-1.9,8.6-3.2,13.3l-8.2,31.1h-10.4L450.3,24h12l7.3,30
         		c1.2,4.7,2.5,10.6,3.1,13.5c0.7-3.1,2.1-8.7,3.4-13.5l8.2-30h9.8l8.4,30.1c1.3,4.8,2.6,10.4,3.3,13.4c0.7-3.1,1.9-8.8,3.1-13.5
-        		l7.3-30h12L510.9,85.8z"/>
-        	<path d="M79.1,76.2c-6.7,0-12.7-4-14.9-13.2l40.5-12.2c-0.2-2.8-0.6-5.4-1.3-8c-3-11.6-11.1-20.1-24.7-20.1
+        		l7.3-30h12L510.9,85.8z" />
+          <path d="M79.1,76.2c-6.7,0-12.7-4-14.9-13.2l40.5-12.2c-0.2-2.8-0.6-5.4-1.3-8c-3-11.6-11.1-20.1-24.7-20.1
         		c-16,0-27.1,11.3-27.1,32.3c0,20.5,12.2,32.1,26.7,32.1c9.4,0,15.9-2.9,21.3-8.1l-7.2-7.8C88.4,74.3,84.3,76.2,79.1,76.2z
-        	 M78,33.7c7.9,0,12.1,4.5,13.8,10.5l-27.9,8.5l0-3.5C64.9,39.3,69.8,33.7,78,33.7z"/>
+        	 M78,33.7c7.9,0,12.1,4.5,13.8,10.5l-27.9,8.5l0-3.5C64.9,39.3,69.8,33.7,78,33.7z" />
         </svg>
       </a>
       <div class="links">
@@ -398,4 +439,5 @@ limitations under the License.
   <!-- Google analytics -->
   <script src="analytics.js"></script>
 </body>
+
 </html>
