@@ -39,8 +39,8 @@ export let datasets: { [key: string]: dataset.DataGenerator | dataset.DataLoader
   "circle": { call: dataset.classifyCircleData, variant: 'data_generator' },
   "xor": { call: dataset.classifyXORData, variant: 'data_generator' },
   "gauss": { call: dataset.classifyTwoGaussData, variant: 'data_generator' },
-  "spiral": { call: dataset.classifySpiralData, variant: 'data_generator' }
-  //"custom": { call: dataset.classifyCustomData, variant: 'data_loader' }
+  "spiral": { call: dataset.classifySpiralData, variant: 'data_generator' },
+  "custom": { call: dataset.classifyCustomData, variant: 'data_loader' }
 };
 
 /** A map between dataset names and functions that generate regression data. */
