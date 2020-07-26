@@ -25,7 +25,7 @@ import {
   getKeyFromValue,
   Problem
 } from "./state";
-import { Example2D, shuffle, isDataGenerator } from "./dataset";
+import { Example2D, shuffle, isDataGenerator, DataLoader, DataGenerator } from "./dataset";
 import { AppendingLineChart } from "./linechart";
 import * as d3 from 'd3';
 
@@ -991,13 +991,19 @@ function initTutorial() {
 }
 
 function drawDatasetThumbnails() {
-  function renderThumbnail(canvas, dataGenerator) {
+  function renderThumbnail(canvas, dataGenerator: DataGenerator | DataLoader) {
     let w = 100;
     let h = 100;
     canvas.setAttribute("width", w);
     canvas.setAttribute("height", h);
     let context = canvas.getContext("2d");
-    let data = dataGenerator(200, 0);
+    let data: Example2D[];
+    if (isDataGenerator(dataGenerator)) {
+      data = dataGenerator.call(200, 0);
+    } else {
+      data = dataGenerator.call("1.0,2.0,1.0");
+    }
+
     data.forEach(function (d) {
       context.fillStyle = colorScale(d.label);
       context.fillRect(w * (d.x + 6) / 12, h * (d.y + 6) / 12, 4, 4);
