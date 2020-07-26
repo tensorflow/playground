@@ -14,7 +14,7 @@ limitations under the License.
 ==============================================================================*/
 
 import * as d3 from 'd3';
-import { parse as csvparse } from 'csv/lib/sync';
+import * as csv_parse from 'csv-parse/lib/sync';
 
 /**
  * A two dimensional example: x and y coordinates with the label.
@@ -224,7 +224,7 @@ export function classifyXORData(numSamples: number, noise: number):
 }
 
 export function classifyCustomData(contents: string): Example2D[] {
-  let records = csvparse(contents.trim(), {
+  let records = csv_parse(contents.trim(), {
     columns: ['x', 'y', 'label'],
     skip_empty_lines: true,
   });
