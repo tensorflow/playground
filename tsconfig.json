@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "noImplicitReturns": true,
     "removeComments": true,
-    "preserveConstEnums": true
+    "preserveConstEnums": true,
+    "target": "ES6"
   },
   "exclude": [
-    "node_modules" 
+    "node_modules"
   ]
 }
