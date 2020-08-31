@@ -34,5 +34,5 @@ jobs:
           git config --global user.email "ucecwme@ucl.ac.uk"
           git config --global user.name "nickcafferry"
           git init
-          git subtree push --prefix dist origin th-pages
+          git subtree push --prefix dist master th-pages
           
