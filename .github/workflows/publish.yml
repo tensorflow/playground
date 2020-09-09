@@ -1,4 +1,4 @@
-name: Deno
+name: publish
 
 on:
   push:
