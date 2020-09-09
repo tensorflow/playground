@@ -16,3 +16,5 @@ jobs:
 
       - name: Setup Deno
         run: |
+          npm login --registry=https://npm.pkg.github.com/
+          npm publish
