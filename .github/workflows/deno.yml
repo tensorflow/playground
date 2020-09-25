@@ -31,9 +31,9 @@ jobs:
           git config --global user.name "nickcafferry"
           git init
           
-          mkdir Jmol
           cd Jmol/
-          wget https://sourceforge.net/projects/jmol/files/Jmol/
+          wget -O Jmol-14.31.7-binary.zip https://sourceforge.net/projects/jmol/files/latest/download
+          unzip Jmol-14.31.7-binary.zip
           git add -A
           cd ../
           git push origin master
