@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp>
+     <information>
+         <title>JSpecView Applet (All-Permissions)</title>
+         <vendor>IntegratedGraphics</vendor>
+  <offline-allowed/>
+     </information>
+     <resources>
+         <j2se version="1.6+"/>
+         <jar href="JSpecViewAppletSigned.jar" main="true"/>
+     </resources>
+     <applet-desc
+         name="JSpecView Applet (All-Permissions)"
+         main-class="jspecview.applet.JSVAppletPro.class"
+         width="1200"
+         height="500">
+     </applet-desc>
+     <security>
+         <all-permissions/>
+     </security>
+</jnlp> 

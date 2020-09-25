@@ -1,0 +1,73 @@
+
+Copyright 1998-2007 The Jmol Development Team
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+02111-1307  USA.
+
+
+Complete source code for the Jmol application, the Jmol applet, and
+surrounding utilities is available from http://www.jmol.org
+
+
+This software uses several external libraries and resources:
+
+JUnit
+  Used for unit testing. Distributed by the IBM Public License (see
+  doc/ibm.license.html). See http://www.junit.org/.
+
+The Chemical Development Kit
+  Used for reading and writing CML and ShelX. Distributed by Lesser GNU Public
+  License 
+  See http://cdk.sf.net/.
+
+AElfred
+  Used for XML parsing. Distributed free and without warranty.
+  Copyright (C) 1997,1998 by Microstar Software Ltd.
+  See http://www.microstar.com/aelfred.html.
+
+SAX
+  Used for event-based XML parsing. Distributed free and without warranty.
+  See http://www.megginson.com/SAX/.
+
+Acme Image encoders
+  Used for exporting images in GIF and PPM formats. Distributed free and
+  without warranty. Copyright (C) 1996,1998 by Jef Poskanzer.
+  See http://www.acme.com/.
+
+JPEG Encoder
+  Used for exporting images in JPEG format. Distributed free and without
+  warranty (see doc/jpegEncoder.license).
+  Copyright (c) 1998 James R. Weeks and BioElectroMech.
+  See http://www.obrador.com/essentialjpeg/.
+
+Java Analysis Studio
+  Used for graphs. Distributed by the GNU Lesser General Public License
+  (see doc/lgpl.license), and requires providing the source code (see
+  http://jas.freehep.org/source.htm). See http://jas.freehep.org/.
+
+Unofficial Java3D vecmath package
+  Used for linear algebra. Distributed free and without warranty.
+  Copyright (C) 1997,1998,1999 by Kenji Hiranabe.
+  See http://www.esm.co.jp/divisions/open-sys/java/vecmath/.
+
+JFA Icon collection
+  Used for icons in menus and toolbars. Distributed free and without warranty.
+  Copyright (C) 1998 by Dean S. Jones.
+  See http://jfa.javalobby.org/projects/icons/
+
+Jakarta Commons CLI
+  Used for parsing command line optinos. Distributed with The Apache Software
+  License, Version 1.1. Copyright (c) 1999-2001 The Apache Software Foundation.
+  See http://jakarta.apache.org/commons/cli/.

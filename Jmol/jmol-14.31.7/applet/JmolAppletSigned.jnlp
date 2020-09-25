@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp>
+     <information>
+         <title>Jmol Applet (all-permissions)</title>
+         <vendor>IntegratedGraphics</vendor>
+  <offline-allowed/>
+     </information>
+     <resources>
+         <j2se version="1.6+"/>
+         <jar href="JmolAppletSigned.jar" main="true"/>
+     </resources>
+     <applet-desc
+         name="Jmol Applet (all-permissions)"
+         main-class="JmolApplet.class"
+         width="500"
+         height="500">
+     </applet-desc>
+     <security>
+         <all-permissions/>
+     </security>
+</jnlp> 

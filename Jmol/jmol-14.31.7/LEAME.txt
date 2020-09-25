@@ -1,0 +1,281 @@
+==============================================================================
+===                                  Jmol                                  ===
+==============================================================================
+     Jmol: un visor Java de código abierto para estructuras químicas en 
+        tres dimensiones, con prestaciones para compuestos químicos, 
+                    cristales, materiales y biomoléculas.
+==============================================================================
+
+Jmol es un visor de moléculas y un editor; es de código abierto y está 
+escrito en Java.
+
+Toda la información está disponible en http://www.jmol.org/
+
+Las preguntas o comentarios relativos a su uso deben enviarse a 
+jmol-users@lists.sourceforge.net  (en inglés)
+
+Las preguntas, comentarios y sugerencias relativos a su desarrollo deben
+enviarse a jmol-developers@lists.sf.net  (en inglés)
+
+
+Lista de archivos incluidos:
+--------------------
+
+
+1 == Archivos con información ==
+
+1.1 === LEAME.txt ===
+Este archivo.
+
+1.2 === README.txt ===
+La versión en inglés de LEAME.txt
+
+1.3 === COPYRIGHT.txt ===
+Información sobre los derechos de copia relativos a Jmol y a sus componentes de
+terceros.
+
+1.4 === LICENSE.txt ===
+Los términos de uso y distribución de Jmol (licencia GNU LGPL).
+
+1.5 === CHANGES.txt ===
+Una lista histórica con las prestaciones añadidas en cada versión de Jmol.
+
+1.6 === README-CHEMDOODLE.txt ===
+Instrucciones sobre el uso de ChemDoodle junto con miniaplicaciones Jmol, 
+y sobre la licencia de ChemDoodle (que es diferente de la de Jmol).
+
+
+2 == Archivos por lotes ==
+Estos archivos pueden usarse para iniciar la aplicación Jmol desde una consola
+de instrucciones ("línea de comandos") y, en particular, para forzar una cierta 
+combinación de parámetros
+(véase http://wiki.jmol.org/index.php/Jmol_Application#Command_line_options).
+
+2.1 === jmol ===
+(Un tipo de archivo por lotes para iniciar la aplicación Jmol.)
+
+2.2 === jmol.bat ===
+Archivo por lotes para iniciar la aplicación Jmol en Windows.
+
+2.3 === jmol.mac ===
+(Un tipo de archivo por lotes para iniciar la aplicación Jmol.)
+
+2.4 === jmol.sh ===
+Un archivo de instrucciones para iniciar la aplicación Jmol en sistemas de tipo 
+Unix, por ejemplo Linux, BSD, Solaris o Cygwin para Windows.
+
+
+3 == Archivos de la aplicación Jmol ==
+Ésta se usa como un programa autónomo.
+
+3.1 === Jmol.jar ===
+El archivo ejecutable de la aplicación Jmol (un programa escrito en Java). 
+Funciona como cualquier otro programa: se abre en su propia ventana, se puede 
+redimensionar o minimizar, se puede arrastrar y soltar archivos sobre él, tiene 
+una barra superior de menú, puede abrir y grabar archivos, etc. Puede ejecutarse
+desde la línea de comandos (particularmente, usando los archivos por lotes que 
+se describen más arriba) pero, si Java está correctamente configurado en tu 
+sistema, normalmente basta con hacer doble clic en este archivo.
+(Para obtener más información, consulte 
+http://wiki.jmol.org/index.php/Jmol_Application#Starting_Jmol_Application ).
+
+3.2 === JmolData.jar ===
+Esta es una versión reducida de Jmol.jar que carece de las capacidades de
+visualización. De algún modo, contradice así el concepto (clásico) de lo que es
+jmol, pero con JmolData y algunas instrucciones bien diseñadas es posible 
+obtener casi cualquier información de un modelo y exponerla del modo que se 
+quiera.
+
+Funciona sólo desde la "línea de comandos" y está diseñada para extraer datos de
+un modelo o grupo de ellos. Sólo pueden usarse instrucciones que no tengan 
+relación con la visualización: hay enlaces pero no "varillas", átomos pero no
+"esferas de puntos", hélices pero no "esquemáticos".
+
+
+4 == Archivos de la miniaplicación Jmol ==
+Éstos se usan como parte de páginas web, e incluyen:
+ Archivos de miniaplicación | Bibliotecas Javascript principales 
+  | Bibliotecas Javascript opcionales
+
+4.1 === Archivos de miniaplicación ===
+
+4.1.1 ==== JmolApplet0.jar  y  JmolApplet0(diversosSufijos).jar ====
+Ésta es la miniaplicación, es decir, una versión del programa que sólo funciona
+cuando se incluye dentro de una página web.
+
+La miniaplicación se divide en varios trozos de acuerdo con su funcionalidad, de
+modo que si una página no precisa determinado componente, éste no se descargará 
+desde el servidor. Aun así, se recomienda que pongas todos los archivos 
+JmolApplet0*.jar en el servidor, incluso si tus páginas no usan sus 
+prestaciones, pues tanto el menú emergente como la consola permiten a los 
+usuarios acceder a funciones de Jmol que tú no hayas previsto.
+
+Esta versión subdividida es la que se usa de forma predeterminada si utilizas 
+Jmol.js (que es el método recomendado). Para ello, basta usar la forma más 
+simple de jmolInitialize(), indicando sólo la carpeta que contiene el conjunto
+de archivos jar:
+ jmolInitialize("carpeta-que-contiene-los-archivos-jar")
+por ejemplo,
+ jmolInitialize(".")  
+      (si los archivos jar están en la misma carpeta que la página web)
+ jmolInitialize("../jmol") 
+      (si los archivos jar están en una carpeta paralela, llamada 'jmol')
+
+4.1.2 ==== JmolAppletSigned0.jar  y  JmolAppletSigned0(diversosSufijos).jar ====
+Una versión equivalente de la miniaplicación, pero en este caso "firmada" (un
+término de seguridad en Java). Esto significa que el visitante de la página web
+debe autorizarla para que se ejecute, pero al hacerlo conseguirá un acceso a
+archivos con menos restricciones. Por ejemplo, podrá acceder a archivos en 
+cualquier parte de su ordenador y en cualquier servidor web.
+
+Habitualmente, los usuarios recibirán un aviso pidiéndoles que acepten el 
+"certificado" o que "confíen" en la miniaplicación (vea las observaciones a 
+continuación). Debes tener esto en cuenta si decides usar JmolAppletSigned.jar.
+Aparte de leer archivos, Jmol no usa actualmente otras posibilidades de las
+miniaplicaciones firmadas, tales como acceso al portapapeles del sistema o
+escritura de archivos. Utiliza esta versión sólo si sabes lo que estás haciendo
+y has considerado las cuestiones de seguridad.
+
+Para llamar a esta versión desde Jmol.js, utiliza la forma:
+ jmolInitialize("carpeta-que-contiene-los-archivos-jar", true)
+o bien
+ jmolInitialize("carpeta-que-contiene-los-archivos-jar", "JmolAppletSigned0.jar")
+
+Observaciones:
+* La política de seguridad que solicita que se confíe en la miniaplicación
+  podría no estar siempre activa en los sistemas de los usuarios.
+* El mensaje solicitando permiso se mostrará para cada uno de los 14 o más
+  archivos jar que se pueden cargar.
+* El usuario puede tener la posibilidad de confiar en la miniaplicación de
+  forma permanente y así evitar dar permiso cada vez que visite una página que
+  utiliza Jmol.
+
+4.1.3 ==== JmolApplet.jar ====
+Se trata en este caso de la miniaplicación en forma de un archivo "todo en uno" 
+o "monolítico", que se mantiene principalmente por compatibilidad con páginas
+antiguas que lo invoquen explícitamente. 
+Este archivo único es equivalente al conjunto de todos los archivos 
+JmolApplet0*.jar, explicados más arriba.
+El método recomendado es el uso de la versión subdividida (JmolApplet0.jar etc.).
+En particular, Jmol.js utiliza de forma predeterminada la versión subdividida.
+
+Te puede interesar utilizar este archivo si quieres mantener sencillo tu sitio 
+web, o si sólo quieres actualizar un archivo jar cuando lleguen versiones nuevas
+de Jmol. Sin embargo, este Jmol se cargará algo más lentamente que las versiones
+subdivididas (descritas arriba), puesto que es preciso que se descarguen al 
+equipo del usuario todos los módulos (2,4 MB en total), sean o no necesarios,
+antes de que se pueda mostrar una estructura.
+
+Para llamar a JmolApplet.jar desde Jmol.js:
+
+a) ponlo en la misma carpeta que contiene la página HTML que lo
+   requiere y no uses jmolInitialize()
+   
+o bien
+
+b) identifícalo explícitamente en jmolInitialize(), por ejemplo:
+   jmolInitialize("carpeta-que-contiene-los-archivos-jar", "JmolApplet.jar")
+
+4.1.4 ==== JmolAppletSigned.jar ====
+Una versión equivalente de la miniaplicación monolítica, pero en este caso es 
+una miniaplicación "firmada" (terminología de seguridad en el lenguaje Java). 
+Esto significa que para ejecutarse debe previamente ser autorizada por el 
+usuario visitante de la página web y, de ser así, habrá menos restricciones de 
+seguridad para el acceso a archivos. Por ejemplo, podrá acceder a archivos en 
+cualquier parte del ordenador del usuario y en cualquier otro servidor web.
+
+Habitualmente, los usuarios recibirán un aviso preguntándoles si quieren 
+"aceptar el certificado" o si "confían" en la miniaplicación; sin embargo, esta 
+prestación de seguridad no siempre está activada. Si decides usar 
+JmolAppletSigned.jar, debes tener esto en cuenta. Aparte de la lectura de 
+archivos, Jmol no utiliza ninguna otra capacidad propia de las miniaplicaciones 
+firmadas, como acceder al portapapeles del sistema o grabar archivos. Utiliza la
+miniaplicación firmada sólo si sabes lo que estás haciendo y has tenido en 
+cuenta las cuestiones de seguridad.
+
+Para llamar a JmolAppletSigned.jar desde Jmol.js:
+ jmolInitialize("carpeta-que-contiene-los-archivos-jar", "JmolAppletSigned.jar")
+
+4.1.5 ==== Notas ====
+Teniendo en cuenta las descripciones anteriores, observarás que el paquete
+de distribución de Jmol contiene 4 copias completas de la miniaplicación
+(firmada o no, subdividida o no).
+
+
+4.2 === Bibliotecas Javascript principales ===
+
+4.2.1 === Jmol.js ===
+Ésta es la biblioteca de funciones clásica, escrita en el lenguaje JavaScript, que ayuda 
+en la preparación de páginas web que usen la miniaplicación Jmol sin necesidad 
+de conocer y escribir código detallado específico para la miniaplicación.
+
+Esta biblioteca usa por defecto la versión subdividida de la miniaplicación 
+(firmada o no).
+
+Está documentada en detalle en http://jmol.org/jslibrary/ 
+
+Jmol.js irá siendo sustituida, a partir de Jmol v13, por el nuevo conjunto de
+archivos .js del método orientado a objetos (descritos a continuación).
+
+4.2.2 ==== JmolApplet.js ====
+Crea el objeto para una miniaplicación Jmol.
+ 
+4.2.3 ==== JmolCore.js ====
+Contiene las funciones necesarias para las miniaplicaciones Jmol pero
+que no debe usar el autor de páginas web (funciones privadas).
+
+4.2.4 ==== JmolControls.js ====
+Apoyo para controles de la interfaz de usuario, como botones, enlaces, casillas
+de verificación, etc. 
+
+4.2.5 ==== JmolApi.js ====
+Contiene la 'interfaz de programación de la aplicación', es decir, las 
+funciones que puede usar el autor de la página web para interaccionar con las 
+miniaplicaciones Jmol.
+
+
+4.3 === Bibliotecas Javascript opcionales ===
+
+4.3.1 ==== JmolCD.js ====
+La extensión ChemDoodle: proporciona los medios para usar ChemDoodle Web Components 
+(que emplea JavaScript + HTML5 canvas o WebGL) en lugar de las miniaplicaciones
+Jmol, para sistemas en los que Java no esté disponible.
+
+4.3.2 ==== JmolGLmol.js ====
+La extensión GLmol: proporciona los medios para usar GLmol (que emplea WebGL +
+JavaScript) en lugar de las miniaplicaciones Jmol, para sistemas en los que 
+Java no esté disponible
+
+4.3.3 ==== JmolJME.js ====
+Proporciona los medios para añadir una miniaplicación JME a la página web
+(dibujo de fórmulas en 2D) y para su comunicación con miniaplicaciones Jmol.
+
+4.3.4 ==== JmolJSV.js ====
+Proporciona los medios para añadir una miniaplicación JSpecView a la página web
+(visor de datos de espectros) y para su comunicación con miniaplicaciones Jmol.
+
+
+5 == Aplicaciones y miniaplicaciones accesorias ==
+
+5.1 === ChimeToJmol.jar ===
+No documentada y experimental.
+Una aplicación para convertir páginas html que usan Chime en páginas con
+miniaplicaciones Jmol. 
+
+5.2 === JSpecViewApplet, JSpecViewAppletSigned ===
+Las versiones firmada y no firmada de la miniaplicación JSpecView, un visor
+de datos de espectros que puede intercomunicarse con miniaplicaciones Jmol. 
+(Véase más arriba el archivo de soporte .js) 
+
+5.3 === JmolSmilesApplet.jar ===
+Este archivo no se incluye actualmente en el paquete de distribución, pero
+puede obtenerse del sitio de desarrollo.
+
+Se trata de una miniaplicación liviana, sin una interfaz visible, que permite
+verificar códigos SMILES. Esto es especialmente útil para comparar 
+estereoquímica, por ejemplo con estructuras dibujadas usando la miniaplicación
+JME.
+
+La misma funcionalidad está incluida en la miniaplicación normal JmolApplet.
+
+---------------------------

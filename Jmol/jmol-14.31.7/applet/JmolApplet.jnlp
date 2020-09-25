@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp>
+     <information>
+         <title>Jmol Applet</title>
+         <vendor>IntegratedGraphics</vendor>
+  <offline-allowed/>
+     </information>
+     <resources>
+         <j2se version="1.6+"/>
+         <jar href="JmolApplet.jar" main="true"/>
+     </resources>
+     <applet-desc
+         name="Jmol Applet"
+         main-class="JmolApplet.class"
+         width="500"
+         height="500">
+     </applet-desc>
+</jnlp> 

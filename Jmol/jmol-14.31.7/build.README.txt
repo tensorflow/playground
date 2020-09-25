@@ -1,0 +1,74 @@
+Jmol building notes
+
+Building Jmol properly requires three projects:
+
+Jmol
+JSmol
+JSpecView
+
+- JSpecView: Jmol needs JSpecView's jar file, so if there are changes, to JSpecView, start there.
+  The build.xml in JSpecView will copy files to Jmol (to appletfiles/ and jars/).
+
+- Jmol: update org.jmol.viewer.Jmol.properties and check it in so that it gets a new time stamp.
+        Jmol.properties is also used by JSmol (along with all the Jmol java files).
+
+- JSmol: run:
+
+			 build_11_fromjmol.xml
+			 build_12_fromjspecview.xml
+			 build_13_tojs.xml
+			              
+         Test test test!  (jsmol.htm, simple2.htm, supersimple.htm)
+	     
+- JSmol: Update and check in jsmol files
+
+- Jmol: run buildjsmolzip.xml
+
+- Jmol: Update and check in jmol files
+
+
+# Developers: to add a description of changes you have made,
+#  add it on a line below the "Jmol.___JmolVersion=..." line.
+#  Don't use Jmol.___ in your text, as that is the key for stripping out
+#  the information saved in the JAR version of this file.
+#  The quotes above	 look odd for a parameter file, but they are 
+#  important for the JavaScript version of Jmol.
+#
+# A full Jmol/JSpecView/JSmol release requires the following:
+#
+# 1. Generate a new version number. This should be done as in the following examples, 
+#    listed in order of appearance:
+#
+#    previous     new
+#
+#    14.8.10  14.8.11-beta-2016-12-20 a beta release of 14.8.11 with a timestamp for Dec 20, 2016
+#    14.8.10  14.8.11                 bug fixes only - patch level
+#    14.8.10  14.9.0                  new features - minor version level (tag for Maven, create branch)
+#    14.8.10  15.0.0                  new features - major version level (tag for Maven, create branch)
+#
+#  The distinction between major and minor is arbitrary.
+#
+#  Note that -beta releases will be to https://sourceforge.net/projects/jmol/files/Jmol-beta
+#  while full releases will be to https://sourceforge.net/projects/jmol/files/Jmol.
+#
+# 2. Create a new Jmol.___... line and remove "Jmol.___" from the line for the
+#    previous release; failure to do remove this line will use the original release number, 
+#    not the new one, since this is a property file.
+#
+# 3. Commit this change.
+#
+# 4. Run jmol buildmin.xml, signing the jar files only
+#
+# 5. Run jsmol build_11_fromJmol.xml
+#
+# 6. Run jsmol build_12_fromJSpecView.xml
+#
+# 7. Refresh the JSmol project
+#
+# 8. Run jsmol build_13_tojs.xml
+#
+# 9. Run jmol builddist.xml
+#
+# 10. Run jmol/tools build-release.xml
+#
+

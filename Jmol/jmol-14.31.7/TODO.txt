@@ -1,0 +1,702 @@
+
+Feel free to add to this file any time! Don't worry about sync problems.
+Put new items at top, please.
+
+Jmol.___JSVDate="$Date: 2020-09-16 10:02:04 -0500 (Wed, 16 Sep 2020) $"
+Jmol.___JSVSvnRev="$LastChangedRevision: 22031 $"
+Jmol.___JSVVersion="14.31.6"
+
+Note:
+security.fileuri.strict_origin_policy
+When local HTML files (e.g., those located on your hard drive) are loaded into Firefox,
+the scripts and links within have restrictions on what they can see and do. 
+Those restrictions are determined by the following controls.
+Possible values and their effects:
+True
+Local documents have access to other local documents in the same directory and in subdirectories, but not directory listings. (Default)
+
+False
+Local documents have access to all other local documents, including directory listings.
+
+Recommended settings
+If you do development with local files and need to be able to retrieve other local files, 
+you will need to set this preference to false. Otherwise, leaving it set to true offers the most security.
+
+To set for Firefox, type about:config as the address then search for security.fileuri.strict_origin_policy
+For Chrome, add the --allow-file-access-from-files command line switch to enable it work
+
+todo: 
+ - Jmol Application Tools...Spectrum menu issue with EPFL returning a new 2D structure and links now not synched
+ - enhancement: for  BLOCK files generate a page for each spectrum when exporting PDF
+
+ - enhancement: when displaying peaks for a spectrum that has links available suggest that from the peak dialog box 
+ that clicking on a peak will highlight appropriately in JSmol/JSME
+
+add JSME to St. Olaf 24/7 OleNMR system portal for comparisons.
+
+RL 04/24/2019
+  - update to About dialog box
+
+BH 03/23/2018
+ -feature: generate SwingJS-ready jar files
+
+BH 04/13/2017
+ -feature: Allow JSpecView to close when embedded
+ -feature: Allows Jmol to have JSpecView embedded but not have Jmol embedded in it. 
+
+BH 01/16/2017 
+ -bug fix: integration on/off/toggle should not clear integrals
+ -bug fix: showIntegration on/off/toggle should not clear integrals
+
+BH 01/14/2017 
+ -feature: easier spectrum closing with [x] box
+ -feature: SINGLE VIEW! multiple views are just too complicated!
+ -feature: more and better tool tips, including for applet
+ -feature: integral splits when clicked
+ -feature: integration swiping allows press-release for starting new integral during swipe
+ -feature: HELP command displays full list of commands
+ -feature: ScriptTokens now include this.description field
+ -revised SETPEAK, SETX more sensible, more intuitive
+   - work the same except SETPEAK uses the nearest peak; SETX uses the clicked position itself
+   - work always from NEXT-clicked peak or position on spectrum, not previous
+   - dialogs clearer about what is happening
+ -feature: integral handles on left and right ends visible when pointing at the integral
+ -feature: integral handles a bit larger and change color when "armed"
+ -feature: integral swiping from the right deletes the integral. 
+   
+RL 01/13/2017
+  - update to About dialog box
+  
+
+ -bug fix: dialog titles should be truncated if too long
+ -update About dialog for 2017
+
+RL 01/06/2016
+ -update About Dialog Box for 2016
+ 
+BH 12/21/2015
+ -bug fix: for inefficient array handling for labels 
+
+BH 8/21/2015
+-set spectrum.setHZtoPPM(true) for simulations from NMRDB
+
+BH 3/31/2015
+-modification to JSInterface 
+ 
+BH 2/24/2015
+-GenericPlatform update 
+ 
+BH 11/9/2014
+-update to GIFencoder 
+
+BH 10/4/2014 
+-fix: dragging over integration not filling spectrum properly
+
+BH 7/13/2014
+-code: refactoring of HTML5 Jmol, JSpecView, and AstexViewer for cleaner
+ interaction with web-page based JavaScript. All interactions now 
+ go directly through JS
+
+
+
+BH 6/27/2014
+-fix: JavaScript addHighlight  not working properly
+-new feature: HIGHLIGHT OFF
+-new feature: HIGHLIGHT x1 x2
+-new feature: HIGHLIGHT x1 x2 OFF
+-new feature: HIGHLIGHT x1 x2 r g b
+-new feature: HIGHLIGHT x1 x2 r g b a
+  - max for a is 150
+  - r g b a may be fractional [0,1] or in the range (1,256)
+
+BH 4/4/2014
+-fix: JDX reading of older Chime-related ##PEAKASSIGNMENTS records
+ 
+BH and RJL  3/31/2014 3:30
+-fix: colour prediction from visible spectrum - new equations to CIE lines generated from Fityk 
+
+BH 3/27/2014  9AM
+-peak picking shown as % of max appropriate only for NMR not UV/Vis etc.
+ 
+BH 3/5/2014  1:11:00 AM
+-fix: JSpecView loading simulation now compatible with synced applets
+-new feature: JSpecView and Jmol read ACD/Labs assigned spectra block JDX files.
+-fix: drag/drop not working for JSV applet
+ 
+BH 2/11/2014 7:26:00 AM
+-cleaned up dialog synchronization in Java
+-set so that measurements only lock in when measurements dialog is open
+
+-fix for a BLOCK file view 2 spectra eg IR and MS 1.1 and 1.4 then try close selected (gone from dialog but not display)
+ then try to open an H NMR spectrum 1.2 - nothing happens - FIXED 24 Jan 2014
+-fix for JSpecView/Java + JSME crashed Firefox during applet loading. (just went away??)
+
+BH 1/23/2014 5:12:00 PM 
+-added close SIMULATIONS
+-added close VIEWS
+-added DEFAULTLOADSCRIPT "script..." 
+-added DEFAULTNMRNORMALIZATION x.x
+
+BH 1/13/2014 8:24:33 PM 
+-fix for baseline dropping below bottom pixel
+-fix for file-not-found or file-not-recognized error message not understandable.
+-fix for PDF file creation broken
+
+new feature: show NMR taps into NMRDB directly
+ -- for now, application only
+
+in preparation for JavaScript version:
+
+-- 12/05/2013 BH
+Generating corejsv.js
+  -- using build_test.xml
+  -- incrementally adding classes to see where the problems are.
+
+-- 11/29/2013 BH
+ *Boolean.toString(boolean) removed -- disambigifying 
+
+-- 11/26/2013 BH 
+ Secure code signing working smoothly
+
+ *JavaScript J2S compiler error does not coerce int += float to integer
+
+ *Make all public inner classes top-level. Problem is with loading process, specifically on Macs
+
+ 
+-- 10/30/2013 BH
+ * exception.getMessage() --> exception.toString();
+ * Object.getClass().getResource() returns a simple relative filename, not a URL
+ -- all exports, including CML, AML, JDX, PNG, JPG (as PNG), and PDF working
+ -- CLOSE ALL fixed
+ 
+-- 10/29/2013 BH
+ -- PRINT PDF working in JavaScript HTML5-only version of JSpecView
+ -- !!!MISSION ACCOMPLISHED!!!!
+ 
+-- 10/28/2013 BH
+ -- adds PRINT PDF command
+ -- iText PDF creation classes (1.2M) replaced with simplified custom classes (17K) :)
+ -- JSpecView signed applet now only 631K (was 1832K);
+ -- efficient PDF creation includes 2D NMR; tested in application only; see jspecview.export.PdfCreator
+ -- Test.java allows decoding of PDF file streams
+ 
+-- 10/24/2013 BH
+ -- removes load dependence on ZIP classes
+ -- testjsv_mol.htm working
+ -- 2D NMR added
+ -- no toolbar
+ -- no PDF creation
+ -- IR T/A toggle fixed
+ -- NMR peak list table is cut off on right side
+
+-- 10/20/2013 BH
+ measurements fixed
+ integration fixed
+ 
+-- 10/19/2013 BH  --  3 weeks!
+JSpecView/HTML5 preliminary development complete
+ -- (modifications in Jmol, JSmol, JSpecView, JSpecViewLib)
+ -- functional as HTML5-only application
+ -- pop-up menu enabled
+ -- dialogs enabled
+ -- can simulate 1H spectra in the applet
+ -- see http://chemapps.stolaf.edu/jmol/jsmol/jsv.htm
+ -- no 2D NMR (see 10/24)
+ -- no toolbar
+ -- no PDF creation
+ -- buildtojs.xml working
+ -- measurements are still messed up
+ -- ready for testing
+ * double[][] data = new double[size()][];  not allowed. Use double[][] data = ArrayUtil.
+ *   private final static Boolean[] useNumberLocalization = new Boolean[];
+ * {
+ *   useNumberLocalization[0] = Boolean.TRUE;
+ * }
+ * needs to be recast to
+ *    private final static Boolean[] useNumberLocalization = new Boolean[] { Boolean.TRUE };
+ *
+ * Integer.parseInt(s, 16) not implemented; use Parser.parseIntRadix(s, 16);
+ *
+ -- sharper lines using context.translate(0.5, 0.5)
+ -- search box allows !command entry, as for Jmol
+ -- command BACKGROUND #xxxxxx fixed
+ 
+-- 10/18/2013 BH
+bug fix in coretop.js: Float.valueOf(Float.NaN).valueOf() === Float.NaN, not an error
+javajs methods added to core.z.js
+bug found in J.api.Interface.getInterface:
+  return x.instanceOf();
+returns an object, but 
+  return (x == null ? null : x.instanceOf()); 
+returns a string, but only when compiled within Eclipse 4.2 on Robert Lancashire's machine, 
+not on mine, with 3.6. 
+
+Update needed for more recent Eclipse java2script compilers. They are available from:
+http://dev.zhourenjian.com/j2s/j2s-2.0.0-20131019-eclipse-4.3.zip
+http://dev.zhourenjian.com/j2s/j2s-2.0.0-20131019-eclipse-4.2.zip
+http://dev.zhourenjian.com/j2s/j2s-2.0.0-20131019-eclipse-3.8.zip
+http://dev.zhourenjian.com/j2s/j2s-2.0.0-20131019-eclipse-3.7.zip
+http://dev.zhourenjian.com/j2s/j2s-2.0.0-20131019-eclipse-3.6.zip
+http://dev.zhourenjian.com/j2s/j2s-2.0.0-20131019-eclipse-3.5.zip
+
+-- 10/17/2013 BH
+javajs created, incorporating awt, swing, and util
+dialogs working, mouse callbacks working; draggable placement working
+*ArrayList.remove(obj) --> ArrayList.removeObj(obj) [Implemented with modified java.util.ArrayList]
+
+-- 10/16/2013 BH
+Dialog JavaScript Swing development complete
+
+-- 10/15/2013 BH
+Dialog JavaScript Swing replacement first try (note, Java dialogs are being sent to the console as JavaScript for testing
+
+-- 10/14/2013 BH
+Complete rewrite of dialogs.
+ -IntegrationDialog, MeasurementDialog, OverlayLegendDialog, PeakListDialog, ViewsDialog all AWT-free
+ -DialogManager is AWT-free and coordinates all communication
+ -DialogHelper is used to create dialogs
+ -Event communication even in AWT is via a URL passed to JSViewer.runScript: 
+    "event://DIALOG_ID?&id=EVENT_ID&DATA..."
+ -To implement in JavaScript we only need to create all methods in JsDialogManager and JsDialog
+   
+-- 10/12/2013 BH
+Fixed character translation issues in decompressor due to bug in Double.valueOf(String) in coretop.js
+*note: In Java ('-' == 45) but in JavaScript it does not. J2S does not necessarily take care of this. 
+Further disambiguation
+Added second top-level canvas with transparent highlights. Excellent speed now.
+[working well; still not fully tested; no popup menu, no dialogs]
+
+-- 10/11/2013 BH
+[Visible spectra observable in HTML5]
+*Fields instantiated by super during static phase of loading are lost and re-initiated by subclass
+  (resulting in ColorParameters not having booleans defined)
+*Can't use URL.getInputStream()
+List.toArray() was not implemented (fixed)
+*foo((JDXSpectrum) null) does not give "null" at the other end.
+The following two signatures cannot be distinguished in JavaScript:
+  public static int intoRangeInt(int i, int i0, int i1)
+  public static double intoRange(double x, double x0, double x1)
+
+
+-- 10/10/2013 BH
+Added g2d and g2djs packages
+Moved all graphics writing code to g2d.G2D and g2djs.G2D
+new InputStreamReader(stream) ---> new InputStreamReader(stream, "UTF-8")
+new GZIPInputStream(bis) ---> new GZIPInputStream(bis, 512)
+new URL(urlString) ---> new URL((URL) null, urlString, null);
+*URLConnection.getContentLength() is not defined -- needs work in JSVFileManager
+BufferedInputStream.read(bytes) ---> BufferedInputStream.read(bytes, 0, bytes.length) 
+subclassed BufferedReader.read(char[] chars) --> BufferedReader.read(char[] chars, pt, len)
+Added buildfromjspecview.xml to JSmol project
+Added Math.log10 in coretop.js
+Working on adjustments needed in JSmol.js, JSmolJSV.js, JSmolApi.js
+Adding JsViewPanel
+Bug fixes in JSVApplet, JSVApp, JSViewer
+[initial script is being processed]
+Added @j2sRequireImport for static references to "new java.util.Properties()" in JSVersion
+
+-- 10/9/2013 BH
+Preliminary JsPanel; all AWT fully isolated; filling in of JsPanel will pretty much do it.
+Added JsTree, JsTreeModel, JsTreeNode, JsTreePath (for testing; now used in Java applet)
+Removed AwtAppletPopupMenu, AwtPopupMenu
+Modified the popupMenus to all work through apiPlatform and JSViewer.runScript();
+Added commands: SHOWERRORS, SHOWKEY, SHOWMENU, SHOWPROPERTIES, SHOWSOURCE
+
+-- 10/8/2013 BH
+Added Jmol's menuing system
+
+-- 10/6/2013 BH
+Renamed JSVAppletPrivate(Pro) to JSVApp(pro)
+Moved all AWT references of JSVApp into JSVApplet
+Moved JSVApp into jspecview/app
+Cleaned jspecview/java directory -- all AWT-dependent classes here
+Fixed Build.xml
+
+-- 10/5/2013 BH
+Refactored dialogs
+Added JSVMainPanel, JSVTree interfaces
+Added DialogParams, FileHelper
+Moved AWT printing/saving operations to AwtPanel
+Created AwtTree, AwtTreeNode, AwtTreePath, JSVTree, JSVTreeNode, JSVTreePath
+Made JSViewer non-static
+
+-- 10/4/2013 BH
+Removed need for AwtGraphSet
+AwtPanel slimmed down to only the essentials for drawing -- rest left in GraphSet or PanelData
+Clean up of Measurement, Integral, Peak constructors
+Removed need for AwtExportDialog
+
+-- 10/3/2013 BH
+Disambiguated Parser
+* Replaced BitSet with org.jmol.util.BS (later moved to javajs.util)
+Added org.jmol.util.J2SIgnoreImport, J2SRequireImport
+Base64 moved to org.jmol.io
+Added org.jmol.util.P3 and Tuple3f (required for Jmol's ArrayUtil; later refactored as javajs.uti.P3 and .T3)
+XMLReader moved to org.jmol.io
+Replaced org.jmol.util.ArrayUtil, Base64, Escape, Parser, Txt with Jmol's.
+Replaced org.jmol.util.DefaultLogger, Logger, LoggerInterface, with Jmol's.
+Created jspecview.awt, jspecview.awtjs2d; populated with template methods
+Created EventManager
+Implemented jspecview.awt.Mouse and jspecview.awtjs2d.Mouse
+  - note that in JSpecView, each panel is its own PlatformViewer and EventManager and display Component
+    (but I think there is only one panel ever now)
+  
+-- 10/2/2013 BH
+* Replaced all List and ArrayList with  JmolList to avoid overloaded .add(x) (later refactor as javajs.util.List)
+Moved and renamed methods from jspecview/util to org/jmol/util (applets can share this code; later to javajs)
+* Replaced Hashmap with Hashtable
+
+-- 10/1/2013 BH
+* Replaced all references to DecimalFormat with JSVTextFormat.formatDecimal or 
+	JSVTextFormat.formatDecimalTrimmed (later refactored as javajs.util.DecimalFormat)
+* Replaced all references to StringBuilder and StringBuffer with JSVSB (later refactored as javajs.util.SB)
+
+====TODO=========
+
+
+-feature: in the jsvtest.htm page, when there is a CNMR and IR overlay shown
+nothing happens when a proton is clicked on a molecule in the Jmol
+applet. The viewer should have the option to either add H-NMR with
+current overlay or to load only H-NMR (in this case the viewer could
+have already saved the C-NMR and IR changes as a "view" to return to
+later--could be done through a pop up box
+
+-feature: when in the split overlay version: addition of two boxes next to the
+one to toggle between stacked and split, one to clear the selected
+spectrum (X), and one to minimize it only (-)
+
+-feature: a save "view" (overlay) option: writes a jdx file that will be able
+to call up changes to a current overlay similar to "save as," so that
+if one of the used spectra is used in a different file, separate
+changes and analyses can be made without altering the saved view
+
+  - in OleNMR this will be handled by saving $$JSVCMD into the procs file, I think.
+
+
+=====DONE========
+
+-fix for NMR spectra in JavaScript are dropping baseline in some cases
+
+-fix for Printing with Signed Applet
+
+-Transmission to Absorbance conversion broken
+
+-Preferences for Application no longer showing sample.jdx spectrum with colour schemes
+-sample.jdx is in Application/resources folder
+-default colours changed
+
+-in the HTML5/JS version. Integration dialog box opened but would not close
+
+-double-clicking 1HNMR is not starting a measurement
+
+version and revision number have stopped showing in About Dialog Box
+
+correct FIX export bug: X values now max of 14 wide Y values 10 wide
+apply changes to build.xml to allow command line ANT compilation for use in Fedora (Thanks to Susi Lehtola)
+
+update signing certificate (now valid for 10 years)
+
+check inline file loading
+
+new feature: PEAK HNMR id=3 
+new feature: (Tony Williams suggestion) PAGE_UP/PAGE_DOWN keys for scaling
+new feature: integration MIN value -- removes integrations less than the specified value
+bug fix: Y-slider problems; print title still not quite right
+new feature: PDF/printing now high resolution (10 x screen) for scalable graphics
+new feature: print dialog includes "Create PDF" button
+new feature: print includes somewhat wider top/bottom margins for full page option
+new feature: Shift-drag to zoom with both X and Y scaling, Drag alone to only give X scaling
+             Different colour for background for each
+bug fix: various linking issues
+bug fix: getProperty needs more return values to be helpful
+
+bug fix: smoother "always-in-front" peak/integration/measurement dialogs
+demo: http://chemapps.stolaf.edu/nmr/viewspec2  now fully functional. 
+new feature: LINK command options "*", "AB", "ABC", "NONE"
+bug fix: Reading offset in Bruker 2D 13C/1H HMBC spectra incorrectly
+         (must only read the first ##$OFFSET record)
+new feature: X- and Y-scales for 2D NMR spectra 
+new feature: "lockable/annotatable" 2D cursor -- click to set; double-click to annotate or release
+new feature: linking of 2D spectra with 1D counterparts
+		tested for 1H/1H COSY and 1H/13C HMBC
+
+		Wow -- I can't believe how easy it is to understand HMBC!
+		see http://chemapps.stolaf.edu/nmr/doc/HMBC_example.pdf
+		see http://chemapps.stolaf.edu/nmr/doc/COSY_example.pdf
+		
+		
+
+	view 1.1,2.1
+    link ab
+	
+or
+
+	view 1.1,2.1,3.1
+    link abc
+	
+new feature: script foo.jsv (or whatever extension you want, Robert)
+
+bug fix: opening peak dialog without clicking spectra doesn't place cursor correctly
+bug fix: closing all dialogs except the type chosen; otherwise it gets too cluttered 
+bug fix: need to close all dialogs when the print dialog comes up
+bug fix: issues with printing split spectra
+PDF printing from signed applet and application
+ 
+print PDF   or  print "foo.pdf"
+
+peak list not coming up with peaks initially
+
+integration LIST command option brings up dialog
+versioning fixed -- all now in TODO.txt
+T/A switching does not update min/max Y
+print job name, optional title change, mandatory file name display.
+on-screen title display fix for views.
+
+y-axis shift to bring 0 closer to bottom
+
+app file save As Source... fixed (and changed to "Original..."
+refactoring ViewData.java and ScaleData.java; better minor X-ticks
+xScale tweak adds minor ticks and changes allowed markings to 2, 5, 10 only
+
+fix for integral fill not quitting
+
+Set the SVN version number in TODO.txt rather than JSVapplet.java
+This would mean making a comment when changes were made and submitting each time
+so that the Help About dialog box code was updated as well.
+
+SET LOADIMAGINARY T/F   -- default F - we can't process the imaginary spec anyway
+acceptable?
+ 
+fix for hide/show in peak dialog
+fix for spectral shift
+
+fix for integration handles broken yesterday (18th July 2012)
+
+getProperty integration
+
+{ "integration": { "normalizationFactor": 1.0
+,"range": 50.0
+,"table": [
+	[7.192226512510311,6.9246496588731645,4.926643236225048],
+	[4.526840366120152,4.247738137695028,11.036230573260724],
+	[3.6325143648219447,3.358270687071215,11.083311665174023],
+	[2.5828624962660385,2.3231806309339547,11.342257977394365],
+	[2.2497695140375464,1.9457959058590926,11.037903913352398]]
+,"offset": 30.0
+,"header": ["peak","start/ppm","end/ppm","value"]
+ }
+,"id": "2.2"
+ }
+
+{ "peaklist": { 
+"threshold": 11000.0
+,"interpolation": "parabolic"
+,"table": [
+	[7.965197485241784,0.069523326261312,1589.7269625789845,0.0,0.0,0.0],
+	[7.9583260963520965,0.08002807854864,1588.355542446773,1.3714201322116837,0.0,0.0],
+	[7.950097960627121,0.047604282372504,1586.7133371859504,1.6422052608222724,3.013625393033956,0.0],
+	[7.924291666857321,0.119271048519096,1581.5628106502181,5.150526535732331,6.7927317965546035,9.80635718958856],
+	[7.916298405529351,0.08384643650356799,1579.9674825901723,1.5953280600459387,6.74585459577827,13.538586392332872],
+	... 
+	]
+,"header": ["peak","shift/ppm","intens","shift/hz","diff/hz","2-diff","3-diff"]
+ }
+,"id": "3.1"
+ }
+
+close command fix for losing track of selected panel
+fix for integral dialogs not closing or disappearing and not coming back
+
+FINALLY!!! bug found in AwtPanel.update() with huge performance issues with Mac applet.
+update() Should not call super.update() because this is an opaque applet
+
+creating a view was closing files
+
+peaklist command fixed (and separate from showPeakList TRUE/FALSE)
+
+peaklist command options: threshold=x.x interpolation=[PARABOLIC|NONE]
+
+double-clicking does not complete a measurement, just starts/ends it. 
+
+getProperty viewInfo
+
+{ 
+ "maxY": 236826.159599058
+,"maxX": 10.179782090604432
+,"maxXOnScale": 10.179782090604432
+,"minXOnScale": -1.320253057688545
+,"minY": -280.022400942
+,"minX": -1.320253057688545
+,"minYOnScale": -25000.0
+,"specShift": 0.0
+,"maxYOnScale": 250000.0
+ }
+
+
+getProperty key # implies selected; key is optional
+getProperty ALL key # all spectra; key is optional
+
+integrationRegion xx (%)
+integrationOffset xx (%)
+
+integration MARK command
+
+	 * INTEGRATION MARK list
+	 * where list is a comma-separated list of ppm1-ppm2
+	 * with  :x.x added to normalize one of them
+	 * and starting with  0-0 clears the integration 
+	 * for example: integration mark 0-0,8.25-7.75:2,7.75-7.25 
+
+
+swap double click and ctrl click for measurements
+show/hide measurements
+
+
+dialogs;
+
+-Peak picking
+     Show/Hide Peak Labels
+     Clear
+     Threshold
+  [x]Parabolic Interpolation
+     List Peaks
+    
+
+-Integration:
+     Show/Hide Integration
+     Clear Integration
+     Normalize
+     Set Baseline Offset
+     Set Scaling Factor
+     List Integrals
+
+-Measurements:
+  Needs a dialog
+  
+     Show/Hide Measurements
+     Clear Measurements
+     Mark Measurements [just calls up a prompt telling how to do that]
+     List Measurements
+     Font Size
+    
+
+FINDX x.xx
+ -- draws a red vertical line at a given position and acts like a click. 
+
+SETPEAK x.xx command
+ -- NMR only 
+ -- requires prior clicking on a specific spectrum.
+ -- first finds the top of the peak, then assigns chemical shift
+ 
+SHIFTX x.x command
+ -- NMR only
+ -- requires prior clicking on a specific spectrum.
+
+http://blog.gorges.us/2009/03/how-to-enable-keywords-in-eclipse-and-subversion-svn/
+Use 
+<dollar>LastChangedRevision: 998 $
+<dollar>LastChangedDate: 2012-07-05 18:21:10 -0500 (Thu, 05 Jul 2012) $
+to set the APPLET_VERSION to include the SVN revision number
+
+-in the jsvtest.htm page, HNMR and CNMR are not distinguished
+
+-when you offset a spectrum the peaks are able to go off the page, the
+user cannot click on the parts of the spectra that are off the grid
+
+- when the spectra has coupling constants, when it is zoomed to view a
+spot that does not have the constants, the constants still show up
+even if their peaks are off the page (they are where the peaks would
+be if the whole spectrum were blown up)
+
+
+-Integration:
+ --changing the command from "integrate" to "integration"
+   ---also what is the difference between integrate on/off and
+showintegration true/false/toggle?
+
+Features and Bugs:
+For the overlay/close dialog box, please move the overlay section to the top of the display rather than the bottom
+
+Dialog Box for overlay colours needs checking
+  -- added active clicking in overlay key box
+  
+not observed: With JSpecView application, loading a file gives the dialog box and if you sort on date the program crashes.
+
+Bug:
+Loading a GC/MS file in Jmol application and selecting a menu option in Jmol to choose a frame
+gives JSpecView loading with looping over frames in the Jmol display as well as the JSpecView display 
+
+LOADFILECALLBACKNAME added
+
+Loading a GC/MS file in Jmol application and selecting a menu option in Jmol to choose a frame
+gives JSpecView loading with looping over frames in the Jmol display as well as the JSpecView display 
+
+
+PRINT command for applet and application
+
+compoundmenuon true gives menu option of Spectra
+compoundmenuon false gives greyed out menu option of Blocks - renamed Spectra as well
+
+ReversePlot was disabled; x widgets aren't right with plot reversed.
+>seems fixed?
+
+GC/MS is not tested and probably all messed up.
+Works if call is to the GCMS.jdx file with overlay ALL
+
+With Jmol application, when loading a Block file the JSV display is automatically showing the LAST Block.
+>Changed to display First Block
+
+
+With a dual display of GC at top and MS at bottom what script should I use to
+change the lower display but leaving the top display undisturbed?
+Can they be identified individually?
+
+> done:
+For the applet
+overlay 1,3 or 1,4 etc default display is overlay 1,2
+
+  peak ms model1
+  peak ms "204"  -- could look for match in title text?
+> DONE -- needs testing
+
+  peak ms "204" ALL
+       -- added ALL keyword lets you look through  all spectra, otherwise it's just the current panel
+       -- current panel, though, is always checked first.
+
+
+Loading a Block file and switching between Blocks without selecting a peak.
+Having looked at 4 Blocks and returning to the first.
+A PEAK is shown selected and if an IR then Jmol starts vib mode despite not having clicked in the JSV display.
+
+> fixed
+
+Loading acetophenone.html and selecting a peak in the IR sends the display into frenzy
+with overlay showing and uncontrollable flashing between spectra.
+Seems to happen as well when you select a peak then use spectrumnumber to change display
+
+>> fixed 
+
+Integration should be standard size without changing when you scale Y
+
+Use of Ctrl-/ Ctrl+
+OK for when baseline is at the bottom, needs to work as well for spectra 
+where the baseline is at the top of the page 
+
+DONE for a block file allow overlaying some of the spectra not necessarily all the spectra
+
+  command:   OVERLAY 1.1,1.2 for instance
+
+6th Mar turn off RED error icon when file is closed.
+Done
+
+done 8.3.12
+
+bug:
+If I open a file then open another file then open another file
+The drop down file type in the file open dialog box always defaults to JCAMP-DX (not a problem)
+BUT instead of it showing 1 JDX type it keeps on increasing in the
+list so jcamp-dx shows up 3 times
+and every time I open another file it seems to add another jcamp-dx to
+the drop down file type list.
+
+done 8.3.12

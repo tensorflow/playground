@@ -1,0 +1,27 @@
+TODO: remove HTML5 dependency on synchronous file loading (check SCRIPT command for problems)
+
+TODO: curved arrows overextend and with width settings do not truncate shaft properly
+
+TODO:  The label offset for POV-ray is problematic. The problem is that the labels are 
+floating in front of the model, and I recently switched POV-ray export to export in 
+orthographic mode and let POVray handle the perspective. This was important for 
+other reasons. But as a result, a label floating in space in front of the atom will 
+appear at a different location. An interesting challenge to figure out the algorithm 
+that still places it in the "proper" place even when perspective is on. (Daniele Tomerini)
+
+
+TODO: image (not found)  stops JSmol
+
+TODO: consider if models with no atoms will cause issues in relation to model.firstAtomIndex
+
+TODO: isosurface molecular has an issue with 2gb1
+
+TODO: slab SET will not be rendered correctly when exported because tm.transformPoint
+
+TODO: If you create a PNGJ file t.png and then  load it and save it again as a stanadard PNG file, 
+      then it will be broken, because its script will be calling for an external file that has the
+      same name, and it no longer has file data in it. 
+      
+TODO: vector traces saved in state?
+
+TODO: slightly stronger unitcell lines for near point?
