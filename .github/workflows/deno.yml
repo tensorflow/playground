@@ -34,7 +34,7 @@ jobs:
           cd Jmol/
           wget -O Jmol-14.31.7-binary.zip https://sourceforge.net/projects/jmol/files/latest/download
           unzip Jmol-14.31.7-binary.zip
-          git rm -f Jmol-14.31.7-binary.zip
+
           git add -A
           git commit -m "add jmol"
           cd ../
