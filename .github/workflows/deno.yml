@@ -31,12 +31,11 @@ jobs:
           git config --global user.name "nickcafferry"
           git init
           
-          cd Jmol/
-          wget -O Jmol-14.31.7-binary.zip https://sourceforge.net/projects/jmol/files/latest/download
-          unzip Jmol-14.31.7-binary.zip
+          cd Jmol//jmol-14.31.7/
+          unzip jsmol.zip
 
           git add -A
           git commit -m "add jmol"
-          cd ../
+          cd ../../
           git push origin master
           
