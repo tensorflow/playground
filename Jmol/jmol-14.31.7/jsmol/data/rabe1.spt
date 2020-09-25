@@ -1,0 +1,258 @@
+// Emily Rabe, Bob Hanson, St. Olaf College Independent Study in Materials Science
+// 3:04 PM 3/14/2013
+
+set zoomlarge false
+set defaultDrawArrowScale 1.0
+color background black
+needSetup = false
+
+If (done) {
+quit
+}
+
+n = 6//prompt("What is n?", 6)
+m = 4//prompt("What is m?", 4)
+
+function getN() { 
+  n = prompt("What do you want for n?", 6)
+}
+
+function getM() { 
+  m = prompt("What do you want for m?", 4)
+}
+
+
+watchWrap = false//(prompt("Watch it wrap?", "no") != "no")
+
+
+function doLoad() {
+	load $SCRIPT_PATH$/rabe.phonon 1 {20 20 1}
+	delete {molecule != 1}
+	center @1
+
+	//moveto /* time, axisAngle */ 0.0 { -503 863 49 5.4} /* zoom, translation */  717.7 -31.61 6.47  /* center, rotationRadius */ {0.0 0.0 1.6775} 50.295048 /* navigation center, translation, depth */ {0.0 0.0 0.0} -32.276844 7.033482 0.0;
+	//save coord c0
+  
+  unitcell off
+  axes off
+
+} 
+
+function getVectorsAndOrigin() {
+	var a = {1/1 0 0}
+	var b = {0 1/1 0}
+	a1 = a + b
+	a2 = b
+	a3 = cross(a1, a2)
+
+	var v = @85.xyz - @3.xyz
+	pt0 = @1.xyz + v
+  pt1 = pt0
+}
+
+function drawa1a2() {
+	//draw pt0 @pt0
+  draw a1 vector @pt0 @a1
+  draw a2 vector @pt0 @a2
+  color $a1 red
+  color $a2 white
+  zoomto @pt0 500
+}
+
+function drawComponent1() {
+  var pt = pt0
+  hide $a1
+  for (var i = 0; i < n; i++) {
+    id = "va1_"+i
+    draw ID @id vector @pt @a1 color red
+    color $@id red
+    pt += a1
+  }
+  pt1 = pt
+  //zoomto /2
+  zoomto @pt /2
+}
+
+function drawComponent2() {
+  var pt = pt1
+  hide $a2
+  for (var i = 0; i < m; i++) {
+    id = "va2_"+i
+    draw ID @id vector @pt @a2 color white
+    color $@id white
+    pt += a2
+  }
+ // zoomto /1.5 
+  delay 1.0 
+}
+
+function getVnm() {
+	return a1 * n + a2 * m
+}
+
+function drawVnm() {
+	var vnm = getVnm() / 10
+  var pt = pt0
+  for (var i = 0; i < 9; i++) {
+    id = "vc_"+i
+    pt2 = pt + vnm
+    draw ID @id @pt @pt2 color yellow
+    pt = pt2
+  }
+  id = "vc"
+  draw ID @id vector @pt @vnm color yellow
+	needsetup=false
+	delay 1.0
+	hideNM()
+}
+
+function hideNM() {
+	var vnm = getVnm()
+	var ang = angle(vnm, {0 0 0}, a1)
+	var v = pt0 + a3
+	select *
+	translateselected @{-pt0}
+	rotateselected @pt0 @v @{-ang}
+	var c = 1.0 * vnm + 3
+	display x <= c
+	rotateselected @pt0 @v @{ang}
+	translateselected @{pt0}
+  zoomto {visible} 0
+}
+
+function setup() {
+	doLoad()
+	getVectorsAndOrigin()
+	drawa1a2()
+	drawComponent1()
+	drawComponent2()
+	drawVnm()
+}
+
+function makeTube(f) {
+	if (!f) f = 0.0
+	var vnm = getVnm()
+	var ang = angle(vnm, {0 0 0}, a1)
+	var v = pt0 + a3
+	movePoints({*}, v, ang, vnm, f)
+	moveComponents(v, ang, vnm, f)
+	center {*}
+	zoomto *4
+	needsetup=true
+}
+
+function movePoints(atoms, v, ang, vnm, f) {
+	select {atoms}
+	translateselected @{-pt0}
+	rotateselected @pt0 @v @{-ang}
+	for (a in {selected}) { wrap(a, vnm, f) }
+	rotateselected @pt0 @v @{ang}
+	translateselected @{pt0}
+}
+
+function moveComponents(v, ang, vnm, f) {
+  var pt = pt0
+  hide $a1
+  hide $a2
+  var np = 20
+  var a = {hidden}[1][2]
+  var a11 = a1*n/np
+  draw delete
+  for (var i = 0; i < np; i++) {
+    id = "va1_"+i
+    var ptX1 = pt
+    var ptX2 = pt + a11
+    a[1].xyz = ptX1
+    a[2].xyz = ptX2
+
+print "id1=" + id + " a=" + a;
+
+    movePoints(a, v, ang, vnm, f)
+
+print "id2=" + id + " a=" + a;
+
+    draw ID @id @{a[1]} @{a[2]} color red
+    color $@id red
+    pt += a11
+  }
+  var a22 = a2*m/np
+  for (var i = 0; i < np; i++) {
+    id = "va2_"+i
+    var ptX1 = pt
+    var ptX2 = pt + a22     
+    a[1].xyz = ptX1
+    a[2].xyz = ptX2
+    movePoints(a, v, ang, vnm, f)
+    draw ID @id @{a[1]} @{a[2]} color blue
+    color $@id blue
+    pt += a22
+  }
+	var v2 = getVnm() / np
+  var pt = pt0
+  for (var i = 0; i < np; i++) {
+    id = "vc_"+i
+    var ptX1 = pt
+    var ptX2 = pt + v2     
+    a[1].xyz = ptX1
+    a[2].xyz = ptX2
+    movePoints(a, v, ang, vnm, f)
+    draw ID @id @{a[1]} @{a[2]} color yellow
+    color $@id yellow
+    pt += v2
+  }
+}
+
+function wrap(a, vnm, f) {
+	if (!f) f = 0.0
+	// at this point, an atom at {0 0 0} is at pt0
+	// and the x coord of an atom is along vnm
+	var c = 1.0 * vnm + f
+	var pi = 3.1415926
+	vnm = point(c, 0, 0)
+	var r = c / (2.0 * pi)
+	var theta = 360.0 * a.x / c
+	a.x = r * sin(theta)
+	a.z = r * (1 - cos(theta))
+}
+
+function showTitle() {
+  set echo top center
+  var s = "n = "+n+" m = " + m
+  echo @s
+}
+
+
+doLoad()
+getVectorsAndOrigin()
+drawa1a2()
+
+
+/*
+
+drawComponent1()
+drawComponent2()
+
+getVnm()
+drawVnm()
+hideNM()
+makeTube()
+
+if (watchWrap) {
+set zshade off
+	save coord c
+	for (var i = 20; i >= 0; i = i - 2) {
+		restore coord c
+		makeTube(1.0 * i)
+		refresh
+	}
+} else {
+	makeTube()
+}
+*/
+
+set zshade 
+set zshadepower 5
+
+
+done=true
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Test of NCBI/PubChem and NCI/CADD AJAX calls</title>
+<script>
+function test(isAsync, proto, site) {
+	say();
+	say(navigator.userAgent);
+	var site;
+	switch (site) {
+	case 1:
+		site = proto + "://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/methane/SDF?record_type=3d";
+	break;
+	case 2:
+		site = proto + "://cactus.nci.nih.gov/chemical/structure/methane/file?format=sdf&get3d=True";
+	break;
+	}
+	say(site);
+	setTimeout(function(){xhrtest(site, isAsync)},10);
+}
+
+function xhrtest(site, isAsync) {
+	var xhr = (window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"));
+	xhr.open("GET", site, isAsync);
+	//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	if (isAsync)
+		xhr.onreadystatechange = function() {report(xhr)};
+	try {
+		xhr.send();
+		if (isAsync)
+			say("working...");
+		else
+			report(xhr);
+	} catch(e) {
+		say(e);
+	}
+}
+
+function report(xhr) {
+	say("readyState=" + xhr.readyState 
+		+ " statusText=" + xhr.statusText
+		+ " (" + xhr.responseText.length + " bytes)" 
+		+ (xhr.readyState == 4 ? "<br><pre style='font-size:6px'>" + xhr.responseText.replace(/\</g, "&lt;") + "</pre>" : ""));
+}
+
+function say(s) {
+	var d = document.getElementById("log");
+	if (s)
+		d.innerHTML += "<br><hr>" + s;
+	else
+		d.innerHTML = "";	
+}
+
+</script>
+</head>
+<body>
+<table cellpadding="10"><tr><th>NCBI/PubChem</th><th>NCI/CIR</th></tr>
+<tr><td valign="top">
+<a href="javascript:test(false, 'http', 1)">test http sync</a> (failing in FF)
+<a href="javascript:test(false, 'https', 1)">test https sync</a> (works)
+<br>
+<a href="javascript:test(true, 'http', 1)">test http async</a> (failing in FF)
+<a href="javascript:test(true, 'https', 1)">test https async</a> (works)
+<br>
+<br>
+My observations are that PubChem access is now <br>(as of 3/7/2014) by https only.
+This is a problem.
+</td><td valign="top">
+<a href="javascript:test(false, 'http', 2)">test http sync</a> (works)
+<a href="javascript:test(false, 'https', 2)">test https sync</a> (will time out)
+<br>
+<a href="javascript:test(true, 'http', 2)">test http async</a> (works)
+<a href="javascript:test(true, 'https', 2)">test https async</a> (will time out)
+<br>
+<br>
+NCI's Chemical Identifier Resolver does not provide https service.
+<br>This is a different problem.
+</td></tr>
+</table>
+<br>
+<div id="log"></div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+MacSPARTAN '06 MECHANICS PROGRAM: x86/Darwin       129c
+
+
+ Frequency Calculation
+
+  Adjusted 3 (out of 36) low frequency modes
+
+  Reason for exit: Successful completion
+  Mechanics CPU Time :          .02
+  Mechanics Wall Time:          .11
+
+MacSPARTAN '06 Quantum Mechanics Program:  (x86/Darwin)    build  129cv3
+
+Job type: Geometry optimization.
+Method: RHF
+Basis set: 3-21G(*)
+Number of shells: 30
+Number of basis functions: 66
+
+SCF model:
+ A restricted Hartree-Fock SCF calculation will be
+ performed using Pulay DIIS + Geometric Direct Minimization
+
+
+Optimization:
+       Step        Energy          Max Grad.      Max Dist. 
+          1      -229.4193760       0.007204       0.019344
+          2      -229.4194397       0.002447       0.004713
+          3      -229.4194452       0.000402       0.001016
+          4      -229.4194454       0.000060       0.000148
+
+  Program Wall Time:    0:00:02.0
+
+<step 2>
+Job type: Frequency calculation.
+Method: RHF
+Basis set: 3-21G(*)
+
+  Program Wall Time:    0:00:13.0
+
+  Reason for exit: Successful completion
+  Quantum Calculation CPU Time :   0:00:12.6
+  Quantum Calculation Wall Time:   0:00:16.4
+
+
+MacSPARTAN '06 Semi-Empirical Program:  (x86/Darwin)         build  129c       
+    Semi-empirical Property Calculation 
+
+  M0001                                                                      
+
+  Guess from Archive
+    
+  Energy Due to Solvation
+   Solvation Energy SM5.4/A         -2.937
+  Memory Used:         358.66 Kb
+  Reason for exit: Successful completion
+  Semi-Empirical Program CPU Time :          .01
+  Semi-Empirical Program Wall Time:          .02
+
+
+SPARTAN PROPERTIES PACKAGE: MAC/P4            build 129c                       
+   
+   
+
+  Temperature Corrections for   298.15 K 
+
+
+  Reason for exit: Successful completion
+  Properties CPU Time :          .19
+  Properties Wall Time:          .23
+
+molecule M0001 terminated normally
+
+
+
+End-   molecule "M0001" Wed Nov  7 15:40:12 2007

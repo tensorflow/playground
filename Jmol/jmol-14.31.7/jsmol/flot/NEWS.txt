@@ -1,0 +1,165 @@
+Flot 0.5
+--------
+
+Backwards API change summary: Timestamps are now in UTC. Also
+"selected" event -> becomes "plotselected" with new data, the
+parameters for setSelection are now different (but backwards
+compatibility hooks are in place), coloredAreas becomes markings with
+a new interface (but backwards compatibility hooks are in place).
+
+
+Interactivity: added a new "plothover" event and this and the
+"plotclick" event now returns the closest data item (based on patch by
+/david, patch by Mark Byers for bar support). See the revamped
+"interacting with the data" example for some hints on what you can do.
+
+Highlighting: you can now highlight points and datapoints are
+autohighlighted when you hover over them (if hovering is turned on).
+
+Support for dual axis has been added (based on patch by someone who's
+annoyed and /david). For each data series you can specify which axes
+it belongs to, and there are two more axes, x2axis and y2axis, to
+customize. This affects the "selected" event which has been renamed to
+"plotselected" and spews out { xaxis: { from: -10, to: 20 } ... },
+setSelection in which the parameters are on a new form (backwards
+compatible hooks are in place so old code shouldn't break) and
+markings (formerly coloredAreas).
+
+Timestamps in time mode are now displayed according to
+UTC instead of the time zone of the visitor. This affects the way the
+timestamps should be input; you'll probably have to offset the
+timestamps according to your local time zone. It also affects any
+custom date handling code (which basically now should use the
+equivalent UTC date mehods, e.g. .setUTCMonth() instead of
+.setMonth().
+
+Added support for specifying the size of tick labels (axis.labelWidth,
+axis.labelHeight). Useful for specifying a max label size to keep
+multiple plots aligned.
+
+Markings, previously coloredAreas, are now specified as ranges on the
+axes, like { xaxis: { from: 0, to: 10 }}. Furthermore with markings
+you can now draw horizontal/vertical lines by setting from and to to
+the same coordinate (idea from line support patch by by Ryan Funduk).
+
+The "fill" option can now be a number that specifies the opacity of
+the fill.
+
+You can now specify a coordinate as null (like [2, null]) and Flot
+will take the other coordinate into account when scaling the axes
+(based on patch by joebno).
+
+New option for bars "align". Set it to "center" to center the bars on
+the value they represent.
+
+setSelection now takes a second parameter which you can use to prevent
+the method from firing the "plotselected" handler. 
+
+Using the "container" option in legend now overwrites the container
+element instead of just appending to it (fixes infinite legend bug,
+reported by several people, fix by Brad Dewey).
+
+Fixed a bug in calculating spacing around the plot (reported by
+timothytoe). Fixed a bug in finding max values for all-negative data
+sets. Prevent the possibility of eternal looping in tick calculations.
+Fixed a bug when borderWidth is set to 0 (reported by
+Rob/sanchothefat). Fixed a bug with drawing bars extending below 0
+(reported by James Hewitt, patch by Ryan Funduk). Fixed a
+bug with line widths of bars (reported by MikeM). Fixed a bug with
+'nw' and 'sw' legend positions. Improved the handling of axis
+auto-scaling with bars. Fixed a bug with multi-line x-axis tick
+labels (reported by Luca Ciano). IE-fix help by Savage Zhang.
+
+
+Flot 0.4
+--------
+
+API changes: deprecated axis.noTicks in favor of just specifying the
+number as axis.ticks. So "xaxis: { noTicks: 10 }" becomes
+"xaxis: { ticks: 10 }"
+
+Time series support. Specify axis.mode: "time", put in Javascript
+timestamps as data, and Flot will automatically spit out sensible
+ticks. Take a look at the two new examples. The format can be
+customized with axis.timeformat and axis.monthNames, or if that fails
+with axis.tickFormatter.
+
+Support for colored background areas via grid.coloredAreas. Specify an
+array of { x1, y1, x2, y2 } objects or a function that returns these
+given { xmin, xmax, ymin, ymax }.
+
+More members on the plot object (report by Chris Davies and others).
+"getData" for inspecting the assigned settings on data series (e.g.
+color) and "setData", "setupGrid" and "draw" for updating the contents
+without a total replot.
+
+The default number of ticks to aim for is now dependent on the size of
+the plot in pixels. Support for customizing tick interval sizes
+directly with axis.minTickSize and axis.tickSize.
+
+Cleaned up the automatic axis scaling algorithm and fixed how it
+interacts with ticks. Also fixed a couple of tick-related corner case
+bugs (one reported by mainstreetmark, another reported by timothytoe).
+
+The option axis.tickFormatter now takes a function with two
+parameters, the second parameter is an optional object with
+information about the axis. It has min, max, tickDecimals, tickSize.
+
+Added support for segmented lines (based on patch from Michael
+MacDonald) and for ignoring null and bad values (suggestion from Nick
+Konidaris and joshwaihi). 
+
+Added support for changing the border width (joebno and safoo).
+Label colors can be changed via CSS by selecting the tickLabel class.
+
+Fixed a bug in handling single-item bar series (reported by Emil
+Filipov). Fixed erratic behaviour when interacting with the plot
+with IE 7 (reported by Lau Bech Lauritzen). Prevent IE/Safari text
+selection when selecting stuff on the canvas.
+
+
+
+Flot 0.3
+--------
+
+This is mostly a quick-fix release because jquery.js wasn't included
+in the previous zip/tarball.
+
+Support clicking on the plot. Turn it on with grid: { clickable: true },
+then you get a "plotclick" event on the graph placeholder with the
+position in units of the plot.
+
+Fixed a bug in dealing with data where min = max, thanks to Michael
+Messinides.
+
+Include jquery.js in the zip/tarball.
+
+
+Flot 0.2
+--------
+
+Added support for putting a background behind the default legend. The
+default is the partly transparent background color. Added
+backgroundColor and backgroundOpacity to the legend options to control
+this.
+
+The ticks options can now be a callback function that takes one
+parameter, an object with the attributes min and max. The function
+should return a ticks array.
+
+Added labelFormatter option in legend, useful for turning the legend
+labels into links.
+
+Fixed a couple of bugs.
+
+The API should now be fully documented.
+
+Patch from Guy Fraser to make parts of the code smaller.
+
+API changes: Moved labelMargin option to grid from x/yaxis.
+
+
+Flot 0.1
+--------
+
+First public release.

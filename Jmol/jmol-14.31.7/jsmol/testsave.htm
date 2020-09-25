@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<title>HTML5-only and WebGL Jmol Demo</title>
+<head>
+<meta charset="utf-8">
+<!-- breaking out the library for debugging -->
+<script type="text/javascript" src="jquery/jquery.js"></script>
+<script type="text/javascript" src="js/JSmoljQueryExt.js"></script>
+<script type="text/javascript" src="js/JSmolCore.js"></script>
+<script type="text/javascript" src="js/JSmolApplet.js"></script>
+<script type="text/javascript" src="js/JSmolApi.js"></script>
+<script type="text/javascript" src="js/JSmolControls.js"></script>
+<script type="text/javascript" src="js/j2sjmol.js"></script>
+<script type="text/javascript" src="js/JSmol.js"></script>
+<script type="text/javascript" src="js/JSmolConsole.js"></script>
+<script type="text/javascript" src="js/JSmolMenu.js"></script>
+<!-- // following two only necessary for WebGL version: 
+-->
+<script type="text/javascript" src="js/JSmolThree.js"></script>
+<script type="text/javascript" src="js/JSmolGLmol.js"></script>
+
+<script type="text/javascript">
+
+alert("testsave.htm tests local file saving in Firefox and Chrome using no server. In the 'Search' box, enter\n\n  ! write t.png as PNGJ \n\nthen load some other model and then drag the downloaded file back into the applet. Should restore the model.");
+    
+Jmol._localFileSaveFunction = function(filename, data) {
+	var isString = (typeof data == "string");
+  if (isString)
+		data = data.getBytes();
+	var mimetype = (isString ? "text/plain" : "image/png");
+	$.create('a').attr({
+		type:mimetype, href:"data:" + mimetype + ";base64,"+ data,
+		download:(JU ? JU : J.util).Base64.getBase64(data).toString()
+	}).click().remove();
+	return true;
+}
+
+
+Jmol.getProfile() // records repeat calls to overridden or overloaded Java methods
+
+var jmolApplet0; // set up in HTML table, below
+
+// use ?_USE=JAVA or _USE=SIGNED or _USE=HTML5
+
+jmol_isReady = function(applet) {
+	document.title = (applet._id + " is ready")
+	Jmol._getElement(applet, "appletdiv").style.border="1px solid blue"
+ 
+}		
+
+Info = {
+	width: 300,
+	height: 300,
+	debug: false,
+	color: "#F0F0F0",
+	zIndexBase: 20000,
+	z:{monitorZIndex:100},
+	addSelectionOptions: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+  //language: "fr", // NOTE: LOCALIZATION REQUIRES <meta charset="utf-8"> (see JSmolCore Jmol.featureDetection.supportsLocalization)
+	jarPath: "java",
+	j2sPath: "j2s",
+	jarFile: "JmolApplet.jar",
+	isSigned: false,
+	disableJ2SLoadMonitor: false,
+	disableInitialConsole: false,
+	readyFunction: jmol_isReady,
+  allowjavascript: true,
+	script: "set antialiasDisplay;load data/caffeine.mol;"
+	//,defaultModel: ":dopamine"
+  //,noscript: true
+	//console: "none", // default will be jmolApplet0_infodiv
+	//script: "set antialiasDisplay;background white;load data/caffeine.mol;"
+  //delay 3;background yellow;delay 0.1;background white;for (var i = 0; i < 10; i+=1){rotate y 3;delay 0.01}"
+}
+
+
+
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10>
+<tr><td colspan=2 style="font-size:8pt">
+For a zip file containing all the files in this directory, 
+see <a href=https://chemapps.stolaf.edu/jmol/zip/Jmol.zip>https://chemapps.stolaf.edu/jmol/zip/Jmol.zip</a>. 
+
+This test page uses unminified files and can implement the signed Jmol applet, the unsigned Jmol applet, or just JavaScript and HTML5 with or without WebGL. 
+
+Credits: 
+WebGL interface written by <b>Takanori Nakane</b>. 
+Java2Script written by <b>Zhou Renjian, et al.</b>
+Jzlib written by <b>Atsuhiko Yamanaka</b>.
+Jmol code conversion to JavaScript by <b>Bob Hanson</b>. 
+
+</td></tr>
+<tr><td valign=top>
+
+
+<script>
+
+// note that the variable name MUST match the first parameter in quotes
+
+
+jmolApplet0 = Jmol.getApplet("jmolApplet0", Info)
+
+// note that now scripts can be sent immediately after the _Applet object is created
+
+//Jmol.script(jmolApplet0,"background gray;delay 0.5;background black")
+var lastPrompt=0;
+</script>
+
+<br>
+<a href="javascript:Jmol.script(jmolApplet0,'console')">console</a>
+<a href="javascript:Jmol.script(jmolApplet0,'write PNGJ jmol.png')">image</a>
+display
+<a href="javascript:Jmol.script(jmolApplet0,'set antialiasDisplay false')">faster</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set antialiasDisplay true')">sharper</a>
+<br>
+platformSpeed:
+<a href="javascript:Jmol.script(jmolApplet0,'set platformSpeed 8')" title='all features'>8</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set platformSpeed 7')" title='no antialiasing'>7</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set platformSpeed 6')" title='no translucency'>6</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set platformSpeed 5')" title='surfaces dotted'>5</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set platformSpeed 4')" title='cartoons as trace'>4</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set platformSpeed 3')" title='geosurfaces as dots'>3</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set platformSpeed 2')" title='ellipsoids as dots'>2</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set platformSpeed 1')" title='wireframe only'>1</a>
+<br>
+info <a href="javascript:Jmol.showInfo(jmolApplet0, true)">show</a>
+<a href="javascript:Jmol.clearConsole(jmolApplet0)">clear</a>
+<a href="javascript:Jmol.showInfo(jmolApplet0, false)">hide</a>
+
+<br><a href="javascript:Jmol.script(jmolApplet0,'select *;cartoons off;spacefill only')">spacefill</a>
+<a href="javascript:Jmol.script(jmolApplet0,'select *;cartoons off;wireframe -0.1')">wire</a>
+<a href="javascript:Jmol.script(jmolApplet0,'select *;cartoons off;spacefill 23%;wireframe 0.15')">ball&stick</a>
+<a href="javascript:Jmol.script(jmolApplet0,'select protein or nucleic;cartoons only')">cartoons</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set cartoonFancy true')">fancy</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set cartoonFancy false')">not</a>
+<a href="javascript:Jmol.script(jmolApplet0,'set cartoonFancy false;set hermitelevel 0')">flat</a>
+
+<br><a href="javascript:Jmol.script(jmolApplet0,'color property atomno')">color atomno</a>
+<a href="javascript:Jmol.script(jmolApplet0,'color cpk')">color cpk</a>
+<a href="javascript:Jmol.script(jmolApplet0,'color structure')">color structure</a>
+<br>
+<a href="javascript:Jmol.script(jmolApplet0,'select *;isosurface vdw')">isosurface vdw</a>
+<a href="javascript:Jmol.script(jmolApplet0,'isosurface delete')">off</a>
+<a href="javascript:Jmol.script(jmolApplet0,'if ({atomno < 10}.partialcharge == 0){calculate partialcharge};isosurface vdw map mep')">mep</a>
+<a href="javascript:Jmol.script(jmolApplet0,'isosurface translucent')">translucent</a>
+<a href="javascript:Jmol.script(jmolApplet0,'isosurface opaque')">opaque</a>
+
+
+<br>
+labels <a href="javascript:Jmol.script(jmolApplet0,'if (_fileType == &quot;Pdb&quot;){select *.CA;label %n%r}else{select *;label %a};select *;')">on</a>
+<a href="javascript:Jmol.script(jmolApplet0,'select *;labels off')">off</a>
+<a href="javascript:Jmol.script(jmolApplet0,'font echo 20 serif;fsize=20;set echo top center;echo echo test')">echo</a>
+<a href="javascript:Jmol.script(jmolApplet0,'if (!fsize){fsize=20};fsize += 4;font echo @fsize serif;')">larger</a>
+<a href="javascript:Jmol.script(jmolApplet0,'if (!fsize){fsize=20};fsize -= 4;if (fsize < 10){fsize = 10};font echo @fsize serif')">smaller</a>
+
+</td><td valign=top>
+<b>Try various buttons. If anything doesn't work please <a href=mailto:hansonr@stolaf.edu>let me know</a>.</b> 
+<br><br> 
+
+<span style="font-size:8pt">
+Current status: 7 SEP 2013 - 
+<b>Jmol is working completely Java-free, requiring only HTML5.</b>
+The <b>platformSpeed</b> option (set 1 to 10) allows for rapid rotation of models for platforms that have limited JavaScript capability (iPad/iPhone, tablets). 
+
+Popup menu, script queuing, animation, spin, vibration, move, moveto, hover, and (guided) navigation, pause/resume are all working;
+echos/labels working; antialiasDisplay working;
+synchronous binary and XML file reading working; 
+cartoons, translucency, surfaces -- all are working in a simple HTML5 2D canvas. WebGL is less developed, with just basic shapes and no text. 
+
+
+Enter "!" and a command into the search box and press ENTER to execute a <a target=_blank href=https://chemapps.stolaf.edu/jmol/docs>script command</a>.
+   </span>
+<br><br> 
+<table cellpadding=5><tr><td valign=top>
+<b>rendering options:</b> 
+	 <br> 
+  <a href=test2.htm?_USE=JAVA>unsigned Jmol applet</a> 
+ <br> 
+<a href=test2.htm?_USE=SIGNED>signed Jmol applet</a>
+ <br> 
+<a href=test2.htm?_USE=HTML5>JSmol (HTML5 only)</a> 
+ <br> 
+ <a href=test2.htm?_USE=WEBGL>JSmol (WebGL)</a> 
+ <br>
+	<b>keyword searches</b>
+ <br>
+ <a href="javascript:Jmol.search(jmolApplet0,'=caffeine?')">=caffeine? (RCSB)</a>
+ <br>
+ <a href="javascript:Jmol.search(jmolApplet0,'=1blu?')">=1blu? (RCSB)</a>
+ <br>
+ <a href="javascript:Jmol.search(jmolApplet0,'=1crn?')">=1crn? (RCSB)</a>
+</td><td valign=top>
+	<b>this-domain calls</b>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/1cbs.cif; set echo top left;echo loading map file...;refresh;isosurface downsample 2 cutoff 0.5 boundbox &quot;data/1cbs_2fofc.map&quot; mesh nofill;isosurface display within 2.0 {*};echo')">2.2MB EDM test</a>
+<br>  
+ <a href="javascript:Jmol.script(jmolApplet0,'load ?')">local file reading</a>
+<br>
+ <a href="javascript:Jmol.script(jmolApplet0,'minimize')">minimize</a> 
+ <a href="javascript:Jmol.script(jmolApplet0,'set modelkitmode;set picking dragMinimize')">drag-minimize</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'!quit;set modelkitmode false;set picking ident;')">!quit</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'script data/flexfit.spt')">flexible fit</a>
+<br>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/dna.pse')">PyMOL session - dna</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/estron.cml;delete molecule!=1;moveto /* time, axisAngle */ 0.0 { -569 -266 778 170.22} /* zoom, translation */ 210.8 0.0 0.0 /* center, rotationRadius */ {1.612277686904762 3.7877332476190473 1.6109263519047616} 16.399569513870535 /* navigation center, translation, depth */ {0 0 0} 9.485930041021248 -20.361702729557265 0;')">estron.cml</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/vasp.xml')">vasp.xml</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/water.xodydata')">water.xodydata</a>
+ <br>  
+ <a href="javascript:Jmol.script(jmolApplet0,'script data/test.spt;background black')">thread test</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'pause')">pause</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'resume')">resume</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'!quit')">!quit</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'!exit')">!exit</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/caffeine.mol;if (random() > 0.3){moveto 1 left}else if (random() > 0.7) {moveto 1 right} else {moveto 1 top};background black;delay 0.1;background white')">moveto</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/caffeine.mol;set echo top center;delay 1.0;echo caffeine;delay 1.0;set selectionhalos on;select _O;echo oxygen;delay 1.0;select _N;echo nitrogen;delay 1.0; select none;echo hover over an atom')">delay/hover</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'var x=antialiasDisplay;load data/cyclohexaneFlip.jmol;antialiasdisplay = x;animation mode palindrome;animation on')">animation</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/c6h6.smol -3;rotate x 30;spin on;vibration on')">spin/vibration</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/co2.smol;mo homo SQUARED')">mo homo SQUARED</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/1hxw.png')">load data/1hxw.png</a> (<a target=_blank href=data/1hxw.png>image</a>)
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/square_planar.spartan')">load data/square_planar.spartan</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'load data/water.xyz.gz')">load data/water.xyz.gz</a>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'zap;pmesh &quot;data/sage.pmesh&quot; fullylit;')">pmesh "data/sage.pmesh"</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'data/caffeine.mol')">load data/caffeine.mol</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'data/caffeine.mol',';isosurface &quot;data/caffeine.jvxl&quot;')">isosurface "caffeine.jvxl"</a>
+ <br>
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'data/1crn.pdb',';if (_is2D) {set hermitelevel 0} else {set hermitelevel 6;set ribbonAspectRatio 4};cartoons only;color structure;')">load data/1crn.pdb</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'data/k04041.cif','load &quot;&quot; {1 1 1}')">load data/k04041.cif {1 1 1}</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'data/cl2o.gamess')">load data/cl2o.gamess</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'data/cl2o.gamess',';model 1.2;if (_is2D){mo mesh nofill} else {mo fill nomesh};mo homo')">(load +) mo homo</a>
+ <br> 
+ <a href="javascript:Jmol.script(jmolApplet0,'model 1.2;mo fill nomesh;	mo lumo')">mo lumo</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'mo mesh nofill')">mesh</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'mo fill nomesh')">fill</a>
+ <br> 
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'set echo myimage [0 0];set echo myimage depth 50; set echo myimage image &quot;data/bob.png&quot;')">image</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'set echo myimage scale 0.5')">x 0.5</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'set echo myimage scale 1.0')">x 1.0</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'set echo myimage scale 2.0')">x 2.0</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'set echo myimage off')">off</a>         
+ <a href="javascript:Jmol.script(jmolApplet0,'set echo myimage image &quot;data/bob.png&quot;;set echo myimage depth 50')">on</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'set echo myimage depth 100')">front</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'set echo myimage depth 50')">mid</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'set echo myimage depth 0')">back</a>
+ <br>
+ <br>
+ <a href="javascript:Jmol.script(jmolApplet0,'script data/cyclflip2.spt')">cyclflip2.spt</a>
+ <a href="javascript:Jmol.script(jmolApplet0,'!quit')">!quit</a>
+ <br>
+ <br> 
+
+ </td><td valign=top>
+	<b>direct database calls(<a href="javascript:alert('MSIE cannot do synchronous cross-domain file transfer, so if you want to do that, you must put jsmol.php on your OWN server and point to it using Info.serverURL, which for this page is ' + Info.serverURL + '\nA text version of this php file is at https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php.txt')">unless MSIE</a>)</b>
+ <br>
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'$caffeine')">load $caffeine (from NCI)</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'=1blu',';display not water;select protein or nucleic;cartoons only;color structure;select *')">load =1blu (from RCSB)</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'=1d66',';display not water;select protein or nucleic;cartoons only;color structure;select *')">load =1d66 (from RCSB)</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'=4tra',';display not water;select protein or nucleic;cartoons only;color structure;select *')">load =4tra (from RCSB)</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,':1983')">load :1983 (PubChem CID)</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,':aspirin')">load :aspirin (PubChem name)</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,':smiles:CC/C=C/CC')">load :smiles:CC/C=C/CC (PubChem SMILES)</a>
+ <br>
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'$CC/C=C/CC')">load $CC/C=C/CC (NCI SMILES)</a>
+ <br>
+ <a href="javascript:Jmol.search(jmolApplet0,':caffeine',';isosurface vdw map mep translucent')">load :caffeine (PubChem, with mep)</a>
+ <br> 
+ <a href="javascript:Jmol.search(jmolApplet0,'$caffeine',';moveto /* time, axisAngle */ 0.0 { -18 -17 1000 179.69} /* zoom, translation */  100.0 0.0 0.0  /* center, rotationRadius */ {-0.44874999999999954 0.18930000000000002 -0.06529999999999997} 5.536731293601459 /* navigation center, translation, depth */ {0 0 0} -4.041090898432742 -1.7041175988342825 0;calculate partialCharge;isosurface vdw map mep translucent')">load $caffeine (NCI, with MMFF94 mep)</a>
+ <br> 
+ <a href="javascript:Jmol.loadFile(jmolApplet0,'==HEM')">load ==HEM (RCSB ligand)</a>
+
+</td></tr></table>
+</td>
+</tr></table>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/JSmolJSV.js"></script>
+
+<script type="text/javascript">
+
+var jmolApplet0; // set up in HTML table, below
+var Info;
+
+;(function() {
+
+// Developers: The _debugCode flag is checked in j2s/java/core.z.js, 
+// and, if TRUE, skips loading the core methods, forcing those
+// to be read from their individual directories. Set this
+// true if you want to do some code debugging by inserting
+// System.out.println, document.title, or alert commands
+// anywhere in the Java or Jmol code.
+
+//Jmol._debugCode = true;//(s.indexOf("debugcode") >= 0);
+
+Info = {
+	width: 800,
+	height: 300,
+	debug: false,
+	color: "#C0C0C0",
+  disableJ2SLoadMonitor: false,
+  disableInitialConsole: false,
+	addSelectionOptions: true,
+  jarPath: "java",
+  j2sPath: "j2s",  
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	readyFunction: null,
+	script: "load data/t.jdx",
+  console: "consolediv"
+}
+
+
+})();
+
+
+jmol_isReady = function(applet) {
+	document.title = (applet._id + " is ready")
+	Jmol._getElement(applet, "appletdiv").style.border="1px solid blue"
+ 
+}		
+
+
+$(document).ready(function() {
+  $("#jsvdiv").html(Jmol.getJSVAppletHtml("jsv",Info));
+});
+
+</script>
+</head>
+<body>
+<div id=consolediv style="position:relative;left:850px;top:0px;width:300px;height:300px;overflow:auto"></div>
+<div id=jsvdiv style="position:relative;left:10px;top:-300px;width:800px;height:350px">
+</div>
+<div style="position:absolute;left:300px;top:350px">
+<a href="javascript:Jmol.script(jsv, 'gridon')">grid on</a> <a href="javascript:Jmol.script(jsv, 'gridon false')">grid off</a>
+<a href="javascript:Jmol.script(jsv, 'showpeaklist')">show peak list</a>
+<a href="javascript:Jmol.script(jsv, 'load data/vinylpyrr.jdx;view 1.2;showIntegration')">load vinylpyrr.jdx (1HNMR)</a>
+<a href="javascript:Jmol.script(jsv, 'load data/aquation20.jdx')">load aquation20.jdx (multi-UV-VIS)</a>
+<a href="javascript:Jmol.script(jsv, 'load data/t2d.jdx')">load t2d.jdx (2D NMR)</a>
+<a href="javascript:Jmol.script(jsv, 'print PDF')">print PDF</a>
+</div>
+</body>
+</html>

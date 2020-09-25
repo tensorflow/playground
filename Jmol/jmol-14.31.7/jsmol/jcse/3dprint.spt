@@ -1,0 +1,26 @@
+// 3dprint.spt by Bob Hanson hansonr@stolaf.edu
+// 10/18/2016 10:28:54 PM, 10/19/2016 6:36:44 PM
+
+while (true) {
+    var yn = prompt("Is a single molecule already displayed?", "yes")
+    if (yn == "null") break
+    if (yn != "yes") {
+//      load "" {1 1 1}
+      info = getProperty("moleculeInfo")
+      nmax = getProperty(info,"nAtoms").max
+      m =  getProperty(info,"[select (number) where nAtoms = nmax]")[1]
+      display molecule=m
+    }
+    axes OFF
+    unitcell OFF
+    center displayed
+    refresh
+    var type = prompt("Print format (STL, WRL, or cancel)", "STL")
+    if (type == "null") break
+    var scale = 0+prompt("What scale would  you like?",10.0)
+    if (scale == 0) break
+    set exportScale @scale
+    write @{"?" + _modelName + "." + type}
+    break
+}
+

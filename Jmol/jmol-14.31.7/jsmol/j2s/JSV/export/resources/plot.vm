@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding="UTF-8" standalone='yes'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="850.0" height="400.0" viewBox="0 0 $svgWidth $svgHeight" preserveAspectRatio="none" onmousemove="getCoord(evt)">
+<!-- Copyright (c) 2002-2012 Department of Chemistry, University of the West Indies, Jamaica -->
+<script >
+  <![CDATA[
+  var doc;
+  var firstTranslateX = $firstTranslateX, firstTranslateY = $firstTranslateY;
+  var scaleX = $scaleX, scaleY = $scaleY;
+  var secondTranslateX = $secondTranslateX, secondTranslateY = $secondTranslateY;
+  var leftPlotArea = $leftPlotArea, rightPlotArea = $rightPlotArea;
+  var topPlotArea = $topPlotArea, bottomPlotArea = $bottomPlotArea;
+  var plotAreaWidth = $plotAreaWidth, plotAreaHeight = $plotAreaHeight;
+  var svgHeight = $svgHeight, svgWidth = $svgWidth;
+  var minXOnScale = $minXOnScale, minYOnScale = $minYOnScale;
+  var maxXOnScale = $maxXOnScale, maxYOnScale = $maxYOnScale;
+  var xScaleFactor = $xScaleFactor, yScaleFactor = $yScaleFactor;
+  var numDecimalPlacesX = $numDecimalPlacesX, numDecimalPlacesY = $numDecimalPlacesY;
+  var increasing = $increasing;
+  var transX = firstTranslateX;
+  var tempScaleX = scaleX;
+  var plotReversed = false;
+  var scaleOn = true;
+  var coordsOn = true;
+
+  var doc = document;
+
+  function toggleShowElement(id) {
+    // Get element over which event happened
+    var element = doc.getElementById(id);
+
+    var style = element.getAttribute("style");
+
+    var index = style.indexOf("visibility:visible");
+    if(index != -1){ // if visible
+      var newStyle = style.substring(0, index);
+      element.setAttribute("style", newStyle+"visibility:hidden");
+    }
+    else{ // if hiddden
+      index = style.indexOf("visibility:hidden");
+      var newStyle = style.substring(0, index);
+      element.setAttribute("style", newStyle+"visibility:visible");
+    }
+  }
+
+  function reversePlot(id){
+    // reverse the spectrum
+    var element = doc.getElementById(id);
+    var theTransform = element.getAttribute("transform");
+
+    if(transX == leftPlotArea)
+      transX = rightPlotArea;
+    else
+      transX = leftPlotArea;
+
+    tempScaleX = -1 * tempScaleX;
+
+    var newTransform = "translate(" + transX + ",$firstTranslateY) scale(" + tempScaleX + ",$scaleY) translate($secondTranslateX,$secondTranslateY)";
+    element.setAttribute("transform", newTransform);
+
+    if(!plotReversed){
+      element = doc.getElementById("xScale");
+      element.setAttribute("style", "visibility:hidden");
+      element = doc.getElementById("xScaleReversed");
+      element.setAttribute("style", "visibility:visible");
+      plotReversed = true;
+    }
+    else{
+      element = doc.getElementById("xScale");
+      element.setAttribute("style", "visibility:visible");
+      element = doc.getElementById("xScaleReversed");
+      element.setAttribute("style", "visibility:hidden");
+      plotReversed = false;
+    }
+  }
+
+  function getCoord(evt){
+    var x = evt.clientX;
+    var y = evt.clientY;
+    var xPt, yPt;
+
+    if(coordsOn){
+      var element = doc.getElementById("mousePos");
+      element.setAttribute("x", x);
+      element.setAttribute("y", y);
+      var theText = element.firstChild;
+
+      if((!increasing && !plotReversed) || (increasing && plotReversed))
+              xPt = (((rightPlotArea - x) / xScaleFactor) + minXOnScale);
+      else
+              xPt = maxXOnScale - (((rightPlotArea - x) / xScaleFactor));
+
+      yPt = maxYOnScale + (((topPlotArea - y) / yScaleFactor));
+
+      var xStr = ""+xPt;
+      var yStr = ""+yPt;
+
+      var xIndex = xStr.indexOf(".");
+      var yIndex = yStr.indexOf(".");
+
+      if(xIndex != -1)
+              xStr = xStr.substring(0, ( xIndex + 2 + numDecimalPlacesX));
+      if(yIndex != -1)
+              yStr = yStr.substring(0, ( yIndex + 2 + numDecimalPlacesY));
+
+      if(xPt >= minXOnScale && xPt <= maxXOnScale && yPt >= minYOnScale && yPt <= maxYOnScale)
+        theText.data = "(" + xStr + ", " + yStr + ")";
+      else
+        theText.data = "";
+    }
+  }
+  ]]>
+</script>
+
+<rect id="Border" style="stroke:$gridColor ;stroke-width:0.1; fill:none"
+x="$leftPlotArea" y="$topPlotArea" width="$plotAreaWidth" height="$plotAreaHeight"/>
+
+<rect id="Background" style="fill:$plotAreaColor; visibility:visible;"
+x="$leftPlotArea" y="$topPlotArea" width="$plotAreaWidth" height="$plotAreaHeight"/>
+
+<text id="titleText" x="$leftPlotArea" y="$titlePosition" style="stroke:$titleColor; font-size:12pt">$title</text>
+
+<path id="Grid" style="fill:none; stroke:$gridColor ;stroke-width:0.5; visibility:visible;"
+d="
+#foreach ($coord in $verticalGridCoords)
+  M $coord.xVal $coord.yVal v $plotAreaHeight
+#end
+#foreach ($coord in $horizontalGridCoords)
+  M $coord.xVal $coord.yVal h $plotAreaWidth
+#end
+"/>
+
+<text id="gridText" x="700" y="60">Toggle Grid</text>
+<text id="backgroundText" x="700" y="80">Toggle Background</text>
+<text id="coordText" x="700" y="100">Toggle Coordinates</text>
+<text id="revPlotText" x="700" y="120">Reverse Plot</text>
+<text id="mousePos" x="100" y="50" style="visibility:visible;"> </text>
+
+<use xlink:href="#gridText" onclick="toggleShowElement('Grid');"/>
+<use xlink:href="#backgroundText" onclick="toggleShowElement('Background');"/>
+<use xlink:href="#revPlotText" onclick="reversePlot('Plot');"/>
+<use xlink:href="#coordText" onclick="coordsOn = !coordsOn;"/>
+
+<g id="scale" style="visibility:visible; stroke:$scaleColor;">
+<text id="xScale" style="visibility:visible;">
+#foreach ($item in $xScaleList)
+  <tspan x='$item.xVal' y='$item.yVal'>$item.number</tspan>
+#end
+</text>
+<text id="xScaleReversed" style="visibility:hidden;">
+#foreach ($item in $xScaleListReversed)
+  <tspan x='$item.xVal' y='$item.yVal'>$item.number</tspan>
+#end
+</text>
+<text id="yScale" style="visibility:visible;">
+#foreach ($item in $yScaleList)
+  <tspan x='$item.xVal' y='$item.yVal'>$item.number</tspan>
+#end
+</text>
+</g>
+
+<!--
+ one could construct one's own JavaScript here to do this differently
+
+ standard formula used here is:
+ 
+    int xUnitLabelX = rightPlotArea - 50;
+    int xUnitLabelY = bottomPlotArea + 30;
+    int yUnitLabelX = leftPlotArea - 80;
+    int yUnitLabelY = bottomPlotArea / 2;
+    int tempX = yUnitLabelX;
+    yUnitLabelX = -yUnitLabelY;
+    yUnitLabelY = tempX;
+    
+    WHERE
+    
+    rightPlotArea  = $rightPlotArea
+    bottomPlotArea = $bottomPlotArea
+    leftPlotArea   = $leftPlotArea
+    topPlotArea    = $topPlotArea
+    
+ 
+ -->
+<text id="xUnit" x='$xUnitLabelX' y='$xUnitLabelY' style="stroke:$unitsColor;">$xUnits</text>
+<text id="yUnit" transform='rotate(-90)' x='$yUnitLabelX' y='$yUnitLabelY' style="stroke:$unitsColor;">$yUnits</text>
+
+<g id="Plot" transform="translate($firstTranslateX,$firstTranslateY) scale($scaleX,$scaleY) translate($secondTranslateX,$secondTranslateY)">
+
+#if($continuous)
+  #if($overlaid)
+    #foreach ($coordList in $xyCoords)
+      <path id="Spectrum" style="fill:none; stroke:$plotColor ;stroke-width:0.005;"
+      d="
+      M
+      #foreach ($coord in $coordList)
+        $coord.getXString() $coord.getYString()
+      #end
+      "/>
+    #end
+  #else
+    <path id="Spectrum" style="fill:none; stroke:$plotColor ;stroke-width:0.005;"
+    d="
+    M
+    #foreach ($coord in $xyCoords)
+      $coord.getXString() $coord.getYString()
+    #end    
+    "/>
+  #end
+#else
+  #if($overlaid)
+    #foreach ($coordList in $xyCoords)
+      <path id="Spectrum" style="fill:none; stroke:$plotColor ;stroke-width:0.005;"
+      d="
+      M
+      #foreach ($coord in $coordList)
+        M $coord.getXString() 0 L $coord.getXString() $coord.getYString()
+      #end
+      "/>
+    #end
+  #else
+
+    <path id="Spectrum" style="fill:none; stroke:$plotColor ;stroke-width:0.005;"
+    d="
+    M
+    #foreach ($coord in $xyCoords)
+      M $coord.getXString() 0 L $coord.getXString() $coord.getYString()
+    #end
+    "/>
+  #end
+#end
+
+</g>
+</svg>

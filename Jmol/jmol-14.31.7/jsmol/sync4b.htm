@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src=JSmol.min.js></script>
+<script type="text/javascript">
+
+function callback(a,b) {
+ document.title=[a,b,b.charCodeAt(8)]
+ return b
+}
+
+function sync() {
+ var syncing = document.getElementById("drive").checked
+ var s = (syncing ? 'sync * on;sync * "set syncMouse on;set syncScript off";sync jmolAppletC SLAVE;sync jmolAppletD SLAVE': 'sync * off')
+ Jmol.script(jmolAppletA, s);
+}
+
+function syncAll() {
+ var s = 'sync *;set syncScript true;sync * "reset";'
+ Jmol.script(jmolAppletA, s);
+ sync();
+}
+
+function sync2() {
+ var syncing = document.getElementById("drive").checked
+ var s = (syncing ? 'sync * off;sync . on;sync jmolAppletB on;sync jmolAppletB "set syncMouse on;set syncScript off";': 'sync * off')
+ Jmol.script(jmolAppletA, s);
+}
+
+
+$(document).ready(function() {
+
+document.getElementById("info").reset()
+
+var Info = {
+	width: 200,
+	height: 200,
+	debug: false,
+	color: "0xFFFFFF",
+	addSelectionOptions: false,
+	use: "HTML5",   // JAVA HTML5 WEBGL are all options
+	j2sPath: "./j2s", // this needs to point to where the j2s directory is.
+	jarPath: "./java",// this needs to point to where the java directory is.
+	jarFile: "JmolAppletSigned.jar",
+	isSigned: true,
+	//script: "set antialiasDisplay;load data/caffeine.mol",
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	disableJ2SLoadMonitor: true,
+  disableInitialConsole: true,
+  allowJavaScript: true
+	//defaultModel: "$dopamine",
+	//console: "none", // default will be jmolApplet0_infodiv, but you can designate another div here or "none"
+}
+
+Info.script = "load data/1crn.pdb;cartoon on;color cartoon structure;javascript \"sync(1)\" ";
+$("#diva").html(Jmol.getAppletHtml("jmolAppletA", Info));
+Info.script = "load data/1crn.pdb;calculate structure;cartoon on;color cartoon structure;javascript \"sync(2)\" ";
+$("#divb").html(Jmol.getAppletHtml("jmolAppletB", Info));
+Info.script = "load data/1crn.pdb;spacefill off;javascript \"sync(3)\" ";
+$("#divc").html(Jmol.getAppletHtml("jmolAppletC", Info));
+Info.script = "load data/1crn.pdb;spacefill on;javascript \"sync(4)\" ";
+$("#divd").html(Jmol.getAppletHtml("jmolAppletD", Info));
+});
+
+</script>
+</head>
+<body>
+
+<form id=info>
+<input type=checkbox id=drive checked=true onClick=sync() accessKey="1">Synchronize <a href=javascript:syncAll()>reset</a>
+
+<a href=javascript:sync2()>just two</a>
+</form>
+<table border = 1 cellpadding=40>
+<tr>
+
+<td id=tdA>
+<div id=diva></div>
+<br>File-derived structure
+</td>
+<td id=tdB>
+<div id=divb></div>
+<br>Jmol-derived structure
+</td></tr>
+<tr>
+<td>
+<div id=divc></div>
+<br>wireframe (independently rotatable follower)
+</td>
+<td>
+<div id=divd></div>
+<br>spacefill  (independently rotatable follower)
+</td></tr>
+</table>
+
+
+</body>
+</html>

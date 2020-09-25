@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Super-Simple JSmol</title>
+<meta charset="utf-8">
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript"> 
+
+$(document).ready(function() {
+
+Info = {
+	width: 400,
+	height: 400,
+	debug: false,
+	j2sPath: "j2s",
+	color: "0xC0C0C0",
+  disableJ2SLoadMonitor: true,
+  disableInitialConsole: true,
+	addSelectionOptions: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	readyFunction: null,
+	script: "load $caffeine"
+}
+
+$("#mydiv").html(Jmol.getAppletHtml("jmolApplet0",Info))
+
+});
+
+
+
+</script>
+</head>
+<body>
+<span id=mydiv></span>
+<a href="javascript:Jmol.script(jmolApplet0, 'spin on')">spin on</a>
+
+<a href="javascript:Jmol.script(jmolApplet0, 'spin off')">spin off</a>
+</body>
+</html>

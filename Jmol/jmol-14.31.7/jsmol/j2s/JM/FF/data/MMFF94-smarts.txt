@@ -1,0 +1,260 @@
+#AtSym ElemNo mmType HType formalCharge*12 val Desc Smiles
+
+#BH 5/17/2016 -- for OpenSMARTS convention requiring $(...) in [...] 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Li  3 92  0  12  0 LITHIUM CATION            [LiD0]
+C   6 22  5   0  4 C IN CYCLOPROPLY          [CD4r3]
+C   6 20  5   0  4 C IN CYCLOBUTYL           [CD4r4]
+C   6  1  5   0  4 ALKYL CARBON              [CD4]
+C   6 30  5   0  4 C=C IN 4-RING             [$([CD3r4]=C)]
+C   6  2  5   0  4 VINYLIC                   [$([CD3]=C)]
+C   6 41  5   0  4 C IN CO2- ANION           [$([CD3]([OD1])[OD1]), $([CD3]([SD1])[SD1])]
+
+C   6 57  5   0  4 GUANIDINIUM CARBON        [$([CD3]([#7D3v3])([#7D3v3])=[#7D3v4&!r600&!$([#7][OD1])])]
+C   6 57  5   0  4 C IN +N=C-N RESONANCE     [$([CD3]([#7D3v3])=[#7D3v4&!r600&!$([#7][OD1])])]
+C   6  3  5   0  4 GUANIDINE CARBON          [$([CD3](=[#7D3v3])([#7D3v3])[#7D2v3])]
+C   6  3  5   0  4 GENERAL CARBONYL C        [$([CD3]=[O,N,P,S])]
+
+
+
+
+
+
+
+
+
+
+C   6 80  5   0  4 C IN N-C-N, IM+ ION       [$([cD3r500]([#7D3v3])=[#7D3v4&!r600&!$([#7][OD1])])]
+C   6 78  5   0  4 general 5-ring C both alp [$([cD3r500]1[oD2r500,sD2r500,nD3v3r500]aaa1),$([cD3r500]1a[oD2r500,sD2r500,nD3v3r500]aa1)]
+C   6 63  5   0  4 ALPHA AROM 5-RING  C (fur [$([cD3r500]:[oD2r500,sD2r500])]
+C   6 64  5   0  4 BETA AROM 5-RING  C (fura [$([cD3r500]:a:[oD2r500,sD2r500])]
+C   6 78  5   0  4 general 5-ring C (imidzol [$([cD3r500]1[nv4r500&!$(n[OD1])]aaa1),$([cr500]1a[nv4r500&!$(n[OD1])]aa1)]
+C   6 78  5   0  4 general 5-ring C (1,2-dia [$([cD3r500]1[cr500][cr500][nD2r500][nD2r500]1),$([cD3r500]1[cr500][nD2r500][nD2r500][cr500]1)]
+C   6 63  5   0  4 ALPHA AROM 5-RING  C      [$([cD3r500]:[nD3v3r500])]
+C   6 64  5   0  4 BETA AROM 5-RING  C       [$([cD3r500]1a[nD3v3r500]aa1)]
+C   6 37  5   0  4 CARBON AS IN BENZENE, PYR [cD3]1ccccc1
+C   6 78  5   0  4 GENERAL AROM 5-RING C     [cD3r500]
+C   6 37  5   0  4 AROMATIC C                [cD3]
+C   6  4  5   0  4 ACETYLENIC C              [$([#6D2]#*)]
+C   6  4  5   0  4 ALLENIC C (also isocyanat [$([#6D2](=*)=*)]
+C   6 60  0   0  3 ISONITRILE CARBON         [$([CD1]#N)]
+N   7 42  0   0  3 N TRIPLE BONDED           [$([ND1]#*)]
+N   7 47  0   0  2 TERMINAL N, AZIDE         [$([ND1][ND2])]
+N   7 53  0   0  4 N TWICE DOUBLE BONDED     [$([ND2](=*)=*)]
+N   7  9 27   0  3 N=C, IMINES               [$([ND2]=[#6,#7])]
+
+N   7 43 28   0  3 N, SULFONAMIDES (S(O)2-N= [$([ND2v3]S([OD1])[OD1])]
+N   7 46  0   0  3 NITROSO GROUP N           [$([ND2](=O)[#6,#7])]
+N   7 48 28   0  2 DIVALENT NITROGEN REPLACI [$([ND2][SD4]([OD1])([#6])[#6])]
+N   7 62 23 -12  2 SULFONAMIDE N-            [$([ND2v2][SD4]),$([ND2v2][CD3])]
+N   7 61  0   0  4 ISONITRILE N              [$([ND2]#[#6])]
+N   7 61  0  12  4 diazo N (+1)              [$([ND2]#[#7])]
+N   7 38  0   0  3 AROMATIC N, PYRIDINE      [nD2r600]
+N   7 65  0   0  3 ALPHA AROM 5-RING N (thio [$([nD2r500]:[sD2])]
+N   7 66  0   0  3 (BETA) AROM 5-RING N (thi [$([nD2r500]:a:[sD2])]
+N   7 65  0   0  3 ALPHA AROM 5-RING N (fura [$([nD2r500]:[oD2])]
+N   7 66  0   0  3 (BETA) AROM 5-RING N (fur [$([nD2r500]:a:[oD2])]
+N   7 65  0   0  3 ALPHA AROM 5-RING N       [$([nD2r500]:[nD3v3])&!$([$(n:[$([nv4])&!$([#7][OD1])]),$(n:a=[$([nv4])&!$([#7][OD1])]),$(n=a:[$([nv4])&!$([#7][OD1])])])]
+N   7 66  0   0  3 (BETA) AROM 5-RING N      [$([nD2r500]:a:[nD3v3])&!$([$(n:[$([nv4])&!$([#7][OD1])]),$(n:a=[$([nv4])&!$([#7][OD1])]),$(n=a:[$([nv4])&!$([#7][OD1])])])]
+N   7 76  0  -3  2 NEG N IN TETRAZOLE AN     [$([nD2r500][nD2r500][nD2r500][nD2r500])]
+N   7 76  0  -4  2 (NEG N IN TRIAZOLE)       [$([nD2r500]:[nD2r500]:[nD2r500]:c)]
+N   7 76  0  -6  2 NEG N IN DIAZOLE          [$([nD2r500]:[nD2r500]:c:c:c)]
+N   7 79  0   0  3 GENERAL AROM 5-RING N     [nD2r500]
+N   7 45  0   0  4 NITRO GROUP N             [$([ND3](=O)O)]
+
+N   7 67 23   0  4 NITROGEN IN N-OXIDE       [$([ND3]([OD1])([#6])[#6]),$([ND3]([OD1])=[#6,#7])]
+N   7 56 36   4 34 GUANIDINIUM N; Q=1/3      [$([ND3v3][#6D3]([#7D3v3&!r600&!$([#7][OD1])])=[#7D3v4&!r600&!$([#7][OD1])]),$([ND3v4]=[#6D3]([#7D3v3&!r600&!$([#7][OD1])])[#7D3v3&!r600&!$([#7][OD1])])]
+N   7 55 36   6 34 N IN +N=C-N: ; Q=1/2      [$([ND3v4]=[#6D3][#7D3v3]),$([ND3v3][#6D3]=[#7D3v4&!r600&!$([#7][OD1])])]
+N   7 54 36  12  4 IMINIUM NITROGEN          [$([ND3v4]=[#6,#7])]
+N   7 54 36  12  4 AZONIUM NITROGEN          [$([ND3v4]([H])([#6])=[#7])]
+N   7 43 28   0  3 N, SULFONAMIDES (and phos [$([ND3]S([OD1])[OD1]),$([ND3]P([OD1])[OD1])]
+N   7 10 28   0  3 N-C=O, AMIDES             [$([ND3v3][#6]=O)]
+N   7 43 28   0  3 N, sulfinamide            # not implemented: [$([ND3]S[OD1])&!$([ND3]S([OD1])[OD1])]
+N   7 39 23   0  3 AROMATIC N, PYRROLE (tetr [$([nD3v3r500][nD2]=[nD2][nD2])]
+N   7 10 28   0  3 N-C=S (DELOC LP)          [$([ND3][#6]=[#16])]
+N   7 10 28   0  3 N-N=C (DELOC LP)          # not implemented??$([ND3][#7]=[#6,#7])
+N   7 40 28   0  3 N-C=C (DELOC LP)          [$([ND3][#6]=[#6]),$([ND3]c)]
+N   7 10 28   0  3 N-N=N (DELOC LP)          [$([ND3v3][#7D2v3]=[#7D2v3])]
+N   7 40 28   0  3 N-C=N (DELOC LP)          [$([ND3][#6]=[#7,#15])]
+N   7 43 28   0  3 NITROGEN ATTACHED TO CYAN [$([ND3][CD2][ND1])]
+N   7  8 23   0  3 AMINE N                   [$([ND3](-A)(-A)-A),$([ND3](-A)(-A)-n)]
+N   7 82  0   0  4 N-OXIDE NITROGEN IN GENER [$([nD3r500][OD1])]
+
+
+N   7 69  0   0  4 NITROGEN IN N-OXIDE       [$([nD3][OD1])]
+N   7 81 36   4  4 GUANIDINIUM N; Q=1/3      [$([nD3v3][#6D3]([#7D3v3&!r600])=[#7D3v4&!r600&!$([#7][OD1])])]
+N   7 81 36   4  4 GUANIDINIUM N; Q=1/3      [$([nD3v4]=[#6D3]([#7D3v3&!r600])[#7D3v3&!r600&!$([#7][OD1])])]
+N   7 81 36   6  4 N IN N-C-N, IM+ ION       [$([nD3r500v4]=[cD3][#7D3v3]),$([nD3r500v3][#6D3]=[#7D3v4&!r600&!$([#7][OD1])])]
+N   7 81 36  12  4 POSITIVE N5B NITROGEN - F [$([nD3r500v4]:a:[oD2,sD2])]
+N   7 58 36  12  4 N PYRIDINIUM ION          [nD3r600v4]
+N   7 39 23   0  3 AROMATIC N, PYRROLE       [nD3r500v3]
+N   7 68 23   0  4 NITROGEN IN N-OXIDE       [$([ND4][OD1])]
+N   7 34 36  12  4 N+, QUATERNARY N          [ND4]
+O   8 49 50  12  3 OXONIUM (TRICOORD) O      [OD3]
+O   8 70 31   0  2 OXYGEN IN WATER           [$([OD2](H)H)]
+O   8 59  0   0  2 AROMATIC O, FURAN         [oD2r500]
+O   8  6 24   0  2 RCO2H                     [$([OD2](H)[#6]=O)]
+O   8  6 21   0  2 RCO2R                     [$([OD2]C=O)]
+O   8  6 29   0  2 ENOL OR PHENOLIC O        [$([OD2][#6D3][#6D3])]
+O   8  6 29   0  2 OXYGEN IN -O-C=N MOIETY   [$([OD2]-[#6D3]=[#7])]
+O   8  6 33   0  2 DIVALENT O IN SULFATE     [$([OD2][#16])]
+
+
+
+O   8  6 24   0  2 DIVALENT O IN PHOSPHATE   [$([OD2][#15])]
+
+
+
+O   8  6 31   0  2 OXYGEN IN H2O             [$([OD2]([H])[H])]
+O   8  6 21   0  2 O-CSP3                    [$([#8D2](-*)-*)]
+
+O   8 51 52  12  3 OXENIUM OXYGEN+           [$([OD2]=*)]
+O   8  7  0   0  2 O=S=C                     [$([OD1]=[#16D2]=*)]
+O   8 32  0  -6 12 O, CARBOXYLATE ANION      [$([OD1][CD3][OD1])]
+O   8 32  0   0 12 NITRO-GROUP OXYGEN        [$([OD1][ND3]([#6])[OD1])]
+O   8 32  0   0 12 NITRO-GROUP IN NITRATE    [$([OD1][ND3]([OD1])[OD2])]
+O   8 32  0  -4 12 NITRATE ANION OXYGEN      [$([OD1][ND3]([OD1])[OD1])]
+O   8 32  0   0 12 OXIDE ON NITROHGEN        [$([OD1][#7D3]=,:*),$([OD1][#7D4])]
+O   8 32  0  -6 12 SO4(2-)                   [$([OD1][SD4]([OD1])([OD1])[OD1])]
+O   8 32  0  -4 12 SULFONATES, TERM OX ROSO3 [$([OD1][SD4]([OD1])[OD1])]
+O   8 32  0   0 12 SULFONES, SULFONAMIDES    [$([OD1][SD4][OD1,ND2]),$([OD1][SD3]([OD1,ND2])=C)]
+O   8 32  0  -6 12 THIOSULFINATE O (-1/2)    [$([OD1][SD3][OD1,SD1])]
+O   8 32  0   0 12 SINGLE TERM O ON TET S    #[$([OD1][#16])]
+O   8 32  0  -6 12 TERMINAL O, O2P GROUP (RO [$([OD1][PD4]([OD1,SD1])([!$([OD1,SD1])])[!$([OD1,SD1])])]
+O   8 32  0  -8 12 TERMINAL O, O3P GROUP ROP [$([OD1][PD4]([OD1])([OD1])[OD2,SD2])]
+O   8 32  0  -9 12 TERMINAL O, PO4(-3)       [$([OD1][PD4]([OD1])([OD1])[OD1])]
+O   8 32  0   0 12 TERMINAL O, O-P           [$([OD1][#15])]
+O   8 32  0  -3 12 TERMINAL O IN CLO4(-)     [$([OD1][ClD4]([OD1])([OD1])[OD1])]
+O   8  7  0   0  2 O=C, GENERIC              [$([#8D1]=[#6,#7,#16])]
+
+
+
+
+
+O   8 35 21 -12  1 RO- or HO-                [OD1]
+
+F   9 11  0   0  1 FLUORINE                  [FD1]
+F   9 89  0 -12  0 FLUORIDE ANION            [FD0]
+Na 11 93  0  12  0 SODIUM CATION             [NaD0]
+Mg 12 99  0  24  0 DIPOSITIVE MAGNESIUM CATI [MgD0]
+Si 14 19  5   0  4 SILICON                   [SiD4]
+P  15 25 71   0  4 GENERAL TETRACRD P        [PD4]
+
+
+
+
+P  15 26 71   0  3 TRICOORDINATE P           [PD3]
+P  15 75 71   0  3 P DOUBLY BONDED TO C      [$([PD2]=C)]
+S  16 18  0   0  4 SULFONAMIDE S             [$([SD4]([OD1,ND2])[OD1,ND2]),$([SD3](=C)([OD1,ND2])[OD1,ND2])]
+
+
+
+
+S  16 17 71   0  4 SULFOXIDE S (also S(=O)[N [$([SD3]([OD1,ND2])([#6,#7D3,#8D2])[#6,#7D3,#8D2])]
+S  16 73  0   0  3 SULFUR IN SULFINATE       [$([SD3]([OD1,SD1])[OD1])]
+
+S  16 44  0   0  2 S IN THIOPHENE            [sD2r500]
+S  16 15 71   0  2 THIOL, SULFIDE            [$([SD2](-*)-*)]
+S  16 74  0   0  4 SULFINYL SULFUR, C=S=O    [$([SD2]([CD3])[OD1])]
+S  16 72  0  -6  1 THIOCARBOXYLATE S         [$([SD1][CD3][SD1])]
+
+S  16 16  0   0  2 S DOUBLY BONDED TO C      [$([SD1]=[#6D3])]
+S  16 72  0  -6  1 TERMINAL SULFUR ON C (P,S [$([SD1][#15,#6,#16][OD1])]
+S  16 72  0 -12  1 TERMINAL SULFUR  on alken [$([SD1][#6])]
+S  16 72  0   0  1 TERMINAL SULFUR ON P      [$([SD1][#15,#16])]
+Cl 17 12  0   0  1 CHLORINE                  [ClD1]
+Cl 17 77  0   0  4 CHLORINE IN CLO4(-)       [$([ClD4]([OD1])([OD1])([OD1])[OD1])]
+Cl 17 90  0 -12  0 CHLORIDE ANION            [ClD0]
+K  19 94  0  12  0 POTASSIUM CATION          [KD0]
+Ca 20 96  0  24  0 DIPOSITIVE CALCIUM CATION [CaD0]
+Fe 26 87  0  24  0 IRON +2 CATION            [FeD0+2]
+Fe 26 88  0  36  0 IRON +3 CATION            [FeD0+3]
+Cu 29 97  0  12  0 MONOPOSITIVE COPPER CATIO [CuD0+1]
+Cu 29 98  0  24  0 DIPOSITIVE COPPER CATION  [CuD0+2]
+Zn 30 95  0  24  0 DIPOSITIVE ZINC CATION    [ZnD0+2]
+
+Br 35 13  0   0  1 BROMINE                   [BrD1]
+Br 35 91  0 -12  0 BROMIDE ANION             [BrD0]
+I  53 14  0   0  1 IODINE                    [ID1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

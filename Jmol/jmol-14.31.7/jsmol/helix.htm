@@ -1,0 +1,422 @@
+<html>
+<head>
+<title>Jmol Helix Builder</title>
+<script type="text/javascript" src=JSmol.min.js></script>
+<script type="text/javascript" src="js/Jmol2.js"></script>
+<script type="text/javascript">
+
+functionsLoaded = false;
+
+function loadFunctions(trigger) {
+	if (!trigger) {
+		setTimeout("loadFunctions(1)",100)
+		return
+	}	
+	jmolScript(document.body.innerHTML + "\n\n;set echo top left; echo function createHelix(nResidues,phi,psi)|has been loaded")
+	jmolScript("")
+	functionsLoaded = true;
+}
+
+theScript = ""
+function makeHelix() {
+	if (!functionsLoaded)
+		loadFunctions(1)
+	var script = "createHelix(XX,XX,XX,XX)"
+		.replace("XX",document.getElementById("nResidues").value)
+		.replace("XX",document.getElementById("phi").value)
+		.replace("XX",document.getElementById("psi").value)
+		.replace("XX",self == top ? 0 : 1)
+	theScript = script
+	if (self != top)
+		top.getHelixResults = getHelixResults;
+	jmolScript(script + ";select *;model;calculate hbonds;draw helix;javascript getHelixResults();")
+	
+}
+
+function makeHelix2() {
+	if (!functionsLoaded)
+		loadFunctions(1)
+	var script = "createHelix(4,XX,XX,XX,XX,XX)"
+		.replace("XX",document.getElementById("phi1").value)
+		.replace("XX",document.getElementById("psi1").value)
+		.replace("XX",self == top ? 0 : 1)
+		.replace("XX",document.getElementById("phi2").value)
+		.replace("XX",document.getElementById("psi2").value)
+	theScript = script
+	if (self != top)
+		top.getHelixResults = getHelixResults;
+	script += ";select *;model;calculate hbonds;model;draw helix;/*draw ramachandran*/;javascript getHelixResults();"
+	jmolScript(script)
+	
+}
+
+function getHelixResults(trigger) {
+	if (!trigger) {
+		setTimeout("getHelixResults(1)",100)
+		return
+	}	
+	var s = jmolScriptEcho("select */1.1;write pdb");
+	document.getElementById("results").innerHTML = "<pre>REMARK   6 " + theScript + " " + document.location.href + "\n" + s + "</pre>"
+	if (self != top)
+		top.doButton("fromHelix");
+}
+
+
+function setStandard(value) {
+	if (!value)return
+	var S = value.split(",");
+	document.getElementById("phi").value = S[0];
+	document.getElementById("psi").value = S[1];
+	jmolScript("zap")
+}
+
+function setStandard2(value) {
+	if (!value)return
+	var S = value.split(",");
+	document.getElementById("phi1").value = S[0];
+	document.getElementById("psi1").value = S[1];
+	document.getElementById("phi2").value = S[2];
+	document.getElementById("psi2").value = S[3];
+	jmolScript("zap")
+}
+
+function setRandom() {
+	document.getElementById('phi').value = 999
+	document.getElementById('psi').value = 999
+}
+
+</script>
+</head>
+<body>
+<!--
+/** **** Jmol Embedded Script ****
+
+/*
+ qphi.spt
+
+ Bob Hanson 5:12 AM 7/1/2008
+
+*/
+
+
+
+
+function createHelix(nResidues, phi1, psi1, modelOnly, phi2, psi2) {
+
+var isRandomPhi = (phi1 == 999)
+var isRandomPsi = (psi1 == 999)
+
+if (phi2 || psi2) {
+  print "createHelix(" + nResidues + "," + phi1 + "," + psi1 + "," + phi2 + "," + psi2 + ") # nResidues, phi, psi"
+} else {
+  print "createHelix(" + nResidues + "," + phi1 + "," + psi1 + ") # nResidues, phi, psi"
+}
+
+model 1.1
+save orientation o1
+zap
+
+set echo top left
+echo working...
+refresh
+
+
+#set loglevel 5
+set appendnew false
+set pdbSequential true
+#set drawpicking true
+set perspectivedepth off
+
+dowrite = (getProperty("appletInfo","htmlName") == "");
+
+data "append mydata"
+ATOM      1 N    ALA     0      -0.499   1.322  -0.043  1.00 13.99           N  
+ATOM      2 CA   ALA     0       0.000   0.000   0.000  1.00 20.10           C  
+ATOM      3 C    ALA     0       1.461   0.000   0.000  1.00 17.07           C  
+ATOM      4 O    ALA     0       2.044  -1.157   0.037  1.00 17.78           O  
+ATOM      5 CB   ALA     0      -0.582  -0.739  -1.268  1.00 13.05           C  
+end "append mydata"
+
+data "mydata"
+ATOM   0001 N    ALA     0      -0.499   1.322  -0.043  1.00 13.99           N  
+ATOM   0002 CA   ALA     0       0.000   0.000   0.000  1.00 20.10           C  
+ATOM   0003 C    ALA     0       1.461   0.000   0.000  1.00 17.07           C  
+ATOM   0004 O    ALA     0       2.044  -1.157   0.037  1.00 17.78           O  
+ATOM   0005 CB   ALA     0      -0.582  -0.739  -1.268  1.00 13.05           C  
+end "mydata"
+
+# loop through and build structure having all phi = 180 and all psi = 0
+
+for (var i = 0; i < nResidues; i = i + 1) {
+
+	set echo top left;echo @i;refresh
+	if (phi2 || psi2) {
+		if (i == 3) phi1 = random(180)
+		if (i == 3) psi1 = random(180)
+	}
+
+	if (isRandomPhi){
+		 phi1 = random(360) - 180
+		 psi1 = (random(12)\1) * 30
+	}
+	if (isRandomPsi){
+		 psi1 = random(360) - 180
+		 phi1 = (random(12)\1) * 30
+	}
+
+	var a = {*}
+	select @a;
+	#label %D;color labels yellow;
+
+ # q(Z,-70) -- rotate what we have now
+
+	rotateselected z -69
+
+ # prepare for connection C to N'
+
+	var C = a[-2]
+	translateselected @{-C.xyz}
+	rotateselected molecular {0 0 0} {0 0 1} 9
+	translateselected {-1.461 0 0}
+	rotateselected molecular {0 0 0} {0 0 1} -9
+
+
+ # add the new coordinates
+
+	var sdata = data("mydata")
+	sdata = sdata.replace("  0   ",("  "+(i + 1))[-2][0] + "   ")
+	var n = a.size
+	sdata = sdata.replace("0001",("   "+(n+1))[-3][0])
+	sdata = sdata.replace("0002",("   "+(n+2))[-3][0])
+	sdata = sdata.replace("0003",("   "+(n+3))[-3][0])
+	sdata = sdata.replace("0004",("   "+(n+4))[-3][0])
+	sdata = sdata.replace("0005",("   "+(n+5))[-3][0])
+	data "append @sdata"
+
+ # translate to fit
+
+	var N  = {*}[-4]
+
+	select @{!a}
+	translateselected @{-N.xyz}
+	connect @N @C
+
+ # set psi
+
+	var CA = {*}[-3]
+	var C  = {*}[-2]
+
+	select @{within("branch",C,CA)}
+	rotateSelected @C @CA @psi1
+
+ # set phi
+
+	select @{within("branch",CA,N)}
+	rotateSelected @CA @N @{180 + phi1}
+
+ # turn business
+	if (i == 1 && (phi2 || psi2)) {
+		phi1 = phi2
+		psi1 = psi2
+	}
+		
+ # iterate
+
+}
+
+# save the structure and reload it to create the polymers
+
+
+	var pdbdata = data({*}, "PDB");
+	print pdbdata
+
+	select *
+	if (dowrite) {
+		fname = "ala_"+nResidues+"_" + phi1+"_"+psi1+".pdb"
+		var s = "write pdb \"" + fname + "\""
+		print s
+		script inline @s
+		load @fname
+	} else {
+		data "model @pdbdata"
+	}
+
+# set the view
+
+	wireframe 0.2
+	spacefill off
+
+	var v = helix({resno=2},"axis")
+	var vrot = cross(v, {0 1 0})
+	select *
+	rotateselected molecular {0 0 0} @vrot @{angle(v, {0 0 0}, {0 1 0})}
+	translateSelected @{-{*}.xyz}
+	rotateselected x 90
+	center {*}
+
+	if (modelOnly) {
+		return;
+	}
+
+# make the quaternion
+
+	quaternion
+	draw axisx {-10 0 0} {10 0 0} color red
+	draw axisy {0 -10 0} {0 10 0} color green
+	draw axisz {0 0 -10} {0 0 10} color blue
+	draw pt0 {0 0 0}  color yellow
+
+	quaternion difference
+
+	draw axisx2 {-10 0 0} {10 0 0} color red
+	draw axisy2 {0 -10 0} {0 10 0} color green
+	draw axisz2 {0 0 -10} {0 0 10} color blue
+	draw pt02 {0 0 0}  color yellow
+
+# go to the model
+
+	model
+	axes on;axes position [450, 75];
+	restore orientation o1
+
+# add the comment at the top
+
+	set echo top left
+	var s = " " + nResidues + " residues | phi = "+phi1 + "| psi = " + psi1;
+	echo @s
+
+
+	select 1.1
+
+# make buttons
+
+set refreshing false
+
+set echo model2 0 70
+set echo model2 script "quaternion"
+set echo model2 model 1.1
+echo [to quaternion]
+
+set echo model3 0 40
+set echo model3 script "quaternion difference"
+set echo model3 model 1.1
+echo [to quat. diff.]
+
+set echo model6 0 70
+set echo model6 script "quaternion difference"
+set echo model6 model 2.1
+echo [to quat. diff.]
+
+set echo model1 0 40
+set echo model1 script "model"
+set echo model1 model 2.1
+echo [to model]
+
+set echo model4 0 70
+set echo model4 script "model"
+set echo model4 model 3.1
+echo [to model]
+
+set echo model5 0 40
+set echo model5 script "quaternion"
+set echo model5 model 3.1
+echo [to quaternion]
+
+set refreshing true
+
+quaternion relative derivative
+model 1.1
+restore orientation o1
+quaternion relative derivative
+restore orientation o1
+
+}
+
+**/
+-->
+
+
+<table border = 1 cellpadding=10>
+<tr>
+<script type="text/javascript">
+if (self == top) {
+  document.write("<td valign='top'>")
+  jmolApplet(500,"javascript loadFunctions()")
+  jmolBr()
+  jmolButton("console")
+  jmolButton("set quaternionframe 'P';quaternion relative derivative", "p-type rel. quat.")
+  document.write("</td>")
+}
+</script>
+<td valign='top'>
+<h3>Jmol Helix Builder</h3>
+This web page demonstrates advanced capabilities of <a target='_blank'href='https://chemapps.stolaf.edu/jmol/docs/examples-11/new.htm'>Jmol 11.5.45</a>. The script being run is embedded in the HTML page as an HTML comment. View the source to see how it works. 
+<br /><br />
+Enter values for the number of alanine residues you want in the chain along with the phi and psi angles for the helix. 
+A model will be created and displayed in the Jmol applet on the left. PDB file data for the model will be shown
+below this table.
+<br /><br /><br />
+<table><tr><td>
+<table>
+<tr><td align='right'>number of residues</td><td><input type='text' value='20' size='5' id='nResidues' /></td></tr>
+<tr><td></td><td>
+<select id='standards' onclick='setStandard(this.options[this.selectedIndex].value)'>
+<option value='' selected>select a helix type</option>
+<option value='-65,-40.0'>alpha helix</option>
+<option value='-74.0,-4.0'>3-10 helix</option>
+<option value='-57.1,-69.7'>pi helix</option>
+<option value='57.1,4.0'>alpha-L helix</option>
+<option value='-79,150'>Type II helices</option>
+<option value='-51,153'>collagen</option>
+<option value='-120,120'>beta-strand (120)</option>
+<option value='-135,135'>beta-strand (135)</option>
+<option value='180,180'>extended (180)</option>
+</select>
+<br />
+refs: <a target='_blank' href='http://www.imb-jena.de/ImgLibDoc/prot_struc/IMAGE_PROT_ELEMENTS.html'>JenaLib</a>
+<a target='_blank' href='http://www.bmb.uga.edu/wampler/tutorial/prot2.html'>uga</a>
+</td></tr>
+<tr><td align='right'>phi</td><td><input type='text' value='-65.0' size='5' id='phi' /></td></tr>
+<tr><td align='right'>psi</td><td><input type='text' value='-40.0' size='5' id='psi' /></td></tr>
+<tr><td align='right'></td><td><a href="javascript:setRandom()">random coil</a></td></tr>
+<tr><td></td><td><input type='button' value='Go' onclick='makeHelix()' /></tr>
+</table>
+</td>
+<td>
+
+<table>
+
+<tr><td align='right'>turn residues</td><td>4</td></tr>
+<tr><td></td><td>
+<select id='standards2' onclick='setStandard2(this.options[this.selectedIndex].value)'>
+<option value='' selected>select a turn type</option>
+<option value='-60,-30,-90,0'>I</option>
+<option value='-60,120,80,0'>II</option>
+<option value='-60,-30,-60,-30'>III</option>
+<option value='60,30,90,0'>I'</option>
+<option value='60,-120,-80,0'>II'</option>
+<option value='60,30,60,30'>III'</option>
+</select>
+</td></tr>
+<tr><td align='right'>phi1</td><td><input type='text' value='-60' size='5' id='phi1' /></td></tr>
+<tr><td align='right'>psi1</td><td><input type='text' value='-30' size='5' id='psi1' /></td></tr>
+<tr><td align='right'>phi2</td><td><input type='text' value='-90' size='5' id='phi2' /></td></tr>
+<tr><td align='right'>psi2</td><td><input type='text' value='0' size='5' id='psi2' /></td></tr>
+<tr><td></td><td><input type='button' value='Go' onclick='makeHelix2()' /></tr>
+</table>
+
+
+
+</td></tr></table>
+
+<br /><br /><br />
+<a target='_blank' href='http://www.stolaf.edu/people/hansonr'>Bob Hanson</a> 7/1/2008
+
+</td></tr>
+<tr> <td colspan='2'><span id='results'>PDB data will appear here. 
+
+</pre>
+</span></td></tr>
+</table>
+</body>
+</html>

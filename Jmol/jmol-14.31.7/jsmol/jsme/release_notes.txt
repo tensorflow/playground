@@ -1,0 +1,277 @@
+JSME-2015-12-06
+    - Bug fix bond rubberbanding
+
+JSME-2015-11-22
+    - Refactoring of JME code: bond creation bug fix
+    
+JSME-2015-11-15
+    - Refactoring of JME code
+    
+JSME-2015-11-04
+    - Tool chain bug fix
+    - Applet resizes automatically when the browser window resizes
+    
+JSME-2015-11-01
+    - Empty mol return a valid MOL with 0 atoms and bonds
+    - After importing a reaction with atom mapping, the numbering atom tool will use the largest atom map + 1
+    - Refactoring of JME code
+
+JSME-2015-10-04:
+   - Bug fix: clicking on NEW and 123 does not generate structure change events
+   - Disable logging of null events
+   - Changing atom type using the keyboard while the cursor is over an atom does not change the atom type menu selection
+   - Using the ring keyboard shortcuts while the cursor is over an atom or a bond does not change the menu
+   
+JSME-2015-06-25
+   - depictAction bug fix
+    
+JSME-2015-06-20
+   - new generic callback
+   - atom clicked and bond clicked callback
+
+JSME-2015-06-14
+    - New button for I/O
+    - Updated smaller icon for drag and drop
+JSME-2015-05-28
+    - fixed broken links in doc.html
+JSME-2015-05-14
+    - bug fix: read JSME string with more than 10 marked atoms
+    - replaced the star by a circle
+    - jsa,css bug fix
+
+JSME-2015-05-07
+    - depict mode:leave 16 px for the DnD icon to avoid overlap
+JSME 2015-05-03
+    - bug fix: autonumber was not working anymore after array optimization (123)
+    - remove linker name (e.g xsiframe) from the name of the distribution
+    - Microsoft Edge compatibility test performed: Window clipboard is not supported anymore
+JSME 2015-03-19
+    - Fixed many bugs in the depict mode in order to allow to switch back and forth between depict and edit mode 
+    - new methods isDepictMode(), addMouseOutHandler()
+JSME 2015-03-01
+    - Enable touch events on a ChromeBook
+    - JavaScript Bootstrap library compatibility fix (computation of character height)
+    - R4 to R9 smiles generation fix
+JSME 2015-02-25
+    - R4 to R9
+
+JSME 2015-02-09
+    - bug fix for SMILES generation of pyrrole [nH], H was missing
+JSME 2015-01-28
+    - Ctr V shortcut fixed
+JSME 2015-01-22
+   - file out browse button
+   - V3000 export
+
+- bug fix: missing event record for closing a bond on an atom
+JSME 2014-12-24
+    - bug fix: missing event record for paste
+JSME 2014-12-20
+    - reenable older event callback
+JSME 2014-12-07
+    - missing event record for more keyboard events, improve undo/redo record event
+JSME 2014-12-04
+    - missing event record for set atom type with keyboard
+
+JSME_2014-11-19:
+   - BUG: copy SDF of a multipart: invalid ISO
+   - array JavaScript optimization
+   - Record an event during add chain for each bond
+
+JSME_2014-10-16
+   - template bug fix
+JSME_2014-10-13
+   - Bug fix: JSME in a hidden DIV would not be visible
+JSME_2014-09-21
+   - Drag and Drop enabled on IE6 to IE9 (does not work with files)
+   - Template 1st implementation
+   - Missing new lines in doc.html
+
+JSME_2014-08-26
+   - incorrect atom mapping read from RXN when numbering option is set - fixed
+   - export SMIRKS with "a" did not works with atom mapping - fixed
+
+JSME_2014-07-14
+    - Paste behavior changed: if current status is multipart or reaction, then the new structure will be added and will be the selected structure
+    - new linker (xsiframe) for CDT testing
+
+JSME_2014-06-28
+    - Paste behavior changed: if current status is multipart or reaction, then the new structure will be added
+    - remove H bug fix
+    - bug fix: structure underneath the menu region: highlight must dissapear
+JSME_2014-05-20
+    - new resize method
+JSME_2014-03-30
+    - bond marking allowed
+    - bug fix: paste of a multipart structure with isotopic atom
+JSME_2014-03-12
+    - setAction, depictaction
+JSME_2014-02-20
+    - Font size can be changed with setAtomMolecularAreaFontSize
+JSME_2014-02-03
+    - bug fix: date in exported MOL
+    - new callback setAfterStructureModifiedCallback
+JSME_2014-01-27
+     - isotopic atoms implementation
+     - star marker: the MOL generation now set the atom map for each marked atom
+
+JSME_2014-01-05
+     - smaller initial download size by about 25 %
+     - scaling picture: further improved for very small depiction
+     - high precision 2D coordinates
+
+JSME_2013-11-06
+     - removehsc new 
+     - scaling picture: improved for very small depiction
+
+JSME_2013-10-27:
+     - initialization error will not open an alert but write a message to the console instead
+     
+JSME_2013-10-13:
+     - small refactoring inside the JME code
+     - bug fix in doc.html
+
+JSME_2013-10-09:
+     - callback function setNotifyStructuralChangeJSfunction does not need the nocanonize function anymore
+JSME_2013-10-03:
+     - bug fix:D&D icon disappears after resizing JSME
+     - bug fix: resizing JSME, avoid multiple SVG/VML generation after each resize
+     - improved setNotifyAtomHighLightChangeJSfunction
+     - two more example pages about JSME resize
+     - depict mode takes the callback function notifyAtomHighLightJSfunction
+     - after clearing the canvas, the undo stack is not deleted anymore
+     
+JSME_2013-09-29:
+     - bug fix in index.html
+     
+JSME_2013-09-28:
+     - More simple installation examples
+     - index.html file
+     - improved doc.html file
+     - star option documented
+     
+
+JSME_2013-09-19:
+    - New methods: addClickHandler(), addMouseOverHandler()
+
+JSME_2013-09-17:
+    - New methods:  getOffsetSize(), getOffsetWidth(), getOffsetHeight(), setWidth(), setHeight(),  isVisible(), setVisible()
+    - improved javadoc API
+    
+JSME_2013-09-15:
+    - new utility function: Utils.runAfterBrowserEventLoopReturns
+    - setSize() method
+    - call back function argument for replaceAllAppletsByJSME
+    - JME: cache font and font metrics for the drawing area useful for many depictions
+    - scaling picture bug fix: the 2px padding around the atom labels was not scaled
+
+JSME_2013-09-08:
+    - Easy migration JME->JSME
+    - new documentation file: doc.html - still incomplete
+    - new option: paste/nopaste to disable pasting MOL into the applet
+    - query mode disabled by default
+    - aromaticity SMARTS query bug fix
+
+JSME_2013-08-04:
+    -xbutton, noxbutton options work
+    
+JSME_2013-06-29:
+    - For IE11, the clipboard management had to be adapted because of the unconventional user agent in IE11 (=Firefox)
+    - Android and iPad do not show the drag out button because dragging out does not work on these systems
+    - bug fix: undo & redo was not working for atom atom mapping
+    - Note: the number of GWT permutations has increased to 30
+
+
+JSME_2013-06-09:
+    - atom move atom button is optional (turned off by default)
+    - improved JSME_chemical_resolver_demo.html page
+
+
+JSME_2013-05-30:
+    - move atom button
+    - java application exits when its window is closed, no more END button
+    - new simpler HTML demo page
+    
+JSME_2013-05-01:
+    - bug fix: IE has no console unless the debugger window is open
+    - deleting explicit hydrogens when importing a structure from chemical resolver (demo page)
+
+JSME_2013-04-09:
+    - Custom paste menu and custom paste operation
+    - non GPL licensed image for the drag and drop icon
+    - local antialias for VML
+    - line width for the molecular area
+    - JavaDoc of the API
+    - clear function added 
+
+JSME_2013-04-01:
+    - bug fix in JSObject
+
+JSME_2013-03-30 :
+    - Drag out of MOL/RXN and drop onto another applet or on to a file system window to save the file
+    - DnD demo page
+    - No more alert window if the function jsmeOnLoad is not defined - instead provides a message to the console
+    - clear SDF stack as well when clicking on the clear icon
+    - stereo bond cancel bug fix (bug shows up visible with undo/redo)
+    - interactive atom marking demo page
+    - multiple instances of the editor in the same HTML page work
+    
+JSME_2013-03-24 :
+    - Drag and drop of files onto the applet
+
+JSME_2013-03-21 :
+    - undo bug fix
+    - showInfo function
+
+
+JSME_2013-03-19 :
+    - antialias is on by default for SVG and off for VML
+    - new help page
+    - first public release
+
+JSME_2013-03-18 :
+    - spiro button
+    - triple bond in menu is improved - looks better with browser with poor antialias
+
+
+JSME_2013-03-16 :
+    - rename JavaScriptApplet to JSApplet to avoid trademark problems with JavaScript
+    - disable molecule scaling for IOS
+    - removes blue marking about atoms and bonds after click enabled unless touch device
+
+
+JSME_2013-03-14 :
+    - increased touch radius for atoms and bonds - much better usability on iPad
+
+JSME_2013-03-13 : not for redistribution
+    - first DIV shield - still bugs
+    - rubber banding box was not saved in the undo stack - fixed
+
+JSME_2013-03-12 : not for redistribution
+    - Rollback of all the Smiles changes, no more example of NotifyStructuralChangeJSfunction provided
+    - improved rotation&scaling on iPad. Scaling is still buggy
+JSME_2013-03-11 : not for redistribution
+    - Smiles generation changes the atom ordering of the atoms in the editor, which is a problem for the NotifyStructuralChangeJSfunction. Fixed.
+JSME_2013-03-10 : not for redistribution
+    - Scaling of the molecule implemented for touch devices - still buggy. Problem with rotation, does not work on Android
+    - NotifyStructuralChangeJSfunction - problem with smiles generation
+JSME_2013-03-07
+    - Marked atoms are not displayed anymore with a blue square after touch/mouse up
+    - Touch device: rotation bug fixed (random jump move at the end of the rotation)
+    - bug fix for CSS distribution
+JSME_2013-03-04
+    - Touch device: rotation works on iPad
+
+
+JSME_2013-03-03
+    - Touch device: touch and hold will show the copy&paste popup menu
+    - Touch device: mouse events of drawing area were replaced by touch events in order to have a faster response on the iPad
+    - Touch device: structure can be moved. It is smooth on a iPad 4, slow on a Samsung Note
+    - Touch device: bond angle can be changed, multichain works
+    - CSS pollution: all global CSS definitions were removed from all the included CSS files from GWT and gwt-mosaic
+    - CSS global protection: better protection against global CSS definitions from the host page
+    
+    
+    
+Known bug: scaling and bond length rubber banding
+    

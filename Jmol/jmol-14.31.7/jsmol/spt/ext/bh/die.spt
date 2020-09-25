@@ -1,0 +1,67 @@
+zap
+boundbox corners {-4 -4 -4} {4 4 4}
+draw die boundbox color white
+boundbox corners {-4.1 -4.1 -4.1} {4.1 4.1 4.1}
+
+isosurface p1 center {0 3.5 0} sphere  1.0;isosurface cap boundbox
+isosurface p1 cap -y=3.95
+
+isosurface p2a center {-3.5 -2 2} sphere  1.0;isosurface cap boundbox
+isosurface p2b center {-3.5 2 -2} sphere  1.0;isosurface cap boundbox
+isosurface p2a cap x=-3.95
+isosurface p2b cap x=-3.95
+
+isosurface p3a center {2 -2 3.5} sphere  1.0;isosurface cap boundbox
+isosurface p3b center {0 0 3.5} sphere  1.0;isosurface cap boundbox
+isosurface p3c center {-2 2 3.5} sphere  1.0;isosurface cap boundbox
+isosurface p3a cap -z=3.95
+isosurface p3b cap -z=3.95
+isosurface p3c cap -z=3.95
+
+isosurface p4a center {2 -2 -3.5} sphere  1.0;isosurface cap boundbox
+isosurface p4b center {-2 2 -3.5} sphere  1.0;isosurface cap boundbox
+isosurface p4c center {2 2 -3.5} sphere  1.0;isosurface cap boundbox
+isosurface p4d center {-2 -2 -3.5} sphere  1.0;isosurface cap boundbox
+isosurface p4a cap z=-3.95
+isosurface p4b cap z=-3.95
+isosurface p4c cap z=-3.95
+isosurface p4d cap z=-3.95
+
+isosurface p5a center {3.5 2 -2 } sphere  1.0;isosurface cap boundbox
+isosurface p5b center {3.5 -2 2 } sphere  1.0;isosurface cap boundbox
+isosurface p5c center {3.5 2 2 } sphere  1.0;isosurface cap boundbox
+isosurface p5d center {3.5 -2 -2} sphere  1.0;isosurface cap boundbox
+isosurface p5e center {3.5 0 0} sphere  1.0;isosurface cap boundbox
+isosurface p5a cap -x=3.95
+isosurface p5b cap -x=3.95
+isosurface p5c cap -x=3.95
+isosurface p5d cap -x=3.95
+isosurface p5e cap -x=3.95
+
+isosurface p6a center {2 -3.5 -2} sphere  1.0;isosurface cap boundbox
+isosurface p6b center {-2 -3.5 2} sphere  1.0;isosurface cap boundbox
+isosurface p6c center {2 -3.5 2} sphere  1.0;isosurface cap boundbox
+isosurface p6d center {-2 -3.5 -2} sphere  1.0;isosurface cap boundbox
+isosurface p6e center {0 -3.5 2} sphere  1.0;isosurface cap boundbox
+isosurface p6f center {0 -3.5 -2} sphere  1.0;isosurface cap boundbox
+isosurface p6a cap y=-3.95
+isosurface p6b cap y=-3.95
+isosurface p6c cap y=-3.95
+isosurface p6d cap y=-3.95
+isosurface p6e cap y=-3.95
+isosurface p6f cap y=-3.95
+
+color $p1* cyan
+color $p2* yellow
+color $p3* lightgreen
+color $p4* red
+color $p5* green
+color $p6* blue
+
+rotate x 10
+rotate z 10
+rotate y 10
+
+spin on
+set allowGestures
+set antialiasDisplay

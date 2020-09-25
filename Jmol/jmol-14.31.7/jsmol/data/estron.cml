@@ -1,0 +1,687 @@
+<?xml version="1.0"?>
+<molecule xmlns="http://www.xml-cml.org/schema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.xml-cml.org/schema cmlAll.xsd">
+  <crystal>
+    <scalar title="a" units="units:angstrom">14.61764</scalar>
+    <scalar title="b" units="units:angstrom">10.95325</scalar>
+    <scalar title="c" units="units:angstrom">14.14850</scalar>
+    <scalar title="alpha" units="units:degree">90.0</scalar>
+    <scalar title="beta" units="units:degree">90.0</scalar>
+    <scalar title="gamma" units="units:degree">90.0</scalar>
+    <symmetry spaceGroup="P 2_1 2_1 2_1"/>
+  </crystal>
+  <atomArray>
+    <atom id="a1" elementType="O" x3="1.38329439136044" y3="3.33065066870283" z3="7.66923161156146">
+      <scalar dictRef="jmol:charge">-0.68264902</scalar>
+    </atom>
+    <atom id="a2" elementType="C"
+      x3="1.65759755962943" y3="3.50573042198838" z3="6.34487662670248">
+      <scalar dictRef="jmol:charge">0.48172501</scalar>
+    </atom>
+    <atom id="a3" elementType="C"
+      x3="2.89385765419794" y3="3.22672358373954" z3="5.7965875787534">
+      <scalar dictRef="jmol:charge">-0.402224</scalar>
+    </atom>
+    <atom id="a4" elementType="C"
+      x3="3.08441051737459" y3="3.4037497476512" z3="4.42888164316289">
+      <scalar dictRef="jmol:charge">-0.055461999</scalar>
+    </atom>
+    <atom id="a5" elementType="C"
+      x3="2.09057754439609" y3="3.86912101999143" z3="3.5902726648447">
+      <scalar dictRef="jmol:charge">-0.175846</scalar>
+    </atom>
+    <atom id="a6" elementType="C"
+      x3="2.34607856696738" y3="4.06767497968497" z3="2.10180146831744">
+      <scalar dictRef="jmol:charge">0.17749301</scalar>
+    </atom>
+    <atom id="a7" elementType="C"
+      x3="1.02819650801372" y3="4.14536383664283" z3="1.31107354173084">
+      <scalar dictRef="jmol:charge">0.201307</scalar>
+    </atom>
+    <atom id="a8" elementType="C" 
+      x3="1.35872689926267" y3="4.41841006855793" z3="-0.139245444954404">
+      <scalar dictRef="jmol:charge">-0.185406</scalar>
+    </atom>
+    <atom id="a9" elementType="C" 
+      x3="2.23603885973702" y3="3.31908577655777" z3="-0.751138910723766">
+      <scalar dictRef="jmol:charge">0.33477899</scalar>
+    </atom>
+    <atom id="a10" elementType="C" 
+      x3="2.29695407997896" y3="3.77052869400001" z3="-2.18846323700108">
+      <scalar dictRef="jmol:charge">0.54809499</scalar>
+    </atom>
+    <atom id="a11" elementType="O" 
+      x3="3.21423294157401" y3="3.60113189345224" z3="-2.96236149321168">
+      <scalar dictRef="jmol:charge">-0.59915102</scalar>
+    </atom>
+    <atom id="a12" elementType="C" 
+      x3="0.997404542784816" y3="4.49261791754288" z3="-2.52120329182595">
+      <scalar dictRef="jmol:charge">-0.180629</scalar>
+    </atom>
+    <atom id="a13" elementType="C" 
+      x3="0.250088836496008" y3="4.62422016510492" z3="-1.17258041148122">
+      <scalar dictRef="jmol:charge">0.048955999</scalar>
+    </atom>
+    <atom id="a14" elementType="H" 
+      x3="-0.178596391415458" y3="5.5212313654857" z3="-1.13803922857559">
+      <scalar dictRef="jmol:charge">0.023785001</scalar>
+    </atom>
+    <atom id="a15" elementType="H" 
+      x3="-0.410422980542833" y3="3.85738885857293" z3="-1.1303924198763">
+      <scalar dictRef="jmol:charge">-0.039499</scalar>
+    </atom>
+    <atom id="a16" elementType="H" 
+      x3="1.13698372726218" y3="5.40731305180268" z3="-2.88967696051131">
+      <scalar dictRef="jmol:charge">0.059269998</scalar>
+    </atom>
+    <atom id="a17" elementType="H" 
+      x3="0.55670894209909" y3="3.89962952378606" z3="-3.12914846853266">
+      <scalar dictRef="jmol:charge">0.064608999</scalar>
+    </atom>
+    <atom id="a18" elementType="C"
+      x3="3.5550107042947" y3="3.23553459186137" z3="0.00369677362132803">
+      <scalar dictRef="jmol:charge">-0.248575</scalar>
+    </atom>
+    <atom id="a19" elementType="C"
+      x3="3.29736171451723" y3="3.02895069620601" z3="1.50156186279335">
+      <scalar dictRef="jmol:charge">0.20137399</scalar>
+    </atom>
+    <atom id="a20" elementType="H"
+      x3="2.80728991176129" y3="2.29835401012062" z3="1.65169310483189">
+      <scalar dictRef="jmol:charge">-0.104729</scalar>
+    </atom>
+    <atom id="a21" elementType="H"
+      x3="4.184422335575" y3="3.06824656077635" z3="1.99639894618197">
+      <scalar dictRef="jmol:charge">-0.026105</scalar>
+    </atom>
+    <atom id="a22" elementType="H" 
+      x3="4.05847398317909" y3="4.16338722667187" z3="-0.143516538120261">
+      <scalar dictRef="jmol:charge">0.025812</scalar>
+    </atom>
+    <atom id="a23" elementType="H" 
+      x3="4.03383088600209" y3="2.39631757067735" z3="-0.339204862097512">
+      <scalar dictRef="jmol:charge">0.046704002</scalar>
+    </atom>
+    <atom id="a24" elementType="C" 
+      x3="1.52498567833071" y3="1.95130599837366" z3="-0.80562108234392">
+      <scalar dictRef="jmol:charge">-0.36894399</scalar>
+    </atom>
+    <atom id="a25" elementType="H" 
+      x3="2.05906269070258" y3="1.25378977584979" z3="-1.31628081247911">
+      <scalar dictRef="jmol:charge">0.089203998</scalar>
+    </atom>
+    <atom id="a26" elementType="H" 
+      x3="0.738612506753008" y3="1.95913957961307" z3="-1.35538839803283">
+      <scalar dictRef="jmol:charge">0.110828</scalar>
+    </atom>
+    <atom id="a27" elementType="H"
+      x3="1.26750641477513" y3="1.67980652084238" z3="0.153711948433457">
+      <scalar dictRef="jmol:charge">0.089914002</scalar>
+    </atom>
+    <atom id="a28" elementType="H" 
+      x3="1.87764737075419" y3="5.21354968792978" z3="-0.168352726659073">
+      <scalar dictRef="jmol:charge">0.023734</scalar>
+    </atom>
+    <atom id="a29" elementType="C"
+      x3="0.13210566665617" y3="5.19643040254359" z3="1.9653626657823">
+      <scalar dictRef="jmol:charge">0.095524997</scalar>
+    </atom>
+    <atom id="a30" elementType="C" 
+      x3="-0.309094709512541" y3="4.7094675076759" z3="3.33724718929528">
+      <scalar dictRef="jmol:charge">-0.036578</scalar>
+    </atom>
+    <atom id="a31" elementType="C"
+      x3="0.845667478777064" y3="4.1816894799087" z3="4.16915008101386">
+      <scalar dictRef="jmol:charge">0.076591998</scalar>
+    </atom>
+    <atom id="a32" elementType="C"
+      x3="0.651929833222776" y3="3.99821550441895" z3="5.52804979747718">
+      <scalar dictRef="jmol:charge">-0.35119599</scalar>
+    </atom>
+    <atom id="a33" elementType="H" 
+      x3="-0.25549508324591" y3="4.22793965125988" z3="5.91500031848958">
+      <scalar dictRef="jmol:charge">0.18691599</scalar>
+    </atom>
+    <atom id="a34" elementType="H" 
+      x3="-0.738411074421478" y3="5.41672211166733" z3="3.82095028628983">
+      <scalar dictRef="jmol:charge">0.035583999</scalar>
+    </atom>
+    <atom id="a35" elementType="H" 
+      x3="-1.05929102541269" y3="3.92240113028608" z3="3.12000066774286">
+      <scalar dictRef="jmol:charge">-0.001084</scalar>
+    </atom>
+    <atom id="a36" elementType="H" 
+      x3="-0.641043443903737" y3="5.33243515809902" z3="1.34404916206936">
+      <scalar dictRef="jmol:charge">-0.050179001</scalar>
+    </atom>
+    <atom id="a37" elementType="H"
+      x3="0.646557366747576" y3="5.9956586074386" z3="2.04051752183319">
+      <scalar dictRef="jmol:charge">-0.033923998</scalar>
+    </atom>
+    <atom id="a38" elementType="H"
+      x3="0.599297181531934" y3="3.17058680949269" z3="1.38322902114137">
+      <scalar dictRef="jmol:charge">-0.063037001</scalar>
+    </atom>
+    <atom id="a39" elementType="H"
+      x3="2.79261370437934" y3="4.99183064175964" z3="1.97964888650336">
+      <scalar dictRef="jmol:charge">-0.069881998</scalar>
+    </atom>
+    <atom id="a40" elementType="H"
+      x3="3.95290149482828" y3="3.24845738731751" z3="4.10081030993252">
+      <scalar dictRef="jmol:charge">0.128305</scalar>
+    </atom>
+    <atom id="a41" elementType="H"
+      x3="3.6621995559594" y3="2.85910982450953" z3="6.43573717585454">
+      <scalar dictRef="jmol:charge">0.162944</scalar>
+    </atom>
+    <atom id="a42" elementType="H"
+      x3="2.08938966231285" y3="3.12489861598588" z3="8.11998027287012">
+      <scalar dictRef="jmol:charge">0.461642</scalar>
+    </atom>
+    <atom id="a43" elementType="O"
+      x3="20.5431665461407" y3="7.62259933129782" z3="14.7434816115617">
+      <scalar dictRef="jmol:charge">-0.68264902</scalar>
+    </atom>
+    <atom id="a44" elementType="C"
+      x3="20.2688633778717" y3="7.44751957801227" z3="13.4191266267028">
+      <scalar dictRef="jmol:charge">0.48172501</scalar>
+    </atom>
+    <atom id="a45" elementType="C"
+      x3="19.0326032833032" y3="7.72652641626111" z3="12.8708375787537">
+      <scalar dictRef="jmol:charge">-0.402224</scalar>
+    </atom>
+    <atom id="a46" elementType="C"
+      x3="18.8420504201266" y3="7.54950025234945" z3="11.5031316431632">
+      <scalar dictRef="jmol:charge">-0.055461999</scalar>
+    </atom>
+    <atom id="a47" elementType="C"
+      x3="19.8358833931051" y3="7.08412898000922" z3="10.664522664845">
+      <scalar dictRef="jmol:charge">-0.175846</scalar>
+    </atom>
+    <atom id="a48" elementType="C"
+      x3="19.5803823705338" y3="6.88557502031568" z3="9.17605146831772">
+      <scalar dictRef="jmol:charge">0.17749301</scalar>
+    </atom>
+    <atom id="a49" elementType="C"
+      x3="20.8982644294874" y3="6.80788616335782" z3="8.38532354173111">
+      <scalar dictRef="jmol:charge">0.201307</scalar>
+    </atom>
+    <atom id="a50" elementType="C"
+      x3="20.5677340382385" y3="6.53483993144273" z3="6.93500455504587">
+      <scalar dictRef="jmol:charge">-0.185406</scalar>
+    </atom>
+    <atom id="a51" elementType="C"
+      x3="19.6904220777641" y3="7.63416422344288" z3="6.32311108927651">
+      <scalar dictRef="jmol:charge">0.33477899</scalar>
+    </atom>
+    <atom id="a52" elementType="C"
+      x3="19.6295068575222" y3="7.18272130600065" z3="4.8857867629992">
+      <scalar dictRef="jmol:charge">0.54809499</scalar>
+    </atom>
+    <atom id="a53" elementType="O"
+      x3="18.7122279959271" y3="7.35211810654841" z3="4.11188850678859">
+      <scalar dictRef="jmol:charge">-0.59915102</scalar>
+    </atom>
+    <atom id="a54" elementType="C"
+      x3="20.9290563947163" y3="6.46063208245777" z3="4.55304670817433">
+      <scalar dictRef="jmol:charge">-0.180629</scalar>
+    </atom>
+    <atom id="a55" elementType="C"
+      x3="21.6763721010051" y3="6.32902983489573" z3="5.90166958851905">
+      <scalar dictRef="jmol:charge">0.048955999</scalar>
+    </atom>
+    <atom id="a56" elementType="H"
+      x3="22.1050573289166" y3="5.43201863451495" z3="5.93621077142469">
+      <scalar dictRef="jmol:charge">0.023785001</scalar>
+    </atom>
+    <atom id="a57" elementType="H"
+      x3="22.336883918044" y3="7.09586114142772" z3="5.94385758012397">
+      <scalar dictRef="jmol:charge">-0.039499</scalar>
+    </atom>
+    <atom id="a58" elementType="H"
+      x3="20.789477210239" y3="5.54593694819797" z3="4.18457303948896">
+      <scalar dictRef="jmol:charge">0.059269998</scalar>
+    </atom>
+    <atom id="a59" elementType="H"
+      x3="21.3697519954021" y3="7.05362047621459" z3="3.94510153146761">
+      <scalar dictRef="jmol:charge">0.064608999</scalar>
+    </atom>
+    <atom id="a60" elementType="C"
+      x3="18.3714502332065" y3="7.71771540813928" z3="7.0779467736216">
+      <scalar dictRef="jmol:charge">-0.248575</scalar>
+    </atom>
+    <atom id="a61" elementType="C"
+      x3="18.6290992229839" y3="7.92429930379464" z3="8.57581186279363">
+      <scalar dictRef="jmol:charge">0.20137399</scalar>
+    </atom>
+    <atom id="a62" elementType="H"
+      x3="19.1191710257399" y3="8.65489598988003" z3="8.72594310483217">
+      <scalar dictRef="jmol:charge">-0.104729</scalar>
+    </atom>
+    <atom id="a63" elementType="H"
+      x3="17.7420386019262" y3="7.8850034392243" z3="9.07064894618225">
+      <scalar dictRef="jmol:charge">-0.026105</scalar>
+    </atom>
+    <atom id="a64" elementType="H"
+      x3="17.8679869543221" y3="6.78986277332878" z3="6.93073346188001">
+      <scalar dictRef="jmol:charge">0.025812</scalar>
+    </atom>
+    <atom id="a65" elementType="H"
+      x3="17.8926300514991" y3="8.5569324293233" z3="6.73504513790276">
+      <scalar dictRef="jmol:charge">0.046704002</scalar>
+    </atom>
+    <atom id="a66" elementType="C"
+      x3="20.4014752591704" y3="9.00194400162699" z3="6.26862891765635">
+      <scalar dictRef="jmol:charge">-0.36894399</scalar>
+    </atom>
+    <atom id="a67" elementType="H"
+      x3="19.8673982467986" y3="9.69946022415086" z3="5.75796918752117">
+      <scalar dictRef="jmol:charge">0.089203998</scalar>
+    </atom>
+    <atom id="a68" elementType="H"
+      x3="21.1878484307481" y3="8.99411042038758" z3="5.71886160196744">
+      <scalar dictRef="jmol:charge">0.110828</scalar>
+    </atom>
+    <atom id="a69" elementType="H"
+      x3="20.658954522726" y3="9.27344347915827" z3="7.22796194843373">
+      <scalar dictRef="jmol:charge">0.089914002</scalar>
+    </atom>
+    <atom id="a70" elementType="H"
+      x3="20.048813566747" y3="5.73970031207087" z3="6.9058972733412">
+      <scalar dictRef="jmol:charge">0.023734</scalar>
+    </atom>
+    <atom id="a71" elementType="C"
+      x3="21.794355270845" y3="5.75681959745706" z3="9.03961266578258">
+      <scalar dictRef="jmol:charge">0.095524997</scalar>
+    </atom>
+    <atom id="a72" elementType="C"
+      x3="22.2355556470137" y3="6.24378249232475" z3="10.4114971892956">
+      <scalar dictRef="jmol:charge">-0.036578</scalar>
+    </atom>
+    <atom id="a73" elementType="C"
+      x3="21.0807934587241" y3="6.77156052009195" z3="11.2434000810141">
+      <scalar dictRef="jmol:charge">0.076591998</scalar>
+    </atom>
+    <atom id="a74" elementType="C"
+      x3="21.2745311042784" y3="6.9550344955817" z3="12.6022997974775">
+      <scalar dictRef="jmol:charge">-0.35119599</scalar>
+    </atom>
+    <atom id="a75" elementType="H"
+      x3="22.1819560207471" y3="6.72531034874077" z3="12.9892503184899">
+      <scalar dictRef="jmol:charge">0.18691599</scalar>
+    </atom>
+    <atom id="a76" elementType="H"
+      x3="22.6648720119226" y3="5.53652788833332" z3="10.8952002862901">
+      <scalar dictRef="jmol:charge">0.035583999</scalar>
+    </atom>
+    <atom id="a77" elementType="H"
+      x3="22.9857519629138" y3="7.03084886971457" z3="10.1942506677431">
+      <scalar dictRef="jmol:charge">-0.001084</scalar>
+    </atom>
+    <atom id="a78" elementType="H"
+      x3="22.5675043814049" y3="5.62081484190164" z3="8.41829916206964">
+      <scalar dictRef="jmol:charge">-0.050179001</scalar>
+    </atom>
+    <atom id="a79" elementType="H"
+      x3="21.2799035707536" y3="4.95759139256205" z3="9.11476752183347">
+      <scalar dictRef="jmol:charge">-0.033923998</scalar>
+    </atom>
+    <atom id="a80" elementType="H"
+      x3="21.3271637559692" y3="7.78266319050796" z3="8.45747902114165">
+      <scalar dictRef="jmol:charge">-0.063037001</scalar>
+    </atom>
+    <atom id="a81" elementType="H"
+      x3="19.1338472331218" y3="5.96141935824101" z3="9.05389888650363">
+      <scalar dictRef="jmol:charge">-0.069881998</scalar>
+    </atom>
+    <atom id="a82" elementType="H"
+      x3="17.9735594426729" y3="7.70479261268314" z3="11.1750603099328">
+      <scalar dictRef="jmol:charge">0.128305</scalar>
+    </atom>
+    <atom id="a83" elementType="H"
+      x3="18.2642613815418" y3="8.09414017549112" z3="13.5099871758548">
+      <scalar dictRef="jmol:charge">0.162944</scalar>
+    </atom>
+    <atom id="a84" elementType="H"
+      x3="19.8370712751883" y3="7.82835138401477" z3="15.1942302728704">
+      <scalar dictRef="jmol:charge">0.461642</scalar>
+    </atom>
+    <atom id="a85" elementType="O" 
+      x3="13.2343462336403" y3="8.80727566870315" z3="-0.594981611561188">
+      <scalar dictRef="jmol:charge">-0.68264902</scalar>
+    </atom>
+    <atom id="a86" elementType="C"
+      x3="12.9600430653713" y3="8.98235542198871" z3="0.729373373297799">
+      <scalar dictRef="jmol:charge">0.48172501</scalar>
+    </atom>
+    <atom id="a87" elementType="C"
+      x3="11.7237829708028" y3="8.70334858373987" z3="1.27766242124687">
+      <scalar dictRef="jmol:charge">-0.402224</scalar>
+    </atom>
+    <atom id="a88" elementType="C"
+      x3="11.5332301076262" y3="8.88037474765153" z3="2.64536835683739">
+      <scalar dictRef="jmol:charge">-0.055461999</scalar>
+    </atom>
+    <atom id="a89" elementType="C"
+      x3="12.5270630806047" y3="9.34574601999176" z3="3.48397733515558">
+      <scalar dictRef="jmol:charge">-0.175846</scalar>
+    </atom>
+    <atom id="a90" elementType="C"
+      x3="12.2715620580334" y3="9.5442999796853" z3="4.97244853168283">
+      <scalar dictRef="jmol:charge">0.17749301</scalar>
+    </atom>
+    <atom id="a91" elementType="C"
+      x3="13.589444116987" y3="9.62198883664315" z3="5.76317645826944">
+      <scalar dictRef="jmol:charge">0.201307</scalar>
+    </atom>
+    <atom id="a92" elementType="C"
+      x3="13.2589137257381" y3="9.89503506855825" z3="7.21349544495468">
+      <scalar dictRef="jmol:charge">-0.185406</scalar>
+    </atom>
+    <atom id="a93" elementType="C"
+      x3="12.3816017652637" y3="8.7957107765581" z3="7.82538891072404">
+      <scalar dictRef="jmol:charge">0.33477899</scalar>
+    </atom>
+    <atom id="a94" elementType="C"
+      x3="12.3206865450218" y3="9.24715369400033" z3="9.26271323700135">
+      <scalar dictRef="jmol:charge">0.54809499</scalar>
+    </atom>
+    <atom id="a95" elementType="O"
+      x3="11.4034076834268" y3="9.07775689345256" z3="10.036611493212">
+      <scalar dictRef="jmol:charge">-0.59915102</scalar>
+    </atom>
+    <atom id="a96" elementType="C"
+      x3="13.620236082216" y3="9.9692429175432" z3="9.59545329182622">
+      <scalar dictRef="jmol:charge">-0.180629</scalar>
+    </atom>
+    <atom id="a97" elementType="C"
+      x3="14.3675517885048" y3="10.1008451651052" z3="8.2468304114815">
+      <scalar dictRef="jmol:charge">0.048955999</scalar>
+    </atom>
+    <atom id="a98" elementType="H"
+      x3="14.7962370164162" y3="10.997856365486" z3="8.21228922857586">
+      <scalar dictRef="jmol:charge">0.023785001</scalar>
+    </atom>
+    <atom id="a99" elementType="H"
+      x3="15.0280636055436" y3="9.33401385857326" z3="8.20464241987658">
+      <scalar dictRef="jmol:charge">-0.039499</scalar>
+    </atom>
+    <atom id="a100" elementType="H"
+      x3="13.4806568977386" y3="10.883938051803" z3="9.96392696051159">
+      <scalar dictRef="jmol:charge">0.059269998</scalar>
+    </atom>
+    <atom id="a101" elementType="H"
+      x3="14.0609316829017" y3="9.37625452378639" z3="10.2033984685329">
+      <scalar dictRef="jmol:charge">0.064608999</scalar>
+    </atom>
+    <atom id="a102" elementType="C"
+      x3="11.0626299207061" y3="8.7121595918617" z3="7.07055322637895">
+      <scalar dictRef="jmol:charge">-0.248575</scalar>
+    </atom>
+    <atom id="a103" elementType="C"
+      x3="11.3202789104835" y3="8.50557569620634" z3="5.57268813720692">
+      <scalar dictRef="jmol:charge">0.20137399</scalar>
+    </atom>
+    <atom id="a104" elementType="H"
+      x3="11.8103507132395" y3="7.77497901012094" z3="5.42255689516838">
+      <scalar dictRef="jmol:charge">-0.104729</scalar>
+    </atom>
+    <atom id="a105" elementType="H"
+      x3="10.4332182894258" y3="8.54487156077668" z3="5.0778510538183">
+      <scalar dictRef="jmol:charge">-0.026105</scalar>
+    </atom>
+    <atom id="a106" elementType="H"
+      x3="10.5591666418217" y3="9.64001222667219" z3="7.21776653812054">
+      <scalar dictRef="jmol:charge">0.025812</scalar>
+    </atom>
+    <atom id="a107" elementType="H"
+      x3="10.5838097389987" y3="7.87294257067768" z3="7.41345486209779">
+      <scalar dictRef="jmol:charge">0.046704002</scalar>
+    </atom>
+    <atom id="a108" elementType="C"
+      x3="13.0926549466701" y3="7.42793099837399" z3="7.8798710823442">
+      <scalar dictRef="jmol:charge">-0.36894399</scalar>
+    </atom>
+    <atom id="a109" elementType="H"
+      x3="12.5585779342982" y3="6.73041477585011" z3="8.39053081247938">
+      <scalar dictRef="jmol:charge">0.089203998</scalar>
+    </atom>
+    <atom id="a110" elementType="H"
+      x3="13.8790281182478" y3="7.4357645796134" z3="8.42963839803311">
+      <scalar dictRef="jmol:charge">0.110828</scalar>
+    </atom>
+    <atom id="a111" elementType="H"
+      x3="13.3501342102256" y3="7.15643152084271" z3="6.92053805156682">
+      <scalar dictRef="jmol:charge">0.089914002</scalar>
+    </atom>
+    <atom id="a112" elementType="H"
+      x3="12.7399932542466" y3="10.6901746879301" z3="7.24260272665935">
+      <scalar dictRef="jmol:charge">0.023734</scalar>
+    </atom>
+    <atom id="a113" elementType="C"
+      x3="14.4855349583446" y3="10.6730554025439" z3="5.10888733421797">
+      <scalar dictRef="jmol:charge">0.095524997</scalar>
+    </atom>
+    <atom id="a114" elementType="C"
+      x3="14.9267353345133" y3="10.1860925076762" z3="3.737002810705">
+      <scalar dictRef="jmol:charge">-0.036578</scalar>
+    </atom>
+    <atom id="a115" elementType="C"
+      x3="13.7719731462237" y3="9.65831447990902" z3="2.90509991898642">
+      <scalar dictRef="jmol:charge">0.076591998</scalar>
+    </atom>
+    <atom id="a116" elementType="C"
+      x3="13.965710791778" y3="9.47484050441927" z3="1.54620020252309">
+      <scalar dictRef="jmol:charge">-0.35119599</scalar>
+    </atom>
+    <atom id="a117" elementType="H"
+      x3="14.8731357082467" y3="9.7045646512602" z3="1.15924968151069">
+      <scalar dictRef="jmol:charge">0.18691599</scalar>
+    </atom>
+    <atom id="a118" elementType="H"
+      x3="15.3560516994222" y3="10.8933471116677" z3="3.25329971371045">
+      <scalar dictRef="jmol:charge">0.035583999</scalar>
+    </atom>
+    <atom id="a119" elementType="H"
+      x3="15.6769316504135" y3="9.39902613028641" z3="3.95424933225742">
+      <scalar dictRef="jmol:charge">-0.001084</scalar>
+    </atom>
+    <atom id="a120" elementType="H"
+      x3="15.2586840689045" y3="10.8090601580993" z3="5.73020083793091">
+      <scalar dictRef="jmol:charge">-0.050179001</scalar>
+    </atom>
+    <atom id="a121" elementType="H"
+      x3="13.9710832582532" y3="11.4722836074389" z3="5.03373247816708">
+      <scalar dictRef="jmol:charge">-0.033923998</scalar>
+    </atom>
+    <atom id="a122" elementType="H"
+      x3="14.0183434434688" y3="8.64721180949302" z3="5.6910209788589">
+      <scalar dictRef="jmol:charge">-0.063037001</scalar>
+    </atom>
+    <atom id="a123" elementType="H"
+      x3="11.8250269206214" y3="10.46845564176" z3="5.09460111349692">
+      <scalar dictRef="jmol:charge">-0.069881998</scalar>
+    </atom>
+    <atom id="a124" elementType="H"
+      x3="10.6647391301725" y3="8.72508238731783" z3="2.97343969006776">
+      <scalar dictRef="jmol:charge">0.128305</scalar>
+    </atom>
+    <atom id="a125" elementType="H"
+      x3="10.9554410690414" y3="8.33573482450986" z3="0.638512824145739">
+      <scalar dictRef="jmol:charge">0.162944</scalar>
+    </atom>
+    <atom id="a126" elementType="H" 
+      x3="12.5282509626879" y3="8.60152361598621" z3="-1.04573027286984">
+      <scalar dictRef="jmol:charge">0.461642</scalar>
+    </atom>
+    <atom id="a127" elementType="O"
+      x3="8.69211470386083" y3="13.0992243312981" z3="6.47926838843909">
+      <scalar dictRef="jmol:charge">-0.68264902</scalar>
+    </atom>
+    <atom id="a128" elementType="C"
+      x3="8.96641787212982" y3="12.9241445780126" z3="7.80362337329807">
+      <scalar dictRef="jmol:charge">0.48172501</scalar>
+    </atom>
+    <atom id="a129" elementType="C"
+      x3="10.2026779666983" y3="13.2031514162614" z3="8.35191242124715">
+      <scalar dictRef="jmol:charge">-0.402224</scalar>
+    </atom>
+    <atom id="a130" elementType="C"
+      x3="10.393230829875" y3="13.0261252523498" z3="9.71961835683766">
+      <scalar dictRef="jmol:charge">-0.055461999</scalar>
+    </atom>
+    <atom id="a131" elementType="C"
+      x3="9.39939785689648" y3="12.5607539800095" z3="10.5582273351559">
+      <scalar dictRef="jmol:charge">-0.175846</scalar>
+    </atom>
+    <atom id="a132" elementType="C"
+      x3="9.65489887946776" y3="12.362200020316" z3="12.0466985316831">
+      <scalar dictRef="jmol:charge">0.17749301</scalar>
+    </atom>
+    <atom id="a133" elementType="C"
+      x3="8.33701682051411" y3="12.2845111633582" z3="12.8374264582697">
+      <scalar dictRef="jmol:charge">0.201307</scalar>
+    </atom>
+    <atom id="a134" elementType="C"
+      x3="8.66754721176305" y3="12.0114649314431" z3="14.287745444955">
+      <scalar dictRef="jmol:charge">-0.185406</scalar>
+    </atom>
+    <atom id="a135" elementType="C"
+      x3="9.54485917223741" y3="13.1107892234432" z3="14.8996389107243">
+      <scalar dictRef="jmol:charge">0.33477899</scalar>
+    </atom>
+    <atom id="a136" elementType="C"
+      x3="9.60577439247935" y3="12.659346306001" z3="16.3369632370016">
+      <scalar dictRef="jmol:charge">0.54809499</scalar>
+    </atom>
+    <atom id="a137" elementType="O"
+      x3="10.5230532540744" y3="12.8287431065487" z3="17.1108614932122">
+      <scalar dictRef="jmol:charge">-0.59915102</scalar>
+    </atom>
+    <atom id="a138" elementType="C"
+      x3="8.3062248552852" y3="11.9372570824581" z3="16.6697032918265">
+      <scalar dictRef="jmol:charge">-0.180629</scalar>
+    </atom>
+    <atom id="a139" elementType="C"
+      x3="7.55890914899639" y3="11.8056548348961" z3="15.3210804114818">
+      <scalar dictRef="jmol:charge">0.048955999</scalar>
+    </atom>
+    <atom id="a140" elementType="H"
+      x3="7.13022392108493" y3="10.9086436345153" z3="15.2865392285761">
+      <scalar dictRef="jmol:charge">0.023785001</scalar>
+    </atom>
+    <atom id="a141" elementType="H"
+      x3="6.89839733195755" y3="12.572486141428" z3="15.2788924198769">
+      <scalar dictRef="jmol:charge">-0.039499</scalar>
+    </atom>
+    <atom id="a142" elementType="H"
+      x3="8.44580403976256" y3="11.0225619481983" z3="17.0381769605119">
+      <scalar dictRef="jmol:charge">0.059269998</scalar>
+    </atom>
+    <atom id="a143" elementType="H"
+      x3="7.86552925459948" y3="12.5302454762149" z3="17.2776484685332">
+      <scalar dictRef="jmol:charge">0.064608999</scalar>
+    </atom>
+    <atom id="a144" elementType="C"
+      x3="10.8638310167951" y3="13.1943404081396" z3="14.1448032263792">
+      <scalar dictRef="jmol:charge">-0.248575</scalar>
+    </atom>
+    <atom id="a145" elementType="C"
+      x3="10.6061820270176" y3="13.400924303795" z3="12.6469381372072">
+      <scalar dictRef="jmol:charge">0.20137399</scalar>
+    </atom>
+    <atom id="a146" elementType="H"
+      x3="10.1161102242617" y3="14.1315209898804" z3="12.4968068951687">
+      <scalar dictRef="jmol:charge">-0.104729</scalar>
+    </atom>
+    <atom id="a147" elementType="H"
+      x3="11.4932426480754" y3="13.3616284392246" z3="12.1521010538186">
+      <scalar dictRef="jmol:charge">-0.026105</scalar>
+    </atom>
+    <atom id="a148" elementType="H"
+      x3="11.3672942956795" y3="12.2664877733291" z3="14.2920165381208">
+      <scalar dictRef="jmol:charge">0.025812</scalar>
+    </atom>
+    <atom id="a149" elementType="H"
+      x3="11.3426511985025" y3="14.0335574293236" z3="14.4877048620981">
+      <scalar dictRef="jmol:charge">0.046704002</scalar>
+    </atom>
+    <atom id="a150" elementType="C"
+      x3="8.8338059908311" y3="14.4785690016273" z3="14.9541210823445">
+      <scalar dictRef="jmol:charge">-0.36894399</scalar>
+    </atom>
+    <atom id="a151" elementType="H"
+      x3="9.36788300320297" y3="15.1760852241512" z3="15.4647808124797">
+      <scalar dictRef="jmol:charge">0.089203998</scalar>
+    </atom>
+    <atom id="a152" elementType="H"
+      x3="8.04743281925339" y3="14.4707354203879" z3="15.5038883980334">
+      <scalar dictRef="jmol:charge">0.110828</scalar>
+    </atom>
+    <atom id="a153" elementType="H"
+      x3="8.57632672727552" y3="14.7500684791586" z3="13.9947880515671">
+      <scalar dictRef="jmol:charge">0.089914002</scalar>
+    </atom>
+    <atom id="a154" elementType="H"
+      x3="9.18646768325458" y3="11.2163253120712" z3="14.3168527266596">
+      <scalar dictRef="jmol:charge">0.023734</scalar>
+    </atom>
+    <atom id="a155" elementType="C"
+      x3="7.44092597915656" y3="11.2334445974574" z3="12.1831373342182">
+      <scalar dictRef="jmol:charge">0.095524997</scalar>
+    </atom>
+    <atom id="a156" elementType="C"
+      x3="6.99972560298784" y3="11.7204074923251" z3="10.8112528107053">
+      <scalar dictRef="jmol:charge">-0.036578</scalar>
+    </atom>
+    <atom id="a157" elementType="C"
+      x3="8.15448779127745" y3="12.2481855200923" z3="9.97934991898669">
+      <scalar dictRef="jmol:charge">0.076591998</scalar>
+    </atom>
+    <atom id="a158" elementType="C"
+      x3="7.96075014572316" y3="12.431659495582" z3="8.62045020252337">
+      <scalar dictRef="jmol:charge">-0.35119599</scalar>
+    </atom>
+    <atom id="a159" elementType="H"
+      x3="7.05332522925448" y3="12.2019353487411" z3="8.23349968151097">
+      <scalar dictRef="jmol:charge">0.18691599</scalar>
+    </atom>
+    <atom id="a160" elementType="H"
+      x3="6.57040923807891" y3="11.0131528883336" z3="10.3275497137107">
+      <scalar dictRef="jmol:charge">0.035583999</scalar>
+    </atom>
+    <atom id="a161" elementType="H"
+      x3="6.24952928708769" y3="12.5074738697149" z3="11.0284993322577">
+      <scalar dictRef="jmol:charge">-0.001084</scalar>
+    </atom>
+    <atom id="a162" elementType="H"
+      x3="6.66777686859665" y3="11.097439841902" z3="12.8044508379312">
+      <scalar dictRef="jmol:charge">-0.050179001</scalar>
+    </atom>
+    <atom id="a163" elementType="H"
+      x3="7.95537767924796" y3="10.4342163925624" z3="12.1079824781674">
+      <scalar dictRef="jmol:charge">-0.033923998</scalar>
+    </atom>
+    <atom id="a164" elementType="H"
+      x3="7.90811749403232" y3="13.2592881905083" z3="12.7652709788592">
+      <scalar dictRef="jmol:charge">-0.063037001</scalar>
+    </atom>
+    <atom id="a165" elementType="H"
+      x3="10.1014340168797" y3="11.4380443582413" z3="12.1688511134972">
+      <scalar dictRef="jmol:charge">-0.069881998</scalar>
+    </atom>
+    <atom id="a166" elementType="H"
+      x3="11.2617218073287" y3="13.1814176126835" z3="10.047689690068">
+      <scalar dictRef="jmol:charge">0.128305</scalar>
+    </atom>
+    <atom id="a167" elementType="H"
+      x3="10.9710198684598" y3="13.5707651754914" z3="7.71276282414601">
+      <scalar dictRef="jmol:charge">0.162944</scalar>
+    </atom>
+    <atom id="a168" elementType="H"
+      x3="9.39820997481324" y3="13.3049763840151" z3="6.02851972713043">
+      <scalar dictRef="jmol:charge">0.461642</scalar>
+    </atom>
+  </atomArray>
+</molecule>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jmol/JME Demo</title>
+<meta charset="utf-8" />
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/JSmolJME.js"></script>
+<script type="text/javascript" language="javascript" src="jsme/jsme/jsme.nocache.js"></script>
+
+<script type="text/javascript">
+
+//Jmol._debugCode = true;//(s.indexOf("debugcode") >= 0);
+
+var jmol="jmol";
+var jme = "jme";
+
+var JmolInfo = {
+	width: 300,
+	height: 300,
+	debug: false,
+	color: "black",
+	use: "HTML5",
+  addSelectionOptions: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+  disableJ2SLoadMonitor: true,
+  disableInitialConsole: true,
+  jarPath: "java",
+	jarFile: "JmolAppletSigned.jar",
+  j2sPath: "j2s",
+	isSigned: true,
+  //defaultModel: ":morphine",
+	script: ""
+}
+
+var JMEInfo = {     
+	use: "HTML5"
+  ,visible: true
+  ,divId: "jmediv"
+  ,options : "autoez;nocanonize"
+	//,jarPath: "jme",
+	//,jarFile: "JME.jar"
+  //optional parameters
+  //,"jme" : startingStructure   
+}
+
+//Jmol.setGrabberOptions([[":", "PubChem"]])
+Jmol.setGrabberOptions([["$", "NCI"]])
+        
+        
+function showSmiles(from3d) {
+  $("#jsmolsmiles").html(jmol._getSmiles("/opensmiles/"));
+  $("#jsmesmiles").html(jme._getSmiles());
+}
+
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10>
+<tr><td>
+Test of Jmol/JME interface -- switch back and forth between 2D and 3D, changing the model as desired. 
+Requires <a href=../jsmol/js/JSmolJME.js>JSmolJME.js</a>. Code on page:
+<pre>
+<code>
+jmol = Jmol.getApplet("jmol", JmolInfo)
+jme = Jmol.getJMEApplet("jme", JMEInfo, jmol);
+</code>
+</pre>
+</td>
+<td><div id="jmediv" style="position:relative;width:350px;height:300px;"></div></td>
+<td>
+<input type="button" onclick="Jmol.show2d(jmol, false);showSmiles(false)" value="&#8594" />
+<br>  
+<input type="button" onclick="Jmol.show2d(jmol, true);showSmiles(true)" value="&#8592" />
+</td>
+<td>
+
+<a href="javascript:Jmol.showInfo(jmol, true)">info</a>
+<a href="javascript:Jmol.clearConsole(jmol)">clear</a>
+<a href="javascript:Jmol.showInfo(jmol, false)">no info</a>
+<br>
+<script>
+jmol = Jmol.getApplet(jmol, JmolInfo)
+jme = Jmol.getJMEApplet(jme, JMEInfo, jmol);
+Jmol.jmolButton(jmol, "calculate chirality;label %[chirality];background label yellow","show R/S")
+
+</script>
+</td>
+</tr>
+</table>
+<br>
+JSME SMILES: <span id="jsmesmiles"></span>
+<br>
+JSmol OpenSMILES: <span id="jsmolsmiles"></span>
+</body>
+</html>

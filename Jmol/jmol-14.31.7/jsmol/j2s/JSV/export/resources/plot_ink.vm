@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xml:space="preserve"
+   width="850.0"
+   height="400.0"
+   viewBox="0 0 850 400"
+   preserveAspectRatio="none"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.48.0 r9654"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   version="1.1"<metadata
+   id="metadata88"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs86"><inkscape:perspective
+     sodipodi:type="inkscape:persp3d"
+     inkscape:vp_x="0 : 200 : 1"
+     inkscape:vp_y="0 : 1000 : 0"
+     inkscape:vp_z="850 : 200 : 1"
+     inkscape:persp3d-origin="425 : 133.33333 : 1"
+     id="perspective90" /></defs><sodipodi:namedview
+   inkscape:window-height="675"
+   inkscape:window-width="640"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0.0"
+   guidetolerance="10.0"
+   gridtolerance="10.0"
+   objecttolerance="10.0"
+   borderopacity="1.0"
+   bordercolor="#666666"
+   pagecolor="#ffffff"
+   id="base"
+   showgrid="false"
+   inkscape:zoom="0.64"
+   inkscape:cx="425"
+   inkscape:cy="200"
+   inkscape:window-x="110"
+   inkscape:window-y="0"
+   inkscape:current-layer="svg2"
+   inkscape:window-maximized="1" />
+
+<!-- Copyright (c) 2002-2012 Department of Chemistry, University of the West Indies, Jamaica -->
+
+<g id="Plot" transform="translate($firstTranslateX,$firstTranslateY) scale($scaleX,$scaleY) translate($secondTranslateX,$secondTranslateY)">
+
+#if($continuous)
+  #if($overlaid)
+    #foreach ($coordList in $xyCoords)
+       <path id="Spectrum" style="fill:none; stroke:$plotColor ;stroke-width:0.035;"
+       d="  M
+       #foreach ($coord in $coordList)
+       $coord.getXString(), $coord.getYString() L
+       #end
+
+       #foreach ($item in $xScaleList)
+       M $item.number -0.6 v 0.4
+       #end
+       "/>
+    #end
+  #else
+     <path id="Spectrum" style="fill:none; stroke:$plotColor ;stroke-width:0.035;"
+     d="  M $firstX, $firstY
+     #foreach ($coord in $xyCoords) L $coord.getXString(), $coord.getYString()  #end
+     M $firstX, 0 L $lastX, 0
+       #foreach ($item in $xScaleList)
+       M $item.number $yTickA V $yTickB
+       #end
+     "/>
+  #end
+#else
+  #if($overlaid)
+    #foreach ($coordList in $xyCoords)
+       <path id="Spectrum" style="fill:none; stroke:$plotColor ;stroke-width:0.015;"
+       d="
+       #foreach ($coord in $coordList)
+       M $coord.getXString() 0 L $coord.getXString() $coord.getYString()
+       #end
+       #foreach ($item in $xScaleList)
+       M $item.number -0.7 v 0.5
+       #end
+       "/>
+    #end
+  #else
+      <path id="Spectrum" style="fill:none; stroke:$plotColor ;stroke-width:0.015;"
+      d="
+      #foreach ($coord in $xyCoords) M $coord.getXString() 0 L $coord.getXString() $coord.getYString()
+      #end
+      #foreach ($item in $xScaleList) 
+      M $item.number -0.8 v 0.3
+      #end
+      "/>
+  #end
+#end
+</g>
+</svg>

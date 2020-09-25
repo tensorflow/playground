@@ -1,0 +1,17 @@
+ BEGIN header
+ Number of ions         4
+ Number of branches     12
+ Number of wavevectors  450
+ Frequencies in         cm-1
+ IR intensities in      (D/A)**2/amu
+ Raman intensities in   A**4
+ Unit cell vectors (A)
+    1.236492   -2.141668    0.000000
+    1.236492    2.141668    0.000000
+    0.000000    0.000000    6.710000
+ Fractional Co-ordinates
+     1     0.000000    0.000000    0.250000   C        12.010700
+     2     0.000000    0.000000    0.750000   C        12.010700
+     3     0.333333    0.666667    0.250000   C        12.010700
+     4     0.666667    0.333333    0.750000   C        12.010700
+ END header

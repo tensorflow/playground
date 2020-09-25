@@ -1,0 +1,36 @@
+These are mostly ideas, that they're written down here is no guarantee
+that they'll ever be done. If you want something done, feel free to
+say why or come up with a patch. :-)
+
+pending
+  - split out autoscaleMargin into a snapToTicks
+
+grid configuration
+  - how ticks look like
+  - consider setting default grid colors from each other?
+
+selection
+  - user should be able to cancel selection with escape
+
+interactive zooming
+  - convenience zoom(x1, y1, x2, y2)? and zoomOut() (via zoom stack)?
+  - auto-zoom mode?
+  - auto-margins
+
+legend
+  - interactive auto-highlight of graph?
+  - ability to specify noRows instead of just noColumns
+
+labels
+  - labels on bars, data points
+  - interactive "label this point" command/tooltip support
+
+error margin indicators
+  - for scientific/statistical purposes
+
+hi-low bars
+
+non-xy based graph types
+  - figure out how to integrate them with the rest of the plugin
+  - pie charts
+  - bar charts, keys instead of x values

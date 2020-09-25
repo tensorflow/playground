@@ -1,0 +1,235 @@
+data_Modulated structure of Sr2Nb2O7
+_cell_length_a                                               3.9537(6)      
+_cell_length_b                                               26.749(4)      
+_cell_length_c                                               5.7002(10)     
+_cell_angle_alpha                                            90             
+_cell_angle_beta                                             90             
+_cell_angle_gamma                                            90             
+_cell_volume                                                 614.71(17)     
+_cell_measurement_pressure                                   ?              
+_cell_measurement_radiation                                  ?              
+_cell_measurement_reflns_used                                ?              
+_cell_measurement_temperature                                ?              
+_cell_measurement_theta_max                                  ?              
+_cell_measurement_theta_min                                  ?              
+_cell_measurement_wavelength                                 ?              
+_cell_modulation_dimension                                   1              
+loop_
+_cell_wave_vector_seq_id                                    
+_cell_wave_vector_x                                         
+_cell_wave_vector_y                                         
+_cell_wave_vector_z                                         
+1   0.48800   0.00000   0.00000
+_cell_formula_units_Z                                        4
+_symmetry_cell_setting                                       orthorhombic
+_symmetry_ssg_name_IT                                        Cmc21(\a00)0s
+loop_
+_symmetry_ssg_equiv_pos_seq_id                              
+_symmetry_ssg_equiv_pos_as_xyz                              
+1   x1,x2,x3,x4
+2   x1,-x2,1/2+x3,1/2+x4
+3   -x1,-x2,1/2+x3,-x4
+4   -x1,x2,x3,1/2-x4
+5   1/2+x1,1/2+x2,x3,x4
+6   1/2+x1,1/2-x2,1/2+x3,1/2+x4
+7   1/2-x1,1/2-x2,1/2+x3,-x4
+8   1/2-x1,1/2+x2,x3,1/2-x4
+loop_
+_atom_type_symbol                                           
+_atom_type_oxidation_number                                 
+_atom_type_number_in_cell                                   
+_atom_type_scat_dispersion_real                             
+_atom_type_scat_dispersion_imag                             
+_atom_type_scat_source                                      
+_atom_type_scat_Cromer_Mann_a1                              
+_atom_type_scat_Cromer_Mann_b1                              
+_atom_type_scat_Cromer_Mann_a2                              
+_atom_type_scat_Cromer_Mann_b2                              
+_atom_type_scat_Cromer_Mann_a3                              
+_atom_type_scat_Cromer_Mann_b3                              
+_atom_type_scat_Cromer_Mann_a4                              
+_atom_type_scat_Cromer_Mann_b4                              
+_atom_type_scat_Cromer_Mann_c                               
+Sr 0  16  -0.117   2.203 International_Tables_Vol_C
+17.566299 1.5564 9.8184 14.0988 5.422 0.1664 2.6694 132.376007 2.5064           
+Nb 0  16  -0.828   2.840 International_Tables_Vol_C
+17.614201 1.18865 12.0144 11.766 4.04183 0.204785 3.53346 69.7957 3.75591       
+O  0  56   0.006   0.004 International_Tables_Vol_C
+3.0485 13.2771 2.2868 5.7011 1.5463 0.3239 0.867 32.908901 0.2508               
+_chemical_formula_sum                                        'Sr2 Nb2 O7'
+_chemical_formula_weight                                     473            
+_exptl_crystal_colour                                        ?              
+_exptl_crystal_description                                   ?              
+_exptl_crystal_size_max                                      ?              
+_exptl_crystal_size_mid                                      ?              
+_exptl_crystal_size_min                                      ?              
+_exptl_crystal_size_rad                                      ?              
+_exptl_crystal_density_diffrn                                5.11           
+_exptl_crystal_density_meas                                  ?              
+_exptl_crystal_density_meas_temp                             ?              
+_exptl_crystal_density_method                                ?              
+_exptl_crystal_F_000                                         856            
+_exptl_absorpt_correction_type                               none
+_exptl_absorpt_coefficient_mu                                ?
+_exptl_absorpt_correction_T_min                              1.000
+_exptl_absorpt_correction_T_max                              1.000
+_diffrn_measurement_device                                   'imaging plate system'
+_diffrn_measurement_device_type                              'IPDS Stoe'
+_diffrn_measurement_method                                   '??integration method??'
+_diffrn_radiation_probe                                      'X-ray'
+_diffrn_radiation_type                                       ?
+_diffrn_radiation_wavelength                                 0.5
+_diffrn_standards_number                                     ?              
+_diffrn_standards_decay_%                                    ?              
+_diffrn_standards_interval_count                             ?              
+_diffrn_standards_interval_time                              ?              
+_diffrn_reflns_limit_h_min                                   -9             
+_diffrn_reflns_limit_h_max                                   8              
+_diffrn_reflns_limit_k_min                                   -64            
+_diffrn_reflns_limit_k_max                                   62             
+_diffrn_reflns_limit_l_min                                   -13            
+_diffrn_reflns_limit_l_max                                   8              
+_diffrn_reflns_limit_index_m_1_min                           -1             
+_diffrn_reflns_limit_index_m_1_max                           1              
+_reflns_limit_h_min                                          0              
+_reflns_limit_h_max                                          9              
+_reflns_limit_k_min                                          0              
+_reflns_limit_k_max                                          64             
+_reflns_limit_l_min                                          -13            
+_reflns_limit_l_max                                          8              
+_reflns_limit_index_m_1_min                                  -1             
+_reflns_limit_index_m_1_max                                  1              
+_diffrn_reflns_number                                        18977          
+_diffrn_reflns_theta_min                                     1.07           
+_diffrn_reflns_theta_max                                     37.61          
+_diffrn_reflns_av_R_equivalents                              0.0742         
+_diffrn_reflns_av_sigmaI/netI                                0.0075         
+_reflns_observed_criterion                                   3              
+_reflns_number_total                                         5126           
+_reflns_number_observed                                      4888           
+_refine_ls_structure_factor_coef                             F              
+_refine_ls_weighting_scheme                                  sigma          
+_refine_ls_weighting_details                                 'w=1/(\s^2^(F)+0.0004F^2^)'
+_refine_ls_R_factor_gt                                       0.0565         
+_refine_ls_wR_factor_gt                                      0.0824         
+_refine_ls_R_factor_all                                      0.0594         
+_refine_ls_wR_factor_ref                                     0.0842         
+_refine_ls_number_reflns                                     5126           
+_refine_ls_number_parameters                                 105            
+_refine_ls_goodness_of_fit_ref                               3.26           
+_refine_ls_goodness_of_fit_obs                               3.26           
+_refine_ls_shift/su_max                                      0.0005         
+_refine_ls_shift/su_mean                                     0.0000         
+_refine_diff_density_max                                     ?              
+_refine_diff_density_min                                     ?              
+_refine_ls_extinction_method                                 'none'
+_refine_ls_extinction_coef                                   ?
+loop_
+_atom_site_label                                            
+_atom_site_type_symbol                                      
+_atom_site_fract_x                                          
+_atom_site_fract_y                                          
+_atom_site_fract_z                                          
+_atom_site_U_iso_or_equiv                                   
+_atom_site_symmetry_multiplicity                            
+_atom_site_occupancy                                        
+Sr1 Sr  0.5          0.20587(2)   0.02976(16)   0.01184(12)   4 1
+Sr2 Sr  0.5          0.051848(15) 0.46660(13)   0.00606(7)    4 1
+Nb1 Nb  0            0.162003(12) 0.5           0.00324(5)    4 1
+Nb2 Nb  0.5          0.442230(11) 0.47044(9)    0.00229(5)    4 1
+O1  O   0            0.00700(14)  0.2221(8)     0.0083(8)     4 1
+O2  O   0            0.10988(18)  0.1772(11)    0.0144(12)    4 1
+O3  O   0.5          0.15090(15)  0.4728(10)    0.0107(10)    4 1
+O4  O   0            0.21408(16)  0.2857(9)     0.0080(7)     4 1
+O5  O   0.5          0.30052(19)  0.2640(10)    0.0105(9)     4 1
+O6  O   0.5          0.40684(14)  0.1710(8)     0.0078(6)     4 1
+O7  O   0            0.45098(16)  0.4511(11)    0.0092(8)     4 1
+loop_
+_atom_site_aniso_label                                      
+_atom_site_aniso_type_symbol                                
+_atom_site_adp_type                                         
+_atom_site_aniso_U_11                                       
+_atom_site_aniso_U_22                                       
+_atom_site_aniso_U_33                                       
+_atom_site_aniso_U_12                                       
+_atom_site_aniso_U_13                                       
+_atom_site_aniso_U_23                                       
+Sr1 Sr Uani  0.00386(11)   0.0221(2)     0.0090(2)     0
+             0             0.0054(2)
+Sr2 Sr Uani  0.00394(10)   0.00764(11)   0.00637(15)   0
+             0            -0.00139(12)
+Nb1 Nb Uani  0.00206(8)    0.00394(8)    0.00359(11)   0
+             0             0.00035(7)
+Nb2 Nb Uani  0.00125(8)    0.00352(7)    0.00199(10)   0
+             0            -0.00014(7)
+O1  O  Uani  0.0113(17)    0.0059(10)    0.0073(14)    0
+             0             0.0024(9)
+O2  O  Uani  0.025(3)      0.0083(12)    0.0096(16)    0
+             0            -0.0026(13)
+O3  O  Uani  0.0021(7)     0.0097(10)    0.020(2)      0
+             0            -0.0011(16)
+O4  O  Uani  0.0082(12)    0.0079(11)    0.0074(12)    0
+             0             0.0038(10)
+O5  O  Uani  0.0111(17)    0.0103(12)    0.0097(15)    0
+             0             0.0036(11)
+O6  O  Uani  0.0098(13)    0.0073(9)     0.0059(11)    0
+             0            -0.0019(9)
+O7  O  Uani  0.0022(8)     0.0116(11)    0.014(2)      0
+             0             0.0009(14)
+loop_
+_atom_site_Fourier_wave_vector_seq_id                       
+_atom_site_Fourier_wave_vector_x                            
+_atom_site_Fourier_wave_vector_y                            
+_atom_site_Fourier_wave_vector_z                            
+1  0.48800  0.00000  0.00000
+loop_
+_atom_site_displace_Fourier_atom_site_label                 
+_atom_site_displace_Fourier_axis                            
+_atom_site_displace_Fourier_wave_vector_seq_id              
+_atom_site_displace_Fourier_cos                             
+_atom_site_displace_Fourier_sin                             
+Sr1   x  1     0.0029(2)   0
+Sr1   y  1     0           0.00473(3)
+Sr1   z  1     0           0.01599(12)
+Sr2   x  1     0.00021(18) 0
+Sr2   y  1     0          -0.00181(2)
+Sr2   z  1     0          -0.00090(12)
+Nb1   x  1     0.00298(16) 0
+Nb1   y  1     0           0.00050(2)
+Nb1   z  1     0           0.00067(11)
+Nb2   x  1     0.00398(16) 0
+Nb2   y  1     0           0.00037(2)
+Nb2   z  1     0           0.00047(11)
+O1    x  1    -0.0289(17)  0
+O1    y  1     0           0.0004(2)
+O1    z  1     0           0.0003(9)
+O2    x  1    -0.0471(19)  0
+O2    y  1     0           0.0005(2)
+O2    z  1     0           0.0003(11)
+O3    x  1    -0.0001(14)  0
+O3    y  1     0          -0.0006(2)
+O3    z  1     0          -0.0318(13)
+O4    x  1    -0.0170(15)  0
+O4    y  1     0           0.0018(2)
+O4    z  1     0           0.0024(12)
+O5    x  1    -0.0248(16)  0
+O5    y  1     0          -0.0014(2)
+O5    z  1     0          -0.0031(12)
+O6    x  1    -0.0166(15)  0
+O6    y  1     0           0.0000(2)
+O6    z  1     0           0.0015(9)
+O7    x  1     0.0036(15)  0
+O7    y  1     0           0.0016(2)
+O7    z  1     0          -0.0293(12)
+loop_
+_atom_site_U_Fourier_atom_site_label                        
+_atom_site_U_Fourier_tens_elem                              
+_atom_site_U_Fourier_wave_vector_seq_id                     
+_atom_site_U_Fourier_cos                                    
+_atom_site_U_Fourier_sin                                    
+Sr1   U11  1     0           0.0005(3)
+Sr1   U22  1     0          -0.0150(3)
+Sr1   U33  1     0          -0.0050(4)
+Sr1   U12  1     0.0006(2)   0
+Sr1   U13  1    -0.0001(2)   0
+Sr1   U23  1     0          -0.0066(3)

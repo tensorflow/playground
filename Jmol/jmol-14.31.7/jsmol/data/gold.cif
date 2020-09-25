@@ -1,0 +1,18 @@
+
+data_global
+_chemical_name 'Diamond'
+_chemical_formula_sum 'Au'
+_cell_length_a 4.0786
+_cell_length_b 4.0786
+_cell_length_c 4.0786
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 90
+_cell_volume 67.85
+_symmetry_space_group_name_H-M 'f m -3 m'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Au   0.00000   0.00000   0.00000

@@ -1,0 +1,175 @@
+.gwt-DecoratedPopupPanel table,.gwt-MenuBarPopup table {
+	border-collapse: separate;
+	border-color: transparent;
+	border-style: none;
+	border-width: medium;
+	table-layout: auto;
+	width: auto;
+	min-width: 0;
+	height: auto;
+	min-height: 0;
+	display: inline-table;
+	background-color: transparent;
+	background-image: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	line-height: normal;
+}
+
+.gwt-DecoratedPopupPanel td,.gwt-MenuBarPopup td {
+	border-collapse: separate;
+	border-color: transparent;
+	border-style: none;
+	border-width: medium;
+	width: auto;
+	min-width: 0;
+	height: auto;
+	min-height: 0;
+	display: table-cell;
+	background-color: transparent;
+	background-image: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	line-height: normal;
+}
+
+.gwt-DecoratedPopupPanel tr,.gwt-MenuBarPopup tr {
+	/*border-collapse: separate;*/
+	border-color: transparent;
+	border-style: none;
+	border-width: medium;
+	width: auto;
+	min-width: 0;
+	display:table-row;
+	height: auto;
+	min-height: 0;
+	background-color: transparent;
+	background-image: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	line-height: normal;
+}
+
+.gwt-DecoratedPopupPanel tbody,.gwt-MenuBarPopup tbody {
+	border-collapse: separate;
+	border-color: transparent;
+	border-style: none;
+	border-width: medium;
+	width: auto;
+	min-width: 0;
+	height: auto;
+	min-height: 0;
+	background-color: transparent;
+	background-image: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	line-height: normal;
+}
+
+
+.jsa-resetTable {
+	border-collapse: separate;
+	border-color: transparent;
+	border-style: none;
+	border-width: medium;
+	table-layout: auto;
+	width: auto;
+	min-width: 0;
+	height: auto;
+	min-height: 0;
+	display: inline-table;
+	background-color: transparent;
+	background-image: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	line-height: normal;
+}
+
+.jsa-resetTable  td {
+	border-collapse: separate;
+	border-color: transparent;
+	border-style: none;
+	border-width: medium;
+	table-layout: auto;
+	display: table-cell;
+	width: auto;
+	min-width: 0;
+	height: auto;
+	min-height: 0;
+	background-color: transparent;
+	background-image: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	line-height: normal;
+}
+
+.jsa-resetTable tr { 
+	/*border-collapse: separate;*/
+	border-color: transparent;
+	border-style: none;
+	border-width: medium;
+	width: auto;
+	min-width: 0;
+	display:table-row;
+	height: auto;
+	min-height: 0;
+	background-color: transparent;
+	background-image: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	line-height: normal;
+}
+
+.jsa-resetDiv {
+	text-align:left;
+	border-color: transparent;
+	border-style: none;
+	border-width: medium;
+	width: auto;
+	min-width: 0;
+	/*display:inline;*/
+	height: auto;
+	min-height: 0;
+	background-color: transparent;
+	background-image: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	line-height: normal;
+
+	
+}
+
+
+

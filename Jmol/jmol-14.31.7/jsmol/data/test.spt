@@ -1,0 +1,45 @@
+function testing(a) {
+ background yellow
+ delay 1.0
+ background orange
+ delay 1.0
+}
+
+testing(1)
+background white
+delay 1.0
+testing(2)
+background red
+delay 1.0
+javascript alert("ok")
+background purple
+delay 1.0
+
+/**
+
+
+for (var i = 0; i < 5; i++) {
+  set echo top left;
+  background white;
+  echo @i
+  moveto 2.0 { -957 -245 155 101.12} @{100.0 + i*10} 0.0 0.0 {0.75536114 1.1072346 0.5814115} 3.7178335 {0.0 0.0 0.0} -7.7600236 16.063284 0.0;;
+  if (i == 0) {
+    background red;
+  } else if (i == 1) {
+    background orange
+  } else {
+    switch(i) {
+    case 2:
+      background yellow
+      break;
+    case 3:
+      background green
+      break;
+    case 4:
+      background blue
+      break;
+    }
+  }
+  delay 1.0
+  echo testing
+}

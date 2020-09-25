@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSmol -- platform-aware Jmol using jQuery</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript" src="JSmol.min.js"></script>
+
+<script type="text/javascript">
+
+var Info = {
+	width: 800,
+	height: 800,
+	script: "set echo middle center;echo Drag-drop one of the images here",
+	use: "HTML5",
+	jarPath: "java",
+	j2sPath: "j2s",
+	isSigned: false,
+	addSelectionOptions: false,
+  LOADSTRUCTCallback:"fileLoaded",
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	readyFunction: null,
+	console: "jmol_infodiv",
+	disableInitialConsole: true,
+	defaultModel: null,
+	debug: false
+}
+
+function fileLoaded(id,file,name) {
+  if (name) {
+    Jmol.script(jmol, "set echo myecho hide;set zshade")
+  }
+}
+
+$(document).ready(function(){	
+		  
+	var use = (Info.use != "JAVA" ? Info.use : Info.isSigned ? "SIGNED" : "JAVA");  
+  var radios = [
+		["set background white", "white", true],
+		["set background black", "black"]
+		];
+
+
+  // middle panel
+  
+    $("#middlepanel").html(Jmol.getAppletHtml("jmol", Info));
+
+
+  // left panel
+  
+		$("#leftpanel").html(
+    
+      '<img src="data/chalcanthite_model.png" width=500 />'
+      +'<br>chalcanthite<br><br><br>'
+      +'<img src="data/bonattite_model.png" width=500 />'
+      +'<br>bonattite'
+		);
+
+  // right panel
+  
+	Jmol.setButtonCss(null, "style='width:160px'");	
+	$("#rightpanel").html(
+		Jmol.jmolButton(jmol,"if (!molname) { molname = 'quartz'};var x = prompt('Enter the name of a mineral', molname);load @{'=ams/' + x} 1 fill 20;","Load Mineral")
+		+ "<br>"
+		+ Jmol.jmolButton(jmol,"write PNGJ jsmol.png","Save PNG")
+	);
+	
+	// lower panel:
+			
+	Jmol.setButtonCss(null,"style='width:120px'");
+	var s = "<br>"
+		+ Jmol.jmolButton(jmol,"load ''", "load au")	
+		+ Jmol.jmolButton(jmol,"load '' packed", "load packed")
+		+ Jmol.jmolButton(jmol,"load '' 1 fill 20; unitcell off; axes off;", "load 20x20x20");
+	Jmol.setButtonCss(null,"style='width:100px'");	
+	s += "<br>"
+    + Jmol.jmolButton(jmol,"console")
+    + Jmol.jmolCommandInput(jmol);
+	$("#lowerpanel").html(s);
+})
+
+//]]>
+
+</script>
+</head>
+<body> 
+<table style="margin-left:auto; margin-right:auto;" border>
+	<tr>
+		<td valign=top><div id="leftpanel"></div></td>
+		<td valign=top><div id="middlepanel"></div></td>
+		<td><div id="rightpanel"></div></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td style="text-align:center"><div id="lowerpanel"></div></td>
+		<td></td>
+	</tr>
+</table>
+<div id="console"></div>
+</body>
+</html> 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta charset="utf-8">
+<script type="text/javascript" src="jquery/jquery.js"></script>
+<script type="text/javascript" src="js/JSmoljQueryExt.js"></script>
+<script type="text/javascript" src="js/JSmolCore.js"></script>
+<script type="text/javascript" src="js/JSmolApplet.js"></script>
+<script type="text/javascript" src="js/JSmolApi.js"></script>
+<script type="text/javascript" src="js/JSmolControls.js"></script>
+<script type="text/javascript" src="js/j2sjmol.js"></script>
+<script type="text/javascript" src="js/JSmol.js"></script>
+<script type="text/javascript" src="js/JSmolMenu.js"></script>
+<script type="text/javascript" src="js/JSmolJSV.js"></script>
+
+<script type="text/javascript">
+
+;(function() {
+
+jmol_isReady = function(applet) {
+	document.title = (applet._id + " is ready")
+	Jmol._getElement(applet, "appletdiv").style.border="1px solid blue"
+ 
+}
+
+})();
+
+Info = {
+	width: 800,
+	height: 300,
+	debug: false,
+	color: "0xC0C0C0",
+  disableJ2SLoadMonitor: false,
+  disableInitialConsole: false,
+	addSelectionOptions: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	readyFunction: null,
+	script: "load data/t.jdx",
+  console: "consolediv"
+}
+
+$(document).ready(function() {
+  $("#jsvdiv").html(Jmol.getJSVAppletHtml("jsv",Info));
+});
+
+</script>
+</head>
+<body>
+<div id=consolediv style="position:relative;left:850px;top:0px;width:300px;height:300px;overflow:auto"></div>
+<div id=jsvdiv style="position:relative;left:10px;top:-300px;width:800px;height:350px">
+</div>
+<div style="position:absolute;left:300px;top:350px">
+<a href="javascript:Jmol.script(jsv, 'gridon')">grid on</a> <a href="javascript:Jmol.script(jsv, 'gridon false')">grid off</a>
+<a href="javascript:Jmol.script(jsv, 'showpeaklist')">show peak list</a>
+<a href="javascript:Jmol.script(jsv, 'load data/vinylpyrr.jdx;view 1.2;showIntegration')">load vinylpyrr.jdx (1HNMR)</a>
+<a href="javascript:Jmol.script(jsv, 'load data/t2d.jdx')">load t2d.jdx (2D NMR)</a>
+<a href="javascript:Jmol.script(jsv, 'print PDF')">print PDF</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+# Verbose Mode: 1
+# version: MacSPARTAN '06 129  129 x86/Darwin
+# rootKeys: 'OPT' 'HF' '3-21G(*)' '' ''
+# new Keys: 'OPT HF 3-21G(*) FREQ '
+# old Keys: ''
+# new Prop: ''
+# old Prop: ''
+# hessian : '' (0)
+# wavefn  : '' (0)
+# IRS     :  0
+# product#:  0x8000 (0,0,0)
+# HF ver. :  5 [SQ]
+# Graphic :  1
+# graphinf:  ''
+# Atoms   :  12 (6,6,0,0)   78.1
+# Avail RAM: 416.00 Mb
+# Method  :  HF (3)
+# ..Local?:  0 0
+# ..Dense?:  0 0
+RunInitializeJob
+  OPT HF 3-21G(*) FREQ  
+EndStep
+CopyArchiveToPreviousArchive
+RunMechanics
+   MMFF94 EXTEND NO_PROPARC NO_NEG_HESS POSTSOLVENT=NONE FREQ SECOND PRINTLEV=0
+EndStep
+MarkArchiveIncomplete (B)
+CopyArchiveToPreviousArchive
+RunQChem
+  OPT HF 3-21G(*) FREQ 
+EndStep
+MergePreviousArchiveIntoArchive
+CopyArchiveToPreviousArchive
+RunSemiempirical
+  AM1 ONLYPROPIN
+EndStep
+RunProperty
+ OPT HF 3-21G(*) FREQ  
+EndStep
+# Molecule Mode: 'Pending' [3] 

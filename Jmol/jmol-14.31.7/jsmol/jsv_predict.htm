@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSpecView/JSME/nmrdb/NIH-Resolver demo</title>
+<meta charset="utf-8" />
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/JSmolMenu.js"></script>
+<script type="text/javascript" src="js/JSmolJSV.js"></script>
+<script type="text/javascript" src="js/JSmolJME.js"></script>
+<script type="text/javascript" language="javascript" src="jsme/jsme/jsme.nocache.js"></script>
+
+<script type="text/javascript">
+
+function predictSpectrum() {
+  unhideJSV();
+  var s = Jmol.jmeGetFile(jme, false);
+  if (!s.length) {
+    alert("Please draw a structure or do a search first.");
+    return;
+  }
+  $("#moldiv").html(s)
+  Jmol.script(jsv, "load \"http://SIMULATION/MOL=" + s.replace(/\n/g,"\\n") + "\"");
+}
+
+function unhideJSV() {
+ $("#infodiv").hide();
+ $("#jsvdiv").show(); 
+}
+
+var JMEInfo = {     
+	use: "HTML5"
+  ,visible: true
+  ,divId: "jmediv"
+  ,options : "autoez;nocanonize;"
+  ,addSelectionOptions: true
+	//,jarPath: "jme",
+	//,jarFile: "JME.jar"
+  //optional parameters
+  //,"jme" : startingStructure   
+}
+
+Jmol.setGrabberOptions([["$", "NCI"]]) // allows 2D reading
+
+JSVInfo = {
+	width: 800,
+	height: 325,
+	debug: false,
+	color: "0xC0C0C0",
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	j2sPath: "j2s",
+  disableJ2SLoadMonitor: false,
+  disableInitialConsole: false,
+	readyFunction: null,      //   jsv_isReady
+  allowjavascript: true
+//        console: "consolediv"
+}
+
+$(document).ready(function() {
+ $("#infodiv").show();
+ $("#jsvdiv").hide(); 
+ $("#jme_query").val("ethanol");
+ $(".btn").css({width:"30px"});
+ $("a").css({"text-decoration":"none"});
+});
+        
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10>
+<tr>
+<td valign="top">
+<div id="jmediv" style="position:relative;width:300px;height:300px;"></div>
+<script>
+Jmol.getJMEApplet("jme", JMEInfo);
+</script>
+</td>
+<td>
+<input class="btn" type="button" onclick="predictSpectrum()" value="&#8594" />
+</td>
+<td valign="top">
+<div id="jsvdiv" style="position:relative">
+<script>
+Jmol.getJSVApplet("jsv", JSVInfo)
+</script>
+<br>
+<a href="javascript:unhideJSV();Jmol.showInfo(jsv, true);">info</a>
+<a href="javascript:Jmol.clearConsole(jsv)">clear</a>
+<a href="javascript:Jmol.showInfo(jsv, false)">spectrum</a>
+ (note that OH and NH hydrogens will not be shown)
+<div style="position:absolute;left:750px;top:335px;z-index:50000"><input type="button" value="print" onclick="Jmol.script(jsv, 'write PDF')"/></div>
+</div>
+<div id="infodiv" style="text-align:center">
+This page illustrates how we can use JSME (the JavaScript Molecular Editor) 
+<br>along with JSpecView to quickly get a simulated spectrum for a compound of our choice.
+<br>It loads slowly because it is a test page; it will load much faster when not in testing.
+<br><br>JSmol on this page calls servers in Frederick, Maryland (NIH resolver, for name-to-structure)
+<br>and Lausanne, Switzerland (nmrdb, for structure-to-spectrum)
+<br><br><span style="color:blue">Draw a chemical structure 
+<br>or search for a chemical identifier such as <b>caffeine</b> or <i>CCOCC</i>, 
+<br>then press <input class="btn" type="button" onclick="predictSpectrum()" value="&#8594" />.</span>
+<br><br><span style="color:red">Note that these spectra are <i>just predictions.</i> 
+<br>They may differ significantly from actual NMR spectra.</span>
+
+</div>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<span style="white-space:pre">
+credits:
+
+<a href=http://jsmol.sourceforge.net/>JSmol and page development</a>: <a href=mailto:hansonr@stolaf.edu>Bob Hanson</a>
+<a href=http://peter-ertl.com/jsme/>JSME</a>: Peter Ertl, Bruno Bienfait
+<a href=http://jspecview.sourceforge.net>JSpecView</a>: Robert Lancashire, Bob Hanson
+<a href=http://www.nmrdb.org>nmrdb</a>: Luc Patiny
+<a href=http://cactus.nci.nih.gov>NIH Resolver</a>: Markus Sitzmann
+<a href=https://code.google.com/p/java2script>Java2Script</a>: Zhou Renjian
+</span>
+</td><td>
+</td><td>
+<div id="moldiv" style="white-space:pre;font-family:monospace"></div>
+</td>
+</tr>
+
+</table>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/JSmolMenu.js"></script>
+<script type="text/javascript" src="js/JSmolJSV.js"></script>
+
+<script type="text/javascript">
+
+// always predefine the variables as their own name,
+// allowing buttons to be created before or after applet placement
+
+jsvApplet = "jsv";
+jmolApplet = "jmol";
+
+// applet ids and commands to give only when all applets are ready;
+// also sets up a script sync pathway for Jmol/JSpecView.
+Jmol.setAppletSync([jsvApplet, jmolApplet], ["load data/acetophenone.jdx", ""], true);
+
+var SInfo;       // for Spectrum
+var MInfo;       // for Molfile
+
+;(function() {
+
+// logic is set by indicating order of USE -- default is HTML5 for this test page, though
+//var use = "HTML5"//"JAVA HTML5 IMAGE" // WEBGL only by request by link below.
+//var s = document.location.search;
+
+// Developers: The _debugCode flag is checked in j2s/java/core.z.js,
+// and, if TRUE, skips loading the core methods, forcing those
+// to be read from their individual directories. Set this
+// true if you want to do some code debugging by inserting
+// System.out.println, document.title, or alert commands
+// anywhere in the Java or Jmol code.
+
+Jmol._debugCode = true;//(s.indexOf("debugcode") >= 0);
+
+jmol_isReady = function(applet) {
+	document.title = (applet._id + " is ready")
+	Jmol._getElement(applet, "appletdiv").style.border="1px solid blue"
+}
+
+//jsv_isReady = function(applet) {
+//	document.title = (applet._id + " is ready")
+//	Jmol._getElement(applet, "appletdiv").style.border="1px solid blue"
+//}
+
+SInfo = {
+	width: 800,
+	height: 300,
+	debug: false,
+	color: "0xC0C0C0",
+//	addSelectionOptions: true,
+//	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	j2sPath: "j2s",
+  disableJ2SLoadMonitor: true,
+  disableInitialConsole: true,
+	readyFunction: null,      //   jsv_isReady
+  allowjavascript: true
+//        console: "consolediv"
+}
+
+MInfo = {
+	width: 300,
+	height: 300,
+	debug: false,
+	color: "0xF0F0F0",
+//	addSelectionOptions: true,
+//	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	j2sPath: "j2s",
+	disableJ2SLoadMonitor: true,
+	disableInitialConsole: true,
+	readyFunction: null ,      //         jmol_isReady
+  allowjavascript: true,
+	script: "sync on;"
+//	script: "load data/acetophenone.jdx;",
+//        console: "consolediv1"
+
+}
+
+
+})();
+
+
+$(document).ready(function() {
+  $("#jmoldiv").html(Jmol.getAppletHtml("jmol", MInfo));
+  $("#jsvdiv").html(Jmol.getAppletHtml(Jmol.getJSVApplet("jsv",SInfo)))  
+});
+
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10 border=1 >
+<tr>
+<td>
+<div id=jsvdiv></div>
+</td>
+<td>
+<div id=jmoldiv></div>
+</td>
+</tr>
+</table>
+<a href="javascript:Jmol.script(jsv, 'gridon')">grid on</a> <a href="javascript:Jmol.script(jsv, 'gridon false')">grid off</a>
+<a href="javascript:Jmol.script(jsv, 'showpeaklist')">show peak list</a>
+<a href="javascript:jsv._showInfo(true);Jmol.showInfo(jmol, true)">show info</a>
+</div>
+</body>
+</html>

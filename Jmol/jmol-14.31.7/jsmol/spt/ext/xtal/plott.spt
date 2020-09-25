@@ -1,0 +1,196 @@
+// plott.spt
+// author: Bob Hanson 12/10/2013 9:47:25 AM
+// modified 5/4/2014 7:19:33 AM
+
+// plotT(@1) 
+// returns list of t mf mc ms pf pc
+// where t runs from 0 to 1 by 0.02
+// mf are modulations using basis { a, b, and c } (fractional)
+// mc are modulations using basis { x, y, z } (Cartesian)
+// ms are modulations using basis { a*|a|, b*|b|, and c*|c| } (skew Cartesian)
+// pf is the modulated position (fractional)
+// pc is the modulated position (Cartesian)
+
+// also:
+// plotT(@1, "mf") 
+// plotT(@1, "mc") 
+// plotT(@1, "ms")
+// plotT(@1, "pf")
+// plotT(@1, "pc")
+
+// plotT(@1,@2) 
+// returns list of t d
+// where t runs from 0 to 1 by 0.02
+// d is the Cartesian distance between the two modulated atoms
+
+// plotT(@1,@2,@3,@4) 
+// returns list of t d
+// where t runs from 0 to 1 by 0.02
+// d is the angle 1-2-3
+
+// plotT(@1,@2,@3,@4) 
+// returns list of t d
+// where t runs from 0 to 1 by 0.02
+// d is the dihedral 1-2-3-4
+
+//load c:/temp/sr2.cif {1 1 1}
+//spacefill 0.1;wireframe 0.05
+//moveto /* time, axisAngle */ 1.0 { 620 604 -501 123.42} /* zoom, translation */  56.76 -4.42 3.18  /* center, rotationRadius */ {1.9768493 13.3745 2.8501} 10.011758 /* navigation center, translation, depth */ {0 0 0} 0 0 0 /* cameraDepth, cameraX, cameraY */  3.0 0.0 0.0;
+
+
+function plotT(a, b, c, d) {
+
+  var data = []    // data wihout headers
+
+	modulation scale 1;  
+  measure delete
+  set measurementlabels off
+  //set defaultdistancelabel "2: %5.3VALUE %UNITS";
+
+	// these can be made global by removing "var " here, if you want
+	
+	var at = [] // array of t values 0 to 1
+	var am = [] // array of measurements
+    
+	// a.modulation(t) returns modulation in fractional coordinates
+	// a.modulation(1e10) returns unmodulated fractional position(s) as an array
+    
+
+  if (d.type="bitset") {
+
+    select ON a or b or c or d
+    measure @a @b @c @d
+		set echo bottom center;echo "@{format('%5.3f',getproperty('measurementinfo.1.value'))}";  
+
+    var p1 = a.modulation(1e10)[1];
+    var p2 = b.modulation(1e10)[1];
+    var p3 = c.modulation(1e10)[1];
+    var p4 = d.modulation(1e10)[1];
+    for (var i = 0; i <= 50; i++) {
+      var t = i / 50.0;
+      at.push(t);
+      var b1 = a.modulation(t)[1];
+      var b2 = b.modulation(t)[1];
+      var b3 = b.modulation(t)[1];
+      var b4 = b.modulation(t)[1];
+      var m = angle((p1 + b1).xyz, (p2 + b2).xyz, (p3 + b3).xyz, (p4 + b4).xyz);
+      am.push(m);      
+    }
+    
+    data = at.add("\t", am)
+  
+  	reset print
+	  print "plotT for dihedral: " + a.label() + " --- "  + b.label() + " --- "  + c.label() + " --- "  + d.label();
+    
+  } else if (c.type="bitset") {
+
+    select ON a or b or c
+    measure @a @b @c
+		set echo bottom center;echo "@{format('%5.3f',getproperty('measurementinfo.1.value'))}";  
+
+    var p1 = a.modulation(1e10)[1];
+    var p2 = b.modulation(1e10)[1];
+    var p3 = c.modulation(1e10)[1];
+    for (var i = 0; i <= 50; i++) {
+      var t = i / 50.0;
+      at.push(t);
+      var b1 = a.modulation(t)[1];
+      var b2 = b.modulation(t)[1];
+      var b3 = b.modulation(t)[1];
+      var m = angle((p1 + b1).xyz, (p2 + b2).xyz, (p3 + b3).xyz);
+      am.push(m);      
+    }
+    
+    data = at.add("\t", am)    
+  
+  	reset print
+	  print "plotT for angle: " + a.label() + " --- "  + b.label() + " --- "  + c.label();
+    
+  } else if (b.type="bitset") {
+
+    select ON a or b
+    set measurementunits angstroms
+    measure @a @b
+		set echo bottom center;echo "@{format('%5.3f',getproperty('measurementinfo.1.value'))}";
+		  
+    var p1 = a.modulation(1e10)[1];
+    var p2 = b.modulation(1e10)[1];
+    for (var i = 0; i <= 50; i++) {
+      var t = i / 50.0;
+      at.push(t);
+      var b1 = a.modulation(t)[1];
+      var b2 = b.modulation(t)[1];
+      var m = distance((p1 + b1).xyz, (p2 + b2).xyz);
+      am.push(m);      
+    }
+
+    data = at.add("\t", am)
+      
+  	reset print;
+	  print "plotT for distance: " + a.label() + " --- "  + b.label();
+    
+  } else if (a.type="bitset") {
+  
+    select ON a; 
+		set echo bottom center;echo "";      
+  
+	  var mf = []      // modulations (fractional coord)
+    var mc = []      // modulations (Cartesian; same as ms if a, b, and c are orthogonal)
+    var ms = []      // modulations (fractional coord scaled by a, b, and c -- "skewed Cartesian")
+    var pf = []      // modulated positions (fractional coord)
+    var pc = []      // modulated positions (Cartesian)
+    
+    var abc = {1 1 1/1};
+    
+    var p1 = a.modulation(1e10)[1];
+		    
+    for (var i = 0; i <= 50; i++) {
+      var t = i / 50.0;
+      at.push(t);
+      mf.push(a.modulation(t)[1]);
+    }
+    
+    // note that we can apply .xyz to arrays as well as values
+    
+    mc = mf.xyz
+    ms = mf.mul3(abc)    
+    pf = mf.add(p1)
+    pc = pf.xyz
+    
+  	reset print
+	  print "plotT for atom " + a.label();  
+    if (b == "") {
+  	  print "t \t mf=mod(a,b,c) \t mc=mod(x,y,z) \t ms=mod(a*|a|,b*|b|,c*|c|) \t pf=pt(a,b,c) \t pc=pt(x,y,z)"
+	  	data = at.add("\t", mf).add("\t", mu).add("\t",ms).add("\t",pf).add("\t",pc)
+    } else {
+			print "t \t " + b
+			if (b.length == 2) {
+			  data = at.add("\t", @b.format("%10.-3p")).replace().replace(' ','\t');
+			} else {
+				var xyz = b[3];
+				b = b[1][2];
+				var m = @b;				
+				am = (xyz == "x" ? m.x : xyz == "y" ? m.y : m.z);
+			  data = at.add("\t", am);
+			}
+    }
+	  data = data.replace("}","").replace("{","");
+    
+  } else {
+  
+		data = "plotT(a) or plotT(a,b) or plotT(a,b,c) or plotT(a,b,c,d)\n"
+			+ "   where a, b, c, and d are atoms such as @1 or {C1}\n"
+			+ "or plotT(a,type)\n"
+			+ "   where a is an atom, and type is one of 'mf', 'mc', 'ms, 'pf', 'pc'\n"
+			+ "   indicating modulation(fractional, Cartesian, skewed Cartesian) or point(fractional or Cartesian)";
+	
+	}
+	
+	if(am.length) {
+	  print "min: " + am.min + " max: " + am.max + "\nave: " + am.average + " stddev: " + am.stddev
+	}
+  print data;
+  return data;
+}
+
+plotT()

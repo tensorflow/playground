@@ -1,0 +1,909 @@
+// bz.spt
+//
+// MACRO BZ
+// 
+// A generally useful script for creating Brillouin zones
+// This script is experimental; it is under development
+//
+// BH 11/4/2017 7:01:53 PM adds createWS "id" -- create a Wigner-Seitz cell    
+// BH 5/21/2016 5:22:47 AM based on BZ.spt
+// BH 5/22/2016 6:58:08 AM 
+
+// global options: 
+
+bzDrawPointsAndEdges = false;
+bzSavePmeshes = false;
+
+// global variables:
+
+bzones = []; // Brillouin zones
+bzGamma = {0 0 0};
+bzFaceCenters = [];
+bzLatticePts = [];
+bzLatticePtsAll = [];
+bzPlanePtsAll = [];
+bzPlanePts = [];
+bzPlaneCount = 0;
+bzColors = ["red","green","skyblue","orange","yellow","indigo","violet"];
+
+//////////////////// public methods ////////////////
+  
+
+/*
+ * Create a Brillouin zone.
+ *  
+ * /// createBZ or createBZ()  just the 1st Brillouin zone
+ * /// createBZ(n) just the nth Brillouin zone
+ * /// createbZ([a b c alpha beta gamma]) create a BZ for a given primitive lattice unit cell 
+ * /// createbZ([a b c alpha beta gamma], true)  create a BZ for a given reciprocal lattice unit cell 
+ *  
+ */
+function createBZ(zoneOrArray, isK) {
+  if (zoneOrArray == -1 || zoneOrArray && zoneOrArray.type != "integer")
+    demoBZ(zoneOrArray, isK);
+  else 
+    createAllBZs(zoneOrArray, true);
+  if (bzSavePmeshes) {
+    polyhedra * off;
+    pmesh * on;
+  }
+}
+
+/*
+ * Create a Wigner-Seitz unitcell centered on {0 0 0}.
+ *
+ * /// primitive cell is assumed -- user is responsible for unitcell PRIMITIVE 
+ * ///   executed first (unitcell CONVENTIONAL later if desired)
+ * /// createWS("p1") for example. 
+ *
+ *
+ */     
+function createWS(id) {
+  createAllBzs(-1, false, id);
+}
+
+/*
+ * Starting with 1, build the Brillouin zones as polyhedra,
+ * optionally discarding the previous as we go.
+ * 
+ * Note that even for the 4th Brillouin zone, this is time consuming.
+ * 
+ * If n = -1, then this is a Wigner-Seitz cell    
+ * 
+ */
+function createAllBZs(n, discardPrev, id) {
+
+  if (!n) n = 1
+    
+  // set up the unit cell as a reciprocal lattice
+  // scaling it by 2 pi just to make it somewhat larger
+  // and draw the axes
+  
+  var isWignerSeitz
+  
+  if (n < 0) {
+    n = -n
+    isWignerSeitz = true
+  } else {
+    id = ""
+    unitcell reset
+    print "conventional: " + show("unitcell/a").trim()
+    unitcell primitive
+    print "primitive: " + show("unitcell/a").trim()
+    unitcell "reciprocal" 2
+    print "reciprocal: " + show("unitcell/a").trim()
+  }  
+
+  polyhedra * delete
+  pmesh * delete
+  
+  if (!isWignerSeitz) {
+    axes unitcell
+    axes on
+    axes scale 2.0
+    axes 0.01
+    axes labels "b1" "b2" "b3" ""
+  }
+  
+  bzones = [];
+  bzLatticePts = [];
+  bzLatticePtsAll = [];
+  bzPlanePts = [];
+  bzPlanePtsAll = [];
+  bzFaceCenters = [];
+  
+  var wasPrecise = legacyJavaFloat
+  set legacyJavaFloat // ensures high precision point positions
+
+  getLatticePoints(n)
+
+  // loop through starting with zone 1  
+
+  for (var i = 1; i <= n; i++) {
+    bzones[i] = newBZ(i);
+    createNextBZ(bzones[i], bzones[i - 1], id);
+    if (discardPrev && i > 1)
+      polyhedra @{"pbz" + (i - 1) + "_*"} delete
+  }
+  
+  set legacyJavaFloat @wasPrecise
+  
+  if (bzSavePmeshes) {
+    polyhedra * off;
+    pmesh * on;
+  }
+}
+
+/*
+ * Show or hide one or more specific Brillouin zones. 
+ * /// showBZ(n_index, visible, color, translucent)
+ * ///  where n_index is a number or an array [n,subzone]
+ * ///        visible is optional true or false 
+ * ///        color is an optional desired color
+ * ///        translucent is optional true or false  
+ */       
+function showBZ(n_index, visible, color, translucent) {
+  var index,n;
+  if (visible.type == "string") visible = true;
+  if (n_index.type  == "array") {
+    n = n_index[1];
+    index = n_index[2];    
+  } else {
+    n = n_index;
+  }
+  var id = (!n ? "p*" : index ? bzones[n].subzones[index].polyid : "pbz" + n + "_*");
+  if (visible) {
+    polyhedra ID @id on
+    if (translucent) {
+      color $ @id translucent
+    } else {
+      color $ @id opaque
+    }
+    if (color) {
+      color $ @id @color
+    }  
+  } else {
+    polyhedra ID @id off
+  }
+}
+
+/*
+ * Pack BZ2 into BZ1.
+ * 
+ * Not sufficient for higher-order Brillouin zones
+ * because their subzones may need splitting.  
+ *
+ */  
+function packBZ(n, index) {
+  // Note that the array.getProperty() method checks 
+  // for a key in an array of associative arrays.
+  // It is the same as array.select("(polyid)")
+  var ids = bzones[n].subzones.getProperty("polyid")
+  var offsets = bzones[n].subzones.getProperty("offset")
+  if (index)
+    polyhedra ID @{ids[index]} offset @{-offsets[index]}
+  else
+   for (var i = 1; i <= ids.length; i++)
+     polyhedra ID @{ids[i]} offset @{-offsets[i]}
+}
+
+/*
+ * Explode a Brillouin zone outward, showing a "parts diagram" of it.
+ */  
+function explodeBZ(percent) {
+  percent /= -100.0; 
+  // negative number here indicates "explode from {0 0 0}"
+  for (var i = 2; i <= bzones.length; i++) {
+    polyhedra ID @{"pbz"+i+"*"} scale @percent
+  }
+  axes scale @{percent/50.0}
+}
+
+/*
+ * Modify the current Brillouin zone using a single parameter, possibly animating.
+ * 
+ * /// modifyBZ("a",3.4)   // set a parameter
+ * /// modifyBZ("alpha",50,70, 5)
+ *     
+ */    
+function modifyBZ(axis,min,max,step) {
+  if (max == 0)
+    max = min;
+  if (step < 0 || min > max)
+    return;
+  unitcell reset;
+  s = show("unitcell").lines[1].replace(",","=").split("=")[1][12];
+  var u = [];
+  for (var i = 2; i <= 12; i += 2)
+    u.push(0 + s[i]);
+  for (var v = min; v <=   max; v += step) {
+    var u1 = u + []; // copy u
+    switch(axis) {
+    case "a":
+      u1[1] = v;
+      break;
+    case "b":
+      u1[2] = v;
+      break;
+    case "c":
+      u1[3] = v;
+      break;
+    case "alpha":
+      u1[4] = v;
+      break;
+    case "beta":
+      u1[5] = v;
+      break;
+    case "gamma":
+      u1[6] = v;
+      break;
+    }
+    print u1;
+    load orientation  "" UNITCELL @u1;
+    demoBZ(-1);    
+    refresh;
+    if (step == 0)
+      break;
+  }
+}
+
+function demoBZ(params, isK) {
+  if (params != -1) { 
+    if (!params) {
+       params = [2 2 3 90 109.45 120]
+      isK = true;
+    } else if (params.type == "string") {
+      // a=8.6602545, b=8.6602545, c=8.6602545, alpha=109.47122, beta=109.47122, gamma=109.47122
+      if (params.find("=")) {
+        var a = params.replace(",","=").split("=")
+//        prompt a
+        params = []
+        for (var i = 2; i <= 12; i+=2) {
+ //         prompt ["a["+i+"]='" + a[i] + "'", 0+a[i]];
+            params.push(0 + a[i])
+          }
+        } else {
+        params= ""
+      }
+    } else if (params.length != 6) {
+      params = ""
+    }
+    if (!params) {  
+      print "demoBZ([a,b,c,alpha,beta,gamma],isK)"
+      return
+    }
+    var shelx = "TITL\nCELL "+params.join(" ") + "\nC 0 0 0 0"
+    load  inline @shelx
+    if (isK) {
+      unitcell primitive
+      unitcell reciprocal 2
+      load inline @{write("CIF")}
+    }
+  }
+  background lightgrey
+  center {0 0 0}
+  display none
+  unitcell off
+  createBZ
+  polyhedra edges
+  color $pbz1_1_ red blue
+  print "faceCount:" + $pbz1_1_.getProperty("faceCount") + " types:" + $pbz1_1_.getProperty("face_types").format("JSON")
+  //set echo bottom center
+  //font echo 20
+  //echo @{show("unitcell/gam").replace(", ","\n")}
+  //color echo black
+  //unitcell reset
+  //axes off
+  unitcell off
+  unitcell off
+  //zoom 50
+}
+
+//////////////////// private methods //////////////
+  
+function createNextBZ(zone, zonePrev, id) {
+  getNewLatticePoints(zone);
+  if (bzDrawPointsAndEdges)
+    drawZoneCenters(zone);
+  getSubzones(zone, zonePrev);
+  for (var subzone in zone.subzones) {
+
+    // first we create a set of pmeshes, each a set of triangles
+    // by slabbing subzone planes
+    // then we get the faces associated with each of those pmeshes
+
+    if (!getSubzonePmeshes(subzone))
+      continue;
+
+    // now, for testing, we draw those polygon faces
+
+  if (bzDrawPointsAndEdges)
+    drawSubzonePolygons(subzone);
+
+    // finally, we create the subzone's polyhedron
+
+    createSubzonePolyhedron(subzone, id);
+  }
+  finalizeZone(zone);
+}
+
+/*
+ * give each Brillouin zone a new color
+ */
+function bzColor(i) {
+  return bzColors[(i - 1) % bzColors.length + 1]
+}
+
+/*
+ * initialize a new Brillouin zone
+ */
+function newBZ(i) {
+  var bzone = {};
+  bzone.id = "bz"+i+"_";
+  bzone.index = i;
+  bzone.color = bzColor(i);
+
+  // key here is that Brillouin zones are going to have multiple parts 
+  // each subzone will ultimately be a single polyhedron
+
+  bzone.subzones = [];
+  bzone.newLatticePts = [];
+  bzone.newPlanePts = [];
+  bzone.newPlanes = [];
+  bzone.volume = 0;
+  return bzone;  
+}
+
+/*
+ * initialize a new Brillouin subzone
+ */
+function newSubZone(zone, id, index) {
+  var subzone = {};
+  subzone.index = index;
+  subzone.id = zone.id + id + index + "_"
+  subzone.zoneIndex = zone.index;
+  subzone.newLatticePts = zone.newLatticePts;
+  subzone.planes = [];
+  subzone.latticePts = [];
+  subzone.planesUnused = [];
+  subzone.ptsUnused = [];
+  subzone.pmeshes = [];
+  subzone.areas = [];
+  subzone.faces = [];
+  subzone.faceIndices = [];
+  subzone.faceCenters = [];
+  subzone.volume = 0;
+  subzone.color = zone.color;
+  subzone.offset = {0 0 0};
+  subzone.center = {0 0 0};
+  zone.subzones.push(subzone);
+  return subzone;
+}
+
+/*
+ * Get the needed lattice points for n Brillouin zones.
+ * 
+ * A calculation is done to ensure that enough points are
+ * provided in all directions, which may not be the same number.   
+ * 
+ */
+function getLatticePoints(n) {
+
+  // Note that "pt.xyz" is interpreted in jmol as "fractional to Cartesian".
+  
+  // we need to set the min and max values on each axis. 
+  
+  var minmax = [];
+  // get the max length of an edge 
+  var abc = [1.0*{1 0 0}.xyz, 1.0*{0 1 0}.xyz, 1.0*{0 0 1}.xyz];
+  var abcmax = abc.max; 
+  for (var i = 1; i <= 3; i++) {
+    var m = (n * abcmax/abc[i])%0
+    minmax.push([-m, m])
+  }
+  print "setting lattice ranges to " + minmax.format("JSON")
+  for (var i = minmax..1..1; i <= minmax..1..2; i++) {
+    for (var j = minmax..2..1; j <= minmax..2..2; j++) {
+      for (var k = minmax..3..1; k <= minmax..3..2; k++) {
+        // skip Gamma itself
+        if (i != 0 || j != 0 || k != 0) {
+          var lppt = point(i,j,k).xyz;          
+          bzLatticePtsAll.push(lppt);
+          bzLatticePts.push(lppt);
+          bzPlanePts.push(lppt/2);
+                    
+          // draw ID @{"pt" + i + j + k} @lppt // for testing
+        }
+      }
+    }
+  }
+}
+ 
+/*
+
+  print "setting lattice ranges to " + minmax.format("JSON")
+  var a = [];
+  for (var i = minmax..1..1; i <= minmax..1..2; i++) {
+    for (var j = minmax..2..1; j <= minmax..2..2; j++) {
+      for (var k = minmax..3..1; k <= minmax..3..2; k++) {
+        // skip Gamma itself
+        if (i != 0 || j != 0 || k != 0) {
+          var lppt = point(i,j,k).xyz;
+          a.push([1.0*lppt,lppt]);          
+          // draw ID @{"pt" + i + j + k} @lppt // for testing
+        }
+      }
+    }
+  }
+  a.sort(1);
+  bzLatticePtsAll = a.col(2);
+  bzLatticePts = a.col(2);
+  bzPlanePts = bzLatticePts.div(2);
+  bzPlanePtsAll = bzLatticePts.div(2);
+
+
+ *  Loop through all points, looking for non-excluded points 
+ *  using St. Olaf half-distance sphere test. 
+ */
+function getNewLatticePoints(zone) {
+
+  var unusedPts = [];
+  var unusedLatticePts = [];
+  var centers = zone.newPlanePts;
+  var zoneLPs = zone.newLatticePts;
+  var planes = zone.newPlanes;
+  
+  var ap, al;
+  for (var i = 1; i <= bzPlanePts.length; i++) {
+    var p = bzPlanePts[i];
+    var center = p / 2;
+
+    // just a bit over so that all excluding points are found
+
+    var radius = 0.501 * p;
+    var inSphere = within(radius, center, bzPlanePts);
+
+    // there is always at least one point within this radius -- point p itself
+
+    if (inSphere.count == 1) {
+      ap = centers;
+      al = zoneLPs;
+
+      // plane through point p directed away from Gamma
+
+      planes.push(plane(bzGamma, p, 1));
+
+    } else {
+      ap = unusedPts;
+      al = unusedLatticePts;
+    }
+    ap.push(p);
+    al.push(bzLatticePts[i]);
+  }
+
+  // replace lattice and plane points with just those that have not been used
+
+  bzPlanePts = unusedPts;
+  bzLatticePts = unusedLatticePts;
+}
+
+/*
+ * Just put a little dot of color c at a set of points.
+ * For debugging. 
+ *  
+ */
+function drawZoneCenters(zone) {
+  var pts = zone.newPlanePts;
+  var id = zone.id;
+  var color = zone.color;
+  // draw those points as k1, k2, k3, ...
+  var nPoints = pts.length;
+  for (var i = 1; i <= nPoints; i++)
+    draw ID @{"k"+id+i} @{pts[i]} color @c;
+}
+
+/*
+ *  Apply subzone-generation St. Olaf algorithm.
+ */
+function getSubzones(zone, zonePrev) {
+
+  if (zone.index == 1) {
+
+    // for BZ1, just use the zone planes
+
+    var subzone = newSubzone(zone, "", 1);
+    subzone.latticePts = zone.newLatticePts;
+    subzone.planes = zone.newPlanes;
+    return;
+  }
+
+  // for all others, go through all previous subzones...
+
+  for (var i = 1; i <= zonePrev.subzones.length; i++) {
+
+    // ...each subzone of the previous zone has a set of planes. 
+
+    var planesNew = zone.newPlanes;
+    var ptsNew = zone.newLatticePts;
+
+    var prev = zonePrev.subzones[i];
+    var planesPrev = prev.planes;
+    var ptsPrev = prev.latticePts;
+
+    var planesUnusedPrev = prev.planesUnused;
+    var ptsUnusedPrev = prev.ptsUnused;
+    
+    var centersPrev = prev.faceCenters;
+
+    var id = prev.id[5][0];
+
+    // ...use all planes if the previous is BZ1       
+    // otherwise, always skip the first plane, which originated two zones back       
+
+    var j0 = (zonePrev.index == 1 ? 1 : 2);
+    
+    print ["check ",zonePrev.index,planesPrev.length,centersPrev.length]
+    
+    for (var j = j0; j <= planesPrev.length; j++) {
+      if (j0 == 2 && within(0.01, centersPrev[j], bzFaceCenters) > 1)
+        continue;
+
+      // each of these planes is a starting point for a new subzone
+
+      var subzone = newSubzone(zone, id, j);
+
+      // the new subzone's initial plane (j) will be negative of the first plane
+      // ...now add all the other previous planes, without inversion
+
+      addBZ(subzone.planes, subzone.latticePts, planesPrev, ptsPrev, j);
+
+      // ...now add all the previously unused planes
+
+      addBZ(subzone.planes, subzone.latticePts, planesUnusedPrev, ptsUnusedPrev); 
+
+      // ...now add all the new planes
+
+      addBZ(subzone.planes, subzone.latticePts, planesNew, ptsNew);
+    }  
+  }
+}
+
+/*
+ * Add the necessary planes from planes0 into the subzone.planes array 
+ * and add necessary lattice points from pts0 into the subzone.latticePts array.
+ * 
+ * Note that subzone.latticepts is for reference only and is not used in the calculation.
+ *    
+ */
+function addBZ(planes, pts, planes0, pts0, j) {
+
+  // designated j is inverted and introduced first
+
+  if (j) {
+    planes.push(-planes0[j]);
+    pts.push(pts0[j]);
+  }
+  var n = planes0.length;
+  for (var k = 1; k <= n; k++) {
+    if (k != j) { 
+      planes.push(planes0[k]);
+      pts.push(pts0[k]);
+    }
+  }
+}
+
+/*
+ * Loop through all planes, creating a pmesh for each face.
+ * We use resolution 0.001 to indicate we only want the 
+ * minimum number of triangles (that is, starting with two giant 
+ * triangles, not a grid of small triangles). 
+ * Also slab each plane by all other planes to form a face.
+ */
+
+function getSubzonePmeshes(subzone) {
+
+  var planes = subzone.planes;
+  var latticePts = subzone.latticePts;
+  var planesUnused = subzone.planesUnused;
+  var ptsUnused = subzone.ptsUnused;
+  var faces = subzone.faces;
+  var faceCenters = subzone.faceCenters;
+  var nPlanes = planes.length;
+
+  // It is important to include all planes, 
+  // as they may be used in later BZs. 
+
+  // subzone.planes will be replaced by planesUsed 
+  // subzone.latticePts will be replaced by ptsUsed
+
+  var planesUsed = [];
+  var ptsUsed = [];
+
+  var totalArea = 0; 
+  for (var i = 1; i <= nPlanes; i++) {
+    var pid = "f" + subzone.id + i;
+    print "creating " + pid;
+    pmesh ID @pid silent resolution 0.001 plane @{planes[i]} off
+    var area = 0;
+    
+    for (var j = 1; j <= nPlanes; j++) {
+      if (j == i)
+        continue; // don't slab by plane being slabbed
+      pmesh slab plane @{planes[j]};
+      area = ("$"+pid).getProperty("area")[1];
+      //print "area is " + area;
+      if (area == 0) {
+        // this i-plane has been totally excluded -- we are done here
+        break;
+      }
+      totalArea += area;
+    }
+    if (area > 0) {
+
+      // The new Jmol feature pmesh.getProperty("face") allows us to extract an 
+      // array of points that are only at the intersections of planes. 
+      // They are in order, right-hand rule CCW cycle  
+
+      // Here we are seeing if there are already two faces at this center,
+      // indicating that we are re-entrant this time.
+
+      var face = ("$" + pid).getProperty("face");
+    
+//    if (face.length < 2)
+  //    prompt("face length < 2")
+            
+      // this can be [] if a very tiny triangle was found. 
+      var a = face.average;
+      if (i == 1 && within(0.01, a, bzFaceCenters) >= 2) {
+        area = 0;
+        totalArea = 0;
+        i = nPlanes;
+      }
+    }
+    if (area > 0) {
+      face = within(0.01, face);
+      faces.push(face);
+      faceCenters.push(a);
+      bzFaceCenters.push(a);
+      if (bzSavePmeshes) {
+        subzone.pmeshes.push(pid);
+      } else {
+        pmesh ID @pid delete;
+      }
+      planesUsed.push(planes[i]);
+      ptsUsed.push(latticePts[i]);
+      subzone.areas.push(area);
+    } else {
+      pmesh ID @pid delete;
+      planesUnused.push(planes[i]);
+      ptsUnused.push(latticePts[i]);
+    }
+    subzone.planes = planesUsed;
+    subzone.latticePts = ptsUsed;
+  }
+  subzone.totalArea = totalArea;
+
+  //prompt pid + " " + area + " " + nplanes
+
+  return (totalArea > 0);
+}
+
+/*
+ * Draw subzone polygons. Not really necessary, as we can do that later using SET TESTFLAG3
+ */
+function drawSubzonePolygons(subzone) {
+  var faces = subzone.faces;
+  var nPlanes = subzone.planes.count;
+  for (var i = 1; i <= nPlanes; i++) {
+    if (!faces[i]) continue;
+    var id = "d" + subzone.id + i;
+    draw ID @id polygon @{faces[i]} fill nomesh frontlit
+    draw ID @id color @{subzone.color} mesh nofill
+  }
+}
+
+/*
+ * Generate the polyhedra.
+ *  
+ */
+function createSubzonePolyhedron(subzone, id) {
+
+  // Variable pts is an array of arrays, with duplicate points. 
+  // We want a flat array using .join() and a new Jmol feature that
+  // uses within(distance, array) to remove the duplicate points.
+
+  if (!id)
+    id = "p" + subzone.id;
+  print "id is " + id;
+  print "creating " + id;
+  subzone.polyid = id;
+  var pts = subzone.faces.join().find();
+  print "var pts =" + pts
+  pts = within(0.01, pts);
+  print "pts =" + pts
+  subzone.pts = pts;
+  subzone.center = pts.average;
+  subzone.offset = within(0, subzone.center, bzLatticePtsAll); // closest
+  subzone.faceIndices = [];
+  var faces = subzone.faceIndices;
+  for (var face in subzone.faces) {
+    faces.push(within(0, face, pts)); 
+  }
+  for (var i = 1; i <= faces.length; i++) {
+    if (faces[i].length < 3) {
+      subzone.faces.pop(i);
+      subzone.faceIndices.pop(i);
+      subzone.faceCenters.pop(i);
+      subzone.planes.pop(i);
+      i--;
+    }
+  } 
+  // We now create the polyhedron at Gamma that goes to all these points
+  // using a new Jmol feature that allows named polyhedra at specific points
+  var p = [id:id, center:subzone.center, vertices:pts, faces:faces, color:subzone.color];
+  polyhedra @p;
+
+  if (!bzDrawPointsAndEdges)
+    return;
+
+  // for testing purposes:
+
+  color $ @id translucent;
+
+  // using DRAW here just to draw dots at each of these points 
+
+  draw pts points @pts dots nofill nomesh;
+}
+
+/*
+ *  Finalize a Brillouin zone. 
+ */
+
+function finalizeZone(zone) {
+
+  // remove 0-volume subzones
+  
+  for (var i = zone.subzones.length; i > 0; --i) {
+    if (!zone.subzones[i].totalArea)
+      zone.subzones.pop(i);
+  }
+  
+  if (zone.index == 1) {
+    //calculate symmetry polyhedra @{zone.subzones[1].polyid};
+    //info = getProperty("shapeInfo.Polyhedra");  
+    //bzones[1].pointGroup = info.select("(pointGroup) where id='"+subzone.polyid+"'")[1];
+  }
+    
+  // calculate total volume
+
+  zone.volume = 0;
+  info = getProperty("shapeInfo.Polyhedra");  
+  for (var subzone in zone.subzones) {
+    var v = info.select("(volume) where id='"+subzone.polyid+"'")[1];
+    subzone.volume = v;
+    zone.volume += v;
+  }
+  
+  // list again all volumes, for checking
+  
+  for (var i = 1; i <= zone.index; i++) {
+    print "BZ" + i + " volume=" + bzones[i].volume%7 + " " + bzones[i].pointGroup;
+  }
+  
+  // update the display
+  
+  refresh
+}
+
+print 'createBZ        \t/// just the first Brillouin zone'
+print 'createBZ(n)     \t/// just the nth BZ'
+print 'createBZ([a,b,c,alpha,beta,gamma],isK) \t/// create BZ for specified set of parameters'
+print 'createAllBZs(n) \t/// all BZ up through n'
+print 'modifyBz("a",val)\t/// change Cartesian lattice param a (or b, c, alpha, beta, gamma)'
+print 'modifyBz("a",min,max,step) \t/// animate change in Cartesian parameter'
+
+///// testing /////
+
+// old way: load /*file*/"http://aflowlib.mems.duke.edu/users/jmolers/binary_new/AgAu.aflow_binary"  1;
+
+// new way to load a binary file:
+
+var wasPrecise = legacyJavaFloat
+set legacyJavaFloat // automatically set false after file loading
+//load "=aflow/AgAu" 1
+
+
+//show unitcell
+
+
+//set echo top center
+//echo "AgAu #1 Oh"
+
+/**
+
+// an orientation I liked from "show orientation"
+reset;center {2.0815635 2.0815635 2.0815635}; rotate z 47.15; rotate y 75.76; rotate z -34.51
+center {0 0 0}
+zoom 40
+set antialiasDisplay
+  
+// draw the standard (primitive) unit cell for reference
+
+try {
+unitcell reset
+unitcell primitive
+draw ID uc diameter 0.03 unitcell mesh fill color translucent 0.1 grey
+}
+
+
+
+/**
+ *
+
+
+BCC = unitcell({0 0 0}, point(-5 5 5), point(5 -5 5), point(5 5 -5)) 
+
+ORCF3 = demobz([4.44 4.44 4.44 90 111.106 129.77], true)
+//or
+demobz("a=2.0839934, b=1.9441904, c=1.6017959, alpha=71.26139, beta=62.0633, gamma=46.708725")
+
+from:
+x = unitcell({0 0 0}  {0 1.25 1.666}  {1.0 0 1.666}  {1.0 1.25 0} )
+print x
+unitcell @x
+demobz(show("unitcell/gam"))
+
+but
+
+TRI_new = demobz([2 2 3 90 109.45, 120],true)
+
+
+a = {1/1 0 0}
+b = {0 1/1 0}
+c = {0 0  1/1}
+print 1.0 * a
+print  1.0 * b
+print 1.0 * c
+vab = b - a
+vbc = c - b
+vca = a - c
+print 1.0*vab
+print 1.0*vca
+print 1.0*vbc
+
+show unitcell/g
+polyhedra * off
+draw vbc @b @c
+draw vca @a @c color orange
+draw vab @a @b color white
+
+
+//Bob's test stuff:
+
+//constructing a Cartesian-space lattice based on formulas. 
+// See http://www.sciencedirect.com/science/article/pii/S0927025610002697 
+alpha = 50
+function fa(alpha) {
+cosa = cos(alpha)
+sina = sin(alpha)
+c = 1
+vc = point(0, c * cosa, c* sina)
+b = 1.2
+a = 1/sqrt((1 - b * cosa/c)/(b*b * sina*sina))
+print a
+print "1=" + (b * cosa/c + b*b*sina*sina/a/a)
+
+//va = point(a/2, b/2, 0)
+//vb = point(-a/2, b/2 0)
+
+va = point(a, 0, 0)
+vb = point(0, b, 0)
+unitcell @{unitcell({0 0 0}, va, vb, vc)}
+show unitcell/ga
+demobz(show("unitcell/gam"))
+print va
+print vb
+print vc
+print b * cosa/c + b*b*sina*sina/a/a
+zoom 50
+}

@@ -1,0 +1,105 @@
+# from pyMLP.py  http://code.google.com/p/pymlp/
+#
+# Broto P., Moreau G., Vandycke C. - 
+# Molecular structures: Perception, autocorrelation descriptor and sar studies.
+# System of atomic contributions for the calculation of the n-octanol/water 
+# partition coefficients, Eu. J. Med. Chem. 1984, 19.1, 71-78
+#
+# Laguerre M., Saux M., Dubost J.P., Carpy A. -
+# MLPP: A program for the calculation of molecular lipophilicity potential in
+# proteins, Pharm. Sci. 1997, 3.5-6, 217-222
+# 
+# adapted by Bob Hanson hansonr@stolaf.edu 6/15/2010
+#
+# generic protein:
+
+_pC	-0.54
+_pCA	0.02
+_pCB	0.45
+_pCG	0.45
+_pN	-0.44
+_pO	-0.68
+
+# one-letter codes:
+
+ACB	0.63
+CSG	0.27
+DCG	0.54
+DOD1	-0.68
+DOD2	0.53
+ECD	-0.54
+EOE1	-0.68
+EOE2	0.53
+FCD1	0.31
+FCD2	0.31
+FCE1	0.31
+FCE2	0.31
+FCG	0.09
+FCZ	0.31
+GCA	0.45
+GN	-0.55
+HCD2	0.31
+HCE1	0.31
+HCG	0.09
+HND1	-0.56
+HNE2	-0.8
+ICB	0.02
+ICD	0.63
+ICD1	0.63
+ICG1	0.45
+ICG2	0.63
+KCD	0.45
+KCE	0.45
+KNZ	-1.08
+LCD1	0.63
+LCD2	0.63
+LCG	0.02
+MCE	0.63
+MSD	-0.3
+NND2	-0.11
+NOD1	-0.68
+PCD	0.45
+PN	-0.92
+QCD	-0.54
+QNE2	-0.11
+QOE1	-0.68
+RCD	0.45
+RCZ	-0.54
+RNE	-0.55
+RNH1	-0.11
+RNH2	-0.83
+SOG	-0.99
+TCB	0.02
+TCG2	0.63
+TOG1	-0.93
+VCB	0.02
+VCG1	0.63
+VCG2	0.63
+WCB	0.45
+WCD1	0.31
+WCD2	0.24
+WCE2	0.24
+WCE3	0.31
+WCG	0.09
+WCH2	0.31
+WCZ2	0.31
+WCZ3	0.31
+WNE1	-0.55
+YCB	0.45
+YCD1	0.31
+YCD2	0.31
+YCE1	0.31
+YCE2	0.31
+YCG	0.09
+YCZ	0.09
+YOH	-0.17
+
+# 3-letter codes
+
+HYPCD1	0.45
+HYPCG	0.02
+HYPN	-0.92
+HYPOD2	-0.93
+PCACD	-0.54
+PCAN	1.52
+PCAOE	-0.68

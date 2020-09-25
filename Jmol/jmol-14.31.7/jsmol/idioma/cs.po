@@ -1,0 +1,2643 @@
+# Jmol application.
+# Copyright (C) 1998-2004 The Jmol Development Team
+# This file is distributed under the same license as the Jmol package.
+# Pavel Jakubů AUTHOR <pavel.jakubu@tul.cz>, 2007.
+# translation homework under supervision of Martin Slavik, <martin.slavik@tul.cz>.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Jmol\n"
+"Report-Msgid-Bugs-To: jmol-developers@lists.sourceforge.net\n"
+"POT-Creation-Date: 2015-12-23 20:33+0100\n"
+"PO-Revision-Date: 2013-06-02 23:44+0000\n"
+"Last-Translator: Konki <pavel.konkol@seznam.cz>\n"
+"Language-Team: Czech <Jmol-developers@lists.sf.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 00:56+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+"X-Poedit-Country: CZECH REPUBLIC\n"
+"X-Poedit-Language: Czech\n"
+
+#: org/jmol/awt/FileDropper.java:106
+msgid "Would you like to replace the current model with the selected model?"
+msgstr ""
+
+#: org/jmol/awtjs2d/JSModelKitPopup.java:89
+#: org/jmol/modelkit/ModelKitPopup.java:72
+msgid "Element?"
+msgstr "Prvek?"
+
+#: org/jmol/console/GenericConsole.java:54
+msgid "Jmol Script Console"
+msgstr "Jmol skriptovací konzole"
+
+#: org/jmol/console/GenericConsole.java:90
+msgid "&Save As..."
+msgstr ""
+
+#: org/jmol/console/GenericConsole.java:91
+#, fuzzy
+msgid "&File"
+msgstr "Soubor"
+
+#: org/jmol/console/GenericConsole.java:92
+#, fuzzy
+msgid "&Close"
+msgstr "Zavřít"
+
+#: org/jmol/console/GenericConsole.java:97
+msgid "&Help"
+msgstr "Nápo&věda"
+
+#: org/jmol/console/GenericConsole.java:98
+msgid "&Search..."
+msgstr "&Hledej..."
+
+#: org/jmol/console/GenericConsole.java:99
+msgid "&Commands"
+msgstr "&Příkazy"
+
+#: org/jmol/console/GenericConsole.java:100
+msgid "Math &Functions"
+msgstr "Matematické &funkce"
+
+#: org/jmol/console/GenericConsole.java:101
+msgid "Set &Parameters"
+msgstr "Nastav &parametry"
+
+#: org/jmol/console/GenericConsole.java:102
+msgid "&More"
+msgstr "&Více"
+
+#: org/jmol/console/GenericConsole.java:103
+msgid "Editor"
+msgstr "Editor"
+
+#: org/jmol/console/GenericConsole.java:104
+msgid "State"
+msgstr "Stav"
+
+#: org/jmol/console/GenericConsole.java:105
+#: org/jmol/console/ScriptEditor.java:148
+msgid "Run"
+msgstr "Spustit"
+
+#: org/jmol/console/GenericConsole.java:106
+msgid "Clear Output"
+msgstr "Vymaž výstup"
+
+#: org/jmol/console/GenericConsole.java:107
+msgid "Clear Input"
+msgstr "Vymaž vstup"
+
+#: org/jmol/console/GenericConsole.java:108
+#: org/jmol/popup/MainPopupResourceBundle.java:608
+msgid "History"
+msgstr "Historie"
+
+#: org/jmol/console/GenericConsole.java:109
+#: org/jmol/popup/MainPopupResourceBundle.java:619
+msgid "Load"
+msgstr "Nahrát"
+
+#: org/jmol/console/GenericConsole.java:111
+msgid "press CTRL-ENTER for new line or paste model data and press Load"
+msgstr ""
+"stiskněte CTRL-ENTER pro vložení nového řádku nebo vložte údaje o modelu a "
+"stiskněte Nahrát"
+
+#: org/jmol/console/GenericConsole.java:113
+msgid ""
+"Messages will appear here. Enter commands in the box below. Click the "
+"console Help menu item for on-line help, which will appear in a new browser "
+"window."
+msgstr ""
+"Zprávy se objeví zde. Napište příkazy do pole níže. Klepněte na tlačítko "
+"Nápověda v konzoli pro on-line nápovědu, která se objeví v novém okně "
+"prohlížeče."
+
+#: org/jmol/console/ScriptEditor.java:107
+msgid "Jmol Script Editor"
+msgstr "Jmol Skript Editor"
+
+#: org/jmol/console/ScriptEditor.java:140
+#: org/jmol/popup/MainPopupResourceBundle.java:604
+msgid "Console"
+msgstr "Konzole"
+
+#: org/jmol/console/ScriptEditor.java:142 org/jmol/dialog/Dialog.java:455
+#: org/jmol/dialog/Dialog.java:479 org/jmol/dialog/Dialog.java:482
+msgid "Open"
+msgstr "Otevřít"
+
+#: org/jmol/console/ScriptEditor.java:143
+#, fuzzy
+msgid "Font"
+msgstr "Zepředu"
+
+#: org/jmol/console/ScriptEditor.java:144
+msgid "Script"
+msgstr "Skript"
+
+#: org/jmol/console/ScriptEditor.java:145
+msgid "Check"
+msgstr "Zkontrolovat"
+
+#: org/jmol/console/ScriptEditor.java:146
+msgid "Top[as in \"go to the top\" - (translators: remove this bracketed part]"
+msgstr "Nahoru"
+
+#: org/jmol/console/ScriptEditor.java:147
+msgid "Step"
+msgstr "Krok"
+
+#: org/jmol/console/ScriptEditor.java:149
+#: org/jmol/popup/MainPopupResourceBundle.java:559
+msgid "Pause"
+msgstr "Pozastavit"
+
+#: org/jmol/console/ScriptEditor.java:151
+#: org/jmol/popup/MainPopupResourceBundle.java:560
+msgid "Resume"
+msgstr "Pokračovat"
+
+#: org/jmol/console/ScriptEditor.java:153
+msgid "Halt"
+msgstr "Zastavit"
+
+#: org/jmol/console/ScriptEditor.java:155
+msgid "Clear"
+msgstr "Vymazat"
+
+#: org/jmol/console/ScriptEditor.java:156
+msgid "Close"
+msgstr "Zavřít"
+
+#: org/jmol/dialog/Dialog.java:94
+msgid "File or URL:"
+msgstr "Soubor nebo URL:"
+
+#: org/jmol/dialog/Dialog.java:275
+msgid "Image Type"
+msgstr "Typ obrázku"
+
+#: org/jmol/dialog/Dialog.java:290 org/jmol/dialog/Dialog.java:332
+#, java-format
+msgid "JPEG Quality ({0})"
+msgstr "JPEG kvalita ({0})"
+
+#: org/jmol/dialog/Dialog.java:304
+#, java-format
+msgid "PNG Compression  ({0})"
+msgstr "PNG komprese ({0})"
+
+#: org/jmol/dialog/Dialog.java:335
+#, java-format
+msgid "PNG Quality ({0})"
+msgstr "PNG kvalita ({0})"
+
+#: org/jmol/dialog/Dialog.java:385 org/jmol/dialog/Dialog.java:498
+msgid "Yes"
+msgstr "Ano"
+
+#: org/jmol/dialog/Dialog.java:385 org/jmol/dialog/Dialog.java:496
+msgid "No"
+msgstr "Ne"
+
+#: org/jmol/dialog/Dialog.java:387
+#, java-format
+msgid "Do you want to overwrite file {0}?"
+msgstr "Chcete přepsat soubor {0}?"
+
+#: org/jmol/dialog/Dialog.java:388
+msgid "Warning"
+msgstr "Varování"
+
+#: org/jmol/dialog/Dialog.java:447
+msgid "All Files"
+msgstr "Všechny soubory"
+
+#: org/jmol/dialog/Dialog.java:448 org/jmol/dialog/Dialog.java:495
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: org/jmol/dialog/Dialog.java:450
+msgid "Abort file chooser dialog"
+msgstr "Zruš výběr souboru"
+
+#: org/jmol/dialog/Dialog.java:452 org/jmol/dialog/Dialog.java:453
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: org/jmol/dialog/Dialog.java:454
+msgid "Directory"
+msgstr "Složka"
+
+#: org/jmol/dialog/Dialog.java:457
+msgid "Open selected directory"
+msgstr "Otevři vybranou složku"
+
+#: org/jmol/dialog/Dialog.java:458
+msgid "Attributes"
+msgstr "Vlastnosti"
+
+#: org/jmol/dialog/Dialog.java:459
+msgid "Modified"
+msgstr "Změněno"
+
+#: org/jmol/dialog/Dialog.java:460
+msgid "Generic File"
+msgstr "Obecný soubor"
+
+#: org/jmol/dialog/Dialog.java:461
+msgid "Name"
+msgstr "Název"
+
+#: org/jmol/dialog/Dialog.java:462
+msgid "File Name:"
+msgstr "Název souboru:"
+
+#: org/jmol/dialog/Dialog.java:463
+msgid "Size"
+msgstr "Velikost"
+
+#: org/jmol/dialog/Dialog.java:464
+msgid "Files of Type:"
+msgstr "Typy souborů"
+
+#: org/jmol/dialog/Dialog.java:465
+msgid "Type"
+msgstr "Typ"
+
+#: org/jmol/dialog/Dialog.java:466
+msgid "Help"
+msgstr "Nápověda"
+
+#: org/jmol/dialog/Dialog.java:468
+msgid "FileChooser help"
+msgstr "Nápověda k výběru souborů"
+
+#: org/jmol/dialog/Dialog.java:469 org/jmol/dialog/Dialog.java:470
+msgid "Home"
+msgstr "Domů"
+
+#: org/jmol/dialog/Dialog.java:471 org/jmol/dialog/Dialog.java:472
+msgid "List"
+msgstr "Seznam"
+
+#: org/jmol/dialog/Dialog.java:473
+msgid "Look In:"
+msgstr "Hledej v:"
+
+#: org/jmol/dialog/Dialog.java:475
+msgid "Error creating new folder"
+msgstr "Chyba při vytváření nové složky"
+
+#: org/jmol/dialog/Dialog.java:476
+msgid "New Folder"
+msgstr "Nová složka"
+
+#: org/jmol/dialog/Dialog.java:478
+msgid "Create New Folder"
+msgstr "Vytvořit novou složku"
+
+#: org/jmol/dialog/Dialog.java:481
+msgid "Open selected file"
+msgstr "Otevřít zvolený soubor"
+
+#: org/jmol/dialog/Dialog.java:483 org/jmol/dialog/Dialog.java:486
+#: org/jmol/popup/MainPopupResourceBundle.java:620
+msgid "Save"
+msgstr "Uložit"
+
+#: org/jmol/dialog/Dialog.java:485
+msgid "Save selected file"
+msgstr "Uložit vybraný soubor"
+
+#: org/jmol/dialog/Dialog.java:487
+msgid "Save In:"
+msgstr "Ulož v:"
+
+#: org/jmol/dialog/Dialog.java:488
+msgid "Update"
+msgstr "Aktualizace"
+
+#: org/jmol/dialog/Dialog.java:490
+msgid "Update directory listing"
+msgstr "Aktualizuj výpis složky"
+
+#: org/jmol/dialog/Dialog.java:491
+msgid "Up"
+msgstr "Nahoru"
+
+#: org/jmol/dialog/Dialog.java:492
+msgid "Up One Level"
+msgstr "O úroveň výše"
+
+#: org/jmol/dialog/Dialog.java:497
+msgid "OK"
+msgstr "OK"
+
+#: org/jmol/dialog/FilePreview.java:77
+msgid "Preview"
+msgstr "Náhled"
+
+#: org/jmol/dialog/FilePreview.java:98
+msgid "Append models"
+msgstr "Připojené modely"
+
+#: org/jmol/dialog/FilePreview.java:100
+msgid "PDB cartoons"
+msgstr "PDB skica"
+
+#: org/jmol/dssx/DSSP.java:288
+#, java-format
+msgid ""
+"NOTE: Backbone amide hydrogen positions are present and will be ignored. "
+"Their positions will be approximated, as in standard DSSP analysis.\n"
+"Use {0} to not use this approximation.\n"
+"\n"
+msgstr ""
+"POZNÁMKA: jsou uvedeny souřadnice vodíků v amidovém skeletu, ale budou "
+"ignorovány. Jejich souřadnice budou aproximovány standardní DSSP analýzou.\n"
+"Zvol {0} pokud nechceš použít tuto aproximaci.\n"
+"\n"
+
+#: org/jmol/dssx/DSSP.java:294
+#, java-format
+msgid ""
+"NOTE: Backbone amide hydrogen positions are present and will be used. "
+"Results may differ significantly from standard DSSP analysis.\n"
+"Use {0} to ignore these hydrogen positions.\n"
+"\n"
+msgstr ""
+"POZNÁMKA: jsou uvedeny souřadnice vodíků v amidovém skeletu a budou použity. "
+"Výsledky se mohou významně lišit od standardní DSSP analýzy.\n"
+"Zvol {0} pokud chceš ignorovat uvedené souřadnice vodíků.\n"
+"\n"
+
+#: org/jmol/i18n/Language.java:77
+msgid "Arabic"
+msgstr "arabština"
+
+#: org/jmol/i18n/Language.java:78
+msgid "Asturian"
+msgstr "Asturština"
+
+#: org/jmol/i18n/Language.java:79
+msgid "Azerbaijani"
+msgstr "Ázerbájdžánština"
+
+#: org/jmol/i18n/Language.java:80
+msgid "Bosnian"
+msgstr "Bosenština"
+
+#: org/jmol/i18n/Language.java:81
+msgid "Catalan"
+msgstr "Katalánština"
+
+#: org/jmol/i18n/Language.java:82
+msgid "Czech"
+msgstr "Čeština"
+
+#: org/jmol/i18n/Language.java:83
+msgid "Danish"
+msgstr "Dánština"
+
+#: org/jmol/i18n/Language.java:84
+msgid "German"
+msgstr "Němčina"
+
+#: org/jmol/i18n/Language.java:85
+msgid "Greek"
+msgstr "Řečtina"
+
+#: org/jmol/i18n/Language.java:86
+msgid "Australian English"
+msgstr "Australská angličtina"
+
+#: org/jmol/i18n/Language.java:87
+msgid "British English"
+msgstr "Britská angličtina"
+
+#: org/jmol/i18n/Language.java:88
+msgid "American English"
+msgstr "Americká angličtina"
+
+#: org/jmol/i18n/Language.java:89
+msgid "Spanish"
+msgstr "Španělština"
+
+#: org/jmol/i18n/Language.java:90
+msgid "Estonian"
+msgstr "Estonština"
+
+#: org/jmol/i18n/Language.java:91
+msgid "Basque"
+msgstr "Baskičtina"
+
+#: org/jmol/i18n/Language.java:92
+msgid "Finnish"
+msgstr "Finština"
+
+#: org/jmol/i18n/Language.java:93
+msgid "Faroese"
+msgstr "Faerština"
+
+#: org/jmol/i18n/Language.java:94
+msgid "French"
+msgstr "Francouzština"
+
+#: org/jmol/i18n/Language.java:95
+msgid "Frisian"
+msgstr "Fríština"
+
+#: org/jmol/i18n/Language.java:96
+msgid "Galician"
+msgstr "Galština"
+
+#: org/jmol/i18n/Language.java:97
+msgid "Croatian"
+msgstr "Chorvatština"
+
+#: org/jmol/i18n/Language.java:98
+msgid "Hungarian"
+msgstr "Maďarština"
+
+#: org/jmol/i18n/Language.java:99
+msgid "Armenian"
+msgstr "Arménština"
+
+#: org/jmol/i18n/Language.java:100
+msgid "Indonesian"
+msgstr "Indonéština"
+
+#: org/jmol/i18n/Language.java:101
+msgid "Italian"
+msgstr "Italština"
+
+#: org/jmol/i18n/Language.java:102
+msgid "Japanese"
+msgstr "Japonština"
+
+#: org/jmol/i18n/Language.java:103
+msgid "Javanese"
+msgstr "Javánština"
+
+#: org/jmol/i18n/Language.java:104
+msgid "Korean"
+msgstr "Korejština"
+
+#: org/jmol/i18n/Language.java:105
+msgid "Malay"
+msgstr "Malajština"
+
+#: org/jmol/i18n/Language.java:106
+msgid "Norwegian Bokmal"
+msgstr "Norština Bokmal"
+
+#: org/jmol/i18n/Language.java:107
+msgid "Dutch"
+msgstr "Nizozemština"
+
+#: org/jmol/i18n/Language.java:108
+msgid "Occitan"
+msgstr "Okcitánština"
+
+#: org/jmol/i18n/Language.java:109
+msgid "Polish"
+msgstr "Polština"
+
+#: org/jmol/i18n/Language.java:110
+msgid "Portuguese"
+msgstr "Portugalština"
+
+#: org/jmol/i18n/Language.java:111
+msgid "Brazilian Portuguese"
+msgstr "Brazilská portugalština"
+
+#: org/jmol/i18n/Language.java:112
+msgid "Russian"
+msgstr "Ruština"
+
+#: org/jmol/i18n/Language.java:113
+msgid "Slovenian"
+msgstr "Slovinština"
+
+#: org/jmol/i18n/Language.java:114
+msgid "Serbian"
+msgstr "Srbština"
+
+#: org/jmol/i18n/Language.java:115
+msgid "Swedish"
+msgstr "Švédština"
+
+#: org/jmol/i18n/Language.java:116
+msgid "Tamil"
+msgstr "Tamilština"
+
+#: org/jmol/i18n/Language.java:117
+msgid "Telugu"
+msgstr "Telugština"
+
+#: org/jmol/i18n/Language.java:118
+msgid "Turkish"
+msgstr "Turečtina"
+
+#: org/jmol/i18n/Language.java:119
+msgid "Uyghur"
+msgstr "Ujgurština"
+
+#: org/jmol/i18n/Language.java:120
+msgid "Ukrainian"
+msgstr "Ukrajinština"
+
+#: org/jmol/i18n/Language.java:121
+msgid "Uzbek"
+msgstr "Uzbečtina"
+
+#: org/jmol/i18n/Language.java:122
+msgid "Simplified Chinese"
+msgstr "Zjednodušená čínština"
+
+#: org/jmol/i18n/Language.java:123
+msgid "Traditional Chinese"
+msgstr "Tradiční čínština"
+
+#: org/jmol/minimize/Minimizer.java:221
+#, java-format
+msgid "Could not get class for force field {0}"
+msgstr "Nemohu získat třídu pro silové pole {0}"
+
+#: org/jmol/minimize/Minimizer.java:227
+msgid "No atoms selected -- nothing to do!"
+msgstr "Nejsou vybrány žádné atomy -- nic na práci!"
+
+#: org/jmol/minimize/Minimizer.java:312
+#, java-format
+msgid "{0} atoms will be minimized."
+msgstr "{0} atomy budou minimalizovány."
+
+#: org/jmol/minimize/Minimizer.java:327
+#, java-format
+msgid "could not setup force field {0}"
+msgstr "nemohu nastavit silové pole {0}"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:88
+msgid "new"
+msgstr "nový"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:89
+msgid "undo (CTRL-Z)"
+msgstr "zpět (CTRL-Z)"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:90
+msgid "redo (CTRL-Y)"
+msgstr "znovu (CTRL-Y)"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:91
+#: org/jmol/viewer/ActionManager.java:233
+msgid "center"
+msgstr "střed"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:92
+msgid "add hydrogens"
+msgstr "přidat vodíky"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:93
+msgid "minimize"
+msgstr "minimalizovat"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:94
+msgid "fix hydrogens and minimize"
+msgstr "fixovat vodíky a minimalizovat"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:95
+msgid "clear"
+msgstr "vyčistit"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:96
+msgid "save file"
+msgstr "uložit soubor"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:97
+msgid "save state"
+msgstr "uložit stav"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:98
+msgid "invert ring stereochemistry"
+msgstr "invertovat stereochemii kruhu"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:99
+msgid "delete atom"
+msgstr "smazat atom"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:100
+msgid "drag to bond"
+msgstr "táhnout pro spojení vazbou"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:101
+msgid "drag atom"
+msgstr "táhnout atom"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:102
+msgid "drag atom (and minimize)"
+msgstr "táhnout atom (a minimalizovat)"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:103
+msgid "drag molecule (ALT to rotate)"
+msgstr ""
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:104
+msgid "drag and minimize molecule (docking)"
+msgstr "táhnout a minimalizovat molekulu (dokování)"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:113
+msgid "increase charge"
+msgstr "zvýšit náboj"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:114
+msgid "decrease charge"
+msgstr "snížit náboj"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:115
+msgid "delete bond"
+msgstr "smazat vazbu"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:116
+msgid "single"
+msgstr "jednoduchá"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:117
+msgid "double"
+msgstr "dvojitá"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:118
+msgid "triple"
+msgstr "trojitá"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:119
+msgid "increase order"
+msgstr "zvýšit řád"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:120
+msgid "decrease order"
+msgstr "snížit řád"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:121
+msgid "rotate bond (SHIFT-DRAG)"
+msgstr "rotovat vazbu (SHIFT-DRAG)"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:122
+msgid "exit modelkit mode"
+msgstr "ukončit modelovací mód"
+
+#: org/jmol/popup/JmolGenericPopup.java:754
+#: org/jmol/popup/MainPopupResourceBundle.java:287
+msgid "Space Group"
+msgstr "Prostorová grupa"
+
+#: org/jmol/popup/JmolGenericPopup.java:770
+#, fuzzy
+msgid "none"
+msgstr "Nic"
+
+#: org/jmol/popup/JmolGenericPopup.java:829
+#: org/jmol/popup/JmolGenericPopup.java:880
+#: org/jmol/popup/MainPopupResourceBundle.java:307
+#: org/jmol/popup/MainPopupResourceBundle.java:330
+#: org/jmol/popup/MainPopupResourceBundle.java:339
+#: org/jmol/popup/MainPopupResourceBundle.java:357
+msgid "All"
+msgstr "Vše"
+
+#: org/jmol/popup/JmolGenericPopup.java:991
+#, java-format
+msgid "{0} processors"
+msgstr "{0} procesor/y"
+
+#: org/jmol/popup/JmolGenericPopup.java:993
+#, java-format
+msgid "{0} MB total"
+msgstr "celkem: {0} MB"
+
+#: org/jmol/popup/JmolGenericPopup.java:996
+#, java-format
+msgid "{0} MB maximum"
+msgstr "maximálně: {0} MB"
+
+#: org/jmol/popup/JmolGenericPopup.java:1050
+msgid "not capturing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:266
+#, fuzzy
+msgid "Jmol Script Commands"
+msgstr "Jmol skriptovací konzole"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:267
+msgid "Mouse Manual"
+msgstr "Návod pro myš :-)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:268
+msgid "Translations"
+msgstr "Nastavení jazyka"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:269
+msgid "System"
+msgstr "Systém"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:276
+msgid "No atoms loaded"
+msgstr "Žádný atom nenahrán"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:277
+msgid "Configurations"
+msgstr "Konfigurace"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:278
+msgid "Element"
+msgstr "Prvek"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:279
+msgid "Model/Frame"
+msgstr "Model/snímek"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:280
+msgid "Language"
+msgstr "Jazyk"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:281
+#: org/jmol/popup/MainPopupResourceBundle.java:282
+#: org/jmol/popup/MainPopupResourceBundle.java:283
+msgid "By Residue Name"
+msgstr "Podle názvu substituentu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:284
+msgid "By HETATM"
+msgstr "Podle HETATM"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:285
+#, java-format
+msgid "Molecular Orbitals ({0})"
+msgstr "Molekulové orbitaly ({0})"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:286
+#: org/jmol/popup/MainPopupResourceBundle.java:615
+#: org/jmol/popup/MainPopupResourceBundle.java:675
+msgid "Symmetry"
+msgstr "Symetrie"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:288
+msgid "Model information"
+msgstr "Informace o modelu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:289
+#, java-format
+msgid "Select ({0})"
+msgstr "Vybrat ({0})"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:290
+#, java-format
+msgid "All {0} models"
+msgstr "Všechny {0} modely"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:291
+#, java-format
+msgid "Configurations ({0})"
+msgstr "Konfigurace ({0})"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:292
+#, java-format
+msgid "Collection of {0} models"
+msgstr "Sbírka {0} modelů"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:293
+#, java-format
+msgid "atoms: {0}"
+msgstr "atomů: {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:294
+#, java-format
+msgid "bonds: {0}"
+msgstr "vazeb: {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:295
+#, java-format
+msgid "groups: {0}"
+msgstr "skupin: {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:296
+#, java-format
+msgid "chains: {0}"
+msgstr "řetězců: {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:297
+#, java-format
+msgid "polymers: {0}"
+msgstr "polymerů: {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:298
+#, java-format
+msgid "model {0}"
+msgstr "Model {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:299
+#, java-format
+msgid "View {0}"
+msgstr "Zobrazení {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:300
+msgid "Main Menu"
+msgstr "Hlavní menu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:301
+msgid "Biomolecules"
+msgstr "Biomolekuly"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:302
+#, java-format
+msgid "biomolecule {0} ({1} atoms)"
+msgstr "biomolekula {0} ({1} atomů)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:303
+#, java-format
+msgid "load biomolecule {0} ({1} atoms)"
+msgstr "nahraj biomolekulu {0} ({1} atomů)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:308
+#: org/jmol/popup/MainPopupResourceBundle.java:442
+#: org/jmol/popup/MainPopupResourceBundle.java:451
+msgid "None"
+msgstr "Nic"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:309
+msgid "Display Selected Only"
+msgstr "Zobrazit pouze vybrané"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:310
+msgid "Invert Selection"
+msgstr "Obrátit výběr"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:312
+msgid "View"
+msgstr "Pohled"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:313
+msgid "Best"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:314
+msgid "Front"
+msgstr "Zepředu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:315
+msgid "Left"
+msgstr "Zleva"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:316
+msgid "Right"
+msgstr "Zprava"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:317
+msgid ""
+"Top[as in \"view from the top, from above\" - (translators: remove this "
+"bracketed part]"
+msgstr "Shora"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:318
+msgid "Bottom"
+msgstr "Zespoda"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:319
+msgid "Back"
+msgstr "Zezadu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:320
+#, fuzzy
+msgid "Axis x"
+msgstr "Osy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:321
+#, fuzzy
+msgid "Axis y"
+msgstr "Osy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:322
+#, fuzzy
+msgid "Axis z"
+msgstr "Osy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:323
+#, fuzzy
+msgid "Axis a"
+msgstr "Osy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:324
+#, fuzzy
+msgid "Axis b"
+msgstr "Osy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:325
+#, fuzzy
+msgid "Axis c"
+msgstr "Osy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:327
+msgid "Scenes"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:329
+msgid "Protein"
+msgstr "Bílkovina"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:331
+#: org/jmol/popup/MainPopupResourceBundle.java:342
+#: org/jmol/popup/MainPopupResourceBundle.java:413
+#: org/jmol/popup/MainPopupResourceBundle.java:511
+msgid "Backbone"
+msgstr "Skelet"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:332
+msgid "Side Chains"
+msgstr "Postranní řetězce"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:333
+msgid "Polar Residues"
+msgstr "Polární substituenty"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:334
+msgid "Nonpolar Residues"
+msgstr "Nepolární substituenty"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:335
+msgid "Basic Residues (+)"
+msgstr "Zásadité substituenty (+)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:336
+msgid "Acidic Residues (-)"
+msgstr "Kyselé substituenty (-)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:337
+msgid "Uncharged Residues"
+msgstr "Neutrální substituenty"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:338
+msgid "Nucleic"
+msgstr "Nukleový"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:340
+msgid "DNA"
+msgstr "DNA"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:341
+msgid "RNA"
+msgstr "RNA"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:343
+msgid "Bases"
+msgstr "Báze"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:344
+msgid "AT pairs"
+msgstr "AT páry"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:345
+msgid "GC pairs"
+msgstr "GC páry"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:346
+msgid "AU pairs"
+msgstr "AU páry"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:347
+#: org/jmol/popup/MainPopupResourceBundle.java:477
+msgid "Secondary Structure"
+msgstr "Sekundární struktura"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:348
+msgid "Hetero"
+msgstr "Hetero"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:349
+msgid "All PDB \"HETATM\""
+msgstr "Všechny PDB \"HETATM\""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:350
+msgid "All Solvent"
+msgstr "Všechna rozpouštědla"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:351
+msgid "All Water"
+msgstr "včetně molekulové vody"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:353
+msgid "Nonaqueous Solvent"
+msgstr "Nevodné rozpouštědlo"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:354
+msgid "Nonaqueous HETATM"
+msgstr "Nevodné HETATM"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:355
+msgid "Ligand"
+msgstr "Ligand"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:358
+msgid "Carbohydrate"
+msgstr "Sacharid"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:359
+msgid "None of the above"
+msgstr "Nic z výše uvedeného"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:361
+msgid "Style"
+msgstr "Vzhled"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:362
+msgid "Scheme"
+msgstr "Schéma"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:363
+msgid "CPK Spacefill"
+msgstr "Kalotový model (CPK)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:364
+msgid "Ball and Stick"
+msgstr "Kuličky a tyčinky"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:365
+msgid "Sticks"
+msgstr "Tyčinky"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:366
+msgid "Wireframe"
+msgstr "Drátový model"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:367
+#: org/jmol/popup/MainPopupResourceBundle.java:414
+#: org/jmol/popup/MainPopupResourceBundle.java:513
+msgid "Cartoon"
+msgstr "Skica (Cartoon)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:368
+#: org/jmol/popup/MainPopupResourceBundle.java:419
+#: org/jmol/popup/MainPopupResourceBundle.java:512
+msgid "Trace"
+msgstr "Trace (Stopa)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:370
+#: org/jmol/popup/MainPopupResourceBundle.java:464
+msgid "Atoms"
+msgstr "Atomy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:371
+#: org/jmol/popup/MainPopupResourceBundle.java:380
+#: org/jmol/popup/MainPopupResourceBundle.java:389
+#: org/jmol/popup/MainPopupResourceBundle.java:401
+#: org/jmol/popup/MainPopupResourceBundle.java:412
+#: org/jmol/popup/MainPopupResourceBundle.java:422
+#: org/jmol/popup/MainPopupResourceBundle.java:430
+#: org/jmol/popup/MainPopupResourceBundle.java:537
+#: org/jmol/popup/MainPopupResourceBundle.java:588
+#: org/jmol/popup/MainPopupResourceBundle.java:673
+msgid "Off"
+msgstr "Vypnout"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:372
+#: org/jmol/popup/MainPopupResourceBundle.java:373
+#: org/jmol/popup/MainPopupResourceBundle.java:374
+#: org/jmol/popup/MainPopupResourceBundle.java:375
+#: org/jmol/popup/MainPopupResourceBundle.java:376
+#: org/jmol/popup/MainPopupResourceBundle.java:377
+#, java-format
+msgid "{0}% van der Waals"
+msgstr "{0}% van der Waals"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:379
+#: org/jmol/popup/MainPopupResourceBundle.java:507
+msgid "Bonds"
+msgstr "Vazby"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:381
+#: org/jmol/popup/MainPopupResourceBundle.java:391
+#: org/jmol/popup/MainPopupResourceBundle.java:402
+#: org/jmol/popup/MainPopupResourceBundle.java:423
+#: org/jmol/popup/MainPopupResourceBundle.java:431
+#: org/jmol/popup/MainPopupResourceBundle.java:536
+msgid "On"
+msgstr "Zapnout"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:382
+#: org/jmol/popup/MainPopupResourceBundle.java:383
+#: org/jmol/popup/MainPopupResourceBundle.java:384
+#: org/jmol/popup/MainPopupResourceBundle.java:385
+#: org/jmol/popup/MainPopupResourceBundle.java:386
+#: org/jmol/popup/MainPopupResourceBundle.java:394
+#: org/jmol/popup/MainPopupResourceBundle.java:395
+#: org/jmol/popup/MainPopupResourceBundle.java:396
+#: org/jmol/popup/MainPopupResourceBundle.java:397
+#: org/jmol/popup/MainPopupResourceBundle.java:398
+#: org/jmol/popup/MainPopupResourceBundle.java:405
+#: org/jmol/popup/MainPopupResourceBundle.java:406
+#: org/jmol/popup/MainPopupResourceBundle.java:407
+#: org/jmol/popup/MainPopupResourceBundle.java:408
+#: org/jmol/popup/MainPopupResourceBundle.java:409
+#: org/jmol/popup/MainPopupResourceBundle.java:433
+#: org/jmol/popup/MainPopupResourceBundle.java:434
+#: org/jmol/popup/MainPopupResourceBundle.java:697
+#: org/jmol/popup/MainPopupResourceBundle.java:698
+#: org/jmol/popup/MainPopupResourceBundle.java:699
+#: org/jmol/popup/MainPopupResourceBundle.java:700
+#: org/jmol/popup/MainPopupResourceBundle.java:701
+#, java-format
+msgid "{0} Å"
+msgstr "{0} Å"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:388
+#: org/jmol/popup/MainPopupResourceBundle.java:508
+msgid "Hydrogen Bonds"
+msgstr "Vodíkové můstky"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:390
+msgid "Calculate"
+msgstr "Vypočítat"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:392
+msgid "Set H-Bonds Side Chain"
+msgstr "Ukázat vodíkové můstky v postranním řetězci"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:393
+msgid "Set H-Bonds Backbone"
+msgstr "Ukázat vodíkové můstky v hlavním řetězci"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:400
+#: org/jmol/popup/MainPopupResourceBundle.java:509
+msgid "Disulfide Bonds"
+msgstr "Disulfidové můstky"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:403
+msgid "Set SS-Bonds Side Chain"
+msgstr "Ukázat disulfidové můstky v postranním řetězci"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:404
+msgid "Set SS-Bonds Backbone"
+msgstr "Ukázat disulfidové můstky v hlavním řetězci"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:411
+#: org/jmol/popup/MainPopupResourceBundle.java:510
+msgid "Structures"
+msgstr "Struktury"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:415
+msgid "Cartoon Rockets"
+msgstr "Skica s raketami (Cartoon Rockets)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:416
+#: org/jmol/popup/MainPopupResourceBundle.java:514
+msgid "Ribbons"
+msgstr "Stužky (Ribbons)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:417
+#: org/jmol/popup/MainPopupResourceBundle.java:515
+msgid "Rockets"
+msgstr "Rakety (Rockets)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:418
+#: org/jmol/popup/MainPopupResourceBundle.java:516
+msgid "Strands"
+msgstr "Vlákna (Strands)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:421
+msgid "Vibration"
+msgstr "Vibrace"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:426
+#: org/jmol/popup/MainPopupResourceBundle.java:470
+#: org/jmol/popup/MainPopupResourceBundle.java:520
+msgid "Vectors"
+msgstr "Vektory"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:427
+msgid "Spectra"
+msgstr "Spektra"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:428
+msgid "1H-NMR"
+msgstr "1H-NMR"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:429
+msgid "13C-NMR"
+msgstr "13C-NMR"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:432
+#, java-format
+msgid "{0} pixels"
+msgstr "{0} pixelů"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:435
+#: org/jmol/popup/MainPopupResourceBundle.java:436
+#: org/jmol/popup/MainPopupResourceBundle.java:437
+#: org/jmol/popup/MainPopupResourceBundle.java:438
+#: org/jmol/popup/MainPopupResourceBundle.java:439
+#, java-format
+msgid "Scale {0}"
+msgstr "Měřítko {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:441
+msgid "Stereographic"
+msgstr "Stereografie"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:443
+msgid "Red+Cyan glasses"
+msgstr "Červené + tyrkysové brýle"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:444
+msgid "Red+Blue glasses"
+msgstr "Červené + modré brýle"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:445
+msgid "Red+Green glasses"
+msgstr "Červené + zelené brýle"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:446
+msgid "Cross-eyed viewing"
+msgstr "Cross-eyed (konvergentně)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:447
+msgid "Wall-eyed viewing"
+msgstr "Wall-eyed (divergentně)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:449
+#: org/jmol/popup/MainPopupResourceBundle.java:517
+msgid "Labels"
+msgstr "Popisky"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:452
+msgid "With Element Symbol"
+msgstr "symboly prvků"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:453
+msgid "With Atom Name"
+msgstr "symboly s čísly atomů"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:454
+msgid "With Atom Number"
+msgstr "očíslované atomy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:456
+msgid "Position Label on Atom"
+msgstr "Umístit popisek k atomu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:457
+msgid "Centered"
+msgstr "Vystředit"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:458
+msgid "Upper Right"
+msgstr "Vpravo nahoře"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:459
+msgid "Lower Right"
+msgstr "Vpravo dole"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:460
+msgid "Upper Left"
+msgstr "Vlevo nahoře"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:461
+msgid "Lower Left"
+msgstr "Vlevo dole"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:463
+msgid "Color"
+msgstr "Barvy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:466
+msgid "By Scheme"
+msgstr "Dle schématu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:467
+msgid "Element (CPK)"
+msgstr "Prvek (CPK)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:468
+msgid "Alternative Location"
+msgstr "Volitelné umístění"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:469
+msgid "Molecule"
+msgstr "Molekula"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:471
+msgid "Formal Charge"
+msgstr "Formální náboj"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:472
+msgid "Partial Charge"
+msgstr "Částečný náboj"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:473
+msgid "Temperature (Relative)"
+msgstr "Teplota (Relativní)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:474
+msgid "Temperature (Fixed)"
+msgstr "Teplota (Konstantní)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:476
+msgid "Amino Acid"
+msgstr "Aminokyselina"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:478
+msgid "Chain"
+msgstr "Řetězec"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:479
+msgid "Group"
+msgstr "Skupina"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:480
+msgid "Monomer"
+msgstr "Monomer"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:481
+msgid "Shapely"
+msgstr "Shapely"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:483
+msgid "Inherit"
+msgstr "Dědit (Inherit)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:484
+msgid "Black"
+msgstr "Černá"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:485
+msgid "White"
+msgstr "Bílá"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:486
+msgid "Cyan"
+msgstr "Modrozelená"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:488
+msgid "Red"
+msgstr "Červená"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:489
+msgid "Orange"
+msgstr "Oranžová"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:490
+msgid "Yellow"
+msgstr "Žlutá"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:491
+msgid "Green"
+msgstr "Zelená"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:492
+msgid "Blue"
+msgstr "Modrá"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:493
+msgid "Indigo"
+msgstr "Indigová"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:494
+msgid "Violet"
+msgstr "Fialová"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:496
+msgid "Salmon"
+msgstr "Lososová"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:497
+msgid "Olive"
+msgstr "Olivová"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:498
+msgid "Maroon"
+msgstr "Kaštanová"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:499
+msgid "Gray"
+msgstr "Šedá"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:500
+msgid "Slate Blue"
+msgstr "Světle modrá"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:501
+msgid "Gold"
+msgstr "Zlatá"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:502
+msgid "Orchid"
+msgstr "Orchidejová"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:504
+#: org/jmol/popup/MainPopupResourceBundle.java:671
+msgid "Make Opaque"
+msgstr "Zneprůhlednit"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:505
+#: org/jmol/popup/MainPopupResourceBundle.java:672
+msgid "Make Translucent"
+msgstr "Zprůsvitnit"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:518
+msgid "Background"
+msgstr "Pozadí"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:519
+#: org/jmol/popup/MainPopupResourceBundle.java:662
+msgid "Surfaces"
+msgstr "Povrchy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:521
+#: org/jmol/popup/MainPopupResourceBundle.java:683
+#: org/jmol/popup/MainPopupResourceBundle.java:709
+msgid "Axes"
+msgstr "Osy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:522
+#: org/jmol/popup/MainPopupResourceBundle.java:684
+#: org/jmol/popup/MainPopupResourceBundle.java:708
+msgid "Boundbox"
+msgstr "Hraniční box"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:523
+#: org/jmol/popup/MainPopupResourceBundle.java:659
+#: org/jmol/popup/MainPopupResourceBundle.java:685
+#: org/jmol/popup/MainPopupResourceBundle.java:710
+msgid "Unit cell"
+msgstr "Elementární buňka"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:525
+msgid "Zoom"
+msgstr "Lupa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:532
+msgid "Zoom In"
+msgstr "Přiblížit"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:533
+msgid "Zoom Out"
+msgstr "Oddálit"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:535
+#: org/jmol/popup/MainPopupResourceBundle.java:601
+msgid "Spin"
+msgstr "Rotace"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:539
+msgid "Set X Rate"
+msgstr "Nastavit rychlost rotace kolem osy X"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:540
+msgid "Set Y Rate"
+msgstr "Nastavit rychlost rotace kolem osy Y"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:541
+msgid "Set Z Rate"
+msgstr "Nastavit rychlost rotace kolem osy Z"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:542
+#: org/jmol/popup/MainPopupResourceBundle.java:568
+msgid "Set FPS"
+msgstr "Nastavit FPS (počet snímků za sekundu)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:552
+msgid "Animation"
+msgstr "Animace"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:553
+msgid "Animation Mode"
+msgstr "Typ animace"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:554
+msgid "Play Once"
+msgstr "Přehrát 1×"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:555
+msgid "Palindrome"
+msgstr "Palindrom"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:556
+msgid "Loop"
+msgstr "Přehrávat dokola"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:558
+msgid "Play"
+msgstr "Přehrát"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:561
+msgid "Stop"
+msgstr "Zastavit"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:562
+msgid "Next Frame"
+msgstr "Další snímek"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:563
+msgid "Previous Frame"
+msgstr "Předchozí snímek"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:564
+msgid "Rewind"
+msgstr "Převinout zpět"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:565
+msgid "Reverse"
+msgstr "Přehrát pozpátku"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:566
+msgid "Restart"
+msgstr "Spustit znovu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:575
+#: org/jmol/popup/MainPopupResourceBundle.java:610
+msgid "Measurements"
+msgstr "Měření"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:576
+msgid "Double-Click begins and ends all measurements"
+msgstr "Dvojklik zahajuje a ukončí všechna měření"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:577
+msgid "Click for distance measurement"
+msgstr "Klepnout pro změření vzdálenosti"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:578
+msgid "Click for angle measurement"
+msgstr "Klepnout pro změření úhlu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:579
+msgid "Click for torsion (dihedral) measurement"
+msgstr "Klepnout pro změření torze"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:580
+msgid "Click two atoms to display a sequence in the console"
+msgstr "Klepněte na dva atomy pro zobrazení sekvence v konzoli"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:581
+msgid "Delete measurements"
+msgstr "Vymazat výsledky měření"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:582
+msgid "List measurements"
+msgstr "Naměřené hodnoty"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:583
+msgid "Distance units nanometers"
+msgstr "nm (1 nm = 1E-9 m)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:584
+msgid "Distance units Angstroms"
+msgstr "Å (1 Å = 1E-10 m)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:585
+msgid "Distance units picometers"
+msgstr "pm (1 pm = 1E-12 m)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:587
+msgid "Set picking"
+msgstr "Nastavit označování"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:589
+msgid "Center"
+msgstr "Střed"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:591
+msgid "Identity"
+msgstr "Identita"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:592
+msgid "Label"
+msgstr "Popisek"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:593
+msgid "Select atom"
+msgstr "Vybrat atom"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:594
+msgid "Select chain"
+msgstr "Vybrat řetězec"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:595
+msgid "Select element"
+msgstr "Vybrat prvek"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:596
+#, fuzzy
+msgid "modelKitMode"
+msgstr "ukončit modelovací mód"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:597
+msgid "Select group"
+msgstr "Vybrat skupinu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:598
+msgid "Select molecule"
+msgstr "Vybrat molekulu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:599
+msgid "Select site"
+msgstr "Vybrat vazné místo"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:600
+msgid "Show symmetry operation"
+msgstr "Zobraz operace symetrie"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:603
+msgid "Show"
+msgstr "Ukázat"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:605
+#, fuzzy
+msgid "JavaScript Console"
+msgstr "Jmol skriptovací konzole"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:606
+msgid "File Contents"
+msgstr "Obsah souboru"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:607
+msgid "File Header"
+msgstr "Záhlaví souboru"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:609
+msgid "Isosurface JVXL data"
+msgstr "Izopovrchová JVXL data"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:611
+msgid "Molecular orbital JVXL data"
+msgstr "Molekulární orbital typu JVXL"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:612
+msgid "Model"
+msgstr "Model"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:613
+msgid "Orientation"
+msgstr "Orientace"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:614
+msgid "Space group"
+msgstr "Prostorová grupa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:616
+msgid "Current state"
+msgstr "Současný stav"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:618
+msgid "File"
+msgstr "Soubor"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:621
+msgid "Export"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:622
+msgid "Reload"
+msgstr "Obnovit"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:623
+msgid "Open from PDB"
+msgstr "Otevřít z PDB"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:624
+#, fuzzy
+msgid "Open local file"
+msgstr "Otevřít zvolený soubor"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:625
+#, fuzzy
+msgid "Open URL"
+msgstr "Otevřít"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:626
+msgid "Load full unit cell"
+msgstr "Načti úplnou elementární buňku"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:627
+msgid "Open script"
+msgstr "Otevřít skript"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:629
+#: org/jmol/viewer/OutputManager.java:792
+msgid "Capture"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:630
+msgid "Capture rock"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:631
+msgid "Capture spin"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:632
+msgid "Start capturing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:633
+msgid "End capturing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:634
+msgid "Disable capturing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:635
+msgid "Re-enable capturing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:636
+msgid "Set capture replay rate"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:637
+msgid "Toggle capture looping"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:639
+#, java-format
+msgid "Save a copy of {0}"
+msgstr "Uložit kopii {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:640
+msgid "Save script with state"
+msgstr "Uložit skript se stavem"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:641
+msgid "Save script with history"
+msgstr "Uložit skript s historií"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:642
+#: org/jmol/popup/MainPopupResourceBundle.java:643
+#: org/jmol/popup/MainPopupResourceBundle.java:644
+#: org/jmol/popup/MainPopupResourceBundle.java:645
+#: org/jmol/popup/MainPopupResourceBundle.java:646
+#, java-format
+msgid "Export {0} image"
+msgstr "Exportovat obrázek {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:647
+#, fuzzy
+msgid "Save as PNG/JMOL (image+zip)"
+msgstr "Uložit vše jako JMOL soubor (zip)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:648
+msgid "Save JVXL isosurface"
+msgstr "Uložit JVXL isopovrch"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:649
+#: org/jmol/popup/MainPopupResourceBundle.java:650
+#: org/jmol/popup/MainPopupResourceBundle.java:651
+#: org/jmol/popup/MainPopupResourceBundle.java:652
+#, java-format
+msgid "Export {0} 3D model"
+msgstr "Exportovat {0} 3D model"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:654
+msgid "Computation"
+msgstr "Výpočty"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:655
+msgid "Optimize structure"
+msgstr "Optimalizovat strukturu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:656
+msgid "Model kit"
+msgstr "Modelování"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:660
+msgid "Extract MOL data"
+msgstr "Extrahovat MOL data"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:663
+msgid "Dot Surface"
+msgstr "Tečkovaný povrch"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:664
+msgid "van der Waals Surface"
+msgstr "van der Waalsův povrch"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:665
+msgid "Molecular Surface"
+msgstr "Molekulární povrch"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:666
+#, java-format
+msgid "Solvent Surface ({0}-Angstrom probe)"
+msgstr "Povrch pro rozpouštědlo (průměr sondy {0} Å)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:668
+#, java-format
+msgid "Solvent-Accessible Surface (VDW + {0} Angstrom)"
+msgstr "Povrch přístupný rozpouštědlu (VDW + {0} Å)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:669
+msgid "Molecular Electrostatic Potential (range ALL)"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:670
+msgid "Molecular Electrostatic Potential (range -0.1 0.1)"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:676
+#: org/jmol/popup/MainPopupResourceBundle.java:677
+#: org/jmol/popup/MainPopupResourceBundle.java:678
+#, java-format
+msgid "Reload {0}"
+msgstr "Znovu načíst {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:679
+#, java-format
+msgid "Reload {0} + Display {1}"
+msgstr "Načti {0} + Zobraz {1}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:680
+msgid "Reload + Polyhedra"
+msgstr "Načti + Polyhedra (mnohostěny)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:687
+msgid "Hide"
+msgstr "Skrýt"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:688
+msgid "Dotted"
+msgstr "Tečkovaně"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:690
+msgid "Pixel Width"
+msgstr "Šířka v pixelech"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:691
+#: org/jmol/popup/MainPopupResourceBundle.java:692
+#: org/jmol/popup/MainPopupResourceBundle.java:693
+#: org/jmol/popup/MainPopupResourceBundle.java:694
+#, java-format
+msgid "{0} px"
+msgstr "{0} px"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:696
+msgid "Angstrom Width"
+msgstr "Šířka v Ångstrémech"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:704
+msgid "Selection Halos"
+msgstr "Zvýraznit výběr (halo)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:705
+msgid "Show Hydrogens"
+msgstr "Ukázat vodíky"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:706
+msgid "Show Measurements"
+msgstr "Ukázat výsledky měření"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:707
+msgid "Perspective Depth"
+msgstr "Hloubka perspektivy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:711
+msgid "RasMol Colors"
+msgstr "RasMol barvy"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:712
+msgid "About..."
+msgstr "O aplikaci..."
+
+#: org/jmol/script/ScriptCompiler.java:3051
+msgid "script compiler ERROR: "
+msgstr "Chyba kompilátoru skriptu ERROR: "
+
+#: org/jmol/script/ScriptError.java:192
+msgid "x y z axis expected"
+msgstr "očekávány osy x y z"
+
+#: org/jmol/script/ScriptError.java:195
+#, java-format
+msgid "{0} not allowed with background model displayed"
+msgstr "{0} není povoleno se zobrazeným modelem v pozadí"
+
+#: org/jmol/script/ScriptError.java:198
+#: org/jmol/script/ScriptTokenParser.java:1487
+msgid "bad argument count"
+msgstr "špatně spočítaný argument"
+
+#: org/jmol/script/ScriptError.java:201
+msgid "Miller indices cannot all be zero."
+msgstr "všechny Millerovy indexy nemohou být rovny nule"
+
+#: org/jmol/script/ScriptError.java:204
+msgid "bad [R,G,B] color"
+msgstr "špatné [R,G,B] barvy"
+
+#: org/jmol/script/ScriptError.java:207
+msgid "boolean expected"
+msgstr "očekáván booleovský parametr"
+
+#: org/jmol/script/ScriptError.java:210
+msgid "boolean or number expected"
+msgstr "očekáván booleovský parametr nebo číslo"
+
+#: org/jmol/script/ScriptError.java:213
+#, java-format
+msgid "boolean, number, or {0} expected"
+msgstr "očekáván booleovský parametr, číslo nebo {0}"
+
+#: org/jmol/script/ScriptError.java:216
+msgid "cannot set value"
+msgstr "nelze nastavit hodnotu"
+
+#: org/jmol/script/ScriptError.java:219
+msgid "color expected"
+msgstr "očekávána barva"
+
+#: org/jmol/script/ScriptError.java:222
+msgid "a color or palette name (Jmol, Rasmol) is required"
+msgstr "je nutné zadání barvy nebo sady barev (Jmol, Rasmol)"
+
+#: org/jmol/script/ScriptError.java:225
+#: org/jmol/script/ScriptTokenParser.java:1493
+msgid "command expected"
+msgstr "očekáván příkaz"
+
+#: org/jmol/script/ScriptError.java:228
+msgid "{x y z} or $name or (atom expression) required"
+msgstr "{x y z} nebo $name nebo (označení atomů) požadováno"
+
+#: org/jmol/script/ScriptError.java:231
+msgid "draw object not defined"
+msgstr "nakreslený objekt není definován"
+
+#: org/jmol/script/ScriptError.java:234
+#: org/jmol/script/ScriptTokenParser.java:1499
+msgid "unexpected end of script command"
+msgstr "neočekávaný konec skriptovacího příkazu"
+
+#: org/jmol/script/ScriptError.java:237
+msgid "valid (atom expression) expected"
+msgstr "očekáváno platné označení atomu"
+
+#: org/jmol/script/ScriptError.java:240
+msgid "(atom expression) or integer expected"
+msgstr "očekáváno označení atomu nebo celé číslo"
+
+#: org/jmol/script/ScriptError.java:243
+msgid "filename expected"
+msgstr "očekáván název souboru"
+
+#: org/jmol/script/ScriptError.java:246
+msgid "file not found"
+msgstr "soubor nenalezen"
+
+#: org/jmol/script/ScriptError.java:249
+msgid "incompatible arguments"
+msgstr "neslučitelné argumenty"
+
+#: org/jmol/script/ScriptError.java:252
+msgid "insufficient arguments"
+msgstr "nedostatečné argumenty"
+
+#: org/jmol/script/ScriptError.java:255
+msgid "integer expected"
+msgstr "očekáváno celé číslo"
+
+#: org/jmol/script/ScriptError.java:258
+#, java-format
+msgid "integer out of range ({0} - {1})"
+msgstr "celé číslo mimo interval ({0} - {1})"
+
+#: org/jmol/script/ScriptError.java:261
+msgid "invalid argument"
+msgstr "neplatný argument"
+
+#: org/jmol/script/ScriptError.java:264
+msgid "invalid parameter order"
+msgstr "neplatný parametrový příkaz"
+
+#: org/jmol/script/ScriptError.java:267
+msgid "keyword expected"
+msgstr "očekáváno klíčové slovo"
+
+#: org/jmol/script/ScriptError.java:270
+msgid "no MO coefficient data available"
+msgstr "MO koeficienty nejsou dostupné"
+
+#: org/jmol/script/ScriptError.java:273
+#, java-format
+msgid "An MO index from 1 to {0} is required"
+msgstr "MO index je požadován od 1 do {0}"
+
+#: org/jmol/script/ScriptError.java:276
+msgid "no MO basis/coefficient data available for this frame"
+msgstr "žádné MO báze/koeficienty dostupné pro tento snímek"
+
+#: org/jmol/script/ScriptError.java:279
+msgid "no MO occupancy data available"
+msgstr "žádná data o obsazení MO dostupná"
+
+#: org/jmol/script/ScriptError.java:282
+msgid "Only one molecular orbital is available in this file"
+msgstr "Pouze jeden molekulární orbital je dostupný pro tento soubor"
+
+#: org/jmol/script/ScriptError.java:285
+#, java-format
+msgid "{0} require that only one model be displayed"
+msgstr "{0} vyžaduje zobrazení pouze jednoho modelu"
+
+#: org/jmol/script/ScriptError.java:288
+#, java-format
+msgid "{0} requires that only one model be loaded"
+msgstr "{0} vyžaduje načtení pouze jediného modelu"
+
+#: org/jmol/script/ScriptError.java:291
+msgid "No data available"
+msgstr "Žádná data nejsou dostupná"
+
+#: org/jmol/script/ScriptError.java:295
+msgid ""
+"No partial charges were read from the file; Jmol needs these to render the "
+"MEP data."
+msgstr ""
+"Nenačteny žádné parciální náboje ze souboru;  Jmol je potřebuje pro "
+"poskytutí MEP dat."
+
+#: org/jmol/script/ScriptError.java:298
+msgid "No unit cell"
+msgstr "Žádná elementární buňka"
+
+#: org/jmol/script/ScriptError.java:301
+#: org/jmol/script/ScriptTokenParser.java:1523
+msgid "number expected"
+msgstr "očekáváno číslo"
+
+#: org/jmol/script/ScriptError.java:304
+#, java-format
+msgid "number must be ({0} or {1})"
+msgstr "číslo musí být ({0} nebo {1})"
+
+#: org/jmol/script/ScriptError.java:307
+#, java-format
+msgid "decimal number out of range ({0} - {1})"
+msgstr "desetinné číslo neleží v intervalu  ({0} - {1})"
+
+#: org/jmol/script/ScriptError.java:310
+msgid "object name expected after '$'"
+msgstr "očekáván název objektu po '$'"
+
+#: org/jmol/script/ScriptError.java:314
+#, java-format
+msgid ""
+"plane expected -- either three points or atom expressions or {0} or {1} or "
+"{2}"
+msgstr ""
+"očekávána rovina -- buď tři body nebo označení atomů nebo {0} nebo {1} nebo "
+"{2}"
+
+#: org/jmol/script/ScriptError.java:317
+msgid "property name expected"
+msgstr "očekáván název vlastnosti"
+
+#: org/jmol/script/ScriptError.java:320
+#, java-format
+msgid "space group {0} was not found."
+msgstr "nenalezená prostorová grupa: {0}"
+
+#: org/jmol/script/ScriptError.java:323
+msgid "quoted string expected"
+msgstr "očekáván citovaný řetězec"
+
+#: org/jmol/script/ScriptError.java:326
+msgid "quoted string or identifier expected"
+msgstr "očekáván citovaný řetězec nebo identifikátor"
+
+#: org/jmol/script/ScriptError.java:329
+msgid "too many rotation points were specified"
+msgstr "příliš mnoho specifikovaných bodů rotace"
+
+#: org/jmol/script/ScriptError.java:332
+msgid "too many script levels"
+msgstr "příliš mnoho úrovní skriptů"
+
+#: org/jmol/script/ScriptError.java:335
+msgid "unrecognized atom property"
+msgstr "neznámá vlastnost atomu"
+
+#: org/jmol/script/ScriptError.java:338
+msgid "unrecognized bond property"
+msgstr "nerozpoznaná vlastnost vazby"
+
+#: org/jmol/script/ScriptError.java:341
+msgid "unrecognized command"
+msgstr "neznámý příkaz"
+
+#: org/jmol/script/ScriptError.java:344
+msgid "runtime unrecognized expression"
+msgstr "neznámý výraz (označení) v průběhu programu"
+
+#: org/jmol/script/ScriptError.java:347
+msgid "unrecognized object"
+msgstr "neznámý objekt"
+
+#: org/jmol/script/ScriptError.java:350
+#: org/jmol/script/ScriptTokenParser.java:1541
+#, java-format
+msgid "unrecognized {0} parameter"
+msgstr "neznámý parametr: {0}"
+
+#: org/jmol/script/ScriptError.java:354
+#, java-format
+msgid "unrecognized {0} parameter in Jmol state script (set anyway)"
+msgstr "nerozpoznaný {0} parameter v Jmol stavovém skriptu (přesto nastavený)"
+
+#: org/jmol/script/ScriptError.java:357
+#, java-format
+msgid "unrecognized SHOW parameter --  use {0}"
+msgstr "nerozpoznaný SHOW parametr --  použij {0}"
+
+#: org/jmol/script/ScriptError.java:363
+#, java-format
+msgid "write what? {0} or {1} \"filename\""
+msgstr "Co zapsat? {0} nebo {1} \"název souboru\""
+
+#: org/jmol/script/ScriptError.java:412 org/jmol/script/ScriptEval.java:6447
+msgid "script ERROR: "
+msgstr "Chyba skriptu ERROR: "
+
+#: org/jmol/script/ScriptEval.java:3263
+#, java-format
+msgid "show saved: {0}"
+msgstr ""
+
+#: org/jmol/script/ScriptEval.java:3277 org/jmol/script/ScriptEval.java:7960
+#, java-format
+msgid "{0} atoms deleted"
+msgstr "{0} atomů smazáno"
+
+#: org/jmol/script/ScriptEval.java:3995 org/jmol/scriptext/CmdExt.java:643
+#, java-format
+msgid "{0} hydrogen bonds"
+msgstr "{0} vodíkových můstků"
+
+#: org/jmol/script/ScriptEval.java:4649
+#, java-format
+msgid "file {0} created"
+msgstr "soubor {0} vytvořen"
+
+#: org/jmol/script/ScriptEval.java:7667
+#, java-format
+msgid "to resume, enter: &{0}"
+msgstr ""
+
+#: org/jmol/script/ScriptTokenParser.java:1490
+#, java-format
+msgid "invalid context for {0}"
+msgstr "chybný kontext pro {0}"
+
+#: org/jmol/script/ScriptTokenParser.java:1496
+msgid "{ number number number } expected"
+msgstr "očekáváno { number number number }"
+
+#: org/jmol/script/ScriptTokenParser.java:1502
+msgid "end of expression expected"
+msgstr "očekáván konec příkazu"
+
+#: org/jmol/script/ScriptTokenParser.java:1505
+msgid "identifier or residue specification expected"
+msgstr "očekáván identifikátor nebo specifikace zbytku"
+
+#: org/jmol/script/ScriptTokenParser.java:1508
+msgid "invalid atom specification"
+msgstr "chybná specifikace atomu"
+
+#: org/jmol/script/ScriptTokenParser.java:1511
+msgid "invalid chain specification"
+msgstr "chybná specifikace řetězce"
+
+#: org/jmol/script/ScriptTokenParser.java:1514
+#, java-format
+msgid "invalid expression token: {0}"
+msgstr "chybný token výrazu: {0}"
+
+#: org/jmol/script/ScriptTokenParser.java:1517
+msgid "invalid model specification"
+msgstr "chybná specifikace modelu"
+
+#: org/jmol/script/ScriptTokenParser.java:1520
+#, java-format
+msgid "missing END for {0}"
+msgstr "chybí END pro {0}"
+
+#: org/jmol/script/ScriptTokenParser.java:1526
+msgid "number or variable name expected"
+msgstr "očekáváno číslo nebo jméno proměnné"
+
+#: org/jmol/script/ScriptTokenParser.java:1529
+msgid "residue specification (ALA, AL?, A*) expected"
+msgstr "očekávána specifikace zbytku (ALA, AL?, A*)"
+
+#: org/jmol/script/ScriptTokenParser.java:1532
+#, java-format
+msgid "{0} expected"
+msgstr "{0} očekávána"
+
+#: org/jmol/script/ScriptTokenParser.java:1535
+#, java-format
+msgid "{0} unexpected"
+msgstr "{0} neočekávána"
+
+#: org/jmol/script/ScriptTokenParser.java:1538
+#, java-format
+msgid "unrecognized expression token: {0}"
+msgstr "nerozpoznaný token výrazu: {0}"
+
+#: org/jmol/script/ScriptTokenParser.java:1544
+#, java-format
+msgid "unrecognized token: {0}"
+msgstr "nerozpoznaný token: {0}"
+
+#: org/jmol/scriptext/CmdExt.java:621
+#, java-format
+msgid "{0} charges modified"
+msgstr ""
+
+#: org/jmol/scriptext/CmdExt.java:729
+#, java-format
+msgid "{0} struts added"
+msgstr "{0} podpěr (struts) přidáno"
+
+#: org/jmol/scriptext/CmdExt.java:865
+#, java-format
+msgid "Note: Enable looping using {0}"
+msgstr ""
+
+#: org/jmol/scriptext/CmdExt.java:867
+#, java-format
+msgid "Animation delay based on: {0}"
+msgstr ""
+
+#: org/jmol/scriptext/CmdExt.java:1872
+#, java-format
+msgid "{0} connections deleted"
+msgstr "vymazaná spojení: {0}"
+
+#: org/jmol/scriptext/CmdExt.java:1884
+#, java-format
+msgid "{0} new bonds; {1} modified"
+msgstr "{0} nových vazeb; {1} změněných"
+
+#: org/jmol/scriptext/MathExt.java:3661
+msgid "Note: More than one model is involved in this contact!"
+msgstr "Poznámka: Tento kontakt zahrnuje více než jeden model!"
+
+#: org/jmol/shape/Frank.java:92
+msgid "Click for menu..."
+msgstr "Klikněte pro menu..."
+
+#: org/jmol/util/GenericApplet.java:294
+#, java-format
+msgid ""
+"Jmol Applet version {0} {1}.\n"
+"\n"
+"An OpenScience project.\n"
+"\n"
+"See http://www.jmol.org for more information"
+msgstr ""
+"Jmol Aplet verze {0} {1}.\n"
+"\n"
+"Open Science projekt.\n"
+"\n"
+"Pro více informací navštivte  http://www.jmol.org"
+
+#: org/jmol/util/GenericApplet.java:681
+msgid "File Error:"
+msgstr "Chyba souboru:"
+
+#: org/jmol/viewer/ActionManager.java:231
+#, java-format
+msgid "assign/new atom or bond (requires {0})"
+msgstr "přiřadit/nový atom nebo vazbu (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:235
+msgid "pop up recent context menu (click on Jmol frank)"
+msgstr "zobraz poslední vyskakovací kontextové menu (klepni na Jmol frank)"
+
+#: org/jmol/viewer/ActionManager.java:237
+#, java-format
+msgid "delete atom (requires {0})"
+msgstr "smazat atom (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:239
+#, java-format
+msgid "delete bond (requires {0})"
+msgstr "samž vazby (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:241
+#, java-format
+msgid "adjust depth (back plane; requires {0})"
+msgstr "nastav tloušťku (zadní rovina; vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:242
+#, java-format
+msgid "move atom (requires {0})"
+msgstr "přesunout atom (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:245
+#, java-format
+msgid "move whole DRAW object (requires {0})"
+msgstr "přesuň celý DRAW objekt (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:247
+#, java-format
+msgid "move specific DRAW point (requires {0})"
+msgstr "přesunout specifický DRAW bod ( vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:248
+#, java-format
+msgid "move label (requires {0})"
+msgstr "přesunout označení (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:251
+#, java-format
+msgid "move atom and minimize molecule (requires {0})"
+msgstr "přesunout atom a minimalizovat molekulu (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:254
+#, java-format
+msgid "move and minimize molecule (requires {0})"
+msgstr "přesunout a minimalizovat molekulu (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:257
+#, java-format
+msgid "move selected atoms (requires {0})"
+msgstr "přesunout vybrané atomy ( vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:259
+#, java-format
+msgid "drag atoms in Z direction (requires {0})"
+msgstr "táhnout atomy ve směru osy Z (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:261
+msgid "simulate multi-touch using the mouse)"
+msgstr "simulovat multi-touch pomocí myši"
+
+#: org/jmol/viewer/ActionManager.java:263
+#, java-format
+msgid "translate navigation point (requires {0} and {1})"
+msgstr "přesuň navigační body (vyžaduje {0} a {1})"
+
+#: org/jmol/viewer/ActionManager.java:265
+msgid "pick an atom"
+msgstr "vybrat atom"
+
+#: org/jmol/viewer/ActionManager.java:267
+#, java-format
+msgid "connect atoms (requires {0})"
+msgstr "spoj atomy (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:269
+#, java-format
+msgid "pick an ISOSURFACE point (requires {0}"
+msgstr "vybrat ISOSURFACE bod (vyžaduje {0}"
+
+#: org/jmol/viewer/ActionManager.java:271
+#, java-format
+msgid "pick a label to toggle it hidden/displayed (requires {0})"
+msgstr "vybrat popisek pro skrytí/zobrazení (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:278
+#, java-format
+msgid ""
+"pick an atom to include it in a measurement (after starting a measurement or "
+"after {0})"
+msgstr ""
+"vyber atom, který chceš zahrnout do měření (po zahájení měření nebo po {0})"
+
+#: org/jmol/viewer/ActionManager.java:281
+#, java-format
+msgid "pick a point or atom to navigate to (requires {0})"
+msgstr "vybrat bod nebo atom ke kterému navigovat (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:284
+#, java-format
+msgid "pick a DRAW point (for measurements) (requires {0}"
+msgstr "vybrat DRAW bod (pro měření) (vyžaduje {0}"
+
+#: org/jmol/viewer/ActionManager.java:287
+msgid "pop up the full context menu"
+msgstr "zobraz úplné vyskakovací kontextové menu"
+
+#: org/jmol/viewer/ActionManager.java:289
+msgid "reset (when clicked off the model)"
+msgstr "obnovit (po klepnutí mimo model)"
+
+#: org/jmol/viewer/ActionManager.java:290
+msgid "rotate"
+msgstr "otočit"
+
+#: org/jmol/viewer/ActionManager.java:292
+#, java-format
+msgid "rotate branch around bond (requires {0})"
+msgstr "rotovat řetězec kolem vazby (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:294
+#, java-format
+msgid "rotate selected atoms (requires {0})"
+msgstr "otočit vybrané atomy (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:295
+msgid "rotate Z"
+msgstr "Z otáčení"
+
+#: org/jmol/viewer/ActionManager.java:300
+msgid ""
+"rotate Z (horizontal motion of mouse) or zoom (vertical motion of mouse)"
+msgstr ""
+"Z otáčení (horizontální pohyb myši) nebo přiblížení (vertikální pohyb myši)"
+
+#: org/jmol/viewer/ActionManager.java:301
+#, java-format
+msgid "select an atom (requires {0})"
+msgstr "vybrat atom (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:304
+#, java-format
+msgid "select and drag atoms (requires {0})"
+msgstr "vyber a táhni atomy (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:306
+#, java-format
+msgid "unselect this group of atoms (requires {0})"
+msgstr "zrušit výběr skupiny atomů (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:309
+#, java-format
+msgid "select NONE (requires {0})"
+msgstr "vybrat NONE (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:311
+#, java-format
+msgid "add this group of atoms to the set of selected atoms (requires {0})"
+msgstr "přidej tuto skupinu atomů k již vybraným atomům (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:314
+#, java-format
+msgid "toggle selection (requires {0})"
+msgstr "obrátit výběr (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:321
+#, java-format
+msgid ""
+"if all are selected, unselect all, otherwise add this group of atoms to the "
+"set of selected atoms (requires {0})"
+msgstr ""
+"jestliže jsou všechny vybrány, zruš výběr, nebo přidej tuto skupinu atomů k "
+"již vybraným atomům (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:324
+msgid "pick an atom to initiate or conclude a measurement"
+msgstr "vyber atom pro zahájení nebo ukončení měření"
+
+#: org/jmol/viewer/ActionManager.java:326
+#, java-format
+msgid "adjust slab (front plane; requires {0})"
+msgstr "nastav desku/slab (přední rovina; vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:328
+#, java-format
+msgid "move slab/depth window (both planes; requires {0})"
+msgstr "přesuň okno s deskou/tloušťkou (obě roviny; vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:330
+msgid "zoom (along right edge of window)"
+msgstr "přiblížení (podél pravého okraje okna)"
+
+#: org/jmol/viewer/ActionManager.java:336
+#, java-format
+msgid "click on two points to spin around axis counterclockwise (requires {0})"
+msgstr ""
+"klepnout na dva body pro otočení kolem osy proti směru hodinových ručiček "
+"(vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:339
+#, java-format
+msgid "click on two points to spin around axis clockwise (requires {0})"
+msgstr ""
+"klepnout na dva body pro otočení kolem osy po směru hodinových ručiček "
+"(vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:342
+#, java-format
+msgid "stop motion (requires {0})"
+msgstr "zastav pohyb (vyžaduje {0})"
+
+#: org/jmol/viewer/ActionManager.java:347
+msgid "spin model (swipe and release button and stop motion simultaneously)"
+msgstr "otáčej model (klepni a pusť tlačítko a současně zastav pohyb)"
+
+#: org/jmol/viewer/ActionManager.java:348
+msgid "translate"
+msgstr "přeložit"
+
+#: org/jmol/viewer/ActionManager.java:349
+msgid "zoom"
+msgstr "Zvětšení"
+
+#: org/jmol/viewer/ActionManager.java:1991
+msgid "pick one more atom in order to spin the model around an axis"
+msgstr "vybrat jeden či více atomů k rotaci okolo osy"
+
+#: org/jmol/viewer/ActionManager.java:1992
+msgid "pick two atoms in order to spin the model around an axis"
+msgstr "vybrat dva atomy k rotaci okolo osy"
+
+#: org/jmol/viewer/ActionManager.java:1996
+msgid "pick one more atom in order to display the symmetry relationship"
+msgstr "vyber jeden nebo více atomů pro zobrazení vzájemné symetrie"
+
+#: org/jmol/viewer/ActionManager.java:1998
+msgid ""
+"pick two atoms in order to display the symmetry relationship between them"
+msgstr "vyber dva atomy pro zobrazení jejich vzájemné symetrie"
+
+#: org/jmol/viewer/OutputManager.java:794
+msgid "canceled"
+msgstr ""
+
+#: org/jmol/viewer/OutputManager.java:795
+#, java-format
+msgid "{0} saved"
+msgstr ""
+
+#: org/jmol/viewer/OutputManager.java:861
+#, java-format
+msgid "Setting log file to {0}"
+msgstr "Nastavuji log soubor na {0}"
+
+#: org/jmol/viewer/OutputManager.java:863
+msgid "Cannot set log file path."
+msgstr "Nemohu nastavit cestu k log souboru."
+
+#: org/jmol/viewer/SelectionManager.java:114
+#: org/jmol/viewer/SelectionManager.java:125
+#, java-format
+msgid "{0} atoms hidden"
+msgstr "skryté atomy: {0}"
+
+#: org/jmol/viewer/SelectionManager.java:186
+#, java-format
+msgid "{0} atoms selected"
+msgstr "{0} atomů vybráno"
+
+#: org/jmol/viewer/Viewer.java:4158
+msgid "Drag to move label"
+msgstr "Táhni myší pro přesun popisku"
+
+#: org/jmol/viewer/Viewer.java:7868
+msgid "clipboard is not accessible -- use signed applet"
+msgstr "schránka není přístupná -- použijte podepsaný applet"
+
+#: org/jmol/viewer/Viewer.java:9049
+#, java-format
+msgid "{0} hydrogens added"
+msgstr "{0} vodíky přidány"
+
+#~ msgid "Hide Symmetry"
+#~ msgstr "Skryj symetrii"
+
+#~ msgid "Loading Jmol applet ..."
+#~ msgstr "Nahrávám Jmol aplet..."
+
+#~ msgid "  {0} seconds"
+#~ msgstr "  {0} sekund"
+
+#~ msgid "Java version:"
+#~ msgstr "Verze Javy:"
+
+#~ msgid "1 processor"
+#~ msgstr "1 procesor"
+
+#~ msgid "unknown processor count"
+#~ msgstr "neznámý počet procesorů"
+
+#~ msgid "Java memory usage:"
+#~ msgstr "Využití paměti Javy:"
+
+#~ msgid "{0} MB free"
+#~ msgstr "volných: {0} MB"
+
+#~ msgid "unknown maximum"
+#~ msgstr "neznámé maximum"
+
+#~ msgid "Open file or URL"
+#~ msgstr "Otevřít soubor nebo URL"

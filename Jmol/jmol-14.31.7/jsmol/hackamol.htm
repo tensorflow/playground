@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hack-a-Mol</title>
+<meta charset="utf-8" />
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/JSmolJME.js"></script>
+<script type="text/javascript" language="javascript" src="jsme/jsme/jsme.nocache.js"></script>
+
+<script type="text/javascript">
+
+// when the document is ready, set the keydown method in the textarea to enable ENTER to load the data into Jmol
+
+$(document).ready(function() {
+
+ $("#strucfile").keydown(
+    function(e) {
+      if (e.keyCode != 13)return;
+      from2D = false;
+      loadMol();
+      return false;
+    }
+ );
+
+});
+
+// load JSmol from the textarea 
+
+function loadMol() {
+  var s = $("#strucfile").val();
+  // check for 2D or 3D data:
+  var pt = s.indexOf("\n") + 21
+  if (s.indexOf("V2000") >= 0 && s.substring(pt, pt+2) == "2D") {
+    Jmol.jmeReadMolecule(jme, s)
+  } else {
+    s = "load data 'mydata'" + s + "\nend 'mydata'"
+    setTimeout(function() {Jmol.script(jmol, s)}, 10);
+  }
+}
+
+//Jmol._debugCode = true;//(s.indexOf("debugcode") >= 0);
+
+var jmol="jmol";
+var jme = "jme";
+
+// set up Jmol
+
+var JmolInfo = {
+	width: 300,
+	height: 300,
+	debug: false,
+	color: "black",
+	use: "HTML5",
+  addSelectionOptions: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+  disableJ2SLoadMonitor: true,
+  disableInitialConsole: true,
+  loadstructcallback: "loadStructCallback",
+  jarPath: "java",
+	jarFile: "JmolAppletSigned.jar",
+  j2sPath: "j2s",
+	isSigned: true,
+  defaultModel: "$caffeine",
+	script: ""
+}
+
+// called from JSmol when a model is loaded or cleared
+
+var loadStructCallback = function(app,filename) {
+   if (!filename)
+    return;
+   setFormat();
+   if (!from2D)
+    to2D();
+   showSmiles(true)
+}
+
+// specify drop-down options for [search]
+
+Jmol.setGrabberOptions([["$", "NCI"], [":", "PubChem"]])
+
+
+// set up JSME
+
+var JMEInfo = {     
+	use: "HTML5"
+  ,visible: true
+  ,divId: "jmediv"
+  ,options : "autoez;nocanonize"
+  //,"jme" : startingStructure   
+}
+
+// arrow button actions -- "to2D" has been removed
+
+var from2D = false;
+function to3D() {
+  from2D = true;
+  Jmol.show2d(jmol, false)
+  showSmiles(false)
+  from2D = false;
+}
+
+function to2D() {
+  from2D = false;
+  Jmol.show2d(jmol, true);
+}
+
+// generate the contents of the textarea from JSmol SHOW() or WRITE() function
+
+function setFormat(type) {
+  type  || (type = $("input:checked")[0].id)
+  //$("#log").html($("#log").html() + type  + "<br>");
+  var mytype = Jmol.evaluateVar(jmol, "_modelType");
+  var s = Jmol.evaluateVar(jmol, (mytype == type ? "show('file')" : "write('" + type  + "')"));
+  var val = $("#strucfile").val();
+  if (!s || s == val)
+    return;
+  setData(s);
+}
+
+// cache and show the structural data
+
+function setData(s) {
+  cachePush(s);
+  $("#strucfile").val(s);
+}
+
+// links for SMILES, InChI, and InChIKey
+
+function google(query) {
+ return "<a title='google this' target=_blank href=\"https://www.google.com/search?q=" + encodeURIComponent('"' + query + '"') + "\">" + query + "</a>";
+}
+
+function ebiMatch(smiles) {
+ return "<a title='search ChEMBL' target=_blank href=\"https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_structures__canonical_smiles__flexmatch=" 
+  + encodeURIComponent(smiles) + "\">" + smiles + "</a> &nbsp;&nbsp;at <a target=_blank href=https://www.ebi.ac.uk/chembl/api/data>ChEMBL</a>";
+}
+
+// show the SMILES, InChI, and InChIKey
+        
+function showSmiles(from3d) {
+ setTimeout(function() {
+  var smiles = Jmol.evaluateVar(jmol, "{visible}.find('SMILES/noaromatic')")
+  $("#jsmolsmiles").html(ebiMatch(smiles));
+  var inchi = Jmol.evaluateVar(jmol, "show('chemical stdinchi')").trim();
+  xxxi = inchi  
+  $("#jsmolinchi").html(google(inchi.split("=")[1]));
+  var inchikey = Jmol.evaluateVar(jmol, "show('chemical stdinchikey')").trim();
+  $("#jsmolinchikey").html(google(inchikey.split("=")[1]));
+
+ });
+  //$("#jsmesmiles").html(jme._getSmiles());
+}
+
+
+// this was an attempt to enable a "back" button - not implemented
+
+var cache = [];
+
+function cachePush(s) {
+  s = s.trim();
+  if (cache.length != 0 && cache[cache.length - 1] == s || s.length < 40)
+    return;
+  cache.push(s);
+}
+
+function cachePop() {
+  var data = $("#strucfile").val();
+  var s = data;
+  while (s && s.trim() == data.trim())
+    s = cache.pop();
+  if (!s)
+    return;
+  setData(s);
+  loadMol()
+}
+
+
+</script>
+</head>
+<body>
+<table width=1100 cellpadding=10>
+<tr><td rowspan=3 valign=top style="font-size:15pt">
+<h3>Hack-a-Mol</h3>
+This page is designed especially for students of <a  href=https://www.acs.org/content/acs/en/careers/college-to-career/chemistry-careers/cheminformatics.html>cheminformatics</a>
+who are just starting to learn about how chemical structures are represented digitally. 
+<br><br>
+With this page you can draw a structure in 2D, compare that with its 3D structure, and also see its 
+structural data in a variety of formats. You can also enter a chemical identifier 
+-- a chemical name, a <a  href=http://opensmiles.org/>SMILES</a> string, or
+a <a  href=http://www.cas.org/content/chemical-substances/faqs>Chemical Abstracts Registry Number</a>, for instance -- in the box under the JSmol window.
+<br><br>
+If you hack the structural data (carefully!) and then press ENTER, the 2D and 3D structures will update.   
+<br><br>
+You can also drag-drop a structure file into the JSmol window or copy/paste it into the textarea.
+
+<br><br>
+<a href=https://chemapps.stolaf.edu/jmol/docs/misc/hackamolworkings.pdf>How It Works</a>
+<br><br>
+Author: <a  href=https://stolaf.edu/people/hansonr>Bob Hanson</a>
+
+<div id=log></div>
+</td>
+<td valign=top>&nbsp;<br><div id="jmediv" style="position:relative;width:400px;height:300px;"></div></td>
+<td>
+<input type="button" onclick="to3D()" value="&#8594" />
+<br>  
+<!-- not necessary... input type="button" onclick="to2D()" value="&#8592" / -->
+</td>
+<td valign=top>&nbsp;
+
+<a href="javascript:Jmol.script(jmol, 'if ({*}.labels.join(\'\')){labels off}else{labels %a}')">labels</a>
+<a href="javascript:Jmol.script(jmol, 'console')">console </a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:Jmol.showInfo(jmol, true)">info</a>
+<a href="javascript:Jmol.clearConsole(jmol)">clear</a>
+<a href="javascript:Jmol.showInfo(jmol, false)">no info</a>
+<br>
+<script>
+jmol = Jmol.getApplet(jmol, JmolInfo)
+jme = Jmol.getJMEApplet(jme, JMEInfo, jmol);
+</script>
+</td>
+</tr>
+<tr><td colspan=3>
+<a target=_blank href=https://iupac.org/who-we-are/divisions/division-details/inchi/>InChI</a>: <span id="jsmolinchi"></span>
+<br>
+<a target=_blank href=https://www.iupac.org/cms/wp-content/uploads/2016/01/InChI-Software-1.02-Summary.pdf>InChIKey</a>: <span id="jsmolinchikey"></span>
+<br>
+<a target=_blank href=http://opensmiles.org/>SMILES</a>: <span id="jsmolsmiles"></span>
+</td>
+</tr>
+<tr><td colspan=3>
+<input id=mol checked name=format type=radio onclick=setFormat("mol")><label for=mol>MOL/SDF</label>
+<a target=_blank href=https://en.wikipedia.org/wiki/Chemical_table_file><img style="transform:scale(0.8)" src=images/info.png></a>
+<input id=xyz name=format type=radio onclick=setFormat("xyz")><label for=xyz>XYZ</label>
+<a target=_blank href=https://en.wikipedia.org/wiki/XYZ_file_format><img style="transform:scale(0.8)" src=images/info.png></a>
+<input id=pdb name=format type=radio onclick=setFormat("pdb")><label for=jme>PDB</label>
+<a target=_blank href=http://www.rcsb.org/pdb/static.do?p=file_formats/pdb/index.html><img style="transform:scale(0.8)" src=images/info.png></a>
+<input id=cif name=format type=radio onclick=setFormat("cif")><label for=cif>CIF</label>
+<a target=_blank href=http://www.iucr.org/resources/cif><img style="transform:scale(0.8)" src=images/info.png></a>
+&nbsp;Modify the data and press ENTER to see changes above.
+&nbsp;&nbsp;&nbsp;<a href="javascript:cachePop()">UNDO</a>
+<br>
+<textarea id=strucfile wrap=off style="width:800px;height:300px;font:10pt courier">structure file will appear here.</textarea>
+</td></tr>
+</table>
+</body>
+</html>

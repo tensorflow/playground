@@ -1,0 +1,2628 @@
+# Basque translation for jmol
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the jmol package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: jmol\n"
+"Report-Msgid-Bugs-To: jmol-developers@lists.sourceforge.net\n"
+"POT-Creation-Date: 2015-12-23 20:33+0100\n"
+"PO-Revision-Date: 2013-06-02 23:44+0000\n"
+"Last-Translator: Nicolas Vervelle <Unknown>\n"
+"Language-Team: Basque <eu@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 00:57+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: org/jmol/awt/FileDropper.java:106
+msgid "Would you like to replace the current model with the selected model?"
+msgstr ""
+
+#: org/jmol/awtjs2d/JSModelKitPopup.java:89
+#: org/jmol/modelkit/ModelKitPopup.java:72
+msgid "Element?"
+msgstr "Elementua?"
+
+#: org/jmol/console/GenericConsole.java:54
+msgid "Jmol Script Console"
+msgstr "Jmol script kontsola"
+
+#: org/jmol/console/GenericConsole.java:90
+msgid "&Save As..."
+msgstr ""
+
+#: org/jmol/console/GenericConsole.java:91
+#, fuzzy
+msgid "&File"
+msgstr "Fitxategia"
+
+#: org/jmol/console/GenericConsole.java:92
+#, fuzzy
+msgid "&Close"
+msgstr "Itxi"
+
+#: org/jmol/console/GenericConsole.java:97
+msgid "&Help"
+msgstr "&Laguntza"
+
+#: org/jmol/console/GenericConsole.java:98
+msgid "&Search..."
+msgstr "&Bilatu..."
+
+#: org/jmol/console/GenericConsole.java:99
+msgid "&Commands"
+msgstr "&Komandoak"
+
+#: org/jmol/console/GenericConsole.java:100
+msgid "Math &Functions"
+msgstr "&Funtzio matematikoak"
+
+#: org/jmol/console/GenericConsole.java:101
+msgid "Set &Parameters"
+msgstr "Ezarri &parametroak"
+
+#: org/jmol/console/GenericConsole.java:102
+msgid "&More"
+msgstr "&Gehiago"
+
+#: org/jmol/console/GenericConsole.java:103
+msgid "Editor"
+msgstr "Editorea"
+
+#: org/jmol/console/GenericConsole.java:104
+msgid "State"
+msgstr "Egoera"
+
+#: org/jmol/console/GenericConsole.java:105
+#: org/jmol/console/ScriptEditor.java:148
+msgid "Run"
+msgstr "Exekutatu"
+
+#: org/jmol/console/GenericConsole.java:106
+msgid "Clear Output"
+msgstr "Garbitu irteera"
+
+#: org/jmol/console/GenericConsole.java:107
+msgid "Clear Input"
+msgstr "Garbitu sarrera"
+
+#: org/jmol/console/GenericConsole.java:108
+#: org/jmol/popup/MainPopupResourceBundle.java:608
+msgid "History"
+msgstr "Historia"
+
+#: org/jmol/console/GenericConsole.java:109
+#: org/jmol/popup/MainPopupResourceBundle.java:619
+msgid "Load"
+msgstr "Kargatu"
+
+#: org/jmol/console/GenericConsole.java:111
+msgid "press CTRL-ENTER for new line or paste model data and press Load"
+msgstr ""
+"sakatu KTRL+ENTER lerro berrirako edo kopiatu ereduaren datuak eta sakatu "
+"Kargatu"
+
+#: org/jmol/console/GenericConsole.java:113
+msgid ""
+"Messages will appear here. Enter commands in the box below. Click the "
+"console Help menu item for on-line help, which will appear in a new browser "
+"window."
+msgstr ""
+"Mezuak hemen agertuko dira. Sartu komandoak beheko koadroan. Klikatu "
+"kontsolako Laguntza menu-elementua lineako laguntza lortzeko. Laguntza hau "
+"arakatzailearen leiho berri batean agertuko da."
+
+#: org/jmol/console/ScriptEditor.java:107
+msgid "Jmol Script Editor"
+msgstr "Jmol script editorea"
+
+#: org/jmol/console/ScriptEditor.java:140
+#: org/jmol/popup/MainPopupResourceBundle.java:604
+msgid "Console"
+msgstr "Kontsola"
+
+#: org/jmol/console/ScriptEditor.java:142 org/jmol/dialog/Dialog.java:455
+#: org/jmol/dialog/Dialog.java:479 org/jmol/dialog/Dialog.java:482
+msgid "Open"
+msgstr "Ireki"
+
+#: org/jmol/console/ScriptEditor.java:143
+#, fuzzy
+msgid "Font"
+msgstr "Aurrealdea"
+
+#: org/jmol/console/ScriptEditor.java:144
+msgid "Script"
+msgstr "Script-a"
+
+#: org/jmol/console/ScriptEditor.java:145
+msgid "Check"
+msgstr "Egiaztatu"
+
+#: org/jmol/console/ScriptEditor.java:146
+msgid "Top[as in \"go to the top\" - (translators: remove this bracketed part]"
+msgstr "Igo"
+
+#: org/jmol/console/ScriptEditor.java:147
+msgid "Step"
+msgstr "Pausoa"
+
+#: org/jmol/console/ScriptEditor.java:149
+#: org/jmol/popup/MainPopupResourceBundle.java:559
+msgid "Pause"
+msgstr "Pausatu"
+
+#: org/jmol/console/ScriptEditor.java:151
+#: org/jmol/popup/MainPopupResourceBundle.java:560
+msgid "Resume"
+msgstr "Berrekin"
+
+#: org/jmol/console/ScriptEditor.java:153
+msgid "Halt"
+msgstr "Gelditu"
+
+#: org/jmol/console/ScriptEditor.java:155
+msgid "Clear"
+msgstr "Garbitu"
+
+#: org/jmol/console/ScriptEditor.java:156
+msgid "Close"
+msgstr "Itxi"
+
+#: org/jmol/dialog/Dialog.java:94
+msgid "File or URL:"
+msgstr "Fitxategia edo URLa:"
+
+#: org/jmol/dialog/Dialog.java:275
+msgid "Image Type"
+msgstr "Irudi-mota"
+
+#: org/jmol/dialog/Dialog.java:290 org/jmol/dialog/Dialog.java:332
+#, java-format
+msgid "JPEG Quality ({0})"
+msgstr "JPEG kalitatea ({0})"
+
+#: org/jmol/dialog/Dialog.java:304
+#, java-format
+msgid "PNG Compression  ({0})"
+msgstr "PNG konpresioa  ({0})"
+
+#: org/jmol/dialog/Dialog.java:335
+#, java-format
+msgid "PNG Quality ({0})"
+msgstr "PNG kalitatea ({0})"
+
+#: org/jmol/dialog/Dialog.java:385 org/jmol/dialog/Dialog.java:498
+msgid "Yes"
+msgstr "Bai"
+
+#: org/jmol/dialog/Dialog.java:385 org/jmol/dialog/Dialog.java:496
+msgid "No"
+msgstr "Ez"
+
+#: org/jmol/dialog/Dialog.java:387
+#, java-format
+msgid "Do you want to overwrite file {0}?"
+msgstr "{0} fitxategia gainidatzi nahi duzu?"
+
+#: org/jmol/dialog/Dialog.java:388
+msgid "Warning"
+msgstr "Abisua"
+
+#: org/jmol/dialog/Dialog.java:447
+msgid "All Files"
+msgstr "Fitxategi guztiak"
+
+#: org/jmol/dialog/Dialog.java:448 org/jmol/dialog/Dialog.java:495
+msgid "Cancel"
+msgstr "Utzi"
+
+#: org/jmol/dialog/Dialog.java:450
+msgid "Abort file chooser dialog"
+msgstr ""
+
+#: org/jmol/dialog/Dialog.java:452 org/jmol/dialog/Dialog.java:453
+msgid "Details"
+msgstr "Xehetasunak"
+
+#: org/jmol/dialog/Dialog.java:454
+msgid "Directory"
+msgstr "Direktorioa"
+
+#: org/jmol/dialog/Dialog.java:457
+msgid "Open selected directory"
+msgstr "Ireki hautatutako direktorioa"
+
+#: org/jmol/dialog/Dialog.java:458
+msgid "Attributes"
+msgstr "Atributuak"
+
+#: org/jmol/dialog/Dialog.java:459
+msgid "Modified"
+msgstr "Aldatze-data"
+
+#: org/jmol/dialog/Dialog.java:460
+msgid "Generic File"
+msgstr "Fitxategi generikoa"
+
+#: org/jmol/dialog/Dialog.java:461
+msgid "Name"
+msgstr "Izena"
+
+#: org/jmol/dialog/Dialog.java:462
+msgid "File Name:"
+msgstr "Fitxategi-izena:"
+
+#: org/jmol/dialog/Dialog.java:463
+msgid "Size"
+msgstr "Tamaina"
+
+#: org/jmol/dialog/Dialog.java:464
+msgid "Files of Type:"
+msgstr "Mota honetako fitxategiak:"
+
+#: org/jmol/dialog/Dialog.java:465
+msgid "Type"
+msgstr "Mota"
+
+#: org/jmol/dialog/Dialog.java:466
+msgid "Help"
+msgstr "Laguntza"
+
+#: org/jmol/dialog/Dialog.java:468
+msgid "FileChooser help"
+msgstr "Fitxategi-hautatzailearen laguntza"
+
+#: org/jmol/dialog/Dialog.java:469 org/jmol/dialog/Dialog.java:470
+msgid "Home"
+msgstr "Etxea"
+
+#: org/jmol/dialog/Dialog.java:471 org/jmol/dialog/Dialog.java:472
+msgid "List"
+msgstr "Zerrenda"
+
+#: org/jmol/dialog/Dialog.java:473
+msgid "Look In:"
+msgstr "Begiratu hemen:"
+
+#: org/jmol/dialog/Dialog.java:475
+msgid "Error creating new folder"
+msgstr "Errorea karpeta berria sortzean"
+
+#: org/jmol/dialog/Dialog.java:476
+msgid "New Folder"
+msgstr "Karpeta berria"
+
+#: org/jmol/dialog/Dialog.java:478
+msgid "Create New Folder"
+msgstr "Sortu karpeta berria"
+
+#: org/jmol/dialog/Dialog.java:481
+msgid "Open selected file"
+msgstr "Ireki hautatutako fitxategia"
+
+#: org/jmol/dialog/Dialog.java:483 org/jmol/dialog/Dialog.java:486
+#: org/jmol/popup/MainPopupResourceBundle.java:620
+msgid "Save"
+msgstr "Gorde"
+
+#: org/jmol/dialog/Dialog.java:485
+msgid "Save selected file"
+msgstr "Gorde hautatutako fitxategia"
+
+#: org/jmol/dialog/Dialog.java:487
+msgid "Save In:"
+msgstr "Gorde hemen:"
+
+#: org/jmol/dialog/Dialog.java:488
+msgid "Update"
+msgstr "Eguneratu"
+
+#: org/jmol/dialog/Dialog.java:490
+msgid "Update directory listing"
+msgstr "Eguneratu direktorio-zerrenda"
+
+#: org/jmol/dialog/Dialog.java:491
+msgid "Up"
+msgstr "Gora"
+
+#: org/jmol/dialog/Dialog.java:492
+msgid "Up One Level"
+msgstr "Igo maila bat"
+
+#: org/jmol/dialog/Dialog.java:497
+msgid "OK"
+msgstr "Ados"
+
+#: org/jmol/dialog/FilePreview.java:77
+msgid "Preview"
+msgstr "Aurreikusi"
+
+#: org/jmol/dialog/FilePreview.java:98
+msgid "Append models"
+msgstr "Gehitu ereduak"
+
+#: org/jmol/dialog/FilePreview.java:100
+msgid "PDB cartoons"
+msgstr ""
+
+#: org/jmol/dssx/DSSP.java:288
+#, java-format
+msgid ""
+"NOTE: Backbone amide hydrogen positions are present and will be ignored. "
+"Their positions will be approximated, as in standard DSSP analysis.\n"
+"Use {0} to not use this approximation.\n"
+"\n"
+msgstr ""
+
+#: org/jmol/dssx/DSSP.java:294
+#, java-format
+msgid ""
+"NOTE: Backbone amide hydrogen positions are present and will be used. "
+"Results may differ significantly from standard DSSP analysis.\n"
+"Use {0} to ignore these hydrogen positions.\n"
+"\n"
+msgstr ""
+
+#: org/jmol/i18n/Language.java:77
+msgid "Arabic"
+msgstr "Arabiera"
+
+#: org/jmol/i18n/Language.java:78
+msgid "Asturian"
+msgstr "Asturiera"
+
+#: org/jmol/i18n/Language.java:79
+msgid "Azerbaijani"
+msgstr "Azerbaijanera"
+
+#: org/jmol/i18n/Language.java:80
+msgid "Bosnian"
+msgstr "Bosniera"
+
+#: org/jmol/i18n/Language.java:81
+msgid "Catalan"
+msgstr "Katalana"
+
+#: org/jmol/i18n/Language.java:82
+msgid "Czech"
+msgstr "Txekiera"
+
+#: org/jmol/i18n/Language.java:83
+msgid "Danish"
+msgstr "Daniera"
+
+#: org/jmol/i18n/Language.java:84
+msgid "German"
+msgstr "Alemana"
+
+#: org/jmol/i18n/Language.java:85
+msgid "Greek"
+msgstr "Greziera"
+
+#: org/jmol/i18n/Language.java:86
+msgid "Australian English"
+msgstr "Australiako ingelesa"
+
+#: org/jmol/i18n/Language.java:87
+msgid "British English"
+msgstr "Erresuma Batuko ingelesa"
+
+#: org/jmol/i18n/Language.java:88
+msgid "American English"
+msgstr "AEBetako ingelesa"
+
+#: org/jmol/i18n/Language.java:89
+msgid "Spanish"
+msgstr "Espainiera"
+
+#: org/jmol/i18n/Language.java:90
+msgid "Estonian"
+msgstr "Estoniera"
+
+#: org/jmol/i18n/Language.java:91
+msgid "Basque"
+msgstr "Euskara"
+
+#: org/jmol/i18n/Language.java:92
+msgid "Finnish"
+msgstr "Finlandiera"
+
+#: org/jmol/i18n/Language.java:93
+msgid "Faroese"
+msgstr "Faroera"
+
+#: org/jmol/i18n/Language.java:94
+msgid "French"
+msgstr "Frantsesa"
+
+#: org/jmol/i18n/Language.java:95
+msgid "Frisian"
+msgstr "Frisiera"
+
+#: org/jmol/i18n/Language.java:96
+msgid "Galician"
+msgstr "Galiziera"
+
+#: org/jmol/i18n/Language.java:97
+msgid "Croatian"
+msgstr "Kroaziera"
+
+#: org/jmol/i18n/Language.java:98
+msgid "Hungarian"
+msgstr "Hungariera"
+
+#: org/jmol/i18n/Language.java:99
+msgid "Armenian"
+msgstr "Armeniera"
+
+#: org/jmol/i18n/Language.java:100
+msgid "Indonesian"
+msgstr "Indonesiera"
+
+#: org/jmol/i18n/Language.java:101
+msgid "Italian"
+msgstr "Italiera"
+
+#: org/jmol/i18n/Language.java:102
+msgid "Japanese"
+msgstr "Japoniera"
+
+#: org/jmol/i18n/Language.java:103
+msgid "Javanese"
+msgstr "Javera"
+
+#: org/jmol/i18n/Language.java:104
+msgid "Korean"
+msgstr "Koreera"
+
+#: org/jmol/i18n/Language.java:105
+msgid "Malay"
+msgstr "Malaysiera"
+
+#: org/jmol/i18n/Language.java:106
+msgid "Norwegian Bokmal"
+msgstr "Bokmal norvegiera"
+
+#: org/jmol/i18n/Language.java:107
+msgid "Dutch"
+msgstr "Nederlandera"
+
+#: org/jmol/i18n/Language.java:108
+msgid "Occitan"
+msgstr "Okzitaniera"
+
+#: org/jmol/i18n/Language.java:109
+msgid "Polish"
+msgstr "Poloniera"
+
+#: org/jmol/i18n/Language.java:110
+msgid "Portuguese"
+msgstr "Portugesa"
+
+#: org/jmol/i18n/Language.java:111
+msgid "Brazilian Portuguese"
+msgstr "Brasilgo portugesa"
+
+#: org/jmol/i18n/Language.java:112
+msgid "Russian"
+msgstr "Errusiera"
+
+#: org/jmol/i18n/Language.java:113
+msgid "Slovenian"
+msgstr "Esloveniera"
+
+#: org/jmol/i18n/Language.java:114
+msgid "Serbian"
+msgstr "Serbiera"
+
+#: org/jmol/i18n/Language.java:115
+msgid "Swedish"
+msgstr "Suediera"
+
+#: org/jmol/i18n/Language.java:116
+msgid "Tamil"
+msgstr "Tamilera"
+
+#: org/jmol/i18n/Language.java:117
+msgid "Telugu"
+msgstr "Telugu"
+
+#: org/jmol/i18n/Language.java:118
+msgid "Turkish"
+msgstr "Turkiera"
+
+#: org/jmol/i18n/Language.java:119
+msgid "Uyghur"
+msgstr "Uigurrera"
+
+#: org/jmol/i18n/Language.java:120
+msgid "Ukrainian"
+msgstr "Ukrainera"
+
+#: org/jmol/i18n/Language.java:121
+msgid "Uzbek"
+msgstr "Uzbekera"
+
+#: org/jmol/i18n/Language.java:122
+msgid "Simplified Chinese"
+msgstr "Txinera sinplifikatua"
+
+#: org/jmol/i18n/Language.java:123
+msgid "Traditional Chinese"
+msgstr "Txinera tradizionala"
+
+#: org/jmol/minimize/Minimizer.java:221
+#, java-format
+msgid "Could not get class for force field {0}"
+msgstr "Ezin izan da {0} indar-eremuarentzako klasea eskuratu"
+
+#: org/jmol/minimize/Minimizer.java:227
+msgid "No atoms selected -- nothing to do!"
+msgstr "Ez dago atomorik hautatuta -- egitekorik ez!"
+
+#: org/jmol/minimize/Minimizer.java:312
+#, java-format
+msgid "{0} atoms will be minimized."
+msgstr "{0} atomo minimizatuko dira."
+
+#: org/jmol/minimize/Minimizer.java:327
+#, java-format
+msgid "could not setup force field {0}"
+msgstr "ezin izan da {0} eremua konfiguratu"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:88
+msgid "new"
+msgstr "berria"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:89
+msgid "undo (CTRL-Z)"
+msgstr "desegin (Ktrl+Z)"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:90
+msgid "redo (CTRL-Y)"
+msgstr "berregin (Ktrl+Y)"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:91
+#: org/jmol/viewer/ActionManager.java:233
+msgid "center"
+msgstr "erdia"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:92
+msgid "add hydrogens"
+msgstr "gehitu hidrogenoak"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:93
+msgid "minimize"
+msgstr "minimizatu"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:94
+msgid "fix hydrogens and minimize"
+msgstr ""
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:95
+msgid "clear"
+msgstr "garbitu"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:96
+msgid "save file"
+msgstr "gorde fitxategia"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:97
+msgid "save state"
+msgstr "gorde egoera"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:98
+msgid "invert ring stereochemistry"
+msgstr "alderantzikatu eraztunaren estereokimika"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:99
+msgid "delete atom"
+msgstr "ezabatu atomoa"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:100
+msgid "drag to bond"
+msgstr "arrastatu loturara"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:101
+msgid "drag atom"
+msgstr "arrastatu atomoa"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:102
+msgid "drag atom (and minimize)"
+msgstr "arrastatu atomoa (eta minimizatu)"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:103
+msgid "drag molecule (ALT to rotate)"
+msgstr ""
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:104
+msgid "drag and minimize molecule (docking)"
+msgstr ""
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:113
+msgid "increase charge"
+msgstr "handitu karga"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:114
+msgid "decrease charge"
+msgstr "txikiagotu karga"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:115
+msgid "delete bond"
+msgstr "ezabatu lotura"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:116
+msgid "single"
+msgstr "bakuna"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:117
+msgid "double"
+msgstr "bikoitza"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:118
+msgid "triple"
+msgstr "hirukoitza"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:119
+msgid "increase order"
+msgstr ""
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:120
+msgid "decrease order"
+msgstr ""
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:121
+msgid "rotate bond (SHIFT-DRAG)"
+msgstr "biratu lotura (SHIFT eta arrastatu)"
+
+#: org/jmol/modelkit/ModelKitPopupResourceBundle.java:122
+msgid "exit modelkit mode"
+msgstr "irten modelatze tresna-jokoa modutik"
+
+#: org/jmol/popup/JmolGenericPopup.java:754
+#: org/jmol/popup/MainPopupResourceBundle.java:287
+msgid "Space Group"
+msgstr ""
+
+#: org/jmol/popup/JmolGenericPopup.java:770
+#, fuzzy
+msgid "none"
+msgstr "Bat ere ez"
+
+#: org/jmol/popup/JmolGenericPopup.java:829
+#: org/jmol/popup/JmolGenericPopup.java:880
+#: org/jmol/popup/MainPopupResourceBundle.java:307
+#: org/jmol/popup/MainPopupResourceBundle.java:330
+#: org/jmol/popup/MainPopupResourceBundle.java:339
+#: org/jmol/popup/MainPopupResourceBundle.java:357
+msgid "All"
+msgstr "Guztiak"
+
+#: org/jmol/popup/JmolGenericPopup.java:991
+#, java-format
+msgid "{0} processors"
+msgstr "{0} prozesatzaile"
+
+#: org/jmol/popup/JmolGenericPopup.java:993
+#, java-format
+msgid "{0} MB total"
+msgstr "guztira {0} MB"
+
+#: org/jmol/popup/JmolGenericPopup.java:996
+#, java-format
+msgid "{0} MB maximum"
+msgstr "{0} MB gehienez"
+
+#: org/jmol/popup/JmolGenericPopup.java:1050
+msgid "not capturing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:266
+#, fuzzy
+msgid "Jmol Script Commands"
+msgstr "Jmol script kontsola"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:267
+msgid "Mouse Manual"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:268
+msgid "Translations"
+msgstr "Itzulpenak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:269
+msgid "System"
+msgstr "Sistema"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:276
+msgid "No atoms loaded"
+msgstr "Atomorik ez kargatuta"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:277
+msgid "Configurations"
+msgstr "Konfigurazioak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:278
+msgid "Element"
+msgstr "Elementua"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:279
+msgid "Model/Frame"
+msgstr "Eredua/Markoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:280
+msgid "Language"
+msgstr "Hizkuntza"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:281
+#: org/jmol/popup/MainPopupResourceBundle.java:282
+#: org/jmol/popup/MainPopupResourceBundle.java:283
+msgid "By Residue Name"
+msgstr "Hondarraren izenaren arabera"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:284
+msgid "By HETATM"
+msgstr "HETATMen arabera"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:285
+#, java-format
+msgid "Molecular Orbitals ({0})"
+msgstr "Orbital molekularrak ({0})"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:286
+#: org/jmol/popup/MainPopupResourceBundle.java:615
+#: org/jmol/popup/MainPopupResourceBundle.java:675
+msgid "Symmetry"
+msgstr "Simetria"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:288
+msgid "Model information"
+msgstr "Ereduaren informazioa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:289
+#, java-format
+msgid "Select ({0})"
+msgstr "Hautatu ({0})"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:290
+#, java-format
+msgid "All {0} models"
+msgstr "{0} ereduak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:291
+#, java-format
+msgid "Configurations ({0})"
+msgstr "({0}) konfigurazio"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:292
+#, java-format
+msgid "Collection of {0} models"
+msgstr "{0} ereduren bilduma"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:293
+#, java-format
+msgid "atoms: {0}"
+msgstr "atomoak: {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:294
+#, java-format
+msgid "bonds: {0}"
+msgstr "loturak: {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:295
+#, java-format
+msgid "groups: {0}"
+msgstr "taldeak: {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:296
+#, java-format
+msgid "chains: {0}"
+msgstr "kateak: {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:297
+#, java-format
+msgid "polymers: {0}"
+msgstr "polimeroak: {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:298
+#, java-format
+msgid "model {0}"
+msgstr "{0} eredua"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:299
+#, java-format
+msgid "View {0}"
+msgstr "{0} ikuspegia"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:300
+msgid "Main Menu"
+msgstr "Menu nagusia"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:301
+msgid "Biomolecules"
+msgstr "Biomolekulak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:302
+#, java-format
+msgid "biomolecule {0} ({1} atoms)"
+msgstr "{0} biomolekula ({1} atomo)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:303
+#, java-format
+msgid "load biomolecule {0} ({1} atoms)"
+msgstr "kargatu {0} biomolekula ({1} atomo)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:308
+#: org/jmol/popup/MainPopupResourceBundle.java:442
+#: org/jmol/popup/MainPopupResourceBundle.java:451
+msgid "None"
+msgstr "Bat ere ez"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:309
+msgid "Display Selected Only"
+msgstr "Bistaratu hautatutakoak soilik"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:310
+msgid "Invert Selection"
+msgstr "Alderantzikatu hautapena"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:312
+msgid "View"
+msgstr "Ikusi"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:313
+msgid "Best"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:314
+msgid "Front"
+msgstr "Aurrealdea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:315
+msgid "Left"
+msgstr "Ezkerra"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:316
+msgid "Right"
+msgstr "Eskuina"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:317
+msgid ""
+"Top[as in \"view from the top, from above\" - (translators: remove this "
+"bracketed part]"
+msgstr "Goiko aldea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:318
+msgid "Bottom"
+msgstr "Behealdea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:319
+msgid "Back"
+msgstr "Atzealdea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:320
+#, fuzzy
+msgid "Axis x"
+msgstr "Ardatzak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:321
+#, fuzzy
+msgid "Axis y"
+msgstr "Ardatzak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:322
+#, fuzzy
+msgid "Axis z"
+msgstr "Ardatzak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:323
+#, fuzzy
+msgid "Axis a"
+msgstr "Ardatzak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:324
+#, fuzzy
+msgid "Axis b"
+msgstr "Ardatzak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:325
+#, fuzzy
+msgid "Axis c"
+msgstr "Ardatzak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:327
+msgid "Scenes"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:329
+msgid "Protein"
+msgstr "Proteina"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:331
+#: org/jmol/popup/MainPopupResourceBundle.java:342
+#: org/jmol/popup/MainPopupResourceBundle.java:413
+#: org/jmol/popup/MainPopupResourceBundle.java:511
+msgid "Backbone"
+msgstr "Bizkarrezurra"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:332
+msgid "Side Chains"
+msgstr "Albo-kateak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:333
+msgid "Polar Residues"
+msgstr "Hondar polarrak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:334
+msgid "Nonpolar Residues"
+msgstr "Hondar apolarrak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:335
+msgid "Basic Residues (+)"
+msgstr "Hondar basikoak (+)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:336
+msgid "Acidic Residues (-)"
+msgstr "Hondar azidoak (-)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:337
+msgid "Uncharged Residues"
+msgstr "Kargarik gabeko hondarrak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:338
+msgid "Nucleic"
+msgstr "Nukleiko"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:340
+msgid "DNA"
+msgstr "DNA"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:341
+msgid "RNA"
+msgstr "RNA"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:343
+msgid "Bases"
+msgstr "Baseak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:344
+msgid "AT pairs"
+msgstr "AT pareak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:345
+msgid "GC pairs"
+msgstr "GC pareak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:346
+msgid "AU pairs"
+msgstr "AU pareak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:347
+#: org/jmol/popup/MainPopupResourceBundle.java:477
+msgid "Secondary Structure"
+msgstr "Egitura sekundarioa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:348
+msgid "Hetero"
+msgstr "Hetero"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:349
+msgid "All PDB \"HETATM\""
+msgstr "PDB \"HETATM\" guztiak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:350
+msgid "All Solvent"
+msgstr "Disolbatzaile guztiak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:351
+msgid "All Water"
+msgstr "Guztia ura"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:353
+msgid "Nonaqueous Solvent"
+msgstr "Disolbatzaile ez-akuosoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:354
+msgid "Nonaqueous HETATM"
+msgstr "HETATM ez-akuosoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:355
+msgid "Ligand"
+msgstr "Lotugaia"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:358
+msgid "Carbohydrate"
+msgstr "Karbohidratoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:359
+msgid "None of the above"
+msgstr "Hauetako bat ere ez"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:361
+msgid "Style"
+msgstr "Estiloa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:362
+msgid "Scheme"
+msgstr "Eskema"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:363
+msgid "CPK Spacefill"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:364
+msgid "Ball and Stick"
+msgstr "Bolak eta makilak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:365
+msgid "Sticks"
+msgstr "Makilak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:366
+msgid "Wireframe"
+msgstr "Burdin-haria"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:367
+#: org/jmol/popup/MainPopupResourceBundle.java:414
+#: org/jmol/popup/MainPopupResourceBundle.java:513
+msgid "Cartoon"
+msgstr "Marrazkia"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:368
+#: org/jmol/popup/MainPopupResourceBundle.java:419
+#: org/jmol/popup/MainPopupResourceBundle.java:512
+msgid "Trace"
+msgstr "Arrastoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:370
+#: org/jmol/popup/MainPopupResourceBundle.java:464
+msgid "Atoms"
+msgstr "Atomoak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:371
+#: org/jmol/popup/MainPopupResourceBundle.java:380
+#: org/jmol/popup/MainPopupResourceBundle.java:389
+#: org/jmol/popup/MainPopupResourceBundle.java:401
+#: org/jmol/popup/MainPopupResourceBundle.java:412
+#: org/jmol/popup/MainPopupResourceBundle.java:422
+#: org/jmol/popup/MainPopupResourceBundle.java:430
+#: org/jmol/popup/MainPopupResourceBundle.java:537
+#: org/jmol/popup/MainPopupResourceBundle.java:588
+#: org/jmol/popup/MainPopupResourceBundle.java:673
+msgid "Off"
+msgstr "Desaktibatuta"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:372
+#: org/jmol/popup/MainPopupResourceBundle.java:373
+#: org/jmol/popup/MainPopupResourceBundle.java:374
+#: org/jmol/popup/MainPopupResourceBundle.java:375
+#: org/jmol/popup/MainPopupResourceBundle.java:376
+#: org/jmol/popup/MainPopupResourceBundle.java:377
+#, java-format
+msgid "{0}% van der Waals"
+msgstr "%{0} van der Waals"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:379
+#: org/jmol/popup/MainPopupResourceBundle.java:507
+msgid "Bonds"
+msgstr "Loturak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:381
+#: org/jmol/popup/MainPopupResourceBundle.java:391
+#: org/jmol/popup/MainPopupResourceBundle.java:402
+#: org/jmol/popup/MainPopupResourceBundle.java:423
+#: org/jmol/popup/MainPopupResourceBundle.java:431
+#: org/jmol/popup/MainPopupResourceBundle.java:536
+msgid "On"
+msgstr "Aktibatuta"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:382
+#: org/jmol/popup/MainPopupResourceBundle.java:383
+#: org/jmol/popup/MainPopupResourceBundle.java:384
+#: org/jmol/popup/MainPopupResourceBundle.java:385
+#: org/jmol/popup/MainPopupResourceBundle.java:386
+#: org/jmol/popup/MainPopupResourceBundle.java:394
+#: org/jmol/popup/MainPopupResourceBundle.java:395
+#: org/jmol/popup/MainPopupResourceBundle.java:396
+#: org/jmol/popup/MainPopupResourceBundle.java:397
+#: org/jmol/popup/MainPopupResourceBundle.java:398
+#: org/jmol/popup/MainPopupResourceBundle.java:405
+#: org/jmol/popup/MainPopupResourceBundle.java:406
+#: org/jmol/popup/MainPopupResourceBundle.java:407
+#: org/jmol/popup/MainPopupResourceBundle.java:408
+#: org/jmol/popup/MainPopupResourceBundle.java:409
+#: org/jmol/popup/MainPopupResourceBundle.java:433
+#: org/jmol/popup/MainPopupResourceBundle.java:434
+#: org/jmol/popup/MainPopupResourceBundle.java:697
+#: org/jmol/popup/MainPopupResourceBundle.java:698
+#: org/jmol/popup/MainPopupResourceBundle.java:699
+#: org/jmol/popup/MainPopupResourceBundle.java:700
+#: org/jmol/popup/MainPopupResourceBundle.java:701
+#, java-format
+msgid "{0} Å"
+msgstr "{0} Å"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:388
+#: org/jmol/popup/MainPopupResourceBundle.java:508
+msgid "Hydrogen Bonds"
+msgstr "Hidrogeno-loturak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:390
+msgid "Calculate"
+msgstr "Kalkulatu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:392
+msgid "Set H-Bonds Side Chain"
+msgstr "Ezarri H-loturak albo-katean"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:393
+msgid "Set H-Bonds Backbone"
+msgstr "Ezarri H-loturen bizkarrezurrean"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:400
+#: org/jmol/popup/MainPopupResourceBundle.java:509
+msgid "Disulfide Bonds"
+msgstr "Disulfuro-loturak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:403
+msgid "Set SS-Bonds Side Chain"
+msgstr "Ezarri SS-loturak albo-katean"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:404
+msgid "Set SS-Bonds Backbone"
+msgstr "Ezarri SS-loturak bizkarrezurrean"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:411
+#: org/jmol/popup/MainPopupResourceBundle.java:510
+msgid "Structures"
+msgstr "Egiturak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:415
+msgid "Cartoon Rockets"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:416
+#: org/jmol/popup/MainPopupResourceBundle.java:514
+msgid "Ribbons"
+msgstr "Xingolak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:417
+#: org/jmol/popup/MainPopupResourceBundle.java:515
+msgid "Rockets"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:418
+#: org/jmol/popup/MainPopupResourceBundle.java:516
+msgid "Strands"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:421
+msgid "Vibration"
+msgstr "Bibrazioa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:426
+#: org/jmol/popup/MainPopupResourceBundle.java:470
+#: org/jmol/popup/MainPopupResourceBundle.java:520
+msgid "Vectors"
+msgstr "Bektoreak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:427
+msgid "Spectra"
+msgstr "Espektroa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:428
+msgid "1H-NMR"
+msgstr "1H-NMR"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:429
+msgid "13C-NMR"
+msgstr "13C-NMR"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:432
+#, java-format
+msgid "{0} pixels"
+msgstr "{0} pixel"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:435
+#: org/jmol/popup/MainPopupResourceBundle.java:436
+#: org/jmol/popup/MainPopupResourceBundle.java:437
+#: org/jmol/popup/MainPopupResourceBundle.java:438
+#: org/jmol/popup/MainPopupResourceBundle.java:439
+#, java-format
+msgid "Scale {0}"
+msgstr "{0} eskala"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:441
+msgid "Stereographic"
+msgstr "Estereografikoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:443
+msgid "Red+Cyan glasses"
+msgstr "Gorria+zian betaurrekoak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:444
+msgid "Red+Blue glasses"
+msgstr "Gorria+urdina betaurrekoak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:445
+msgid "Red+Green glasses"
+msgstr "Gorria+berdea betaurrekoak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:446
+msgid "Cross-eyed viewing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:447
+msgid "Wall-eyed viewing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:449
+#: org/jmol/popup/MainPopupResourceBundle.java:517
+msgid "Labels"
+msgstr "Etiketak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:452
+msgid "With Element Symbol"
+msgstr "Elementuaren sinboloarekin"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:453
+msgid "With Atom Name"
+msgstr "Atomoaren izenarekin"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:454
+msgid "With Atom Number"
+msgstr "Atomo zenbakiarekin"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:456
+msgid "Position Label on Atom"
+msgstr "Labelaren kokapena atomoan"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:457
+msgid "Centered"
+msgstr "Erdian"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:458
+msgid "Upper Right"
+msgstr "Goian eskuinean"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:459
+msgid "Lower Right"
+msgstr "Behean eskuinean"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:460
+msgid "Upper Left"
+msgstr "Goian ezkerrean"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:461
+msgid "Lower Left"
+msgstr "Behean ezkerrean"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:463
+msgid "Color"
+msgstr "Kolorea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:466
+msgid "By Scheme"
+msgstr "Eskemaren arabera"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:467
+msgid "Element (CPK)"
+msgstr "Elementua (CPK)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:468
+msgid "Alternative Location"
+msgstr "Kokapen alternatiboa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:469
+msgid "Molecule"
+msgstr "Molekula"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:471
+msgid "Formal Charge"
+msgstr "Karga formala"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:472
+msgid "Partial Charge"
+msgstr "Karga partziala"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:473
+msgid "Temperature (Relative)"
+msgstr "Tenperatura (Erlatiboa)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:474
+msgid "Temperature (Fixed)"
+msgstr "Tenperatura (Finkoa)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:476
+msgid "Amino Acid"
+msgstr "Aminoazidoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:478
+msgid "Chain"
+msgstr "Katea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:479
+msgid "Group"
+msgstr "Taldea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:480
+msgid "Monomer"
+msgstr "Monomeroa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:481
+msgid "Shapely"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:483
+msgid "Inherit"
+msgstr "Heredatu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:484
+msgid "Black"
+msgstr "Beltza"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:485
+msgid "White"
+msgstr "Zuria"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:486
+msgid "Cyan"
+msgstr "Ziana"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:488
+msgid "Red"
+msgstr "Gorria"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:489
+msgid "Orange"
+msgstr "Laranja"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:490
+msgid "Yellow"
+msgstr "Horia"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:491
+msgid "Green"
+msgstr "Berdea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:492
+msgid "Blue"
+msgstr "Urdina"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:493
+msgid "Indigo"
+msgstr "Anila"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:494
+msgid "Violet"
+msgstr "Bioleta"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:496
+msgid "Salmon"
+msgstr "Izokina"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:497
+msgid "Olive"
+msgstr "Oliba"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:498
+msgid "Maroon"
+msgstr "Granatea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:499
+msgid "Gray"
+msgstr "Grisa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:500
+msgid "Slate Blue"
+msgstr "Arbel-urdina"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:501
+msgid "Gold"
+msgstr "Urrea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:502
+msgid "Orchid"
+msgstr "Orkidea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:504
+#: org/jmol/popup/MainPopupResourceBundle.java:671
+msgid "Make Opaque"
+msgstr "Bihurtu opako"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:505
+#: org/jmol/popup/MainPopupResourceBundle.java:672
+msgid "Make Translucent"
+msgstr "Bihurtu garden"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:518
+msgid "Background"
+msgstr "Atzeko planoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:519
+#: org/jmol/popup/MainPopupResourceBundle.java:662
+msgid "Surfaces"
+msgstr "Gainazalak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:521
+#: org/jmol/popup/MainPopupResourceBundle.java:683
+#: org/jmol/popup/MainPopupResourceBundle.java:709
+msgid "Axes"
+msgstr "Ardatzak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:522
+#: org/jmol/popup/MainPopupResourceBundle.java:684
+#: org/jmol/popup/MainPopupResourceBundle.java:708
+msgid "Boundbox"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:523
+#: org/jmol/popup/MainPopupResourceBundle.java:659
+#: org/jmol/popup/MainPopupResourceBundle.java:685
+#: org/jmol/popup/MainPopupResourceBundle.java:710
+msgid "Unit cell"
+msgstr "Gelaxka-unitatea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:525
+msgid "Zoom"
+msgstr "Zooma"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:532
+msgid "Zoom In"
+msgstr "Handiagotu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:533
+msgid "Zoom Out"
+msgstr "Txikiagotu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:535
+#: org/jmol/popup/MainPopupResourceBundle.java:601
+msgid "Spin"
+msgstr "Biratu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:539
+msgid "Set X Rate"
+msgstr "Ezarri X proportzioa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:540
+msgid "Set Y Rate"
+msgstr "Ezarri Y proportzioa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:541
+msgid "Set Z Rate"
+msgstr "Ezarri Z proportzioa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:542
+#: org/jmol/popup/MainPopupResourceBundle.java:568
+msgid "Set FPS"
+msgstr "Ezarri FPS"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:552
+msgid "Animation"
+msgstr "Animazioa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:553
+msgid "Animation Mode"
+msgstr "Animazio-modua"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:554
+msgid "Play Once"
+msgstr "Erreproduzitu behin"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:555
+msgid "Palindrome"
+msgstr "Palindromoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:556
+msgid "Loop"
+msgstr "Begizta"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:558
+msgid "Play"
+msgstr "Erreproduzitu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:561
+msgid "Stop"
+msgstr "Gelditu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:562
+msgid "Next Frame"
+msgstr "Hurrengo markoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:563
+msgid "Previous Frame"
+msgstr "Aurreko markoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:564
+msgid "Rewind"
+msgstr "Birbobinatu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:565
+msgid "Reverse"
+msgstr "Alderantziz"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:566
+msgid "Restart"
+msgstr "Berrabiarazi"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:575
+#: org/jmol/popup/MainPopupResourceBundle.java:610
+msgid "Measurements"
+msgstr "Neurketak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:576
+msgid "Double-Click begins and ends all measurements"
+msgstr "Klik bikoitzak neurketa guztiak hasi eta bukatzen ditu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:577
+msgid "Click for distance measurement"
+msgstr "Klikatu distantzia neurtzeko"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:578
+msgid "Click for angle measurement"
+msgstr "Klikatu angelua neurtzeko"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:579
+msgid "Click for torsion (dihedral) measurement"
+msgstr "Klikatu bihurdura (angelu diedroa) neurtzeko"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:580
+msgid "Click two atoms to display a sequence in the console"
+msgstr "Klikatu bi atomo kontsolan sekuentzia bat bistaratzeko"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:581
+msgid "Delete measurements"
+msgstr "Ezabatu neurketak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:582
+msgid "List measurements"
+msgstr "Zerrendatu neurketak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:583
+msgid "Distance units nanometers"
+msgstr "Distantzia nanometrotan"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:584
+msgid "Distance units Angstroms"
+msgstr "Distantzia Angstrometan"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:585
+msgid "Distance units picometers"
+msgstr "Distantzia pikometroetan"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:587
+msgid "Set picking"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:589
+msgid "Center"
+msgstr "Erdian"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:591
+msgid "Identity"
+msgstr "Identitatea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:592
+msgid "Label"
+msgstr "Etiketa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:593
+msgid "Select atom"
+msgstr "Hautatu atomoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:594
+msgid "Select chain"
+msgstr "Hautatu katea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:595
+msgid "Select element"
+msgstr "Hautatu elementua"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:596
+#, fuzzy
+msgid "modelKitMode"
+msgstr "irten modelatze tresna-jokoa modutik"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:597
+msgid "Select group"
+msgstr "Hautatu taldea"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:598
+msgid "Select molecule"
+msgstr "Hautatu molekula"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:599
+msgid "Select site"
+msgstr "Hautatu lekua"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:600
+msgid "Show symmetry operation"
+msgstr "Erakutsi simetria-eragiketa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:603
+msgid "Show"
+msgstr "Erakutsi"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:605
+#, fuzzy
+msgid "JavaScript Console"
+msgstr "Jmol script kontsola"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:606
+msgid "File Contents"
+msgstr "Fitxategiaren edukiak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:607
+msgid "File Header"
+msgstr "Fitxategiaren goiburua"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:609
+msgid "Isosurface JVXL data"
+msgstr "Isoazaleraren JVXL datuak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:611
+msgid "Molecular orbital JVXL data"
+msgstr "Orbital molekularraren JVXL datuak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:612
+msgid "Model"
+msgstr "Eredua"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:613
+msgid "Orientation"
+msgstr "Orientazioa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:614
+msgid "Space group"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:616
+msgid "Current state"
+msgstr "Uneko egoera"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:618
+msgid "File"
+msgstr "Fitxategia"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:621
+msgid "Export"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:622
+msgid "Reload"
+msgstr "Birkargatu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:623
+msgid "Open from PDB"
+msgstr "Ireki PDBtik"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:624
+#, fuzzy
+msgid "Open local file"
+msgstr "Ireki hautatutako fitxategia"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:625
+#, fuzzy
+msgid "Open URL"
+msgstr "Ireki"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:626
+msgid "Load full unit cell"
+msgstr "Kargatu gelaxka-unitate osoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:627
+msgid "Open script"
+msgstr "Ireki scripta"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:629
+#: org/jmol/viewer/OutputManager.java:792
+msgid "Capture"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:630
+msgid "Capture rock"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:631
+msgid "Capture spin"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:632
+msgid "Start capturing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:633
+msgid "End capturing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:634
+msgid "Disable capturing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:635
+msgid "Re-enable capturing"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:636
+msgid "Set capture replay rate"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:637
+msgid "Toggle capture looping"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:639
+#, java-format
+msgid "Save a copy of {0}"
+msgstr "Gorde {0}(r)en kopia"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:640
+msgid "Save script with state"
+msgstr "Gorde scripta egoerarekin"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:641
+msgid "Save script with history"
+msgstr "Gorde scripta historiarekin"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:642
+#: org/jmol/popup/MainPopupResourceBundle.java:643
+#: org/jmol/popup/MainPopupResourceBundle.java:644
+#: org/jmol/popup/MainPopupResourceBundle.java:645
+#: org/jmol/popup/MainPopupResourceBundle.java:646
+#, java-format
+msgid "Export {0} image"
+msgstr "Esportatu {0} irudia"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:647
+#, fuzzy
+msgid "Save as PNG/JMOL (image+zip)"
+msgstr "Gorde guztia JMOL fitxategi bezala (zip)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:648
+msgid "Save JVXL isosurface"
+msgstr "Gorde JVXL isogainazala"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:649
+#: org/jmol/popup/MainPopupResourceBundle.java:650
+#: org/jmol/popup/MainPopupResourceBundle.java:651
+#: org/jmol/popup/MainPopupResourceBundle.java:652
+#, java-format
+msgid "Export {0} 3D model"
+msgstr "Esportatu {0} 3Dko eredua"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:654
+msgid "Computation"
+msgstr "Kalkulua"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:655
+msgid "Optimize structure"
+msgstr "Optimizatu egitura"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:656
+msgid "Model kit"
+msgstr "Modelatze tresna-jokoa"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:660
+msgid "Extract MOL data"
+msgstr "Erauzi MOL datuak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:663
+msgid "Dot Surface"
+msgstr "Puntu gainazala"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:664
+msgid "van der Waals Surface"
+msgstr "van der Waals gainazala"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:665
+msgid "Molecular Surface"
+msgstr "Gainazal molekularra"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:666
+#, java-format
+msgid "Solvent Surface ({0}-Angstrom probe)"
+msgstr "Disolbatzaile-gainazala ({0}-Angstromeko zunda)"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:668
+#, java-format
+msgid "Solvent-Accessible Surface (VDW + {0} Angstrom)"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:669
+msgid "Molecular Electrostatic Potential (range ALL)"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:670
+msgid "Molecular Electrostatic Potential (range -0.1 0.1)"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:676
+#: org/jmol/popup/MainPopupResourceBundle.java:677
+#: org/jmol/popup/MainPopupResourceBundle.java:678
+#, java-format
+msgid "Reload {0}"
+msgstr "Birkargatu {0}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:679
+#, java-format
+msgid "Reload {0} + Display {1}"
+msgstr "Birkargatu {0} + erakutsi {1}"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:680
+msgid "Reload + Polyhedra"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:687
+msgid "Hide"
+msgstr "Ezkutatu"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:688
+msgid "Dotted"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:690
+msgid "Pixel Width"
+msgstr "Pixel zabalera"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:691
+#: org/jmol/popup/MainPopupResourceBundle.java:692
+#: org/jmol/popup/MainPopupResourceBundle.java:693
+#: org/jmol/popup/MainPopupResourceBundle.java:694
+#, java-format
+msgid "{0} px"
+msgstr "{0} px"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:696
+msgid "Angstrom Width"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:704
+msgid "Selection Halos"
+msgstr ""
+
+#: org/jmol/popup/MainPopupResourceBundle.java:705
+msgid "Show Hydrogens"
+msgstr "Erakutsi hidrogenoak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:706
+msgid "Show Measurements"
+msgstr "Erakutsi neurketak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:707
+msgid "Perspective Depth"
+msgstr "Perspektiba sakonera"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:711
+msgid "RasMol Colors"
+msgstr "RasMol koloreak"
+
+#: org/jmol/popup/MainPopupResourceBundle.java:712
+msgid "About..."
+msgstr "Honi buruz..."
+
+#: org/jmol/script/ScriptCompiler.java:3051
+msgid "script compiler ERROR: "
+msgstr "script-konpilatzailearen ERROREA: "
+
+#: org/jmol/script/ScriptError.java:192
+msgid "x y z axis expected"
+msgstr "x y z ardatza espero zen"
+
+#: org/jmol/script/ScriptError.java:195
+#, java-format
+msgid "{0} not allowed with background model displayed"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:198
+#: org/jmol/script/ScriptTokenParser.java:1487
+msgid "bad argument count"
+msgstr "argumentu kopuru okerra"
+
+#: org/jmol/script/ScriptError.java:201
+msgid "Miller indices cannot all be zero."
+msgstr "Miller indize guztiek ezin dute zero izan"
+
+#: org/jmol/script/ScriptError.java:204
+msgid "bad [R,G,B] color"
+msgstr "[R,G,B] kolore okerra"
+
+#: org/jmol/script/ScriptError.java:207
+msgid "boolean expected"
+msgstr "boolearra espero zen"
+
+#: org/jmol/script/ScriptError.java:210
+msgid "boolean or number expected"
+msgstr "boolearra edo zenbakia espero zen"
+
+#: org/jmol/script/ScriptError.java:213
+#, java-format
+msgid "boolean, number, or {0} expected"
+msgstr "boolearra, zenbakia edo {0} espero zen"
+
+#: org/jmol/script/ScriptError.java:216
+msgid "cannot set value"
+msgstr "ezin da balioa ezarri"
+
+#: org/jmol/script/ScriptError.java:219
+msgid "color expected"
+msgstr "kolorea espero zen"
+
+#: org/jmol/script/ScriptError.java:222
+msgid "a color or palette name (Jmol, Rasmol) is required"
+msgstr "kolore bat edo paleta-izen bat (Jmol, Rasmol) behar da"
+
+#: org/jmol/script/ScriptError.java:225
+#: org/jmol/script/ScriptTokenParser.java:1493
+msgid "command expected"
+msgstr "komandoa espero zen"
+
+#: org/jmol/script/ScriptError.java:228
+msgid "{x y z} or $name or (atom expression) required"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:231
+msgid "draw object not defined"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:234
+#: org/jmol/script/ScriptTokenParser.java:1499
+msgid "unexpected end of script command"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:237
+msgid "valid (atom expression) expected"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:240
+msgid "(atom expression) or integer expected"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:243
+msgid "filename expected"
+msgstr "fitxategi-izena espero zen"
+
+#: org/jmol/script/ScriptError.java:246
+msgid "file not found"
+msgstr "ez da aurkitu fitxategia"
+
+#: org/jmol/script/ScriptError.java:249
+msgid "incompatible arguments"
+msgstr "argumentu bateraezinak"
+
+#: org/jmol/script/ScriptError.java:252
+msgid "insufficient arguments"
+msgstr "argumentu gutxiegi"
+
+#: org/jmol/script/ScriptError.java:255
+msgid "integer expected"
+msgstr "osokoa espero zen"
+
+#: org/jmol/script/ScriptError.java:258
+#, java-format
+msgid "integer out of range ({0} - {1})"
+msgstr "osokoa ({0} - {1} tartetik kanpo)"
+
+#: org/jmol/script/ScriptError.java:261
+msgid "invalid argument"
+msgstr "argumentu baliogabea"
+
+#: org/jmol/script/ScriptError.java:264
+msgid "invalid parameter order"
+msgstr "parametroen ordena baliogabea"
+
+#: org/jmol/script/ScriptError.java:267
+msgid "keyword expected"
+msgstr "gako-hitza espero zen"
+
+#: org/jmol/script/ScriptError.java:270
+msgid "no MO coefficient data available"
+msgstr "ez dago orbital molekularren koefizienterik eskuragarri"
+
+#: org/jmol/script/ScriptError.java:273
+#, java-format
+msgid "An MO index from 1 to {0} is required"
+msgstr "1 eta {0} arteko orbital molekular indizea behar da"
+
+#: org/jmol/script/ScriptError.java:276
+msgid "no MO basis/coefficient data available for this frame"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:279
+msgid "no MO occupancy data available"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:282
+msgid "Only one molecular orbital is available in this file"
+msgstr "Orbital molekular bakarra dago eskuragarri fitxategi honetan"
+
+#: org/jmol/script/ScriptError.java:285
+#, java-format
+msgid "{0} require that only one model be displayed"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:288
+#, java-format
+msgid "{0} requires that only one model be loaded"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:291
+msgid "No data available"
+msgstr "Ez dago daturik eskuragarri"
+
+#: org/jmol/script/ScriptError.java:295
+msgid ""
+"No partial charges were read from the file; Jmol needs these to render the "
+"MEP data."
+msgstr ""
+"Ez da karga partzialik irakurri fitxategitik; Jmol-ek MEP datuak "
+"errendatzeko beharrezkoak dira."
+
+#: org/jmol/script/ScriptError.java:298
+msgid "No unit cell"
+msgstr "Unitate-gelaxkarik ez"
+
+#: org/jmol/script/ScriptError.java:301
+#: org/jmol/script/ScriptTokenParser.java:1523
+msgid "number expected"
+msgstr "zenbakia espero zen"
+
+#: org/jmol/script/ScriptError.java:304
+#, java-format
+msgid "number must be ({0} or {1})"
+msgstr "zenbakiak ({0} edo {1}) izan behar du"
+
+#: org/jmol/script/ScriptError.java:307
+#, java-format
+msgid "decimal number out of range ({0} - {1})"
+msgstr "zenbaki hamartarra ({0} - {1}) tartetik kanpo"
+
+#: org/jmol/script/ScriptError.java:310
+msgid "object name expected after '$'"
+msgstr "objektu-izena espero zen '$'ren ondoren"
+
+#: org/jmol/script/ScriptError.java:314
+#, java-format
+msgid ""
+"plane expected -- either three points or atom expressions or {0} or {1} or "
+"{2}"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:317
+msgid "property name expected"
+msgstr "propietate-izena espero zen"
+
+#: org/jmol/script/ScriptError.java:320
+#, java-format
+msgid "space group {0} was not found."
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:323
+msgid "quoted string expected"
+msgstr "kakotx arteko katea espero zen"
+
+#: org/jmol/script/ScriptError.java:326
+msgid "quoted string or identifier expected"
+msgstr "kakotx arteko katea edo identifikatzailea espero zen"
+
+#: org/jmol/script/ScriptError.java:329
+msgid "too many rotation points were specified"
+msgstr "errotazio-puntu gehiegi zehaztu dira"
+
+#: org/jmol/script/ScriptError.java:332
+msgid "too many script levels"
+msgstr "script-maila gehiegi"
+
+#: org/jmol/script/ScriptError.java:335
+msgid "unrecognized atom property"
+msgstr "atomoaren propietate ezezaguna"
+
+#: org/jmol/script/ScriptError.java:338
+msgid "unrecognized bond property"
+msgstr "loturaren propietate ezezaguna"
+
+#: org/jmol/script/ScriptError.java:341
+msgid "unrecognized command"
+msgstr "komando ezezaguna"
+
+#: org/jmol/script/ScriptError.java:344
+msgid "runtime unrecognized expression"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:347
+msgid "unrecognized object"
+msgstr "objektu ezezaguna"
+
+#: org/jmol/script/ScriptError.java:350
+#: org/jmol/script/ScriptTokenParser.java:1541
+#, java-format
+msgid "unrecognized {0} parameter"
+msgstr ""
+
+#: org/jmol/script/ScriptError.java:354
+#, java-format
+msgid "unrecognized {0} parameter in Jmol state script (set anyway)"
+msgstr "{0} parametro ezezaguna Jmol egoera-scriptean (ezarri hala ere)"
+
+#: org/jmol/script/ScriptError.java:357
+#, java-format
+msgid "unrecognized SHOW parameter --  use {0}"
+msgstr "SHOW parametro ezezaguna -- erabili {0}"
+
+#: org/jmol/script/ScriptError.java:363
+#, java-format
+msgid "write what? {0} or {1} \"filename\""
+msgstr "zer idatzi? {0} ala {1} \"fitxategi-izena\""
+
+#: org/jmol/script/ScriptError.java:412 org/jmol/script/ScriptEval.java:6447
+msgid "script ERROR: "
+msgstr "script ERROREA: "
+
+#: org/jmol/script/ScriptEval.java:3263
+#, java-format
+msgid "show saved: {0}"
+msgstr ""
+
+#: org/jmol/script/ScriptEval.java:3277 org/jmol/script/ScriptEval.java:7960
+#, java-format
+msgid "{0} atoms deleted"
+msgstr "{0} atomo ezabatuta"
+
+#: org/jmol/script/ScriptEval.java:3995 org/jmol/scriptext/CmdExt.java:643
+#, java-format
+msgid "{0} hydrogen bonds"
+msgstr "{0} hidrogeno-lotura"
+
+#: org/jmol/script/ScriptEval.java:4649
+#, java-format
+msgid "file {0} created"
+msgstr "{0} fitxategia sortuta"
+
+#: org/jmol/script/ScriptEval.java:7667
+#, java-format
+msgid "to resume, enter: &{0}"
+msgstr ""
+
+#: org/jmol/script/ScriptTokenParser.java:1490
+#, java-format
+msgid "invalid context for {0}"
+msgstr "{0}-(r)entzako testuinguru baliogabea"
+
+#: org/jmol/script/ScriptTokenParser.java:1496
+msgid "{ number number number } expected"
+msgstr "{ zenbakia zenbakia zenbakia } espero zen"
+
+#: org/jmol/script/ScriptTokenParser.java:1502
+msgid "end of expression expected"
+msgstr ""
+
+#: org/jmol/script/ScriptTokenParser.java:1505
+msgid "identifier or residue specification expected"
+msgstr "identifikatzailea edo hondarraren zehaztapena espero zen"
+
+#: org/jmol/script/ScriptTokenParser.java:1508
+msgid "invalid atom specification"
+msgstr "atomoaren zehaztapen baliogabea"
+
+#: org/jmol/script/ScriptTokenParser.java:1511
+msgid "invalid chain specification"
+msgstr "katearen zehaztapen baliogabea"
+
+#: org/jmol/script/ScriptTokenParser.java:1514
+#, java-format
+msgid "invalid expression token: {0}"
+msgstr ""
+
+#: org/jmol/script/ScriptTokenParser.java:1517
+msgid "invalid model specification"
+msgstr "ereduaren zehaztapen baliogabea"
+
+#: org/jmol/script/ScriptTokenParser.java:1520
+#, java-format
+msgid "missing END for {0}"
+msgstr ""
+
+#: org/jmol/script/ScriptTokenParser.java:1526
+msgid "number or variable name expected"
+msgstr "zenbakia edo aldagai-izena espero zen"
+
+#: org/jmol/script/ScriptTokenParser.java:1529
+msgid "residue specification (ALA, AL?, A*) expected"
+msgstr ""
+
+#: org/jmol/script/ScriptTokenParser.java:1532
+#, java-format
+msgid "{0} expected"
+msgstr "{0} espero zen"
+
+#: org/jmol/script/ScriptTokenParser.java:1535
+#, java-format
+msgid "{0} unexpected"
+msgstr "ez zen {0} espero"
+
+#: org/jmol/script/ScriptTokenParser.java:1538
+#, java-format
+msgid "unrecognized expression token: {0}"
+msgstr ""
+
+#: org/jmol/script/ScriptTokenParser.java:1544
+#, java-format
+msgid "unrecognized token: {0}"
+msgstr ""
+
+#: org/jmol/scriptext/CmdExt.java:621
+#, java-format
+msgid "{0} charges modified"
+msgstr ""
+
+#: org/jmol/scriptext/CmdExt.java:729
+#, fuzzy, java-format
+msgid "{0} struts added"
+msgstr "{0} hidrogeno gehituta"
+
+#: org/jmol/scriptext/CmdExt.java:865
+#, java-format
+msgid "Note: Enable looping using {0}"
+msgstr ""
+
+#: org/jmol/scriptext/CmdExt.java:867
+#, java-format
+msgid "Animation delay based on: {0}"
+msgstr ""
+
+#: org/jmol/scriptext/CmdExt.java:1872
+#, java-format
+msgid "{0} connections deleted"
+msgstr "{0} lotura ezabatuta"
+
+#: org/jmol/scriptext/CmdExt.java:1884
+#, java-format
+msgid "{0} new bonds; {1} modified"
+msgstr "{0} lotura berri; {1} aldatuta"
+
+#: org/jmol/scriptext/MathExt.java:3661
+msgid "Note: More than one model is involved in this contact!"
+msgstr ""
+
+#: org/jmol/shape/Frank.java:92
+msgid "Click for menu..."
+msgstr "Klikatu menurako..."
+
+#: org/jmol/util/GenericApplet.java:294
+#, java-format
+msgid ""
+"Jmol Applet version {0} {1}.\n"
+"\n"
+"An OpenScience project.\n"
+"\n"
+"See http://www.jmol.org for more information"
+msgstr ""
+"Jmol appletaren {0} {1} bertsioa.\n"
+"\n"
+"OpenScience proiektu bat.\n"
+"\n"
+"Informazio gehiagorako bisitatu http://www.jmol.org"
+
+#: org/jmol/util/GenericApplet.java:681
+msgid "File Error:"
+msgstr "Fitxategi-errorea:"
+
+#: org/jmol/viewer/ActionManager.java:231
+#, java-format
+msgid "assign/new atom or bond (requires {0})"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:235
+msgid "pop up recent context menu (click on Jmol frank)"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:237
+#, java-format
+msgid "delete atom (requires {0})"
+msgstr "ezabatu atomoa ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:239
+#, java-format
+msgid "delete bond (requires {0})"
+msgstr "ezabatu lotura ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:241
+#, java-format
+msgid "adjust depth (back plane; requires {0})"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:242
+#, java-format
+msgid "move atom (requires {0})"
+msgstr "mugitu atomoa ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:245
+#, java-format
+msgid "move whole DRAW object (requires {0})"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:247
+#, java-format
+msgid "move specific DRAW point (requires {0})"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:248
+#, java-format
+msgid "move label (requires {0})"
+msgstr "mugitu etiketa ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:251
+#, java-format
+msgid "move atom and minimize molecule (requires {0})"
+msgstr "mugitu atomoa eta minimizatu molekula ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:254
+#, java-format
+msgid "move and minimize molecule (requires {0})"
+msgstr "mugitu eta minimizatu molekula ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:257
+#, java-format
+msgid "move selected atoms (requires {0})"
+msgstr "mugitu hautatutako atomoak ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:259
+#, java-format
+msgid "drag atoms in Z direction (requires {0})"
+msgstr "arrastatu atomoak Z norabidean ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:261
+msgid "simulate multi-touch using the mouse)"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:263
+#, java-format
+msgid "translate navigation point (requires {0} and {1})"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:265
+msgid "pick an atom"
+msgstr "aukeratu atomo bat"
+
+#: org/jmol/viewer/ActionManager.java:267
+#, java-format
+msgid "connect atoms (requires {0})"
+msgstr "konektatu atomoak ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:269
+#, java-format
+msgid "pick an ISOSURFACE point (requires {0}"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:271
+#, java-format
+msgid "pick a label to toggle it hidden/displayed (requires {0})"
+msgstr "aukeratu etiketa bat ezkutatu/bistaratu txandakatzeko ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:278
+#, java-format
+msgid ""
+"pick an atom to include it in a measurement (after starting a measurement or "
+"after {0})"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:281
+#, java-format
+msgid "pick a point or atom to navigate to (requires {0})"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:284
+#, java-format
+msgid "pick a DRAW point (for measurements) (requires {0}"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:287
+msgid "pop up the full context menu"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:289
+msgid "reset (when clicked off the model)"
+msgstr "leheneratu (eredutik kanpora klikatzean)"
+
+#: org/jmol/viewer/ActionManager.java:290
+msgid "rotate"
+msgstr "biratu"
+
+#: org/jmol/viewer/ActionManager.java:292
+#, java-format
+msgid "rotate branch around bond (requires {0})"
+msgstr "biratu adarra loturaren inguruan ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:294
+#, java-format
+msgid "rotate selected atoms (requires {0})"
+msgstr "biratu hautatutako atomoak ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:295
+msgid "rotate Z"
+msgstr "biratu Z"
+
+#: org/jmol/viewer/ActionManager.java:300
+msgid ""
+"rotate Z (horizontal motion of mouse) or zoom (vertical motion of mouse)"
+msgstr ""
+"biratu Z (saguaren mugimendu horizontala) edo egin zoom (saguaren mugimendu "
+"bertikala)"
+
+#: org/jmol/viewer/ActionManager.java:301
+#, java-format
+msgid "select an atom (requires {0})"
+msgstr "hautatu atomo bat ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:304
+#, java-format
+msgid "select and drag atoms (requires {0})"
+msgstr "hautatu eta arrastatu atomoak ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:306
+#, java-format
+msgid "unselect this group of atoms (requires {0})"
+msgstr "desautatu atomo-talde hau ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:309
+#, java-format
+msgid "select NONE (requires {0})"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:311
+#, java-format
+msgid "add this group of atoms to the set of selected atoms (requires {0})"
+msgstr "gehitu atomo-talde hau hautatutako atomo-sortara ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:314
+#, java-format
+msgid "toggle selection (requires {0})"
+msgstr "txandakatu hautapena ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:321
+#, java-format
+msgid ""
+"if all are selected, unselect all, otherwise add this group of atoms to the "
+"set of selected atoms (requires {0})"
+msgstr ""
+"guztiak hautatuta badaude, desautatu guztiak, bestela gehitu atomo-talde hau "
+"hautatutako atomo-sortara ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:324
+msgid "pick an atom to initiate or conclude a measurement"
+msgstr "aukeratu atomo bat neurketa bat hasi edo bukatzeko"
+
+#: org/jmol/viewer/ActionManager.java:326
+#, java-format
+msgid "adjust slab (front plane; requires {0})"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:328
+#, java-format
+msgid "move slab/depth window (both planes; requires {0})"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:330
+msgid "zoom (along right edge of window)"
+msgstr "zooma (leihoaren eskuineko ertzean zehar)"
+
+#: org/jmol/viewer/ActionManager.java:336
+#, java-format
+msgid "click on two points to spin around axis counterclockwise (requires {0})"
+msgstr ""
+"klikatu bi puntutan ardatzaren inguruan ezkerrera biratzeko ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:339
+#, java-format
+msgid "click on two points to spin around axis clockwise (requires {0})"
+msgstr ""
+"klikatu bi puntutan ardatzaren inguruan eskuinera biratzeko ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:342
+#, java-format
+msgid "stop motion (requires {0})"
+msgstr "gelditu mugimendua ({0} behar du)"
+
+#: org/jmol/viewer/ActionManager.java:347
+msgid "spin model (swipe and release button and stop motion simultaneously)"
+msgstr ""
+
+#: org/jmol/viewer/ActionManager.java:348
+msgid "translate"
+msgstr "translazioa"
+
+#: org/jmol/viewer/ActionManager.java:349
+msgid "zoom"
+msgstr "zooma"
+
+#: org/jmol/viewer/ActionManager.java:1991
+msgid "pick one more atom in order to spin the model around an axis"
+msgstr "aukeratu beste atomo bat eredua ardatz baten inguruan biratzeko"
+
+#: org/jmol/viewer/ActionManager.java:1992
+msgid "pick two atoms in order to spin the model around an axis"
+msgstr "aukeratu bi atomo eredua ardatz baten inguruan biratzeko"
+
+#: org/jmol/viewer/ActionManager.java:1996
+msgid "pick one more atom in order to display the symmetry relationship"
+msgstr "aukeratu beste atomo bat simetria-erlazioa bistaratzeko"
+
+#: org/jmol/viewer/ActionManager.java:1998
+msgid ""
+"pick two atoms in order to display the symmetry relationship between them"
+msgstr "aukeratu bi atomo beren arteko simetria-erlazioa bistaratzeko"
+
+#: org/jmol/viewer/OutputManager.java:794
+msgid "canceled"
+msgstr ""
+
+#: org/jmol/viewer/OutputManager.java:795
+#, java-format
+msgid "{0} saved"
+msgstr ""
+
+#: org/jmol/viewer/OutputManager.java:861
+#, java-format
+msgid "Setting log file to {0}"
+msgstr "{0} egunkari-fitxategia ezartzen"
+
+#: org/jmol/viewer/OutputManager.java:863
+msgid "Cannot set log file path."
+msgstr "Ezin da egunkari-fitxategiaren bidea ezarri."
+
+#: org/jmol/viewer/SelectionManager.java:114
+#: org/jmol/viewer/SelectionManager.java:125
+#, java-format
+msgid "{0} atoms hidden"
+msgstr "{0} atomo ezkutatuta"
+
+#: org/jmol/viewer/SelectionManager.java:186
+#, java-format
+msgid "{0} atoms selected"
+msgstr "{0} atomo hautatuta"
+
+#: org/jmol/viewer/Viewer.java:4158
+msgid "Drag to move label"
+msgstr "Arrastatu etiketa mugitzeko"
+
+#: org/jmol/viewer/Viewer.java:7868
+msgid "clipboard is not accessible -- use signed applet"
+msgstr ""
+
+#: org/jmol/viewer/Viewer.java:9049
+#, java-format
+msgid "{0} hydrogens added"
+msgstr "{0} hidrogeno gehituta"
+
+#~ msgid "Hide Symmetry"
+#~ msgstr "Ezkutatu simetria"
+
+#~ msgid "Loading Jmol applet ..."
+#~ msgstr "Jmol appleta kargatzen..."
+
+#~ msgid "  {0} seconds"
+#~ msgstr "  {0} segundo"
+
+#~ msgid "Java version:"
+#~ msgstr "Java bertsioa:"
+
+#~ msgid "1 processor"
+#~ msgstr "Prozesatzaile 1"
+
+#~ msgid "unknown processor count"
+#~ msgstr "prozesatzaile kopuru ezezaguna"
+
+#~ msgid "Java memory usage:"
+#~ msgstr "Java memoria erabilera:"
+
+#~ msgid "{0} MB free"
+#~ msgstr "{0} MB libre"
+
+#~ msgid "unknown maximum"
+#~ msgstr "maximo ezezaguna"
+
+#~ msgid "Open file or URL"
+#~ msgstr "Ireki fitxategia edo URLa"

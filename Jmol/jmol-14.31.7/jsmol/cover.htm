@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML5-only and WebGL Jmol Demo</title>
+<meta charset="utf-8">
+<script type="text/javascript" src="JSmol.min.js"></script>
+
+  <script type="text/javascript"> 
+
+
+var jmolApplet0; // set up in HTML table, below
+var Info;
+
+// note that the variable name MUST match the first parameter in quotes
+
+
+;(function() {
+
+// ?_USE=JAVA   ?_USE=SIGNED   ?_USE=HTML5
+
+
+// Developers: The _debugCode flag is checked in j2s/java/core.z.js, 
+// and, if TRUE, skips loading the core methods, forcing those
+// to be read from their individual directories. Set this
+// true if you want to do some code debugging by inserting
+// System.out.println, document.title, or alert commands
+// anywhere in the Java or Jmol code.
+
+var s = document.location.search;
+Jmol._debugCode = (s.indexOf("debugcode") >= 0);
+
+
+jmol_isReady = function(applet) {
+	document.title = (applet._id + " is ready")
+	Jmol._getElement(applet, "appletdiv").style.border="1px solid blue"
+ 
+}		
+
+
+Info = {
+	width: 300,
+	height: 300,
+	debug: false,
+	color: "white",
+	addSelectionOptions: false,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+  coverImage: "data/1hxw.png",        // initial image instead of applet
+  coverScript: "",	// special script for click of cover image (otherwise equal to script)
+  deferApplet: true,                  // wait to load applet until click
+  deferUncover: true,                 // wait to uncover applet until script completed
+  jarPath: "java",
+	j2sPath: "j2s",
+	jarFile: "JmolApplet.jar",
+	isSigned: false,
+	//disableJ2SLoadMonitor: true,
+	//disableInitialConsole: true,
+	readyFunction: jmol_isReady,
+	//defaultModel: "$dopamine",
+	script: "load data/1hxw.png;"
+}
+
+})();
+
+$(document).ready(function(){
+  
+  Info.deferApplet = false;
+  Info.deferUncover = true;
+  $("#appletplace1").html(Jmol.getAppletHtml("jmol1", Info));
+  Info.deferApplet = true;
+  Info.deferUncover = true;
+  $("#appletplace2").html(Jmol.getAppletHtml("jmol2", Info));
+});
+
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10>
+<tr>
+<td valign=top>
+<div id="appletplace1"></div>
+iPad mode: In this canvas the model is already loading behind the image. It will automatically display when it is loaded.
+</td>
+<td valign=top>
+<div id="appletplace2"></div>
+iPhone mode: In this canvas we just have an image. Clicking on the image will load the code and display the model.
+</td>
+</tr></table>
+</body>
+</html>

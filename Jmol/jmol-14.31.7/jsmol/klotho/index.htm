@@ -1,0 +1,469 @@
+<html>
+<head>
+<title>Klotho Biochemicals in Jmol</title>
+<script src=Jmol.js></script>
+<script>
+/*
+
+by Bob Hanson hansonr@stolaf.edu 7:55 AM 4/19/2009
+
+http://chemapps.stolaf.edu/klotho/index.htm, with klotho.js (from klotho.xls), 
+taps into the database at http://www.biocheminfo.org/klotho.
+
+The page categorizes the compounds there into classes and then presents them using Jmol. 
+It uses several advanced Jmol features to carryout functions such as:
+
+--- loading files with a common molecule size, center, and orientation
+--- flipping pyranose rings
+--- rotating bonds into a "Fischer projection" conformation, and the reverse
+
+you can load a specific file with
+
+  http://chemapps.stolaf.edu/klotho?q=COMPOUND_NAME
+
+for example:
+
+  http://chemapps.stolaf.edu/klotho?q=D-glucose
+
+or a search using
+
+  http://chemapps.stolaf.edu/klotho?q=glucose
+
+*/
+
+jmolAppletPath = (document.location.href.toLowerCase().indexOf("file") == 0 ? ".." : "http://chemapps.stolaf.edu/jmol/docs/examples-12")
+//alert(jmolAppletPath)
+klothoPath = "http://www.biocheminfo.org/klotho"
+
+theSearch = (document.location.href + "&q=").split("q=")[1].split("&")[0]
+Data = []
+
+function dsort(a,b) {
+ return (a[2] < b[2] ? -1 : a[2] > b[2] ? 1 : 0)
+}
+
+Info = [
+	["all","all compounds"],
+	["amino","amino acids"],
+	["carb","carbohydrates and related compounds"],
+	["cofactor","cofactors"],
+	["lipid","nonsteroidal lipids"],
+	["meta","metabolites and small molecules"],
+	["nucl","nucleic acids"],
+	["peptide","small peptides"],
+	["steroid","steroids"]]
+InfoRef = {}
+function setInfoRef() {
+ InfoRef[""] = ""
+ for (var i =0; i < Info.length; i++)InfoRef[Info[i][0]] = Info[i][1]
+}setInfoRef()
+
+function addC(name, info) {
+ if(name.indexOf("_dm") >= 0 
+	|| name.indexOf("nonresonant") >= 0
+	|| name.indexOf("aminoacid_") >= 0
+	|| name.indexOf("peptide_") >= 0
+   ) return
+ name = name.split(".pdb")[0]
+ var i = 0;
+ while (i < name.length && name.charAt(i) < "a"){++i}
+ var sortname = (i == name.length ? name.toLowerCase() : name.substring(i))
+ if (name.indexOf("D-") >= 0) sortname = "D-" + sortname
+ if (name.indexOf("L-") >= 0) sortname = "L-" + sortname
+ if (name.indexOf("-D-") >= 0) sortname = "D-zz-" + sortname
+ if (name.indexOf("-L-") >= 0) sortname = "L-zz-" + sortname
+ Data[Data.length] = [name,info,sortname]
+ InfoRef[name] = (InfoRef[info] ? info : "")
+}
+
+function doInit() {
+  //document.getElementById("mol1").selectedIndex = 0;
+  document.getElementById("info1").selectedIndex = 0;
+}
+
+function appletLoaded(trigger) {
+  if (!trigger) {
+	setTimeout("appletLoaded(1)",50)
+	return
+  }
+  if (theSearch)doSearch(theSearch)
+}
+
+function setSelect(){
+ Data = Data.sort(dsort)
+ var s =  ""
+ //var s = "<select style='width:300px' id=mol1 size=20 onchange=loadit(this)><option selected style='font-weight:bold;background-color:yellow' >SELECT A MOLECULE: </option>"
+ //for (var i = 0; i < Data.length; i++) s+="<option>"+Data[i][0]+"</option>"
+ //s +="</select>"
+ s += "<br><select style='width:300px;font-weight:bold;background-color:yellow' id=info1 size=1 onchange=loadClass(this[this.selectedIndex].value)><option selected style='font-weight:bold;background-color:yellow' >SELECT A CLASS:</option>"
+ Info[0][1] = "all  " + Data.length + " compounds"
+ for (var i = 0; i < Info.length; i++) s+="<option value=" + Info[i][0] + ">"+Info[i][1]+"</option>"
+ s += "</select>"
+ document.write(s)
+}
+
+function sortdl(a,b) {
+ var ad = (a[2].indexOf("D-") == 0)
+ var al = (a[2].indexOf("L-") == 0)
+ var bd = (b[2].indexOf("D-") == 0)
+ var bl =  (b[2].indexOf("L-") == 0)
+ return (ad == bd && al == bl ? dsort(a,b)
+	: ad && bl ? (dfirst ? -1 : 1)
+	: al && bd ? (dfirst ? 1 : -1)
+	: ad || al ? (dlfirst ? -1 : 1)
+	: (dlfirst ? 1 : -1)
+	)
+}
+
+function loadClass(what) {
+ dfirst = (what == "carb")
+ lfirst = (what == "amino")
+ dlfirst = (!lfirst)
+ var isall = (what == "all")
+ var D = []
+ for (var i = 0; i < Data.length; i++) {
+	if (isall || Data[i][1].indexOf(what) >=0)D.push(Data[i])
+ }
+ if (!isall)D = D.sort(sortdl)
+ var s = "<select style='width:300px' id=mol2 size=20 onchange=loadit(this,1)><option selected style='font-weight:bold;background-color:yellow' > SELECT A COMPOUND: </option>"
+ for (var i = 0; i < D.length; i++) s+="<option>"+D[i][0] + "</option>"
+ s += "</select>"
+ //document.getElementById("mol1").size = 5
+ document.getElementById("searchdiv").innerHTML = s
+}
+
+function loadit(d,is2,index) {
+ //var d = document.getElementById("mol")
+ var what = (d ? d[d.selectedIndex].text : theFile)
+ var da = document.getElementById("wikiref")
+ da.innerHTML=""
+ var db = document.getElementById("klothoref")
+ db.innerHTML = ""
+ var dc = document.getElementById("newwindow")
+ dc.innerHTML = ""
+ if (what.indexOf(" ") >= 0)return
+ da.href="http://www.google.com/search?q=" + what
+ da.innerHTML = "Google " + what
+ db.href=klothoPath + "/html/" + what +".html"
+ db.innerHTML = "Klotho"
+ dc.href=document.location.href.split("?")[0] + "?q=" + what
+ dc.innerHTML = "new window"
+ /*
+ if (is2){
+  var i = 0;
+  var d = document.getElementById("mol2")
+  for (var i=1; i < d.length;i++) {
+  	d[i].style.backgroundColor =  (i == index ? "blue" : "white");
+  }
+ d.selectedIndex = -1;
+ }
+ */
+ theSearch=what
+ isDamino = (what.indexOf("D-") == 0 && InfoRef[what] == "amino")
+ var aromaticScript = "connect {* and not _H and not connected(4) and not (_N and connected(3))} {* and not _H and not connected(4) and not (_N and connected(3))} aromatic modify;calculate aromatic;"
+ measureScript = "set showmeasurements false;measure {_C} {_C} {_C} {_C} allconnected;"
+ var callbackScript = 'set loadStructCallback "loadCallback0";'// "javascript loadCallback();"
+ resetScript = "reset;"
+ if(what.indexOf("pyranose") >= 0 || what.indexOf("furanose") >= 0 || what.indexOf("osamine") >= 0) {
+	resetScript += '\
+	anomericC = {_C and connected(2, _O) and connected(4)};\
+	if (anomericC.size > 0);\
+		furanose = substructure(\\"[C]1[C][C][C][O]1\\")[1][5];\
+		pyranose = substructure(\\"[C]1[C][C][C][C][O]1\\")[1][6];\
+		anomericC = anomericC[1];\
+		ringO = within(\\"branch\\",anomericC,{_C and connected(anomericC)}) and {_O} and {connected(anomericC)};\
+		if (ringO.size == 0);\
+			ringO = within(\\"branch\\",anomericC,{_C and connected(anomericC)}[2]) and {_O} and {connected(anomericC)};\
+		endif;\
+		anomericO = {_O} and connected(anomericC) and not ringO;\
+		ringC = within(\\"branch\\",anomericC,{ringO}) and {_C} and {connected(anomericC)};\
+		rotate quaternion @{!quaternion(anomericC,ringC,ringO)};\
+		rotate y 180;rotate x -60;rotate y 20;rotate x 20;rotate y 30;\
+		if(furanose.size>0 and pyranose.size==0);\
+			rotate z 20;\
+		endif;\
+		center {anomericC};\
+		set rotationradius 8;\
+	endif;\
+	'
+ } else if (InfoRef[what] == "carb" && what.indexOf("myo") < 0) {
+	var doDL = (what.indexOf("arabitol")<0 && what.indexOf("6-lactone") < 0 && what.indexOf("glucarate") < 0)
+	resetScript += '\
+	c1 = {_C and connected(3)};\
+	if (c1.size == 0);\
+		c1 = {_C};\
+	endif;\
+	c1 = {c1}[1];\
+	ketose = ({_C and connected(c1)}.size > 1);\
+	c2 = {_C and connected(c1)}[0];\
+	c3 = {_C and connected(c2) and not c1};\
+	if (c3.size==0);\
+		# wrong way;\
+		c4 = c2;\
+		c2 = c1;\
+		c3 = {_C and connected(c2) and not c1};\
+	endif;\
+	# set c2 to be the DL-determining carbon;\
+	while ('+doDL+');\
+		c4 = {_C and connected(c3) and not c2};\
+		if ({c4}.size == 0);\
+			break;\
+		endif;\
+		c1 = c2;\
+		c2 = c3;\
+		c3 = c4;\
+	end while;\
+	# arabitol is reversed in the database in terms of numbering of carbons;\
+	if (!'+doDL+');\
+		c4 = c1;\
+		c1 = c3;\
+		c3 = c4;\
+	endif;\
+	rotate quaternion @{!quaternion(c2,c1,c3)};\
+	rotate y -90;rotate x -135;\
+	set selectionhalos on;select {c2};\
+	center {c1};\
+	set rotationradius 8;\
+	'
+ } else if (InfoRef[what] == "steroid") {
+	resetScript += '\
+	ringABC = substructure(\\"[C]1[C][C][C][C][C]1\\");\
+	ringD = substructure(\\"[C]1[C][C][C][C]1\\");\
+	c13 = {ringABC and ringD};\
+	c18 = {_C and connected(ringABC) and connected(ringD) and not ringABC and not ringD};\
+	c14 = {c13 and not connected(c18)};\
+	c13 = {c13 and not c14};\
+	rotate quaternion @{!quaternion(c13,c18,c14)};\
+	rotate y -90;rotate z 180;rotate x -10;\
+	center {c13};\
+	set rotationradius 8;\
+	'
+ } else if (InfoRef[what] == "amino") {
+	resetScript += '\
+	aminoN = {_N and connected(_H)};\
+	carboxylC = {_C and connected(2,_O)};\
+	alphaC = ({});\
+	if (aminoN.size > 0 && carboxylC.size > 0);\
+		alphaC = {_C and connected(aminoN) and connected(carboxylC)};\
+		if (alphaC.size == 1);\
+			aminoN = {aminoN and connected(alphaC)};\
+			carboxylC = {carboxylC and connected(alphaC)};\
+			rotate quaternion @{!quaternion({alphaC},{aminoN or carboxylC},{carboxylC})};\
+			rotate x 180;rotate z 90;\
+			' + (isDamino ? "rotate x 15;rotate y 10;" : "rotate x 165;rotate y -10;") + '\
+			center {alphaC};\
+			set rotationradius 8;\
+		endif;\
+	endif;\
+	'
+ } else {
+	resetScript += '\
+	if (getProperty(\\"orientationInfo.modelRadius\\") < 8);\
+		set rotationradius 8;\
+	endif;\
+	'
+ }
+ var defaultScript = 'set defaultLoadScript "' + resetScript + '";'
+ var echoScript = '\
+	font echo 24 serif bold;\
+	set echo top left;\
+	echo ' + what+';\
+	set echo bottom left;\
+	echo '+InfoRef[InfoRef[what]]+';\
+	set minimizationCallback "showMinimization";\
+	'
+
+ var script = defaultScript + callbackScript + ';load ' + what+'.pdb;' + echoScript +aromaticScript
+ //alert(script)
+ jmolScript(script)
+}
+
+function showMinimization(app,status,istep,energy, dE) {
+	if (""+status == "running" && istep  > 0 && istep % 10 != 0)
+		return
+	var script = '\
+		set echo bottom left;\
+		echo @{"'+Math.floor(energy)  + ' kJ/mol '+status+'"};\
+	'
+	jmolScript(script)
+}
+
+Measures = []
+
+function loadCallback0(app,a1,a2,a3,a4){
+ //alert([a1,a2,a3,a4])
+ loadCallback()
+}
+
+function loadCallback(trigger) {
+ if (!trigger) {
+	setTimeout("loadCallback(1)",50)
+	return
+ }
+ jmolScriptWait(measureScript)
+ Measures = jmolGetPropertyAsArray("measurementInfo")
+ jmolScript("measures delete;set showmeasurements true")
+ setScripts()
+ doNotes()
+}
+
+scriptToFischer = ""
+scriptFromFischer = ""
+scriptOrientFischer = "reset"
+
+function setScripts() {
+ fischerState = 0
+ var ok = true
+ var clist = ""
+ scriptToFischer = ""
+ scriptFromFischer = ""
+ scriptOrientFischer = resetScript
+ //document.getElementById("fischer").style.display='none'
+ if (Measures.length == 0)return
+ for (var i = 0; i < Measures.length; i++) {
+	var m = Measures[i]
+	var dihedral = m.value
+	var c1 = m.atoms[0]
+	var c2 = m.atoms[1]
+	var c3 = m.atoms[2]
+	var c4 = m.atoms[3]
+	// check for ring
+	var s = 'within("branch",{atomno=' + c2.atomno + '},{atomno=' + c3.atomno+'}) and not {atomno=' + c3.atomno+'} and connected({atomno='+ c2.atomno+'})'
+	var x = jmolEvaluate(s)
+	if (x != "({})"){
+		scriptToFischer=""
+		scriptFromFischer=""
+		scriptOrientFischer="reset"
+		return
+	}
+	if (i == 0) scriptOrientFischer = ";reset;rotate quaternion @{!quaternion({atomno=" + c2.atomno + "},{atomno=" + c1.atomno + " or atomno=" + c3.atomno + "},{atomno=" + c3.atomno + "})};rotate y 90;rotate z 180;"
+	scriptToFischer +=";rotate branch {atomno="+c2.atomno+"} {atomno="+c3.atomno+"} " + (-dihedral)
+	scriptFromFischer +=";rotate branch {atomno="+c2.atomno+"} {atomno="+c3.atomno+"} " + (dihedral)
+ }
+ // special cases:
+ // arabinitol numbering is backwards:
+ if (theSearch == "L-arabitol")scriptOrientFischer += ";rotate y 180"
+
+ scriptOrientFischer += ";center *;rotate x -360 -100"
+ //document.getElementById("fischer").style.display='block'
+}
+
+function doNotes() {
+	var haveN = (jmolEvaluate("({_N}.size > 0)") == "true")
+	document.getElementById("aminenote").style.display = (haveN ? "block" : "none")
+}
+
+var fischerState = 0
+function doFischer(isReset) {
+  switch(fischerState) {
+  case 0:
+	//not Fischer yet
+	if (!isReset && !scriptToFischer) {
+		alert("First select a compound such as D-glucose that has a linear structure with at least four carbons in a row.")
+		return
+	}
+	jmolScript(isReset ? resetScript.replace(/\\/g,"") : "save orientation f1;" + scriptToFischer + scriptOrientFischer)
+	break;
+  case 1:
+	//Fischer twice --> reset orientation only or for reset reset bonds as well
+	jmolScript(isReset?scriptFromFischer + ";center *;restore orientation f1;": scriptOrientFischer)
+	break;
+  }
+  fischerState = (isReset ? 0 : 1)
+}
+
+function doRingFlip() {
+  if (theSearch.indexOf("pyranose") < 0) {
+	alert("First select a compound such as alpha-D-glucopyranose that has a pyranose ring that can be flipped.")
+	return
+  } 
+  // here we go!
+  // 1) disconnect ringO-ringA bond
+  // 2) invert four dihedrals around the ring
+  // 3) reconnect ringO-ringA bond
+  jmolScript('\
+	a1 = ringO;\
+	a2 = anomericC;\
+	connect {ringO} {anomericC} delete;\
+	a3 = {pyranose} and connected(a2) and not a1;\
+	for (var i = 0; i < 4; i = i + 1);\
+		a0 = a1;\
+		a1 = a2;\
+		a2 = a3;\
+		a3 = {pyranose} and connected(a2) and not a1;\
+		rotate branch {a1} {a2} @{-2*angle(a0,a1,a2,a3)};\
+	end for;\
+	connect {ringO} {anomericC} single;\
+	')
+}
+
+function doSearch(s) {
+ var userInput = (!s)
+ if (userInput) s=document.getElementById("searchtext").value
+ if (!s)return
+ if (userInput)document.getElementById("info1").selectedIndex = 1;
+ theSearch = s
+ var D = []
+ var ithis = -1
+ for (var i = 0; i < Data.length; i++) {
+	if (Data[i][0] == theSearch) {
+		theFile = theSearch
+		ithis = D.length
+	}
+	if (Data[i][0].indexOf(theSearch) >=0 || Data[i][1] == theSearch)D.push(Data[i][0])
+ }
+ var s = "<select style='width:300px' id=mol2 size=20 onchange=loadit(this,1)><option selected style='font-weight:bold;background-color:yellow'>SEARCH FOR \"" + theSearch+"\":   </option><option>"+D.join("</option><option>")+"</option></select>"
+ document.getElementById("searchdiv").innerHTML = s
+ if (D.length == 1) ithis = 0
+ if (ithis >= 0) {
+	theFile = D[ithis]
+	document.getElementById("mol2").selectedIndex = ithis + 1
+	setTimeout("loadit()",50)
+ }
+}
+
+function checkEnter(e) {
+	var keycode = (window.event ? window.event.keyCode : e ? e.which : 0);
+	if (keycode == 13) {
+		setTimeout("doSearch()",100)
+	}
+}
+</script>
+<script src=klotho.js></script>
+</head>
+<body onload=doInit()>
+<h3>Klotho Biochemicals in Jmol</h3>
+<table><tr><td valign=top width=300>
+<script>setSelect()</script>
+<br><input type=text size=20 id=searchtext onKeyPress=checkEnter(event) style='width:200px;background-color:yellow'><input type=button onclick=doSearch() value="search" style='width:100px'>
+<div id=searchdiv></div>
+source: <a target=_blank href=http://www.biocheminfo.org>www.biocheminfo.org</a> Klotho set
+<br>
+<br>
+<span id=aminenote style="display:none"><small><i>Note: Amines are not generally depicted correctly in this database. 
+A trivalent nitrogen atom adjacent to an sp2 center will generally become sp2 itself.</i></small></span>
+
+</td><td valign=top>
+<script>
+jmolInitialize(jmolAppletPath,"JmolAppletSigned0.jar")
+jmolApplet(500, 'cd ' + klothoPath + '/pdb/;set antialiasdisplay;javascript "appletLoaded()"')
+jmolBr()
+jmolButton("select *;spacefill off;wireframe 0.05","wireframe")
+jmolButton("select *;spacefill 20%;wireframe 0.15","ball and stick")
+jmolButton("select *;wireframe off;spacefill","spacefill")
+jmolButton("write image \"?.jpg\"","save image")
+jmolButton("write state \"?.spt\"","save state")
+jmolButton("console")
+</script>
+<br>
+<input type=button onclick="doFischer(0)" value="Fischer projection">
+<input type=button onclick="doFischer(1)" value="Reset">
+<input type=button onclick="doRingFlip(0)" value="Flip pyranose">
+<input type=button onclick="jmolScript('set minimizationCriterion 0.01;minimize steps 300')" value="Minimize">
+<br>
+<a id=wikiref href="" target=_blank></a>
+<a id=klothoref href="" target=_blank></a>
+<a id=newwindow href="" target=_blank></a>
+</td></tr></table>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSpecView/JSME/nmrdb/NIH-Resolver Demo II</title>
+<meta charset="utf-8" />
+
+<script src="JSmol.min.js"></script>
+<!-- for debugging only, replace above JSmol.min.js call with these:
+<script src="jquery/jquery.js"></script>
+<script src="js/JSmoljQueryExt.js"></script>
+<script src="js/JSmolCore.js"></script>
+<script src="js/JSmolApplet.js"></script>
+<script src="js/JSmolApi.js"></script>
+<script src="js/JSmolControls.js"></script>
+<script src="js/j2sjmol.js"></script>
+<script src="js/JSmol.js"></script>
+<script src="js/JSmolConsole.js"></script>
+<script src="js/JSmolMenu.js"></script>
+-->
+<script src="js/JSmolJSV.js"></script>
+<script src="js/JSmolJME.js"></script>
+<script src="jsme/jsme/jsme.nocache.js"></script>
+
+<script>
+
+function predictSpectrum(isJmol) {
+  unhideJSV();
+  if (!isJmol) {
+    var data = Jmol.jmeGetFile(jme, false);
+    if (!data.length) {
+      alert("Please draw a structure or do a search first.");
+      return;
+    }
+  }
+  Jmol.updateView(isJmol ? jmol : jme);
+}
+
+js = Jmol._search;
+
+Jmol._search = function(applet, query) {
+ unhideJSV();
+ js(applet, query);
+}
+
+Jmol.User.viewUpdatedCallback = function(applet, note) {
+  $("#moldiv").html(note + "\n\n" + Jmol.View.dumpViews(applet._viewSet))
+}
+
+function unhideJSV() {
+ $("#infodiv").hide();
+ $("#jsvdiv").show(); 
+}
+
+// The special thing here is Info.viewSet, which defines the group of applets 
+// that are to be communicating with each other. Info.viewSet is an HTML5-only
+// option. You can have any combination of JSME, Jmol, and JSV applets in a group.
+
+var JMEInfo = {     
+  viewSet: 1,
+	use: "HTML5",
+  divId: "jmediv", // note: width and height are set by a style attribute in this div
+  options : "autoez;nocanonize",
+  editOptions: "editDisabled;",
+  addSelectionOptions: true,
+  structureChangedCallback: "testCallback" // Jmol will handle this
+}
+
+Jmol.setGrabberOptions([["$", "NCI"]]) // allows 2D reading
+/*
+var JmolInfo = {     
+  viewSet: 1,
+	use: "HTML5",
+  width: 300,
+  height:250,
+  addSelectionOptions: false,
+  disableJ2SLoadMonitor: false,
+  disableInitialConsole: false
+}
+*/
+
+JSVInfo = {
+  viewSet: 1,
+	use: "HTML5",
+	width: 800,
+	height: 500,
+	color: "0xC0C0C0",
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+  preloadScript: "close views;close simulations > 1; DEFAULTNMRNORMALIZATION 1000;",
+  script: 'defaultLoadScript "OVERLAYSTACKED true; VIEW *;STACKOFFSETY 50;";',
+  disableJ2SLoadMonitor: false,
+  disableInitialConsole: true,
+  addSelectionOptions: false,
+}
+
+//Jmol.setAppletSync(["jsv", "jmol"], ["", ""], true);
+
+$(document).ready(function() {
+// $("#infodiv").show();
+// $("#jsvdiv").hide(); 
+// $("#jmol_query").val("ethanol");
+ $("#jme_query").val("ethanol");
+// $("#jsv_query").val("ethanol");
+ $(".btn").css({width:"30px"});
+ $("a").css({"text-decoration":"none"});
+ $("#enableEdit").prop('checked', false);
+});
+
+function nameIt() {
+	alert(Jmol.getChemicalInfo(jme, 'names'));
+}
+
+
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10>
+<tr>
+<td valign="top">
+<table><tr><td>
+<table cellspacing=0 cellpadding=0 style="width:100%">
+<tr><td>
+<label><input id="enableEdit" type="checkbox" onclick="jme._enableEdit(this.checked)">Enable Editing</label></td>
+<td title="Draw a simple (known!) structure and click here for a list of names." style="text-align:right"><a href="javascript:nameIt()">Name It!</a>
+<a href="javascript:Jmol.saveImage(jme)">Capture Image</a> 
+</span></td></tr></table>
+<div id="jmediv" style="position:relative;width:350px;height:320px;"></div>
+<script>
+Jmol.getJMEApplet("jme", JMEInfo);
+</script>
+<br>
+<br>
+<!--
+<textarea id=test cols=40 rows=3>
+insert mol file data here
+</textarea>
+<a href="javascript:jme._applet.readMolFile($('#test').val())">test</a>
+<a href="javascript:x = jmol._getMol();jme._applet.readMolFile(x);void($('#test').val(x));">test2</a>
+-->
+</td><td>
+<input class="btn" type="button" onclick="predictSpectrum(0)" value="&#8594" />
+</td>
+</tr>
+<tr><td><span style="font-size:10pt">
+ Enter an identifier such as a chemical name or SMILES string, or enable editing and draw a compound. 
+Then click <input class="btn" type="button" onclick="predictSpectrum(0)" value="&#8594" />
+to see a <b>simulated</b> spectrum. Or load your own spectrum by dragging a file into the blue box or using 
+a right-click to access the pop-up menu.
+<br>
+<br>
+To select atoms on the structure, click <span><img src=data/jmestar.png></span> from the menu, then click on an atom.
+To select a peak, just click on it. Clickable peaks are the ones with a red tab at the top.
+<br>
+<br>
+This page illustrates how we can use JSME (the JavaScript Molecular Editor) 
+along with JSpecView to quickly get a simulated spectrum for a compound of our choice.
+JSmol on this page calls servers in Frederick, Maryland (NIH resolver, for name-to-structure)
+and Lausanne, Switzerland (nmrdb, for structure-to-spectrum).
+</span>
+<!--
+<script>
+Jmol.getApplet("jmol", JmolInfo)
+</script>
+
+</td><td>
+<input class="btn" type="button" onclick="predictSpectrum(1)" value="&#8594" />
+-->
+</td>
+</tr>
+</table>
+</td>
+<td valign="top">
+<div id="jsvdiv" style="position:relative;border-style:solid;border-color:blue;border-width:1px">
+<script>
+Jmol.getJSVApplet("jsv", JSVInfo)
+</script>
+<br>
+<a href="javascript:unhideJSV();Jmol.showInfo(jsv, true);Jmol.showInfo(jmol, true)">info</a>
+<a href="javascript:Jmol.clearConsole(jsv);Jmol.clearConsole(jmol);">clear</a>
+<a href="javascript:Jmol.showInfo(jsv, false);Jmol.showInfo(jmol, false)">spectrum</a>
+<a href="javascript:Jmol.showInfo(jsv, false);Jmol.script(jsv, 'showIntegration')">integration</a>
+ (drag to zoom; right-click for menu; note that OH and NH may not be shown)
+<div style="position:absolute;left:745px;top:510px;z-index:9005"><input type="button" value="print" onclick="Jmol.script(jsv, 'write PDF')"/></div>
+</div>
+<span style="font-size:10pt">
+<a href="http://www.rsc.org/learn-chemistry/collections/spectroscopy">RSC SpectraSchool</a> Assigned Spectra Examples: 
+<a href="javascript:Jmol.script(jsv, 'load data/nmr_assigned.jdx')">IPA-1HNMR</a>
+<a href="javascript:Jmol.script(jsv, 'load data/c13nmr_assigned.jdx')">IPA-13CNMR</a>
+<a href="javascript:Jmol.script(jsv, 'load data/tcb-1h.jdx')">TCB-1HNMR</a>
+<a href="javascript:Jmol.script(jsv, 'load data/tcb-13c.jdx')">TCB-13CNMR</a>
+<a href="javascript:Jmol.script(jsv, 'load data/ir_assigned.jdx')">carvone-IR</a>
+<a href="javascript:Jmol.script(jsv, 'load data/mass_assigned.jdx')">carvone-MS</a>
+</span>
+
+<div id="infodiv" style="text-align:center;display:none">
+This page illustrates how we can use JSME (the JavaScript Molecular Editor) 
+<br>along with JSpecView to quickly get a simulated spectrum for a compound of our choice.
+<br>Note that the three applets can be combined easily in any combination. 
+<br><br>JSmol on this page calls servers in Frederick, Maryland (NIH resolver, for name-to-structure)
+<br>and Lausanne, Switzerland (nmrdb, for structure-to-spectrum)
+<br><br><span style="color:blue">Draw a chemical structure 
+<br>or search for a chemical identifier such as <b>caffeine</b> or <i>CCOCC</i>, 
+<br>then press <input class="btn" type="button" onclick="predictSpectrum()" value="&#8594" />.</span>
+<br><br><span style="color:red">Note that these spectra are <i>just predictions.</i> 
+<br>They may differ significantly from actual NMR spectra.</span>
+
+</div>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<span style="white-space:pre">
+credits:
+
+<a href=http://jsmol.sourceforge.net/>JSmol and page development</a>: <a href=mailto:hansonr@stolaf.edu>Bob Hanson</a>
+<a href=http://peter-ertl.com/jsme/>JSME</a>: Peter Ertl, Bruno Bienfait
+<a href=http://jspecview.sourceforge.net>JSpecView</a>: Robert Lancashire, Bob Hanson
+<a href=http://www.nmrdb.org>nmrdb</a>: Luc Patiny
+<a href=http://cactus.nci.nih.gov>NIH Resolver</a>: Markus Sitzmann
+<a href=https://code.google.com/p/java2script>Java2Script</a>: Zhou Renjian
+</span>
+</td><td>
+<div id="moldiv" style="white-space:pre;font-family:monospace"></div>
+</td>
+</tr>
+
+</table>
+</body>
+</html>

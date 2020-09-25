@@ -1,0 +1,97 @@
+###############################################################################
+# Plewa, M.;Tebbe, K.F. (1981)
+# Zeitschrift fuer Anorg. und Allgemeine Chemie 477, 7-20
+# I(NI4)(NH3), ein neues Derivat des Iodstickstoffs
+# 
+# CIF by ICSD-for-WWW,  Copyright 2003 FIZ-Karlsruhe & A.W.Hewat (hewat@ill.fr)
+# NOT TO BE PUBLISHED IN ANY FORM. See http://icsd.ill.fr/icsd/conditions.html
+###############################################################################
+
+data_26520-ICSD
+_database_code_ICSD                26520
+_audit_creation_date               1981-12-31
+_chemical_name_systematic
+'Iodine(I) tetraiodonitrate(III) ammonia'
+_chemical_formula_structural       
+'I (N I4) (N H3)'
+_chemical_formula_sum              
+'H3 I5 N2'
+_publ_section_title                
+'H3 I5 N2'
+loop_
+_citation_id
+_citation_journal_abbrev
+_citation_year
+_citation_journal_volume
+_citation_page_first
+_citation_page_last
+_citation_journal_id_ASTM
+primary 'Zeitschrift fuer Anorg. und Allgemeine C' 1981 477 7 20 ZAACAB
+loop_
+_publ_author_name
+Plewa, M.;Tebbe, K.F.
+_cell_length_a                     8.425(1)
+_cell_length_b                     8.425(1)
+_cell_length_c                     8.765(1)
+_cell_angle_alpha                  90.
+_cell_angle_beta                   90.
+_cell_angle_gamma                  120.
+_cell_volume                       538.7908
+_cell_formula_units_Z              2
+_symmetry_space_group_name_H-M     'P 63 m c'
+_symmetry_Int_Tables_number        186
+_refine_ls_R_factor_all            0.0479
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+   1   '-x, -x+y, z+1/2'
+   2   'x-y, -y, z+1/2'
+   3   'y, x, z+1/2'
+   4   'x-y, x, z+1/2'
+   5   'y, -x+y, z+1/2'
+   6   '-x, -y, z+1/2'
+   7   'x, x-y, z'
+   8   '-x+y, y, z'
+   9   '-y, -x, z'
+  10   '-x+y, -x, z'
+  11   '-y, x-y, z'
+  12   'x, y, z'
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+I1+     1.
+I1-     -1.
+N3+     3.
+N3-     -3.
+H1+     1.
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_B_iso_or_equiv
+_atom_site_occupancy
+I1 I1+ 2 a 0 0 0.3536(3) 0. 1.
+I2 I1- 6 c 0.19254(6) 0.38508(6) 0 0. 1.
+I3 I1- 2 b 0.3333 0.6667 0.3417(3) 0. 1.
+N1 N3+ 2 b 0.3333 0.6667 0.087(2) 0. 1.
+N2 N3- 2 b 0.6667 0.3333 0.11(2) 0. 1.
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_type_symbol
+_atom_site_aniso_B_11
+_atom_site_aniso_B_22
+_atom_site_aniso_B_33
+_atom_site_aniso_B_12
+_atom_site_aniso_B_13
+_atom_site_aniso_B_23
+I1 I1+ 2.13(3) 2.13(3) 2.50(6) 1.07(2) 0 0
+I2 I1- 1.98(4) 1.98(4) 2.73(4) 0.85(4) -.25 0.25
+I3 I1- 3.23(4) 3.23(4) 2.64(7) 1.62(4) 0 0
+N1 N3+ 0.09(3) 0.09(3) 2.2(9) 0.045 0 0
+N2 N3- 15.(4) 15.(4) 5.(3) 7.5 0 0
+#End of data_26520-ICSD
+

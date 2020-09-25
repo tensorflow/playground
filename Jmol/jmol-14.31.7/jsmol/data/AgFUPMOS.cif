@@ -1,0 +1,149 @@
+
+###########################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+# 
+###########################################################################
+#
+#  This CIF contains data generated directly from an entry in the Cambridge 
+#  Structural Database and will include bibliographic, chemical, crystal, 
+#  experimental, refinement, and atomic coordinate data, as available.
+#     
+#  Copyright  2004  The Cambridge Crystallographic Data Centre
+# 
+#  This CIF is provided on the understanding that it is used for bona fide 
+#  research purposes only.  It may contain copyright material of the CCDC
+#  or of third parties, and may not be copied or further disseminated in 
+#  any form, whether machine-readable or not, except for the purpose of 
+#  generating routine backup copies on your local computer system.
+# 
+#  For further information about the CCDC, data deposition and data 
+#  retrieval see <www.ccdc.cam.ac.uk>. Bona fide researchers may freely 
+#  download  Mercury and enCIFer from this site to visualise CIF-encoded 
+#  structures and to carry out CIF format checking respectively.
+#
+###########################################################################
+
+data_CSD_CIF_FUPMOS
+_audit_creation_date 1988-08-15
+_audit_creation_method CSD-ConQuest-V1
+_database_code_CSD FUPMOS
+_chemical_formula_sum 'C25 H17 Ag1 F5 P1'
+_chemical_formula_moiety
+;
+C25 H17 Ag1 F5 P1
+;
+_journal_coden_Cambridge 186
+_journal_year 1988
+_journal_page_first 341
+_journal_name_full 'J.Chem.Soc.,Dalton Trans. '
+loop_
+_publ_author_name
+"R.Uson"
+"A.Laguna"
+"A.Uson"
+"P.G.Jones"
+"K.Meyer-Base"
+_chemical_name_systematic
+;
+Pentafluorophenyl-triphenylphosphinomethylide-silver(i)
+;
+_cell_volume   2218.280
+_exptl_crystal_colour 'white'
+_exptl_crystal_density_diffrn 1.65
+_exptl_special_details
+;
+monoclinic polymorph
+
+;
+_diffrn_ambient_temperature ?
+_diffrn_special_details
+;
+The study was carried out at room temperature,in the range 283-303K
+
+;
+#These two values have been output from a single CSD field.
+_refine_ls_R_factor_gt 0.04
+_refine_ls_wR_factor_gt 0.04
+_symmetry_cell_setting monoclinic
+_symmetry_space_group_name_H-M 'P 21/n'
+_symmetry_Int_Tables_number 14
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 1/2-x,1/2+y,1/2-z
+3 -x,-y,-z
+4 -1/2+x,-1/2-y,-1/2+z
+_cell_length_a 12.139(2)
+_cell_length_b 12.487(2)
+_cell_length_c 15.023(3)
+_cell_angle_alpha 90
+_cell_angle_beta 103.06(2)
+_cell_angle_gamma 90
+_cell_formula_units_Z 4
+loop_
+_atom_type_symbol
+_atom_type_radius_bond
+C 0.68
+H 0.23
+Ag 1.59
+F 0.64
+P 1.05
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ag1 Ag 0.90205(3) 0.39542(3) 0.72185(2)
+P1 P 0.8015(1) 0.5462(1) 0.8630(1)
+C1 C 0.8482(4) 0.4177(3) 0.8461(3)
+C2 C 0.9413(4) 0.3713(3) 0.5941(3)
+C3 C 0.8673(4) 0.3962(4) 0.5136(3)
+C4 C 0.8895(4) 0.3871(4) 0.4288(3)
+C5 C 0.9915(4) 0.3472(4) 0.4210(3)
+C6 C 1.0696(4) 0.3201(4) 0.4982(3)
+C7 C 1.0434(4) 0.3329(4) 0.5809(3)
+F1 F 0.7631(2) 0.4364(3) 0.5167(2)
+F2 F 0.8106(3) 0.4132(3) 0.3526(2)
+F3 F 1.0158(3) 0.3358(3) 0.3389(2)
+F4 F 1.1717(3) 0.2838(3) 0.4899(2)
+F5 F 1.1266(2) 0.3048(3) 0.6558(2)
+C8 C 0.9091(3) 0.6459(3) 0.8632(2)
+C9 C 1.0212(3) 0.6185(4) 0.8735(3)
+C10 C 1.1005(4) 0.6967(5) 0.8728(3)
+C11 C 1.0701(4) 0.8017(5) 0.8620(3)
+C12 C 0.9583(4) 0.8297(4) 0.8520(3)
+C13 C 0.8785(4) 0.7523(3) 0.8529(3)
+C14 C 0.7561(3) 0.5598(3) 0.9691(3)
+C15 C 0.7977(5) 0.6381(4) 1.0339(3)
+C16 C 0.7653(6) 0.6390(4) 1.1153(3)
+C17 C 0.6909(5) 0.5642(5) 1.1338(4)
+C18 C 0.6494(5) 0.4868(5) 1.0725(3)
+C19 C 0.6831(4) 0.4827(4) 0.9905(3)
+C20 C 0.6834(3) 0.5830(3) 0.7709(3)
+C21 C 0.5756(4) 0.5966(4) 0.7851(3)
+C22 C 0.4869(4) 0.6192(4) 0.7108(3)
+C23 C 0.5054(4) 0.6281(4) 0.6265(3)
+C24 C 0.6126(4) 0.6181(4) 0.6114(3)
+C25 C 0.7017(4) 0.5949(3) 0.6845(3)
+H1 H 0.91120 0.40210 0.89580
+H2 H 0.78790 0.36840 0.84720
+H3 H 1.04280 0.54460 0.88110
+H4 H 1.17800 0.67540 0.87930
+H5 H 1.12720 0.85480 0.86210
+H6 H 0.93710 0.90390 0.84500
+H7 H 0.80060 0.77210 0.84600
+H8 H 0.84900 0.69160 1.02140
+H9 H 0.79270 0.69320 1.16010
+H10 H 0.66800 0.56500 1.19090
+H11 H 0.59800 0.43340 1.08500
+H12 H 0.65610 0.42680 0.94720
+H13 H 0.56230 0.59120 0.84550
+H14 H 0.41180 0.62810 0.72020
+H15 H 0.44280 0.64130 0.57580
+H16 H 0.62530 0.62710 0.55110
+H17 H 0.77680 0.58760 0.67460
+#END

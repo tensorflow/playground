@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jmol/JME Demo</title>
+<meta charset="utf-8" />
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/JSmolJME.js"></script>
+<script type="text/javascript" language="javascript" src="jsme/jsme/jsme.nocache.js"></script>
+
+<script type="text/javascript">
+
+//Jmol._debugCode = true;//(s.indexOf("debugcode") >= 0);
+
+var jme = "jme";
+
+var JMEInfo = {     
+	use: "HTML5"
+  ,visible: true
+  ,divId: "jmediv"
+  ,options : "nohydrogens;autoez;nocanonize;removehs"
+	//,jarPath: "jme",
+	//,jarFile: "JME.jar"
+  //optional parameters
+  //,"jme" : startingStructure   
+}
+
+Jmol.setGrabberOptions([[":", "PubChem"]])
+//Jmol.setGrabberOptions([["$", "NCI"]])
+        
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10>
+<tr>
+<td><div id="jmediv" style="position:relative;width:350px;height:300px;"></div></td>
+<script>
+Jmol.getJMEApplet("jme", JMEInfo);
+</script>
+</td>
+</tr></table>
+</body>
+</html>

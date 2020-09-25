@@ -1,0 +1,607 @@
+//@author Jake LaNasa, St. Olaf College 6/19/2015
+//addition functionality by Ben Hinke, St. Olaf College 8/1/2016
+
+// 10/27/2017 5:54:40 AM BH adding prototype methods
+// 6/5/2017 12:06:09 PM Bob Hanson and Mandy Nguyen
+// 6/20/2017 8:23:08 AM BH switching to bz2b.spt
+// 7/20/2017 11:53:38 AM BH addint aflowCompare fix for asynchronous JavaScript
+
+// AFLOW macro command aflowCompare
+
+// Created: July/6/2017
+// Revised: July/14/2017
+// Author: Bob Hanson, Simon Zhao
+// St. Olaf College 
+// 7/14/2017 11:11:12 AM
+
+
+AFLOWdir= "http://aflowlib.mems.duke.edu/users/jmolers/binary_new/"
+AFLOWweb= "http://aflowlib.mems.duke.edu/AFLOWDATA/ICSD_WEB/"
+AFLOWlib= "http://aflowlib.mems.duke.edu/users/jmolers/jmol/get.php?lib="
+
+function aflowLoad(binaryAlloy){
+if(binaryAlloy){
+	load @{AFLOWdir+binaryAlloy+".aflow_binary"}
+}
+}
+print "aflowLoad(binaryAlloy) loaded"
+
+//loads desired binary file
+
+function aflowBinaries{
+var x=load("http://aflowlib.org/binary_alloys.php")
+var a=[]
+var noData="BrCd AlGa CoGe CoHf AlMg HgMg IrP AlPb BiPt AgRb AlRb AsRb AuRb BiRb BrRb CaRb CdRb ClRb CoRb CrRb CuRb FeRb GaRb GeRb HfRb HgRb InRb IrRb LaRb LiRb MnRb MoRb NaRb NbRb NiRb OsRb PRb PbRb PdRb PtRb RbRe PbRh RbRh RbRu RbSb RbSc RbSe RhSe MgSi RbSi AgSm AlSm AsSm AuSm BiSm BrSm CaSm CdSm ClSm CoSm CrSm CuSm FeSm GaSm GeSm HfSm HgSm InSm IrSm LaSm LiSm MgSm MnSm MoSm NaSm NbSm NiSm OsSm PSm PbSm PdSm PtSm RbSm ReSm RhSm RuSm SbSm ScSm SeSm SiSm RbSn SmSn PSr RbSr SmSr RbTa SmTa RbTc SmTc RbTe SmTe PTi RbTi SmTi CoTl RbTl SmTl RbV SmV RbW SmW AgY MgY RbY SmY AgZn BiZn MoZn RbZn SmZn RbZr SmZr"
+x=x.split("phase-diagram")[2]
+var n=0
+for(var l in x.split("radio\" name")){
+	n++
+	var y=l.split("\"")[4]
+	if(n=1||noData.find(y)){continue}
+	a.push(y)
+}
+return a.sort
+}
+print "aflowBinaries loaded"
+
+//Goes into source code and gives an array of the binary alloys
+
+function aflowDualTable(binaryAlloy, a, b) {
+if(binaryAlloy){
+	load @{AFLOWdir+binaryAlloy+".aflow_binary"}
+}
+a=_("aflowInfo."+a)
+b=_("aflowInfo."+b)
+var c=a.add("\t",b).sort
+return c
+}
+
+print "aflowDualTable(binaryAlloy, a, b) loaded"
+
+function aflowDualArray(binaryAlloy, xName, yName) {
+if(binaryAlloy){
+	load @{AFLOWdir+binaryAlloy+".aflow_binary"}
+}
+return _("aflowInfo").getproperty("[select " +xName+","+yName+",modelNumber]")
+}
+
+print "aflowDualArray(binaryAlloy, xName, yName) loaded"
+
+//this takes the two properties and puts into list for graphing
+
+function aflowDualWrite(binaryAlloy, a, b) {
+var a=load("file:///Users/user/Desktop/Jmol research/binarylist.txt")
+for(i in a.split("\n")){
+	try{
+	load @{"file:///Users/user/Desktop/Jmol research/AFLOW Binary/"+i+".aflow_binary"}
+	}
+	catch(e){
+		print e
+		continue
+		}
+	var c=_("aflowInfo."+a)
+	var d=_("aflowInfo."+b)
+	var e= d.add("\t",c).sort
+	write var e @{i+"ch.txt"}
+	print i
+}
+}
+
+print "aflowDualWrite(binaryAlloy, a, b) loaded"
+
+//Should go through and write .txt files for every group to give data points for a
+//convex hull.
+
+function aflowConvexHull(binaryAlloy) {
+if(binaryAlloy){
+	load @{AFLOWdir+binaryAlloy+".aflow_binary"}
+}
+var x=_.modelLoadNote
+var y=x.lines
+var a=[]
+var p=[]
+var edges=[]
+var cp=[]
+var q=[]
+var model=[]
+for(var l in y.split("\n")){
+	if(!l.find("REFERENCE")){
+	a.push(l)
+	}
+}
+for(var k in a){
+	var s=k.split("\t")
+	var e=0+s[6]
+	if(e>0){continue}
+	var c=0+s[2]
+	var m=0+s[4]
+	p.push([pt:point(c,e,0),model:m])
+	while(true){
+	  if(p.length>1){
+		edges.push(p[0].pt-p[-1].pt)
+	  }
+	  if(edges.length>1){
+		var v=cross(edges[-1],edges[0]).z
+		if(v<0){
+			var i=p.pop()
+			p.pop()
+			edges.pop()
+			edges.pop()
+			p.push(i)
+			continue
+		}
+		cp.push(v)
+	  }
+	  break
+	}
+
+}
+for(var pt in p){
+	q.push([Cb:pt.pt.x,Hf_atom_eV_VASP:pt.pt.y,modelNumber:pt.model])
+}
+return q
+}
+
+print "aflowConvexHull(binaryAlloy) loaded"
+
+function aflowCheckBinary(binaryAlloy){
+	if(prompt("Do you want to read all the files?", "yes")=="yes"){
+		var x=load("http://aflowlib.org/binary_alloys.php")
+		var list=[]
+		var nd=[]
+		x=x.split("phase-diagram")[2]
+		var n=0
+		for(var l in x.split("value=\"")){
+			n++
+			var y=l.split("\"")[1]
+			if(n=1){continue}
+			list.push(y)
+		}
+		for(var t in list){
+			try{
+			    aflowLoad(t)
+			} catch(e){
+			   	   print "file"+binaryAlloy+"cannot be read"+e
+				   nd.push(t)
+			  }
+		}
+		print nd
+		return nd
+	}
+	print "checking"+binaryAlloy
+	try{
+		aflowLoad(binaryAlloy)
+		} catch(e){
+			   print "file"+binaryAlloy+"cannot be read"+e
+			  }
+}
+
+print "aflowCheckBinary(binaryAlloy) loaded"
+
+//Returns concentration, energy, and model number of points that
+//make up convex hull
+
+function aflowGetPG(binaryAlloy, a, range1, range2,radius){
+	aflowLoad(binaryAlloy)
+	if(!a) a=@1
+	select a
+	if(!range1) range1=4
+	if(!range2) range2=24
+	if(!radius) radius=3.65
+	polyhedron @range1 @{-range2} @radius unitcell
+	var x={*}.polyhedron.all.getProperty("pointGroup")
+	return x
+}
+
+print "aflowGetPG(binaryAlloy, a, range1, range2,radius) loaded"
+
+function aflowGetInfo(){
+	var chooseBinary=prompt("Which Binary would you like?", binary)
+	if(chooseBinary=="null"){quit}
+	aflowLoad(chooseBinary)
+	var chooseInfo=prompt("Do you have a model number in mind?", "Yes|No",TRUE)
+	if(chooseInfo=="yes"){
+		var modelNumber=prompt("What is the model number? (Use Numerals)",modelnumber)
+		if(modelNumber=="null"){quit}
+		var allInfo=prompt("Do you want all info?", "Yes|No",TRUE)
+		if(allInfo=="yes"){
+			print _("aflowInfo")[modelnumber]
+		} else{
+			var pickInfo=prompt("State Info",info)
+			if(pickInfo=="null"){quit}
+			print _("aflowInfo."+pickInfo)[modelnumber]
+		}
+	} else{
+		var allInfo2=prompt("Do you want all info?", "Yes|No",TRUE)
+		if(allInfo2=="yes"){
+			print _("aflowInfo")
+		} else{
+			var pickInfo2=prompt("State Info", info)
+			if(pickInfo2=="null"){quit}
+			print _("aflowInfo."+pickInfo2)
+		}
+	}
+
+}
+
+print "aflowGetInfo() ready"
+
+function aflowSimilarityCheck(file1, file2, range) {
+	load files @file1 @file2
+	var latticeScaling = aflowGetLatticeScaling(range)
+	if (!latticeScaling)return
+	load append @file2 filter @{"latticeScaling="+(latticeScaling)}
+	print "lattice scaling is now " + aflowGetLatticeScaling(range)
+
+}
+
+function aflowGetLatticeScaling(range) {
+// sample script only
+// with two files loaded, create a polyhedron for
+// one atom in each file of the same element.
+// Using SMARTS, find the two matching polyhedra and determine their
+// volumes. Then use that volume difference to reload the
+// second model with scaling
+
+
+    if(!range) range=3.65
+
+ // first atom's element
+  elem1= {*}[1].element
+// first and last atom with this element
+  atom1 = {element=@elem1}[1]
+  atom2 = {element=@elem1}[0]
+// make sure those are in two different models
+  if (atom1.modelIndex == atom2.modelIndex) {
+    prompt "element " + elem1 + " is not in " + file2
+    return
+  }
+// create two polyhedra
+  select atom1 or atom2
+  polyhedra 4-24 @range unitcell translucent
+// calculate their symmetry, including SMILES and SMARTS representations
+  calculate symmetry polyhedra
+// using the SMARTS for first, find the second
+// this could fail the files are different or two atoms have different environments
+  s1 = atom1.polyhedron.getProperty("smarts")
+  all1 = polyhedra(s1)
+  print "for SMILES="+s1 +"\n found " + all1
+// pull  out the volume information from the polyhedra
+  var volumes = getProperty("shapeInfo.polyhedra[select volume]")
+// return the scaling factor
+  return (volumes[1]/volumes[2])**0.333333
+}
+
+//aflowSimilarityCheck("POSCAR_Er1Fe2_ICSD_630450" "POSCAR_Er1Fe2_ICSD_169364")
+
+
+//This function creates the Brillouin Zone for compounds which are accessed through the ICSD file
+
+function aflowCreateBZ(p1,p2) {
+	if(!p1) {p1 = prompt("classification (e.g. MCL)?", defaultInput)}
+	if(!p2) {p2 = prompt("compound (e.g. Ag1Au1Te4_ICSD_24646)?", defaultInput)}
+	script $SCRIPT_PATH$/bz2b.spt
+
+	// FAILS because ?geometry is not delivering the correct primitive cell
+  // bzg =load("http://aflowlib.mems.duke.edu/AFLOWDATA/ICSD_WEB/"+ p1 + "/" + p2 + "/?geometry").split(",")
+  // instead, we decode the _sprim CIF data:
+  // _cell_length_a  4.0099493522
+  // _cell_length_b  4.0099493522
+  // _cell_length_c  4.0099493522
+  // _cell_angle_alpha  119.9516660506
+  // _cell_angle_beta  119.9516660506
+  // _cell_angle_gamma  90.0837372630
+  // _symmetry_space_group_name_H-M  'P1'
+
+  // Get the standard primitive unit cell information from AFLOW
+  // and get it into an array of six numbers - [a, b, c, alpha, beta, gamma]
+
+  load_sprim = load("http://aflowlib.mems.duke.edu/AFLOWDATA/ICSD_WEB/" + p1 + "/" + p2 + "/" + p2 + "_sprim.cif")
+  var bzg = load_sprim.split("_symmetry")[1]
+  bzg = bzg.replace("\n","").split("_cell_")
+  bzg = [bzg[2].split("  ")[2],bzg[3].split("  ")[2],bzg[4].split("  ")[2],bzg[5].split("  ")[2],bzg[6].split("  ")[2],bzg[7].split("  ")[2]]
+	print bzg
+
+  // now create the Brilloin zone
+
+ 	createBZ([bzg[1],bzg[2],bzg[3],bzg[4],bzg[5],bzg[6]])
+
+  // and produce the band paths on it
+
+  load_kpoints_bands = load("http://aflowlib.mems.duke.edu/AFLOWDATA/ICSD_WEB/"+ p1 + "/" + p2 +"/KPOINTS.bands")
+
+  // for example: http://aflowlib.mems.duke.edu/AFLOWDATA/ICSD_WEB/TRI/B1Cd1Li1O3_ICSD_200615/KPOINTS.bands
+
+  // unfortunately, this will not be sufficient for TRI1a and TRI2a systems, as those files have the TRI1B data
+  // instead. So we have to make that information ourselves.
+
+  var latticeType = load("http://aflowlib.mems.duke.edu/AFLOWDATA/ICSD_WEB/"+ p1 + "/" + p2 +"/?lattice_variation_relax").trim()
+
+  // for example http://aflowlib.mems.duke.edu/AFLOWDATA/ICSD_WEB/TRI/B1Cd1Li1O3_ICSD_200615/?lattice_variation_relax
+
+  generatePaths(load_kpoints_bands, latticeType)
+}
+
+// parse the KPOINTS.bands data
+
+function generatePaths(paths, type) {
+
+  var tria = {}
+  if (type == "TRI1a" || type == "TRI2a") {
+     tria = {"X" : { 0.5 0 0 },
+             "Y" : { 0 0.5 0 },
+             "Z" : { 0 0 0.5 },
+             "L" : { 0.5 0.5 0 },
+             "M" : { 0 0.5 0.5 },
+             "N" : { 0.5 0 0.5 },
+             "R" : { 0.5 0.5 0.5 } }
+  }
+
+/* for example:
+
+TRI1B (triclinic) X-G-Y L-G-Z N-G-M R-G
+20   ! 20 grids
+Line-mode
+reciprocal
+   0.000  -0.500   0.000   ! X
+   0.000   0.000   0.000   ! \Gamma
+
+   0.000   0.000   0.000   ! \Gamma
+   0.500   0.000   0.000   ! Y
+
+   0.500  -0.500   0.000   ! L
+   0.000   0.000   0.000   ! \Gamma
+
+   0.000   0.000   0.000   ! \Gamma
+  -0.500   0.000   0.500   ! Z
+
+  -0.500  -0.500   0.500   ! N
+   0.000   0.000   0.000   ! \Gamma
+
+   0.000   0.000   0.000   ! \Gamma
+   0.000   0.000   0.500   ! M
+
+   0.000  -0.500   0.500   ! R
+   0.000   0.000   0.000   ! \Gamma
+
+*/
+
+	var paths = paths.replace("\n  \n","\n")
+	//var type = paths.lines[1].split(" ")[1]
+	var lines = paths.lines[5][0]
+
+	set echo pathways
+	set echo pathways @{type}
+	color echo black
+
+	var pts = {}
+	var bandlines =[]
+	var n = lines.size - 1
+	var kprev = ""
+
+	for(i=1; i<=n;i++) {
+		if(!lines[i]) {break}
+		var ptData = lines[i].split("!")
+		var k = ptData[2].trim()
+		if(k=="\\Gamma") {
+			k="\u0393"
+		} else if(k=="\\Sigma") {
+			k="\u03A3"
+		}
+		else if(k=="\\Sigma_1") {
+			k="\u03A31"
+		}
+		var x = (tria[k] ? tria[k] : point("{"+ptData[1]+"}"))
+		print [i,k,x]
+		if(!pts[k]) {
+  		draw id @{"d"+i} diameter 0.06 @{x.xyz} color white
+		}
+
+		pts[k] = x
+		set echo @{k} @{k}
+		set echo @{k} @{x.xyz}
+		set echo @{k} DEPTH 1010
+		color echo yellow
+		if(i%2==0) {
+			bandlines.push([kprev,k])
+			draw id @{"line"+i} width 0.035 @{pts[kprev].xyz} @{pts[k].xyz} color white
+		}else {
+			kprev =k
+		}
+	}
+	print pts
+}
+
+print "aflowCreateBZ"
+
+
+// AFLOW macro command aflowCompare
+
+var aflowid = "" 
+
+/* 
+ * Ask for a id and load POSCAR and CONTCAR; return initial standard deviation
+ */
+function loadAflowFiles (id){
+
+	if (!id) id = prompt ("id?","TRI/Li1Mo1S2_ICSD_95571")
+	if (!id) return
+	aflowid = id
+
+	//load POSCAR and CONTCAR
+
+	 contcar = load(AFLOWlib + id + "&file=CONTCAR.relax2.bz2")
+	 poscar = load(AFLOWlib + id +  "&file=POSCAR.relax1.bz2")
+	load inline @contcar
+	load append inline @poscar
+	return calcSD()
+}
+
+/*
+ * Fix CONTCAR coordinates that have been moved to the next adjacent unitcell and return the fixed standard deviation
+ */
+function fixCoord (){ 
+	frame 2
+	for(var a in {1.1}){
+		unitcell center @a
+		var n=a.atomno
+		var b={atomno=n and 2.1}
+		b.xyz=b.uxyz.xyz
+		a.elemno=b.elemno
+		b.spacefill=0
+		b.stars=0.5
+	}
+	unitcell reset
+	frame 1
+	wireframe off
+	return calcSD()
+}
+
+/*
+ * return the rmsd of POSCAR and CONTCAR
+ */
+function calcSD(){ 
+	return compare({1.1},{2.1}, "stddev")
+}	
+
+/*
+ *
+ */
+function getLatticeVariations (){
+var origLat = load (AFLOWweb + aflowid + "/?lattice_variation_orig")	
+
+var relaxLat = load (AFLOWweb + aflowid + "/?lattice_variation_relax")
+
+return [origLat,relaxLat]
+}
+
+/*
+ * ask for id; load POSCAR and CONTCAR; fix coordinate positions;  
+ */
+ 
+function aflowCompare (id){
+	aflowid = ""
+	if (!id) id = prompt ("id?","TRI/Li1Mo1S2_ICSD_95571") //ask me what is the id 
+	if (!id) return
+
+	
+	oldrmsd = loadAflowFiles(id)
+	if (!aflowid) return
+	rmsd = fixCoord()
+
+	lattices = getLatticeVariations.trim().join("\u2192")
+		
+	set echo bottom left
+	echo "Original SD =@{format('%6.4f',oldrmsd)}         Fixed SD =@{format('%6.4f',rmsd)}        Reduced by @{format('%4.2f',(oldrmsd-rmsd)/oldrmsd)*100}% (@{lattices})"
+
+	set echo top center
+	echo "@{aflowid}"
+	
+}
+
+print "aflowCompare(id) loaded - for example, aflowCompare('TRI/Li1Mo1S2_ICSD_95571')"
+
+
+
+/*
+ * create a key list of elements and their colors  
+ */
+function aflowKey() {
+
+ var elements = {*}.element.pivot
+ if (elements.size > 1) {
+    var x = 20
+		var y = height - 30
+		for (var e in elements){
+			var c = {element=@e}.color
+			draw ID @{"d_"+ e} diameter 20 [ @x @y ] color @c
+			set echo ID @{"e_" + e} [ @{x + 10} @{y - 8} ]
+			echo @e
+			font echo 24 bold sansserif
+			color echo black
+			y -= 30
+		}
+ }
+ 
+}
+
+print "aflowKey() loaded - adds for example, aflowCompare('TRI/Li1Mo1S2_ICSD_95571')"
+
+
+/*
+ * load an AFLOW Crystal Database prototype with the specified ID
+ */ 
+function aflowProtoLoadCif(id) {
+
+  var dbpath = "http://aflow.org/CrystalDatabase/CIF"
+
+  if (!id) id = "AB2_aP12_1_4a_8a"
+  if (!id.find(".cif")) id += ".cif"
+  if (!id.find("http")) id = dbpath + "/" + id
+
+  var axisScale = 0.5
+  var axisWidth = 0.06
+  var fontScale = 20
+  var unitcellScale = 0.02
+
+  load @id packed
+  axes center {-1.0 -1.0 -1.0}
+  axes scale @axisScale
+  axes @axisWidth 
+  font axes @fontScale
+  unitcell @unitCellScale
+  select metal
+  color bonds translucent 1.0
+
+}
+
+
+
+/**
+//prompt and get to info
+	prompt that asks what binary you want
+	then asks which info you want
+		if you don't specify it gives you the whole associated array
+
+//how does convex hull work on AFLOW
+//choose concentration
+
+polyhedron 4-24 3.65 unitcell
+print @1.polyhedron
+print @1.polyhedron.keys
+center @1
+model align @1
+//calculate symmetry polyhedron
+//print {*}.polyhedron.pointGroup
+//print {*}.x
+//print {*}.label
+//print {*}.x.all
+//print {*}.polyhedron.all.pointGroup
+print {*}.polyhedron.all.getProperty("pointGroup")
+print {*}.polyhedron.all.getProperty("pointGroup").pivot
+print {*}.polyhedron.all.getProperty("[select modelNumber,pointGroup where pointGroup='C2h']")
+model 65
+display @1
+print {*}.polyhedron.all.getProperty("[select modelNumber, atomNumber, pointGroup where pointGroup='C2h']")
+print {*}.polyhedron.all.getProperty("[select modelNumber,atomNumber,pointGroup where pointGroup='C2h']")
+draw pointgroup polyhedron
+print {*}.polyhedron.all.getProperty("[select energy,pointGroup]")
+print {*}.polyhedron.all.getProperty("[select energy,pointGroup]").sort
+print {*}.polyhedron.all.getProperty("[select energy,pointGroup]").format(["energy","pointGroup"])
+print {*}.polyhedron.all.getProperty("[select energy,pointGroup]").format(["energy","pointGroup"]).sort(1)
+m=_("modelNumber")
+print m
+m=_("[select modelNumber where Cb=0.5]")
+print m
+m=_("aflowInfo[select modelNumber where Cb=0.5]")
+print m
+print {model=m}.polyhedron.all.getProperty("[select energy,pointGroup]").format(["energy","pointGroup"]).sort(1)
+print {model=m}.polyhedron.all.getProperty("[select energy,pointGroup]").format(["energy","pointGroup"]).pointGroup
+print {model=m}.polyhedron.all.getProperty("[select energy,pointGroup]").format(["energy","pointGroup"]).col(2)
+print {model=m}.polyhedron.all.getProperty("[select energy,pointGroup]").format(["energy","pointGroup"]).col(2).pivot
+print {model=m}.polyhedron.all.getProperty("[select energy,pointGroup]").bin(-0.07,0.2,0.01)
+print {model=m}.polyhedron.all.getProperty("[select energy,pointGroup]").bin(-0.07,0.2,0.01,"energy")
+print {model=m}.polyhedron.all.getProperty("[select energy,pointGroup]")
+a={model=m}.polyhedron.all.getProperty("[select energy,pointGroup]")
+print a.bin(-0.07,0.2,0.01,"energy")
+print a

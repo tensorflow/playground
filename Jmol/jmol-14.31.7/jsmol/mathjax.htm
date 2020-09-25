@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<title>JSmol-MathJax Compatibility Test</title>
+<head>
+<meta charset="utf-8">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: 
+      {
+        inlineMath: [['$','$']]
+      }
+   });
+</script>
+<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="JSmol.min.js"></script>
+
+<script type="text/javascript">
+
+Info = {
+	width: 400,
+	height: 400,
+	debug: false,
+	color: "0xC0C0C0",
+  disableJ2SLoadMonitor: false,
+  disableInitialConsole: true,
+	addSelectionOptions: false,
+	use: "HTML5",
+	readyFunction: null,
+	script: "load data/caffeine.mol"
+}
+
+// standard jQuery document ready function called only when the document has been rendered
+
+$(document).ready(function(){
+  // see http://mathjax.readthedocs.org/en/latest/startup.html
+  MathJax.Hub.Register.StartupHook("End", function() {
+    $("#mathdiv").show();
+  	$("#mydiv").html(Jmol.getAppletHtml("jmolApplet0",Info))
+  });
+});
+
+</script>
+</head>
+<body>
+<table><tr><td valign=top style="width:350px">
+<span id=mathdiv style="display:none">
+When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$, and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+<br>
+<hr>
+<br>
+The trick here is to start the Jmol loading process only
+after the MathJax process is complete. We monitor the contents of the
+<b>MathJax_Message</b> div every 10 ms, and while it doesn't exist or its message contains
+the word <i>Loading</i>, we loop:
+<pre>
+checkMathJax = function(fReady) {
+  return (!$("#MathJax_Message")[0] 
+    || $('#MathJax_Message:contains("Loading")')[0]
+    ? setTimeout(function(){checkMathJax(fReady)},10)
+    : fReady());
+}
+</pre>
+
+</span>
+</td><td>
+<span id=mydiv></span>
+<a href="javascript:Jmol.script(jmolApplet0, 'spin on')">spin on</a>
+<a href="javascript:Jmol.script(jmolApplet0, 'spin off')">spin off</a>
+</td></tr></table>
+</body>
+</html>

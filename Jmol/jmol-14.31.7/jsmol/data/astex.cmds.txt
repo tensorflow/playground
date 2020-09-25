@@ -1,0 +1,267 @@
+General Astex Commands
+
+selection_command ::=
+	| SELECT selection:selectedAtoms
+	| APPEND selection:selectedAtoms
+	| EXCLUDE selection:selectedAtoms
+	| INVERT selection:selectedAtoms
+	| DEFINE STRING:name selection:selectedAtoms
+	| UNDEFINE STRING:name
+	| EVALUATE selection:selectedAtoms
+molecule_command ::=
+	  WRITE arguments:args
+molecule_command ::=
+	  MOLECULE LAZY STRING:name STRING:file
+	| MOLECULE LOAD STRING:name STRING:file
+	| MOLECULE LOAD STRING:file
+	| MOLECULE DISPLAY STRING:pattern on_off:action
+	| MOLECULE STRING:pattern STRING:name on_off:value
+	| MOLECULE DISPLAY STRING:pattern STRING:action
+	| MOLECULE REMOVE STRING:pattern
+	| MOLECULE RELOAD STRING:name STRING:file
+remove_command ::=
+	  REMOVE MOLECULE STRING:pattern
+	| REMOVE OBJECT STRING:pattern
+map_command ::=
+	  MAP LOAD STRING:name STRING:file
+	| MAP LOAD STRING:name STRING:file INTEGER:dataMode
+	| MAP LOAD STRING:name STRING:file INTEGER:dataMode STRING:level
+	| MAP LOAD STRING:name STRING:file INTEGER:dataMode number:level
+	| MAP LOAD STRING:name STRING:file INTEGER:dataMode STRING:level STRING:doSurf
+	| MAP LOAD STRING:name STRING:file INTEGER:dataMode number:level STRING:doSurf
+	| MAP REMOVE STRING:name
+	| MAP REPLACE STRING:name STRING:file
+	| MAP REPLACE STRING:name STRING:file INTEGER:dataMode
+	| MAP REPLACE STRING:name STRING:file INTEGER:dataMode STRING:level
+	| MAP REPLACE STRING:name STRING:file INTEGER:dataMode number:level
+	| MAP WRITE STRING:name STRING:fileName
+	| MAP WRITE STRING:name STRING:fileName INTEGER:mode
+	| MAP STRING:name CONTOUR INTEGER:contour number:value
+	| MAP STRING:name CONTOUR INTEGER:contour STRING:onoff
+	| MAP STRING:name CONTOUR INTEGER:contour COLOR STRING:c
+	| MAP STRING:name CONTOUR INTEGER:contour SOLID on_off:value
+	| MAP STRING:name CONTOUR INTEGER:contour LINEWIDTH number:w
+	| MAP STRING:name CONTOUR INTEGER:contour TRANSPARENCY INTEGER:t
+	| MAP STRING:name CLIP selection:selectedAtoms
+	| MAP STRING:name CONTOUR INTEGER:contour on_off:onoff
+	| MAP EXCLUDE STRING:parentMap STRING:newMap STRING:subMaps
+	| MAP SEGMENT STRING:mapName STRING:segFile number:level
+	| MAP DEFINE MOLECULE STRING:molName STRING:directory
+	| MAP DEFINE STRING:mapName
+	| MAP DEFINE STRING:mapName number:tolerance
+	| MAP DEFINE ALL MOLECULE STRING:mapName STRING:molName STRING:directory
+	| MAP STRING:mapName MOLECULE STRING:modelName STRING:level
+	| MAP STRING:mapName MOLECULE STRING:modelName number:level
+	| MAP STRING:mapName MOLECULE STRING:modelName ALL INTEGER:intervals
+	| MAP STRING:mapName GRAPH INTEGER:intervals STRING:findMax
+	| MAP STRING:mapName GRAPH INTEGER:intervals
+	| MAP STRING:mapName STRING:level GRAPH
+	| MAP STRING:mapName number:level GRAPH
+	| MAP STRING:mapName VOLUME INTEGER:intervals STRING:doNeighbour
+	| MAP STRING:mapName VOLUME STRING:level
+	| MAP STRING:mapName VOLUME number:level
+	| MAP STRING:mapName VOLUME VOLUME
+	| MAP STRING:mapName STRING:vol VOLUME
+	| MAP STRING:mapName number:vol VOLUME
+	| MAP STRING:mapName PRINT
+	| MAP STRING:mapName MATRIX
+	    number:x00 number:x01 number:x02 number:x03
+		number:x10 number:x11 number:x12 number:x13
+		number:x20 number:x21 number:x22 number:x23
+	| MAP STRING:name arguments:args
+mask_command ::=
+	  MASK LOAD STRING:mapName STRING:file
+	| MASK WRITE STRING:mapName STRING:maskName STRING:file
+	| MASK WRITE ALL STRING:mapName 
+	| MASK WRITE ALL STRING:mapName STRING:directory
+	| MASK DEFINE ALL STRING:mapName STRING:molName
+	| MASK DEFINE SELECT STRING:mapName STRING:label STRING:color number:tolerance    
+	| MASK DEFINE STRING:mapName STRING:label STRING:color number:threshold
+	| MASK DEFINE STRING:mapName STRING:label STRING:color STRING:threshold
+	| MASK INCREASE STRING:mapName STRING:maskName
+	| MASK INCREASE STRING:mapName STRING:maskName INTEGER:times
+	| MASK DECREASE STRING:mapName STRING:maskName
+	| MASK REMOVE ALL STRING:mapName
+	| MASK REMOVE STRING:mapName STRING:maskName 
+	| MASK COLOR STRING:mapName STRING:maskName STRING:color
+	| MASK NAME STRING:mapName STRING:maskName STRING:newName
+	| MASK RADIUS STRING:mapName STRING:maskName number:tolerance
+	| MASK AND STRING:mapName STRING:mask1 STRING:mask2 STRING:mask3
+	| MASK OR STRING:mapName STRING:mask1 STRING:mask2 STRING:mask3 
+	| MASK XOR STRING:mapName STRING:mask1 STRING:mask2 STRING:mask3 
+	| MASK EXCLUDE STRING:mapName STRING:mask1 STRING:mask2 STRING:mask3 
+display_command ::=
+	  DISPLAY selection:selectedAtoms
+	| DISPLAY render_style:mode selection:selectedAtoms
+	| DISPLAY render_style:mode on_off:onoff selection:selectedAtoms
+        | DISPLAY WIDE selection:selectedAtoms
+	| CLIP number:c
+	| CLIP number:c number:d
+	| CLIP INCREASE number:c
+	| CLIP DECREASE number:c
+	| DOTSURFACE STRING:name INTEGER:n selection:selectedAtoms
+	| VDW number:r selection:selectedAtoms
+	| BALL_RADIUS number:r selection:selectedAtoms
+	| STICK_RADIUS number:r selection:selectedAtoms
+	| CYLINDER_RADIUS number:r selection:selectedAtoms
+	| BOND_WIDTH INTEGER:iw selection:selectedAtoms
+	| STICK_COLOR STRING:colour selection:selectedAtoms
+	| CHARGE number:r selection:selectedAtoms
+	| ATTRIBUTE:att STRING:transformSelectionType selection:selectedAtoms
+	| ATTRIBUTE:att number:ux number:uy number:uz number:px number:py number:pz number:theta selection:selectedAtoms
+	| ATTRIBUTE:att number:a11 number:a12 number:a13 number:a21 number:a22 number:a23 number:a31 number:a32 number:a33 selection:selectedAtoms
+	| ATTRIBUTE:att number:rx number:ry number:rz selection:selectedAtoms
+	| ATTRIBUTE:att number:r selection:selectedAtoms
+	| SURFACE arguments:args STRING:name STRING:colour selection:selectedAtoms
+surface_command ::=
+	  ANASURFACE arguments:args STRING:name STRING:colour selection:selectedAtoms
+color_command ::=
+	| COLOR_BY_RAINBOW selection:selectedAtoms
+	| COLOR STRING:c selection:selectedAtoms
+	| TRANSPARENCY INTEGER:n selection:selectedAtoms
+label_command ::=
+	  LABEL CLEAR selection:selectedAtoms
+	| LABEL STRING:format selection:selectedAtoms
+center_command ::=
+	  CENTER selection:selectedAtoms
+	| RADIUS number:x
+	| CENTER number:x number:y number:z
+	| CENTER MAP STRING:map_name
+	| RADIUS MAP STRING:map_name number:zoom
+	| RADIUS MAP STRING:map_name number:zoom STRING:level STRING:axis
+	| RADIUS MAP STRING:map_name number:zoom number:level STRING:axis
+distance_command ::=
+	  DISTANCE selection:first TO selection:second
+	| DISTANCE arguments:args
+	| DISTANCE STRING:state
+pdbe_command ::=
+	  PDBE arguments:args selection:selectedAtoms
+	| PDBE arguments:args
+view_command ::=
+	  VIEW arguments:args
+miscellaneous_command ::=
+	  SET STRING:name on_off:value
+	| EDIT  STRING:name STRING:value selection:selectedAtoms
+	| DELETE selection:selectedAtoms
+	| SET STRING:name STRING:value
+	| SET STRING:name INTEGER:value
+	| FETCH STRING:urlName
+		number:x00 number:x01 number:x02 number:x03
+		number:x10 number:x11 number:x12 number:x13
+		number:x20 number:x21 number:x22 number:x23
+		number:x30 number:x31 number:x32 number:x33
+	| BACKGROUND TRANSPARENCY INTEGER:t
+	| BACKGROUND STRING:colorName
+	| PRINT STRING:output
+	| RUN STRING:script
+	| SLIDE arguments:args
+	| STRING:s arguments:args
+	| UPDATE arguments:args number_list:nl
+	| WRITE VIEW CURRENT STRING:fileName
+	| WRITE VIEW ALL STRING:fileName
+animation_command ::=
+	  ANIMATE arguments:args
+modelling_command ::=
+	  MODELLING arguments:args
+	| FORCEFIELD arguments:args
+light_command ::= LIGHT INTEGER:n arguments:args
+hbond_command ::= HBOND arguments:args
+active_site_command ::= ACTIVE_SITE arguments:args
+skeleton_command ::= SKELETON arguments:args
+schematic_command ::=
+	  SECSTRUC arguments:args selection:selectedAtoms
+	| SCHEMATIC arguments:args selection:selectedAtoms
+load_command ::=
+	  LOAD MOLECULE STRING:name STRING:file
+	| LOAD MOLECULE STRING:file
+object_command ::=
+	  OBJECT REMOVE STRING:pattern
+	| OBJECT LOAD STRING:name STRING:filename
+	| OBJECT DISPLAY STRING:pattern on_off:state
+	| OBJECT STRING:pattern DISPLAY on_off:state
+	| OBJECT STRING:name BACKFACE on_off:state
+	| OBJECT STRING:name TEXTURE STRING:texture
+	| OBJECT STRING:name TEXTURE STRING:range number:value number:value2
+	| OBJECT STRING:name TEXTURE STRING:attribute number:value
+	| OBJECT STRING:name TEXTURE DISTANCE
+		 STRING:uvspec selection:selectedAtoms
+	| OBJECT STRING:name TEXTURE CURVATURE
+		 STRING:uvspec number:dmax selection:selectedAtoms
+	| OBJECT STRING:name TEXTURE ELECTROSTATIC
+		 STRING:uvspec number:dmax selection:selectedAtoms
+	| OBJECT STRING:name TEXTURE LIPOPHILICITY
+		 STRING:uvspec number:dmax selection:selectedAtoms
+	| OBJECT STRING:name COLOR STRING:colorName
+	| OBJECT STRING:name LINEWIDTH number:w
+	| OBJECT STRING:name TRANSPARENCY INTEGER:t
+	| OBJECT STRING:name CLIP STRING:uvSpec
+	| OBJECT STRING:name COPYTO STRING:newname
+	| OBJECT STRING:name TEXTURE RECTANGULAR
+	| OBJECT STRING:name arguments:args
+	| OBJECT WRITE STRING:name STRING:fileName
+	| OBJECT WRITE MAP STRING:mapName STRING:fileName
+texture_command ::=
+	  TEXTURE LOAD STRING:name STRING:image
+	| TEXTURE STRING:name SIMPLE
+	| TEXTURE STRING:name LIPOPHILICITY
+	| TEXTURE arguments:args
+	| TEXTURE REMOVE STRING:name
+render_style ::=
+on_off ::=
+arguments ::=
+arg_list ::=
+	  arg:a
+	| arg_list:h arg:a
+arg ::=
+	  ARG:a STRING:value
+	| ARG:a INTEGER:i
+	| ARG:a DOUBLE:d
+	| ARG:a LCURLY selection:selectedAtoms RCURLY
+	| ARG:a TRUE
+	| ARG:a FALSE
+selection ::=
+	  selection_expression:mask
+selection_expression ::=
+	  statement:mask
+	| LPAREN selection_expression:mask RPAREN
+	| selection_expression:mask1 AND selection_expression:mask2
+	| selection_expression:mask1 OR selection_expression:mask2
+	| NOT selection_expression:mask
+	| BYRESIDUE selection_expression:mask
+	| BONDED selection_expression:mask
+	| SPHERE number:r AROUND selection_expression:mask
+	| CONTACT number:r selection_expression:mask
+	| GRAPH selection_expression:mask
+	| SPHERE number:r AROUND number:x number:y number:z
+statement ::=
+	  ID id_list:v
+	| ATOM string_list:v
+	| ELEMENT id_list:v
+	| RESIDUE id_list:v
+	| MODULO INTEGER:n
+	| SEQUENTIAL id_list:v
+	| INSERTION STRING:s
+	| ALTCODE STRING:s
+	| NAME string_list:v
+	| CHAIN string_list:v
+	| MOLECULE string_list:v
+	| MOLEXACT string_list:v
+	| ATTRIBUTE:a OPERATOR:o number:d
+	| ID OPERATOR:o number:d
+	| string_list:composites
+	| COMPOSITE string_list:v
+	| GROUP STRING:definition
+	| PEEK INTEGER:i
+string_list ::=
+	  STRING:s
+	| string_list:v STRING:s
+number ::=
+	  INTEGER:i
+	| DOUBLE:d
+id_list ::=
+	  id:i
+	| id_list:v id:i
+number_list ::=
+	  number:f
+	| number_list:fa number:f
+id ::=

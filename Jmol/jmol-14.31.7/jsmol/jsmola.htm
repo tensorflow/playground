@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<title>HTML5-only AstexViewer test</title>
+<head>
+<meta charset="utf-8">
+<!-- breaking out the library for debugging -->
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/JSmolAstex.js"></script>
+
+<script type="text/javascript">
+
+Jmol.getProfile() // records repeat calls to overridden or overloaded Java methods
+
+var astex0; // set up in HTML table, below
+
+// use ?_USE=JAVA or _USE=SIGNED or _USE=HTML5
+
+jmol_isReady = function(applet) {
+	document.title = (applet._id + " is ready")
+	Jmol._getElement(applet, "appletdiv").style.border="1px solid blue"
+ 
+}		
+
+Info = {
+	width: 400,
+	height: 400,
+	debug: false,
+	color: "#F0F0F0",
+	zIndexBase: 20000,
+	z:{monitorZIndex:100},
+	addSelectionOptions: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	jarPath: "java",
+	j2sPath: "j2s",
+	jarFile: "OpenAstexViewer.jar",
+	isSigned: true,
+	disableJ2SLoadMonitor: false,
+	disableInitialConsole: false,
+	readyFunction: jmol_isReady,
+	allowjavascript: true,
+//	scriptFile: ...,
+	molecule1: 'http://www.ebi.ac.uk/pdbe/entry-files/pdb1crn.ent'
+}
+
+
+
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10>
+<tr><td colspan=2>
+</td></tr>
+<tr><td valign=top>
+
+
+<script>
+
+// note that the variable name MUST match the first parameter in quotes
+
+
+astex0 = Jmol.getAstexApplet("astex0", Info)
+
+// note that now scripts can be sent immediately after the _Applet object is created
+
+var lastPrompt=0;
+</script>
+
+<a href="javascript:Jmol.script(astex0,'view -antialias false')">faster</a>
+<a href="javascript:Jmol.script(astex0,'view -antialias true')">sharper</a>
+<br>
+info <a href="javascript:Jmol.showInfo(astex0, true)">show</a>
+<a href="javascript:Jmol.clearConsole(astex0)">clear</a>
+<a href="javascript:Jmol.showInfo(astex0, false)">hide</a>
+
+</td><td valign=top>
+<br><br> 
+
+<span style=color:red>
+This page is under development. It is a test of porting OpenAstexViewer to JavaScript. As of July 24, 2014, OpenAstexViewer/HTML5 is loading small molecules
+from NCI and PubChem, reading PDB files from RCSB (San Diego), reading mmCIF files from EBI (Cambridge, UK), creating surfaces, and drawing bonds, atoms, and 
+cartoons.
+<br><br> 
+Use the search box to load a new molecule via one of the four databases. Enter commands into the text area and press EXECUTE to execute an <a target=_blank href=http://openastexviewer.net/web/scripting.html>OpenAstexViewer script command</a>.
+   </span>
+   
+   
+<br><br> 
+<table cellpadding=5><tr><td valign=top>
+<a href="javascript:Jmol.script(astex0,'surface -solid true s red all;')">surface -solid true s red all;</a> (takes a few seconds)
+<br>
+<a href="javascript:Jmol.script(astex0,'surface -solid false s orange all;')">surface -solid false s orange all;</a>
+<br>
+<a href="javascript:Jmol.script(astex0,'display sticks all;display lines none;')">display sticks all;display lines none;</a>
+<br>
+<a href="javascript:Jmol.script(astex0,'clip 5;')">clip 5;</a>
+<a href="javascript:Jmol.script(astex0,'clip 10;')">clip 10;</a>
+<a href="javascript:Jmol.script(astex0,'clip 100;')">clip 100;</a>
+<br><a href="javascript:Jmol.script(astex0,'secstruc all;schematic -name ts  -colorbyss true all;display lines none;')">secstruc all;schematic -name ts -colorbyss true all;display lines none;</a>
+<br><a href="javascript:Jmol.script(astex0,'background white;')">background white;</a> 
+<a href="javascript:Jmol.script(astex0,'background black;')">background black;</a>
+<br>
+<br>Enter commands here, terminated with semicolons:
+<br><textarea id=cmd style="width:500px;height:100px">molecule remove *; object remove *; molecule load test "http://www.ebi.ac.uk/pdbe/entry-files/pdb1d66.ent"</textarea><input type=button value="execute" onclick="javascript:Jmol.script(astex0,$('#cmd').val().replace(/\\n/g,';')+';')" />
+
+
+</td></tr></table>
+</td>
+</tr></table>
+<iframe width=800 height=800 href=data/astex.cmds.txt src=data/astex.cmds.txt>
+</iframe>
+</body>
+</html>

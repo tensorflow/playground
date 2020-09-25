@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<title>Super-Simple JSmol with Java/HTML5 option buttons</title>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="jquery/jquery.js"></script>
+<script type="text/javascript" src="js/JSmoljQueryExt.js"></script>
+<script type="text/javascript" src="js/JSmolCore.js"></script>
+<script type="text/javascript" src="js/JSmolApplet.js"></script>
+<script type="text/javascript" src="js/JSmolApi.js"></script>
+<script type="text/javascript" src="js/JSmolControls.js"></script>
+<script type="text/javascript" src="js/j2sjmol.js"></script>
+<script type="text/javascript" src="js/JSmol.js"></script>
+<!-- // following two only necessary for WebGL version: 
+-->
+<script type="text/javascript" src="js/JSmolThree.js"></script>
+<script type="text/javascript" src="js/JSmolGLmol.js"></script>
+<script type="text/javascript" src="js/JSmolMenu.js"></script>
+<script type="text/javascript" src="js/JSmolConsole.js"></script>
+
+<script type="text/javascript">
+
+Jmol._debugCode = true;//(s.indexOf("debugcode") >= 0);
+
+
+function setOptions() {
+  $("#optiondiv").html("<a href=\"javascript:Jmol.script(jmolApplet0, 'spin on')\">spin on</a>\
+    <a href=\"javascript:Jmol.script(jmolApplet0, 'spin off')\">spin off</a>");
+}
+
+Info = {
+	use: "<set below>",
+	width: "<see below>",
+	height: "<see below>",
+	debug: false,
+	color: "0xC0C0C0",
+  j2sPath: "j2s",
+  jarPath: "java",
+  jarFile: "JmolAppletSigned0.jar",
+  isSigned: "true",
+  disableJ2SLoadMonitor: true,
+  disableInitialConsole: true,
+	addSelectionOptions: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	readyFunction: setOptions,
+	script: "set zoomLarge false; load $caffeine"
+}
+
+
+function getApplet(isJava) {
+  Info.use = (isJava ? "JAVA" : "HTML5");
+  Info.width = $("#mydiv").width($("#width").val()).width();
+  Info.height = $("#mydiv").height($("#height").val()).height();
+  $("#mydiv").html(Jmol.getAppletHtml("jmolApplet0", Info))
+
+}
+
+</script>
+</head>
+<body>
+<div id="optiondiv"></div>
+<div id=mydiv>
+Click on a button below to load Jmol. This page will not reload in the process.
+<br>
+<br>
+<input id="width" type="text" value="300" style="width:30px" /> wide
+<br>
+<input id="height" type="text" value="300"  style="width:30px"/> high
+<br>
+<input type=button onclick=getApplet(true) value="Jmol/Java" />
+<input type=button onclick=getApplet(false) value="Jmol/HTML5" />
+</div>
+</body>
+</html>

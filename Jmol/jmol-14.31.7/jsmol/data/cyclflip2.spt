@@ -1,0 +1,61 @@
+load data/cyclflip2.jmol
+myModel = _modelFile
+delay 1
+set antialiasdisplay
+animation off
+anim mode once
+
+   set echo top center
+
+   echo cyclohexane ring flip -- no boat
+
+   moveto /* time, axisAngle */ 2.0 { -678 135 723 116.64} /* zoom, translation */  100.0 0.0 0.42  /* center, rotationRadius */ {0.75536114 1.1072346 0.5814115} 3.72 /* navigation center, translation, depth */ {0.0 0.0 0.0} 13.931754 7.0809917 0.0;
+   delay 4 
+   moveto /* time, axisAngle */ 2.0 { -926 -48 375 120.19} /* zoom, translation */  100.0 0.0 0.42  /* center, rotationRadius */ {0.75536114 1.1072346 0.5814115} 3.72 /* navigation center, translation, depth */ {0.0 0.0 0.0} 0.27802786 3.952845 0.0;
+
+var doflip = false
+
+function showEnergy() {
+	if (_modelFile != myModel) {
+		set animframeCallback ""
+		return
+	}
+	
+  var  y =  (_modelname.split("= ")[3].split(" ")[1] - (-162)) * 10
+  var  x = (_frameid % 1000000) / 35.0 * (_width - 40) + 20
+  draw [@{x-5}  @y] [@x @y]
+  if (_frameid == 1000001 || _frameid == 1000035) { 
+    animation off
+  if (_frameid == 1000001) {
+    echo chair 1 (orange hydrogens axial)
+  } else {
+    echo chair 2 (white hydrogens axial)
+  }
+    delay 5
+    moveto /* time, axisAngle */ 2.0 { -678 135 723 116.64} /* zoom, translation */  100.0 0.0 0.42  /* center, rotationRadius */ {0.75536114 1.1072346 0.5814115} 3.72 /* navigation center, translation, depth */ {0.0 0.0 0.0} 13.931754 7.0809917 0.0;
+    delay 5
+    moveto /* time, axisAngle */ 2.0 { -926 -48 375 120.19} /* zoom, translation */  100.0 0.0 0.42  /* center, rotationRadius */ {0.75536114 1.1072346 0.5814115} 3.72 /* navigation center, translation, depth */ {0.0 0.0 0.0} 0.27802786 3.952845 0.0;
+    delay 5
+    echo ...
+    if (_frameid == 1000001) { animation on } else { animation playrev }
+  }
+  if (_frameid == 1000017) { 
+	animation off;
+	echo "twist boat (local minimum)"; 
+	delay 3;
+        if (doflip) {
+		echo "rotating about the c2 axis"; 
+		rotate z 180 50;
+		delay 5;
+	}
+	doflip = !doflip
+	echo continuing...;animation play }
+  if (_frameid == 1000010 || _frameid == 1000025) { echo "half chair (transition state)"; animation off;delay 5;echo "..."; animation play }
+}
+
+
+	set animFrameCallback "jmolscript:showEnergy"
+
+
+animation on
+

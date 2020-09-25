@@ -1,0 +1,174 @@
+<html>
+<head>
+<title>"Cloud" Plot of Electron Density</title>
+<script type="text/javascript" src="scroller.js"></script>
+<script src="../JSmol.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/Jmol2.js"></script>
+<script type="text/javascript">
+
+jmolInitialize("..")
+
+script0 = 'set perspectivedepth false;background white;meshColor={200 0 200};load 3hyd.pdb;wireframe only;wireframe 0;'
+	+'/*boundbox scale 1.2 {tyr};zoomto 0 {tyr} 0*/;set drawhover on;'
+	+'isosurface id ~cloud /*boundbox*/ color density cutoff 0 colorscheme translucent bw "3hyd_map.ccp4.gz" mesh nofill;' 
+
+var Info = {
+	width: 450,
+	height: 450,
+	debug: false,
+	color: "white",
+	addSelectionOptions: false,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	j2sPath: "../j2s",
+///	readyFunction: jmol_isReady,
+	script: script0,
+	//jarPath: "java",
+	//jarFile: (useSignedApplet ? "JmolAppletSigned.jar" : "JmolApplet.jar"),
+	//isSigned: useSignedApplet,
+	//disableJ2SLoadMonitor: true,
+	disableInitialConsole: true
+	//defaultModel: "$dopamine",
+	//console: "none", // default will be jmolApplet0_infodiv
+}
+
+
+color = "yellow"
+colorscheme = "colorscheme translucent bw"
+id = "imesh"
+
+Cmds = {
+	"cutoff": 'set echo top left;echo processing...;refresh;isosurface id ID boundbox color COLOR cutoff CUTOFF  COLORSCHEME "3hyd_map.ccp4.gz" mesh nofill FRONTONLY;echo "" '
+}
+
+Info = []
+
+function doScroll(name, value, position) {
+	value = Math.floor(value * 10)/10
+	Info = [name,value] 
+	if (name == "cutoff")thisCutoff = value
+	document.getElementById("scr_" + name + "_caption").innerHTML = name + ": " + value
+	doCmd()
+}
+
+function dobtn(element,data,target) {
+	Info = [data[1]]
+	doCmd()
+}
+
+meshon = meshok = false
+cloudon = cloudok = true
+thisCutoff=0
+
+mtime = 0
+
+function doCmd(info) {
+	if (!info)info = Info
+	Info=[]
+	if (info.length == 0)return
+	var name = info[0]
+//document.getElementById("test").innerHTML += "<br>" + mtime + " " + name + " " + (cloudon?"T":"F") + " " + (cloudok?"T":"F") + "/" + (meshon?"T":"F") + " " + (meshok?"T":"F")
+	switch(name){
+	case "cutoff":
+		if (mtime)clearTimeout(mtime)
+		mtime=setTimeout('doCmd(["cutoff1"])',500)
+		break;
+	case "cutoff1":
+		meshok = false
+		cloudok = false
+		if (meshon)doCmd(["meshon"])
+		if (cloudon)doCmd(["cloudon"])
+		break;
+	case "meshonly":
+		doCmd(["cloudoff"])
+		doCmd(["meshon"])
+		break;
+	case "meshon":
+		if (meshok)
+			runScript("display $~mesh ")
+		else
+			runCommand("cutoff","ID","~mesh","COLOR","@meshColor","CUTOFF",thisCutoff,"COLORSCHEME","")
+		meshon = true
+		meshok = true
+		break;
+	case "meshoff":
+		if (meshon)runScript("hide $~mesh")
+		meshon = false
+		break;
+	case "cloudonly":
+		doCmd(["meshoff"])
+		doCmd(["cloudon"])
+		break;
+	case "cloudon":
+		if (cloudok) {
+			runScript("display $~cloud")
+		} else {
+			runCommand("cutoff","ID","~cloud","COLOR","density","CUTOFF",thisCutoff,"COLORSCHEME",colorscheme, "FRONTONLY", "")
+		}
+		cloudon = true
+		cloudok = true
+		break;
+	case "cloudoff":
+		if (cloudon)runScript("hide $~cloud")
+		cloudon = false
+		break;
+	case "alloff":
+		doCmd(["meshoff"])
+		doCmd(["cloudoff"])
+		break;
+	}
+}
+
+function runScript(script) {	
+	jmolScript(script)
+}
+function runCommand(name) {
+	var script = Cmds[name]
+	for (var i = 1; i < arguments.length; i++) {
+		var r = new RegExp(arguments[i])
+		script = script.replace(r,arguments[++i])
+	}
+//alert(script)
+	jmolScript(script)
+}
+
+
+function init() {
+initScrollers()
+document.getElementById("jmolform").reset();
+}
+
+</script>
+</head>
+
+<body onload="init()">
+<table><tr><td>3hyd Density -- Can you find and identify the amino acid residues?</td></tr><tr><td>
+<script type="text/javascript">
+jmolApplet(500, script0)
+</script>
+
+<br>
+
+</td><td>
+<form id=jmolform>
+<script type="text/javascript">
+jmolRadio([dobtn,"cloudonly"],"cloud",true, " ", "render")
+jmolRadio([dobtn,"meshonly"],"mesh",false, " ", "render")
+jmolRadio([dobtn,"alloff"],"none",false, " ", "render")
+jmolCheckbox("wireframe 0.15", "wireframe off", "wireframe",false)
+jmolBr()
+jmolHtml("background ")
+jmolLink("background white;meshColor={200 0 200};color $~mesh @meshColor", "white")
+jmolHtml(" ")
+jmolLink("background black;meshColor={200 200 0};color $~mesh @meshColor", "black")
+//jmolCheckbox([dobtn,"cloudon"], [dobtn, "cloudoff"], "cloud", false)
+//jmolCheckbox([dobtn,"meshon"], [dobtn, "meshoff"], "mesh", false)
+document.write(newScroller("cutoff","cutoff: " + thisCutoff,"doScroll",300,-1,-1,false,0,3,thisCutoff,1, "mouseup"))
+</script>
+
+</form>
+
+</td></tr></table>
+<div id=test></div>
+</body>
+</html>

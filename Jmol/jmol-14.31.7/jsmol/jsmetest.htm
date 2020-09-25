@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jmol/JME Demo</title>
+<meta charset="utf-8" />
+<script type="text/javascript" language="javascript" src="jsme/jsme/jsme.nocache.js"></script>
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/JSmolJME.js"></script>
+
+<script type="text/javascript">
+
+var jmol="jmol";
+var jme = "jme";
+
+var JmolInfo = {
+	width: 350,
+	height: 300,
+	debug: false,
+	color: "black",
+	use: "HTML5",
+  addSelectionOptions: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	jarPath: "java",
+	jarFile: "JmolAppletSigned.jar",
+  j2sPath: "j2s",
+	isSigned: true,
+  //defaultModel: ":morphine",
+	console: "none",
+	script: ""
+}
+
+var JMEInfo = {     
+	use: "HTML5",
+  visible: true
+  //,divId: "jmediv"
+	//,jarPath: "jme",
+	//,jarFile: "JME.jar"
+  //optional parameters
+  // turns out the JSME has "nocanonize" as default, not "canonize"
+  ,"options" : "nocanonize"//"query,hydrogens"
+  //,"jme" : startingStructure   
+}
+
+//Jmol.setGrabberOptions([[":", "PubChem"]])
+Jmol.setGrabberOptions([["$", "NCI"]]) // allows 2D reading
+        
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10>
+<tr><td>
+Test of Jmol/JME interface -- switch back and forth between 2D and 3D, changing the model as desired. Status: working; 3D->2D loses stereochemistry.
+Requires <a href=../jsmol/js/JSmolJME.js>JSmolJME.js</a>. Code on page:
+<pre>
+<code>
+jmol = Jmol.getApplet("jmol", JmolInfo)
+jme = Jmol.getJMEApplet("jme", JMEInfo, jmol);
+</code>
+</pre>
+</td>
+<td>
+
+<a href="javascript:Jmol.show2d(jmol, true)">2D</a>
+<a href="javascript:Jmol.show2d(jmol, false)">3D</a>
+<br>
+<script>
+
+
+jmol = Jmol.getApplet(jmol, JmolInfo)
+jme = Jmol.getJMEApplet(jme, JMEInfo, jmol);
+</script>
+</td>
+</tr></table>
+</body>
+</html>

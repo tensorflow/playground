@@ -1,0 +1,399 @@
+# Jmol.mnu Jmol version 14.1.8_dev_2014.01.28  2014-01-28 17:17:
+
+# Part I -- Menu Structure
+# ------------------------
+
+@COLOR = black white red orange yellow green cyan blue indigo violet
+@AXESCOLOR = gray salmon maroon olive slateblue gold orchid
+popupMenu = FRAMESbyModelComputedMenu configurationComputedMenu - selectMenuText viewMenu renderMenu colorMenu - surfaceMenu FILEUNITMenu - sceneComputedMenu zoomMenu spinMenu VIBRATIONMenu spectraMenu FRAMESanimateMenu - measureMenu pickingMenu - showConsole JSConsole showMenu fileMenu computationMenu - languageComputedMenu aboutComputedMenu
+selectMenuText | Select ({0}) = hideNotSelectedCB showSelectionsCB - selectAll selectNone invertSelection - elementsComputedMenu SYMMETRYSelectComputedMenu - PDBproteinMenu PDBnucleicMenu PDBheteroMenu PDBcarboMenu PDBnoneOfTheAbove
+PDBproteinMenu | Protein = PDBaaResiduesComputedMenu - allProtein proteinBackbone proteinSideChains - polar nonpolar - positiveCharge negativeCharge noCharge
+PDBcarboMenu | Carbohydrate = PDBcarboResiduesComputedMenu - allCarbo
+PDBnucleicMenu | Nucleic = PDBnucleicResiduesComputedMenu - allNucleic nucleicBackbone nucleicBases - DNA RNA - atPairs auPairs gcPairs
+PDBheteroMenu | Hetero = PDBheteroComputedMenu - allHetero Solvent Water - Ligand exceptWater nonWaterSolvent
+viewMenu | View = new best front left right top bottom back
+renderMenu | Style = perspectiveDepthCB showBoundBoxCB showUNITCELLCB showAxesCB stereoMenu - renderSchemeMenu - atomMenu labelMenu bondMenu hbondMenu ssbondMenu - PDBstructureMenu [set_axes]Menu [set_boundbox]Menu [set_UNITCELL]Menu
+renderSchemeMenu | Scheme = renderCpkSpacefill renderBallAndStick renderSticks renderWireframe PDBrenderCartoonsOnly PDBrenderTraceOnly
+atomMenu | Atoms = showHydrogensCB - atomNone - atom15 atom20 atom25 atom50 atom75 atom100
+bondMenu | Bonds = bondNone bondWireframe - bond100 bond150 bond200 bond250 bond300
+hbondMenu | Hydrogen Bonds = hbondCalc hbondNone hbondWireframe - PDBhbondSidechain PDBhbondBackbone - hbond100 hbond150 hbond200 hbond250 hbond300
+ssbondMenu | Disulfide Bonds = ssbondNone ssbondWireframe - PDBssbondSidechain PDBssbondBackbone - ssbond100 ssbond150 ssbond200 ssbond250 ssbond300
+PDBstructureMenu | Structures = structureNone - backbone cartoon cartoonRockets ribbons rockets strands trace
+VIBRATIONvectorMenu | Vectors = vectorOff vectorOn vibScale20 vibScale05 vector3 vector005 vector01 - vectorScale02 vectorScale05 vectorScale1 vectorScale2 vectorScale5
+stereoMenu | Stereographic = stereoNone stereoRedCyan stereoRedBlue stereoRedGreen stereoCrossEyed stereoWallEyed
+labelMenu | Labels = labelNone - labelSymbol labelName labelNumber - labelPositionMenu
+labelPositionMenu | Position Label on Atom = labelCentered labelUpperRight labelLowerRight labelUpperLeft labelLowerLeft
+colorMenu | Color = colorrasmolCB - [color_atoms]Menu [color_bonds]Menu [color_hbonds]Menu [color_ssbonds]Menu colorPDBStructuresMenu [color_isosurface]Menu - [color_labels]Menu [color_vectors]Menu - [color_axes]Menu [color_boundbox]Menu [color_UNITCELL]Menu [color_background]Menu
+[color_atoms]Menu | Atoms = schemeMenu - @COLOR - opaque translucent
+[color_bonds]Menu | Bonds = none - @COLOR - opaque translucent
+[color_hbonds]Menu | Hydrogen Bonds = none - @COLOR - opaque translucent
+[color_ssbonds]Menu | Disulfide Bonds = none - @COLOR - opaque translucent
+[color_labels]Menu | Labels = none - @COLOR - opaque translucent
+[color_vectors]Menu | Vectors = none - @COLOR - opaque translucent
+[color_backbone]Menu | Backbone = none - schemeMenu - @COLOR - opaque translucent
+[color_cartoon]sMenu | Cartoon = none - schemeMenu - @COLOR - opaque translucent
+[color_ribbon]sMenu | Ribbons = none - schemeMenu - @COLOR - opaque translucent
+[color_rockets]Menu | Rockets = none - schemeMenu - @COLOR - opaque translucent
+[color_strands]Menu | Strands = none - schemeMenu - @COLOR - opaque translucent
+[color_trace]Menu | Trace = none - schemeMenu - @COLOR - opaque translucent
+[color_background]Menu | Background = @COLOR
+[color_isosurface]Menu | Surfaces = @COLOR - opaque translucent
+[color_axes]Menu | Axes = @AXESCOLOR
+[color_boundbox]Menu | Boundbox = @AXESCOLOR
+[color_UNITCELL]Menu | Unit cell = @AXESCOLOR
+colorPDBStructuresMenu | Structures = [color_backbone]Menu [color_cartoon]sMenu [color_ribbon]sMenu [color_rockets]Menu [color_strands]Menu [color_trace]Menu
+schemeMenu | By Scheme = cpk - formalcharge partialcharge#CHARGE - altloc#PDB amino#PDB chain#PDB group#PDB molecule monomer#PDB shapely#PDB structure#PDB relativeTemperature#BFACTORS fixedTemperature#BFACTORS
+zoomMenu | Zoom = zoom50 zoom100 zoom150 zoom200 zoom400 zoom800 - zoomIn zoomOut
+spinMenu | Spin = spinOn spinOff - [set_spin_X]Menu [set_spin_Y]Menu [set_spin_Z]Menu - [set_spin_FPS]Menu
+VIBRATIONMenu | Vibration = vibrationOff vibrationOn vibration20 vibration05 VIBRATIONvectorMenu
+spectraMenu | Spectra = hnmrMenu cnmrMenu
+FRAMESanimateMenu | Animation = animModeMenu - play pause resume stop - nextframe prevframe rewind - playrev restart - FRAMESanimFpsMenu
+FRAMESanimFpsMenu | Set FPS = animfps5 animfps10 animfps20 animfps30 animfps50
+measureMenu | Measurements = showMeasurementsCB - measureOff measureDistance measureAngle measureTorsion PDBmeasureSequence - measureDelete measureList - distanceNanometers distanceAngstroms distancePicometers
+pickingMenu | Set picking = pickOff pickCenter pickIdent pickLabel pickAtom pickMolecule pickElement PDBpickChain PDBpickGroup SYMMETRYpickSite pickSpin
+computationMenu | Computation = minimize modelkit
+showMenu | Show = showHistory showFile showFileHeader - showOrient showMeasure - showSpacegroup showState SYMMETRYshowSymmetry UNITCELLshow - showIsosurface showMo - extractMOL
+fileMenu | File = SIGNEDloadFile SIGNEDloadUrl SIGNEDloadPdb SIGNEDloadScript - reload SIGNEDloadFileUnitCell - writeFileTextVARIABLE writeState writeHistory SIGNEDwriteJmol SIGNEDwriteIsosurface - SIGNEDJAVAcaptureMenuSPECIAL - SIGNEDJAVAwriteGif SIGNEDNOGLwriteJpg SIGNEDNOGLwritePng SIGNEDNOGLwritePngJmol SIGNEDJAVAwritePovray - SIGNEDJAVAwriteVrml SIGNEDJAVAwriteX3d SIGNEDJAVAwriteIdtf SIGNEDJAVAwriteMaya
+SIGNEDJAVAcaptureMenuSPECIAL | Capture = SIGNEDJAVAcaptureRock SIGNEDJAVAcaptureSpin - SIGNEDJAVAcaptureBegin SIGNEDJAVAcaptureEnd SIGNEDJAVAcaptureOff SIGNEDJAVAcaptureOn SIGNEDJAVAcaptureFpsSPECIAL SIGNEDJAVAcaptureLoopingSPECIAL
+[set_spin_X]Menu | Set X Rate = s0 s5 s10 s20 s30 s40 s50
+[set_spin_Y]Menu | Set Y Rate = s0 s5 s10 s20 s30 s40 s50
+[set_spin_Z]Menu | Set Z Rate = s0 s5 s10 s20 s30 s40 s50
+[set_spin_FPS]Menu | Set FPS = s0 s5 s10 s20 s30 s40 s50
+animModeMenu | Animation Mode = onceThrough palindrome loop
+surfaceMenu | Surfaces = surfDots surfVDW surfSolventAccessible14 surfSolvent14 surfMolecular CHARGEsurf2MEP CHARGEsurfMEP surfMoComputedMenuText - surfOpaque surfTranslucent surfOff
+FILEUNITMenu | Symmetry = SYMMETRYShowComputedMenu SYMMETRYhide FILEMOLload FILEUNITone FILEUNITnine FILEUNITnineRestricted FILEUNITninePoly
+[set_axes]Menu | Axes = off#axes dotted - byPixelMenu byAngstromMenu
+[set_boundbox]Menu | Boundbox = off#axes dotted - byPixelMenu byAngstromMenu
+[set_UNITCELL]Menu | Unit cell = off#axes dotted - byPixelMenu byAngstromMenu
+byPixelMenu | Pixel Width = 1p 3p 5p 10p
+byAngstromMenu | Angstrom Width = 10a 20a 25a 50a 100a
+aboutComputedMenu | About... = - 
+
+
+# Part II -- Key Definitions
+# --------------------------
+
+colorrasmolCB | RasMol Colors = 
+hideNotSelectedCB | Display Selected Only = set hideNotSelected true | set hideNotSelected false; hide(none)
+perspectiveDepthCB | Perspective Depth = 
+showAxesCB | Axes = set showAxes true | set showAxes false;set axesMolecular
+showBoundBoxCB | Boundbox = 
+showHydrogensCB | Show Hydrogens = 
+showMeasurementsCB | Show Measurements = 
+showSelectionsCB | Selection Halos = 
+showUNITCELLCB | Unit cell = 
+selectAll | All = SELECT all
+selectNone | None = SELECT none
+invertSelection | Invert Selection = SELECT not selected
+allProtein | All = SELECT protein
+proteinBackbone | Backbone = SELECT protein and backbone
+proteinSideChains | Side Chains = SELECT protein and not backbone
+polar | Polar Residues = SELECT protein and polar
+nonpolar | Nonpolar Residues = SELECT protein and not polar
+positiveCharge | Basic Residues (+) = SELECT protein and basic
+negativeCharge | Acidic Residues (-) = SELECT protein and acidic
+noCharge | Uncharged Residues = SELECT protein and not (acidic,basic)
+allCarbo | All = SELECT carbohydrate
+allNucleic | All = SELECT nucleic
+DNA | DNA = SELECT dna
+RNA | RNA = SELECT rna
+nucleicBackbone | Backbone = SELECT nucleic and backbone
+nucleicBases | Bases = SELECT nucleic and not backbone
+atPairs | AT pairs = SELECT a,t
+gcPairs | GC pairs = SELECT g,c
+auPairs | AU pairs = SELECT a,u
+A = SELECT a
+C = SELECT c
+G = SELECT g
+T = SELECT t
+U = SELECT u
+allHetero | All PDB "HETATM" = SELECT hetero
+Solvent | All Solvent = SELECT solvent
+Water | All Water = SELECT water
+nonWaterSolvent | Nonaqueous Solvent (solvent and not water) = SELECT solvent and not water
+exceptWater | Nonaqueous HETATM (hetero and not water) = SELECT hetero and not water
+Ligand | Ligand = SELECT ligand
+PDBnoneOfTheAbove | None of the above = SELECT not(hetero,protein,nucleic,carbohydrate)
+new | New = rotate x 30
+best | Best = rotate best -1.0
+front | Front = if (showBoundBox or showUnitcell) {moveto 2.0 front;delay 1} else {boundbox on;moveto 2.0 front;delay 1;boundbox off}
+left | Left = if (showBoundBox or showUnitcell) {moveto 1.0 front;moveto 2.0 left;delay 1} else {boundbox on;moveto 1.0 front;moveto 2.0 left;delay 1;boundbox off}
+right | Right = if (showBoundBox or showUnitcell) {moveto 1.0 front;moveto 2.0 right;delay 1} else {boundbox on;moveto 1.0 front;moveto 2.0 right;delay 1;boundbox off}
+top | Top = if (showBoundBox or showUnitcell) {moveto 1.0 front;moveto 2.0 top;delay 1} else {boundbox on;moveto 1.0 front;moveto 2.0 top;delay 1;boundbox off}
+bottom | Bottom = if (showBoundBox or showUnitcell) {moveto 1.0 front;moveto 2.0 bottom;delay 1} else {boundbox on;moveto 1.0 front;moveto 2.0 bottom;delay 1;boundbox off}
+back | Back = if (showBoundBox or showUnitcell) {moveto 1.0 front;moveto 2.0 back;delay 1} else {boundbox on;moveto 1.0 front;moveto 2.0 back;delay 1;boundbox off}
+renderCpkSpacefill | CPK Spacefill = restrict bonds not selected;select not selected;spacefill 100%;color cpk
+renderBallAndStick | Ball and Stick = restrict bonds not selected;select not selected;spacefill 23%AUTO;wireframe 0.15;color cpk
+renderSticks | Sticks = restrict bonds not selected;select not selected;wireframe 0.3;color cpk
+renderWireframe | Wireframe = restrict bonds not selected;select not selected;wireframe on;color cpk
+PDBrenderCartoonsOnly | Cartoon = restrict bonds not selected;select not selected;cartoons on;color structure
+PDBrenderTraceOnly | Trace = restrict bonds not selected;select not selected;trace on;color structure
+atomNone | Off = cpk off
+atom15 | 15% van der Waals = cpk 15%
+atom20 | 20% van der Waals = cpk 20%
+atom25 | 25% van der Waals = cpk 25%
+atom50 | 50% van der Waals = cpk 50%
+atom75 | 75% van der Waals = cpk 75%
+atom100 | 100% van der Waals = cpk on
+bondNone | Off = wireframe off
+bondWireframe | On = wireframe on
+bond100 | 0.10 Å = wireframe .1
+bond150 | 0.15 Å = wireframe .15
+bond200 | 0.20 Å = wireframe .2
+bond250 | 0.25 Å = wireframe .25
+bond300 | 0.30 Å = wireframe .3
+hbondCalc | Calculate = hbonds calculate
+hbondNone | Off = hbonds off
+hbondWireframe | On = hbonds on
+PDBhbondSidechain | Set H-Bonds Side Chain = set hbonds sidechain
+PDBhbondBackbone | Set H-Bonds Backbone = set hbonds backbone
+hbond100 | 0.10 Å = hbonds .1
+hbond150 | 0.15 Å = hbonds .15
+hbond200 | 0.20 Å = hbonds .2
+hbond250 | 0.25 Å = hbonds .25
+hbond300 | 0.30 Å = hbonds .3
+ssbondNone | Off = ssbonds off
+ssbondWireframe | On = ssbonds on
+PDBssbondSidechain | Set SS-Bonds Side Chain = set ssbonds sidechain
+PDBssbondBackbone | Set SS-Bonds Backbone = set ssbonds backbone
+ssbond100 | 0.10 Å = ssbonds .1
+ssbond150 | 0.15 Å = ssbonds .15
+ssbond200 | 0.20 Å = ssbonds .2
+ssbond250 | 0.25 Å = ssbonds .25
+ssbond300 | 0.30 Å = ssbonds .3
+structureNone | Off = backbone off;cartoons off;ribbons off;rockets off;strands off;trace off;
+backbone | Backbone = restrict not selected;select not selected;backbone 0.3
+cartoon | Cartoon = restrict not selected;select not selected;set cartoonRockets false;cartoons on
+cartoonRockets | Cartoon Rockets = restrict not selected;select not selected;set cartoonRockets;cartoons on
+ribbons | Ribbons = restrict not selected;select not selected;ribbons on
+rockets | Rockets = restrict not selected;select not selected;rockets on
+strands | Strands = restrict not selected;select not selected;strands on
+trace | Trace = restrict not selected;select not selected;trace 0.3
+vibrationOff | Off = vibration off
+vibrationOn | On = vibration on
+vibration20 | *2 = vibrationScale *= 2
+vibration05 | /2 = vibrationScale /= 2
+vectorOff | Off = vectors off
+vectorOn | On = vectors on
+vector3 | 3 pixels = vectors 3
+vector005 | 0.05 Å = vectors 0.05
+vector01 | 0.10 Å = vectors 0.1
+vectorScale02 | Scale 0.2 = vector scale 0.2
+vectorScale05 | Scale 0.5 = vector scale 0.5
+vectorScale1 | Scale 1 = vector scale 1
+vectorScale2 | Scale 2 = vector scale 2
+vectorScale5 | Scale 5 = vector scale 5
+stereoNone | None = stereo off
+stereoRedCyan | Red+Cyan glasses = stereo redcyan 3
+stereoRedBlue | Red+Blue glasses = stereo redblue 3
+stereoRedGreen | Red+Green glasses = stereo redgreen 3
+stereoCrossEyed | Cross-eyed viewing = stereo -5
+stereoWallEyed | Wall-eyed viewing = stereo 5
+labelNone | None = label off
+labelSymbol | With Element Symbol = label %e
+labelName | With Atom Name = label %a
+labelNumber | With Atom Number = label %i
+labelCentered | Centered = set labeloffset 0 0
+labelUpperRight | Upper Right = set labeloffset 4 4
+labelLowerRight | Lower Right = set labeloffset 4 -4
+labelUpperLeft | Upper Left = set labeloffset -4 4
+labelLowerLeft | Lower Left = set labeloffset -4 -4
+zoom50 | 50% = zoom 50
+zoom100 | 100% = zoom 100
+zoom150 | 150% = zoom 150
+zoom200 | 200% = zoom 200
+zoom400 | 400% = zoom 400
+zoom800 | 800% = zoom 800
+zoomIn | Zoom In = move 0 0 0 40 0 0 0 0 1
+zoomOut | Zoom Out = move 0 0 0 -40 0 0 0 0 1
+spinOn | On = spin on
+spinOff | Off = spin off
+s0 | 0 = 0
+s5 | 5 = 5
+s10 | 10 = 10
+s20 | 20 = 20
+s30 | 30 = 30
+s40 | 40 = 40
+s50 | 50 = 50
+onceThrough | Play Once = anim mode once#
+palindrome | Palindrome = anim mode palindrome#
+loop | Loop = anim mode loop#
+play | Play = anim play#
+pause | Pause = anim pause#
+resume | Resume = anim resume#
+stop | Stop = anim off#
+nextframe | Next Frame = frame next#
+prevframe | Previous Frame = frame prev#
+playrev | Reverse = anim playrev#
+rewind | Rewind = anim rewind#
+restart | Restart = anim on#
+animfps5 | 5 = anim fps 5#
+animfps10 | 10 = anim fps 10#
+animfps20 | 20 = anim fps 20#
+animfps30 | 30 = anim fps 30#
+animfps50 | 50 = anim fps 50#
+measureOff | Double-Click begins and ends all measurements = set pickingstyle MEASURE OFF; set picking OFF
+measureDistance | Click for distance measurement = set pickingstyle MEASURE; set picking MEASURE DISTANCE
+measureAngle | Click for angle measurement = set pickingstyle MEASURE; set picking MEASURE ANGLE
+measureTorsion | Click for torsion (dihedral) measurement = set pickingstyle MEASURE; set picking MEASURE TORSION
+PDBmeasureSequence | Click two atoms to display a sequence in the console = set pickingstyle MEASURE; set picking MEASURE SEQUENCE
+measureDelete | Delete measurements = measure delete
+measureList | List measurements = console on;show measurements
+distanceNanometers | Distance units nanometers = select *; set measure nanometers
+distanceAngstroms | Distance units Angstroms = select *; set measure angstroms
+distancePicometers | Distance units picometers = select *; set measure picometers
+pickOff | Off = set picking off
+pickCenter | Center = set picking center
+pickIdent | Identity = set picking ident
+pickLabel | Label = set picking label
+pickAtom | Select atom = set picking atom
+PDBpickChain | Select chain = set picking chain
+pickElement | Select element = set picking element
+PDBpickGroup | Select group = set picking group
+pickMolecule | Select molecule = set picking molecule
+SYMMETRYpickSite | Select site = set picking site
+pickSpin | Spin = set picking spin
+SYMMETRYpickSymmetry | Show symmetry operation = set picking symmetry
+showConsole | Console = console
+JSConsole | JavaScript Console = JSCONSOLE
+showFile | File Contents = console on;show file
+showFileHeader | File Header = console on;getProperty FileHeader
+showHistory | History = console on;show history
+showIsosurface | Isosurface JVXL data = console on;show isosurface
+showMeasure | Measurements = console on;show measure
+showMo | Molecular orbital JVXL data = console on;show mo
+showModel | Model = console on;show model
+showOrient | Orientation = console on;show orientation
+showSpacegroup | Space group = console on;show spacegroup
+showState | Current state = console on;show state
+reload | Reload = load ""
+SIGNEDloadPdb | Open from PDB = load ?PdbId?
+SIGNEDloadFile | Open local file = load ?
+SIGNEDloadUrl | Open URL = load http://?
+SIGNEDloadFileUnitCell | Load full unit cell = load ? {1 1 1}
+SIGNEDloadScript | Open script = script ?.spt
+SIGNEDJAVAcaptureRock | Capture rock = animation mode loop;capture '?Jmol.gif' rock y 10
+SIGNEDJAVAcaptureSpin | Capture spin = animation mode loop;capture '?Jmol.gif' spin y
+SIGNEDJAVAcaptureBegin | Start capturing = capture '?Jmol.gif'
+SIGNEDJAVAcaptureEnd | End capturing = capture ''
+SIGNEDJAVAcaptureOff | Disable capturing = capture off
+SIGNEDJAVAcaptureOn | Re-enable capturing = capture on
+SIGNEDJAVAcaptureFpsSPECIAL | Set capture replay rate = animation fps @{0+prompt('Capture replay frames per second?', animationFPS)};prompt 'animation FPS ' + animationFPS
+SIGNEDJAVAcaptureLoopingSPECIAL | Toggle capture looping = animation mode @{(animationMode=='ONCE' ? 'LOOP':'ONCE')};prompt 'animation MODE ' + animationMode
+writeFileTextVARIABLE | Save a copy of {0} = if (_applet && !_signedApplet) { console;show file } else { write file "?FILE?"}
+writeState | Save script with state = if (_applet && !_signedApplet) { console;show state } else { write state "?FILEROOT?.spt"}
+writeHistory | Save script with history = if (_applet && !_signedApplet) { console;show history } else { write history "?FILEROOT?.his"}
+SIGNEDwriteJmol | Save all as JMOL file (zip) = write "?FILEROOT?.jmol"
+SIGNEDwriteIsosurface | Save JVXL isosurface = write isosurface "?FILEROOT?.jvxl"
+SIGNEDJAVAwriteGif | Export GIF image = write image "?FILEROOT?.gif"
+SIGNEDNOGLwriteJpg | Export JPG image = write image "?FILEROOT?.jpg"
+SIGNEDNOGLwritePng | Export PNG image = write image "?FILEROOT?.png"
+SIGNEDNOGLwritePngJmol | Export PNG+JMOL image = write PNGJ "?FILEROOT?.png"
+SIGNEDJAVAwritePovray | Export POV-Ray image = write POVRAY "?FILEROOT?.pov"
+SIGNEDJAVAwriteVrml | Export VRML 3D model = write VRML "?FILEROOT?.wrl"
+SIGNEDJAVAwriteX3d | Export X3D 3D model = write X3D "?FILEROOT?.x3d"
+SIGNEDJAVAwriteIdtf | Export IDTF 3D model = write IDTF "?FILEROOT?.idtf"
+SIGNEDJAVAwriteMaya | Export Maya 3D model = write MAYA "?FILEROOT?.ma"
+SYMMETRYshowSymmetry | Symmetry = console on;show symmetry
+UNITCELLshow | Unit cell = console on;show unitcell
+extractMOL | Extract MOL data = console on;getproperty extractModel "visible" 
+minimize | Optimize structure = minimize
+modelkit | Model kit = set modelkitmode
+surfDots | Dot Surface = dots on
+surfVDW | van der Waals Surface = isosurface delete resolution 0 solvent 0 translucent
+surfMolecular | Molecular Surface = isosurface delete resolution 0 molecular translucent
+surfSolvent14 | Solvent Surface (1.4-Angstrom probe) = isosurface delete resolution 0 solvent 1.4 translucent
+surfSolventAccessible14 | Solvent-Accessible Surface (VDW + 1.4 Angstrom) = isosurface delete resolution 0 sasurface 1.4 translucent
+CHARGEsurfMEP | Molecular Electrostatic Potential (range ALL) = isosurface delete resolution 0 vdw color range all map MEP translucent
+CHARGEsurf2MEP | Molecular Electrostatic Potential (range -0.1 0.1) = isosurface delete resolution 0 vdw color range -0.1 0.1 map MEP translucent
+surfOpaque | Make Opaque = mo opaque;isosurface opaque
+surfTranslucent | Make Translucent = mo translucent;isosurface translucent
+surfOff | Off = mo delete;isosurface delete;select *;dots off
+SYMMETRYhide | Hide Symmetry = draw sym_* delete
+FILEMOLload | Reload (molecular) = save orientation;load "";restore orientation;center
+FILEUNITone | Reload {1 1 1} = save orientation;load "" {1 1 1} ;restore orientation;center
+FILEUNITnine | Reload {444 666 1} = save orientation;load "" {444 666 1} ;restore orientation;center
+FILEUNITnineRestricted | Reload {444 666 1} + Display 555 = save orientation;load "" {444 666 1} ;restore orientation; unitcell on; display cell=555;center visible;zoom 200
+FILEUNITninePoly | Reload + Polyhedra = save orientation;load "" {444 666 1} ;restore orientation; unitcell on; display cell=555; polyhedra 4,6 (displayed);center (visible);zoom 200
+1p | 1 px = on
+3p | 3 px = 3
+5p | 5 px = 5
+10p | 10 px = 10
+10a | 0.10 Å = 0.1
+20a | 0.20 Å = 0.20
+25a | 0.25 Å = 0.25
+50a | 0.50 Å = 0.50
+100a | 1.0 Å = 1.0
+
+
+# Part III -- Word Translations
+# -----------------------------
+
+modelSetMenu | No atoms loaded
+configurationComputedMenu | Configurations
+elementsComputedMenu | Element
+FRAMESbyModelComputedMenu | Model/Frame
+languageComputedMenu | Language
+PDBaaResiduesComputedMenu | By Residue Name
+PDBnucleicResiduesComputedMenu | By Residue Name
+PDBcarboResiduesComputedMenu | By Residue Name
+PDBheteroComputedMenu | By HETATM
+surfMoComputedMenuText | Molecular Orbitals ({0})
+SYMMETRYSelectComputedMenu | Symmetry
+SYMMETRYShowComputedMenu | Space Group
+hiddenModelSetText | Model information
+allModelsText | All {0} models
+configurationMenuText | Configurations ({0})
+modelSetCollectionText | Collection of {0} models
+atomsText | atoms: {0}
+bondsText | bonds: {0}
+groupsText | groups: {0}
+chainsText | chains: {0}
+polymersText | polymers: {0}
+modelMenuText | model {0}
+viewMenuText | View {0}
+mainMenuText | Main Menu
+biomoleculesMenuText | Biomolecules
+biomoleculeText | biomolecule {0} ({1} atoms)
+loadBiomoleculeText | load biomolecule {0} ({1} atoms)
+sceneComputedMenu | Scenes
+hnmrMenu | 1H-NMR
+cnmrMenu | 13C-NMR
+cpk | Element (CPK)
+altloc#PDB | Alternative Location
+molecule | Molecule
+formalcharge | Formal Charge
+partialcharge#CHARGE | Partial Charge
+relativeTemperature#BFACTORS | Temperature (Relative)
+fixedTemperature#BFACTORS | Temperature (Fixed)
+amino#PDB | Amino Acid
+structure#PDB | Secondary Structure
+chain#PDB | Chain
+group#PDB | Group
+monomer#PDB | Monomer
+shapely#PDB | Shapely
+none | Inherit
+black | Black
+white | White
+cyan | Cyan
+red | Red
+orange | Orange
+yellow | Yellow
+green | Green
+blue | Blue
+indigo | Indigo
+violet | Violet
+salmon | Salmon
+olive | Olive
+maroon | Maroon
+gray | Gray
+slateblue | Slate Blue
+gold | Gold
+orchid | Orchid
+opaque | Make Opaque
+translucent | Make Translucent
+off#axes | Hide
+dotted | Dotted
+APPLETjmolUrl | http://www.jmol.org
+APPLETmouseManualUrl | Mouse Manual
+APPLETtranslationUrl | Translations

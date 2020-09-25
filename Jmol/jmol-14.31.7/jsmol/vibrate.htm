@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>jmol applet vibrations demo</title>
+    <script src="JSmol.min.js"></script>
+    <script src="js/Jmol2.js"></script>
+    <script>
+
+
+//jmolInitialize(".");
+
+function loadVibs(){
+ var Info = jmolGetPropertyAsArray("auxiliaryinfo.VibFreqs")
+ if(!Info){
+	alert("No VibFreqs")
+	return
+ }
+ var s="<select id=vib onchange='showFrame(value)' onkeypress='showFrame()'><option value='1'>no vibration (model 1)</option>";
+ for(var i=0;i<Info.length;i++)
+  s+="<option value='"+(i+2)+"'>"+Info[i].freq + " cm-1 "+Info[i].label+"</option>"
+ s+="</select>"
+ document.getElementById("freqDiv").innerHTML = s
+
+}
+
+
+function showFrame(i){
+ if(arguments.length == 0){
+    setTimeout("showFrame(-1)",100)
+    return
+ }
+ if(i==-1) {
+  var d=document.getElementById("vib")
+  i=d[d.selectedIndex].value
+ }
+ jmolScript("frame " + i)
+}
+
+    </script>
+  </head>
+  <body>
+    <form>
+
+      <table border="1">
+	<tr>
+	  <td>
+	    <h2>automatically read vibrations in SMOL files</h2>
+	    <script>
+	      var script =
+	      "load data/c6h6.smol; wireframe .1; cpk off;" +
+	      "frame 1; vectors 0.05;vector scale 2.0 ; color vectors yellow;" +
+	      "move 10 -20 10 0 0 0 0 0 1; delay 1; vibration on;vibration scale 0.4;";
+	      jmolApplet(300, script);
+
+	    </script>
+	  </td>
+
+	  <td><div id="freqDiv"><a href="javascript:loadVibs()">show vibration frequency list</a>
+</div>
+	    </blockquote>
+
+<br>
+
+	    Of course, all the other Jmol script commands work as well:<br>
+
+	    <blockquote>
+	      <script>
+		jmolCheckbox("vibration on", "vibration off", "vibration", "checked");
+		jmolBr();
+		jmolCheckbox("vectors 0.05", "vectors off", "vectors", "checked");
+		jmolBr();
+		jmolRadioGroup([
+		["color vectors yellow", null, "checked"],
+		"color vectors purple"
+		]);
+		jmolBr();
+		jmolRadioGroup([
+		["spacefill off", null, "checked"],
+		"spacefill 20%",
+		"spacefill 100%"
+		]);
+		jmolBr();
+		jmolRadioGroup([
+		"wireframe on",
+		["wireframe 0.1", null, "checked"],
+		]);
+		jmolBr();
+		jmolCheckbox("spin on", "spin off", "spin");
+		jmolBr();
+	      </script>
+	    </blockquote>
+	  </td>
+	</tr>
+      </table>
+    </form>
+<div id=test></div>
+  </body>
+
+</html>

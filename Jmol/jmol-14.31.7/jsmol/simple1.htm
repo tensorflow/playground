@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="JSmol.min.js"></script>
+
+<script type="text/javascript">
+
+// 1/21/2013 10:54:15 PM -- adds image handling
+
+var jmolApplet0; // set up in HTML table, below
+
+// logic is set by indicating order of USE -- default is HTML5 for this test page, though
+var use = "HTML5" // JAVA HTML5 WEBGL IMAGE  are all otions
+var s = document.location.search;
+
+
+// Developers: The _debugCode flag is checked in j2s/core/core.z.js, 
+// and, if TRUE, skips loading the core methods, forcing those
+// to be read from their individual directories. Set this
+// true if you want to do some code debugging by inserting
+// System.out.println, document.title, or alert commands
+// anywhere in the Java or Jmol code.
+
+Jmol._debugCode = (s.indexOf("debugcode") >= 0);
+
+jmol_isReady = function(applet) {
+	Jmol._getElement(applet, "appletdiv").style.border="1px solid blue"
+}		
+
+var xxxx = document.location.search
+if (xxxx.length == 5 || xxxx.length == 0) {
+	xxxx = (xxxx + "?1crn").substring(1,5)
+	script = 'h2oOn=true;set animframecallback "jmolscript:if (!selectionHalos) {select model=_modelNumber}";'
+	+'set errorCallback "myCallback";'
+	+'set defaultloadscript "isDssp = false;set defaultVDW babel;if(!h2oOn){display !water}";'
+	+'set zoomlarge false;set echo top left;echo loading XXXX...;refresh;'
+	+'load "http://www.rcsb.org/pdb/files/XXXX.pdb";set echo top center;echo XXXX;'
+	+'spacefill off;wireframe off;cartoons on;color structure;'
+	script = script.replace(/XXXX/g, xxxx)
+} else {
+	script = unescape(xxxx.substring(1))
+}
+
+
+var Info = {
+	width: 450,
+	height: 450,
+	debug: false,
+	color: "white",
+	addSelectionOptions: false,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	j2sPath: "j2s",
+	readyFunction: jmol_isReady,
+	script: script,
+	//jarPath: "java",
+	//jarFile: (useSignedApplet ? "JmolAppletSigned.jar" : "JmolApplet.jar"),
+	//isSigned: useSignedApplet,
+	//disableJ2SLoadMonitor: true,
+	disableInitialConsole: true
+	//defaultModel: "$dopamine",
+	//console: "none", // default will be jmolApplet0_infodiv
+}
+
+Models = []
+
+template = "xid='%1';load =%1|%2 (%1)"
+function addModel(xxxx, text) {
+ Models.push(template.replace(/\%1/g, xxxx).replace(/%2/g, text).split("|"))
+}
+
+addModel("1crn", "small")
+addModel("1blu","Fe/S")
+addModel("1bna","b-DNA")
+addModel("1d66","transcription")
+
+// these are conveniences that mimic behavior of Jmol.js
+
+function jmolCheckbox(script1, script0,text,ischecked) {Jmol.jmolCheckbox(jmolApplet0,script1, script0, text, ischecked)}
+function jmolButton(script, text) {Jmol.jmolButton(jmolApplet0, script,text)}
+function jmolHtml(s) { document.write(s) };
+function jmolBr() { jmolHtml("<br>") }
+function jmolMenu(a) {Jmol.jmolMenu(jmolApplet0, a)}
+ 
+
+
+</script>
+</head>
+<body>
+
+<center>
+
+
+<table><tr><td align=center>
+
+<script type="text/javascript">
+
+jmolApplet0 = Jmol.getApplet("jmolApplet0", Info)
+
+</script>
+</td><td>
+<form><!-- (FORM tag is important to automatically set checkbox off when page reloads) -->
+<script type="text/javascript">
+Jmol.setButtonCss(null,"style='width:160px'")
+Jmol.setMenuCss(null,"style='width:160px'")
+jmolButton("if (!xid) { xid = '1crn'};var x = prompt('Enter a four-digit PDB ID',xid);if (!x) { quit }; xid = x; load @{'=' + x}","Load PDB by ID")
+jmolBr()
+jmolCheckbox("set pdbAddHydrogens TRUE","set pdbAddHydrogens FALSE","with hydrogens",false)
+jmolBr()
+jmolCheckbox("set defaultLoadFilter 'biomolecule 1'","set defaultLoadFilter ''","biomolecule 1",false)
+jmolBr()
+jmolHtml("Examples:")
+jmolBr()
+jmolMenu(Models)
+jmolBr()
+jmolButton("if (!molname) { molname = 'tylenol'};var x = prompt('Enter the name or identifier (SMILES, InChI, CAS) of a molecule',molname);if (!x) { quit }; molname = x; load @{'$' + molname}","Load MOL by NAME")
+jmolBr()
+jmolButton("load ?","Load URL")
+jmolBr()
+jmolButton("load ?","Load FILE")
+jmolBr()
+jmolButton("script ?.spt","Load SCRIPT")
+jmolBr()
+jmolBr()
+jmolCheckbox("h2oOn=true;display *","h2oOn=false;display !water","display water",true)
+jmolBr()
+jmolBr()
+jmolButton("write FILE ?","Save FILE")
+jmolBr()
+jmolButton("write image jsmol.jpg","Save JPG")
+jmolBr()
+jmolButton("write image jsmol.png","Save PNG")
+jmolBr()
+jmolButton("write jsmol.jmol","Save Jmol")
+jmolBr()
+jmolButton("write PNGJ jsmol.png","Save PNG+Jmol")
+jmolBr()
+jmolButton("write state jsmol.spt","Save STATE")
+jmolBr()
+
+
+</script>
+</form>
+</td></tr>
+
+<tr><td align=center>
+
+
+
+
+<script type="text/javascript">
+jmolBr()
+Jmol.setButtonCss(null,"style='width:120px'")
+jmolButton("color cpk")
+jmolButton("color group")
+jmolButton("color amino")
+jmolButton("color structure")
+jmolBr()
+jmolButton("trace only")
+jmolButton("cartoon only")
+jmolButton("backbone only")
+jmolButton("spacefill only;spacefill 23%;wireframe 0.15","ball&stick")
+jmolBr()
+Jmol.setButtonCss(null,"style='width:60px'")
+jmolButton("Model")
+Jmol.setButtonCss(null,"style='width:50px'")
+jmolButton("model; if (!isDssp) { save structure s1; isDssp = true; calculate structure DSSP;cartoons only;color structure}", "DSSP")
+Jmol.setButtonCss(null,"style='width:50px'")
+jmolButton("model; if (isDssp) { restore structure s1; isDssp = false; cartoons only;color structure}", "Auth")
+Jmol.setButtonCss(null,"style='width:160px'")
+jmolButton("Ramachandran relative")
+jmolButton("Quaternion difference")
+jmolBr()
+Jmol.setButtonCss(null,"style='width:100px'")
+jmolButton("console")
+Jmol.jmolCommandInput(jmolApplet0)
+</script>
+
+</td></tr></table>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jmol/JSpecView Test 2 - full Object implementation</title>
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/JSmolJSV.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+// always predefine the variables as their own name,
+// allowing buttons to be created before or after applet placement
+
+jsvApplet = "jsvApplet";
+jmolApplet = "jmolApplet";
+
+// applet ids and commands to give only when all applets are ready;
+// also sets up a script sync pathway for Jmol/JSpecView.
+Jmol.setAppletSync([jsvApplet, jmolApplet], ["load data/acetophenone.jdx", null], true);
+
+var jmolInfo = {
+	width: 300,
+	height: 300,
+	script: "background white; vibration off; vectors off;sync on;",
+	use: "JAVA",
+	jarPath: "java",
+	jarFile: "JmolAppletSigned.jar",
+  j2sPath: "j2s",
+	isSigned: true,
+	addSelectionOptions: false,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	readyFunction: null,
+	defaultModel: null,
+	debug: false
+}
+
+var jsvInfo = {
+	width: 600,
+	height: 400,
+	initParams: "loadFileCallbackFunctionName \"writeDataTypeOptions\"",
+	jarPath: "java",
+	jarFile: "JSpecViewAppletSigned.jar",
+	isSigned: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	readyFunction: null,
+	debug: false
+}
+
+function Blkdisplay(n) {
+         Jmol.script(jsvApplet, "spectrum " + n);
+}
+
+/*
+##$PEAKS={index=12, value=<Peaks type="IR"...
+*/
+
+function getDataTypes() {
+  var items = Jmol.getPropertyAsJavaObject(jsvApplet, "all").get("items")
+  var types = []
+  for (var i = 0; i < items.size(); i++) {
+    var sets = items.get(i).get("sets")
+    for (var j = 0; j < sets.size(); j++) {
+      var spectra = sets.get(j).get("spectra")
+      types.push(spectra.get(0).get("titleLabel"))
+    }
+  }
+  return types
+}
+
+function writeDataTypeOptions() {
+  var dataTypes = getDataTypes();
+  var html = ""
+  pt = 0
+  for (var i = 0; i < dataTypes.length; i++) {
+    var dataType = dataTypes[i]
+    html += '<br><label><input type=radio name=radioObj onclick=Blkdisplay(' + (++pt) + ') />' + dataType.split("\n")[0] + '</label>'
+  }
+  document.getElementById("datatypes").innerHTML = html
+}
+
+
+//]]>
+</script>
+
+<style type="text/css">
+ span.c2 { font-size: 120%; text-align: center}
+
+</style>
+</head>
+
+<body>
+
+<form name="theform">
+<table width='99%' border='1' summary='JSpecView/jmol display' cellpadding='10' >
+<tr>
+<td>
+<a href=javascript:writeDataTypeOptions()>Get Data Types</a>
+<br>
+<div id=datatypes></div>
+
+
+</td><td valign=top>
+<script language="javascript" type="text/javascript">
+  jsvApplet = Jmol.getJSVApplet(jsvApplet, jsvInfo);
+</script>
+</td>
+<td valign=top>
+<script language="javascript" type="text/javascript">
+ 	jmolApplet = Jmol.getApplet(jmolApplet, jmolInfo);
+</script>
+<br>
+<a href='javascript:Jmol.script(jsvApplet,"load data/aquation20.jdx")'>aquation20.jdx</a>
+<a href='javascript:Jmol.script(jsvApplet,"load data/cx1.jdx")'>cx1.jdx</a>
+<a href='javascript:Jmol.script(jsvApplet,"load data/t6.jdx")'>t6.jdx</a>
+<a href='javascript:Jmol.script(jsvApplet,"load data/t.jdx")'>t.jdx</a>
+<a href='javascript:Jmol.script(jsvApplet,"load data/pimentoGCMS2.dx;overlay all")'>pimentoGCMS2</a>
+<a href='javascript:Jmol.script(jmolApplet,"zap");Jmol.script(jsvApplet,"load data/sample78-1hnmr.jdx")'>sample 78 1HNMR</a>
+<a href='javascript:Jmol.script(jmolApplet,"zap");Jmol.script(jsvApplet,"load data/ample78-cosy.jdx.gz;load append data/sample78-1hnmr.jdx;view *;link AB")'>sample 78 COSY</a>
+</td></tr>
+<tr>
+<td colspan=2>
+Click on an H or C atom or select an <a href="javascript:jmolScript('frame next')">IR mode</a>. Once a spectrum is showing, you can click on selected regions as well, and there is a context menu (right-click) as well there. For 2D spectra, click on the spectrum, then use CTRL + to increase the contrast.
+
+</td>
+<td>
+<script language="Javascript" type="text/javascript">
+	Jmol.jmolCheckbox(jmolApplet, "spin on", "spin off", "spin On/Off ");
+  Jmol.jmolCheckbox(jmolApplet, "background black", "background white","bg black/white ");
+	Jmol.jmolCheckbox(jmolApplet, "wireframe off;spacefill on", "wireframe 0.15;spacefill 0.4", "spacefill/ball_and_stick ");
+	Jmol.jmolCheckbox(jmolApplet, "wireframe on;spacefill off", "wireframe 0.3;spacefill off", "wireframe/stick ");
+	Jmol.jmolBr();
+  Jmol.jmolCheckbox(jmolApplet, "vibration 2; vibration scale 0.2","vibration 0.8; vibration scale 0.05" ,"vibration big/small ");
+  Jmol.jmolCheckbox(jmolApplet, "vectors 0.1;vector scale 1.8; color vectors yellow","vectors 0.08;vector scale 1.2; color vectors yellow" ,"vectors big/small ");
+</script>
+
+</td>
+
+</tr>
+<tr><td colspan=3><textarea id="log" wrap=hard style="width:800px;height:800px"></textarea></td></tr></table>
+
+</body>
+</html>
+

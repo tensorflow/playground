@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="jquery/jquery.js"></script>
+<script type="text/javascript" src="js/JSmoljQueryExt.js"></script>
+<script type="text/javascript" src="js/JSmolCore.js"></script>
+<script type="text/javascript" src="js/JSmolApplet.js"></script>
+<script type="text/javascript" src="js/JSmolApi.js"></script>
+<script type="text/javascript" src="js/JSmolControls.js"></script>
+<script type="text/javascript" src="js/j2sjmol.js"></script>
+<script type="text/javascript" src="js/JSmol.js"></script>
+<script type="text/javascript" src="js/JSmolMenu.js"></script>
+<script type="text/javascript" src="js/JSmolConsole.js"></script>
+<script type="text/javascript" src="js/JSmolJSV.js"></script>
+
+<script type="text/javascript">
+
+// always predefine the variables as their own name,
+// allowing buttons to be created before or after applet placement
+
+jsvApplet = "jsvApplet0";
+jmolApplet = "jmolApplet0";
+
+// applet ids and commands to give only when all applets are ready;
+// also sets up a script sync pathway for Jmol/JSpecView.
+Jmol.setAppletSync([jsvApplet, jmolApplet], ["load data/acetophenone.jdx", ""], true);
+
+var SInfo;       // for Spectrum
+var MInfo;       // for Molfile
+
+;(function() {
+
+// logic is set by indicating order of USE -- default is HTML5 for this test page, though
+//var use = "HTML5"//"JAVA HTML5 IMAGE" // WEBGL only by request by link below.
+//var s = document.location.search;
+
+
+jmol_isReady = function(applet) {
+	document.title = (applet._id + " is ready")
+	Jmol._getElement(applet, "appletdiv").style.border="1px solid blue"
+}
+
+SInfo = {
+	width: 800,
+	height: 300,
+	debug: false,
+	color: "#A0F0F0",
+//	addSelectionOptions: true,
+//	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	j2sPath: "j2s",
+  disableJ2SLoadMonitor: true,
+  disableInitialConsole: true,
+	readyFunction: null,      //   jsv_isReady
+  allowjavascript: true
+//        console: "consolediv"
+}
+
+MInfo = {
+	width: 300,
+	height: 300,
+	debug: false,
+	color: "#A0F0F0",
+//	addSelectionOptions: true,
+//	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	j2sPath: "j2s",
+	disableJ2SLoadMonitor: true,
+	disableInitialConsole: true,
+	readyFunction: null ,      //         jmol_isReady
+  allowjavascript: true,
+	script: "sync on;"
+//	script: "load data/acetophenone.jdx;",
+//        console: "consolediv1"
+
+}
+
+
+})();
+
+
+$(document).ready(function() {
+
+  $("#jmoldiv").html(Jmol.getAppletHtml("jmolApplet0", MInfo));
+  $("#jsvdiv").html(Jmol.getJSVAppletHtml("jsvApplet0",SInfo));  
+});
+
+</script>
+</head>
+<body>
+<table width=1100 cellpadding=10 >
+<tr>
+<td>
+<div id=jsvdiv></div>
+</td>
+<td>
+<div id=jmoldiv></div>
+</td>
+</tr>
+</table>
+<a href="javascript:Jmol.script(jsvApplet0, 'gridon')">grid on</a> <a href="javascript:Jmol.script(jsvApplet0, 'gridon false')">grid off</a>
+<a href="javascript:Jmol.script(jsvApplet0, 'showpeaklist')">show peak list</a>
+<a href="javascript:Jmol.script(jsvApplet0, 'view 2')">1H NMR</a>
+<a href="javascript:Jmol.script(jsvApplet0, 'view 3')">13C NMR</a>
+<a href="javascript:Jmol.script(jsvApplet0, 'view 4')">MS</a>
+<a href="javascript:jsvApplet0._showInfo(true)">show info</a>
+</div>
+</body>
+</html>

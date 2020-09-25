@@ -1,0 +1,1252 @@
+/**
+ * The file contains styles for GWT widgets in the standard theme.
+ *
+ * In order to maintain cross-browser compatibility, the following syntax is
+ * used to create IE6 specific style rules:
+ *    html>body .gwt-Widget {
+ *      Rule applies to all browsers (including IE7), except IE6
+ *    }
+ *    * html .gwt-Widget {
+ *      Rule applied to IE6 only (not to IE7)
+ *    }
+ * 
+ * Specifically, IE6 does not support images with multiple transparent colors,
+ * so we need to use the AlphaImageLoader in IE6 only.
+ */
+
+/**
+ * The reference theme can be used to determine when this style sheet has
+ * loaded.  Create a hidden div element with absolute position, assign the style
+ * name below, and attach it to the DOM.  Use a timer to detect when the
+ * element's height and width are set to 5px.
+ */
+.mosaic-Reference-chrome {
+  height: 5px;
+  width: 5px;
+  zoom: 1;
+}
+/*
+body {
+	font-family: arial,sans-serif;
+}
+
+div,td {
+	color: #000000;
+}
+
+a:link {
+	color:#0000cc;
+}
+     
+a:visited {
+	color:#551a8b;
+}
+
+a:active {
+	color:#ff0000;
+}
+
+*/
+/*** Button ***/
+
+.gwt-Button {
+  /* IE hack */
+  overflow: visible;
+}
+
+/*** TextBox & TextArea */
+
+.gwt-TextBox,
+.gwt-PasswordTextBox,
+.gwt-TextArea {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	font-size: 10pt;
+	border: 1px inset #ccc;
+}
+
+/*** DecoratedButton ***/
+
+.mosaic-DecoratedButton {
+	margin: 0px;
+	text-decoration: none;
+	font-size: small;
+	cursor: pointer;
+	cursor: hand;
+	background: url("images/hborder.png") repeat-x 0px -27px;
+	border: none;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+.mosaic-DecoratedButton .buttonTopCenter,
+.mosaic-DecoratedButton .buttonBottomCenter {
+	height: 1px !important;
+	background: #444;
+}
+.mosaic-DecoratedButton .buttonTopCenterInner,
+.mosaic-DecoratedButton .buttonBottomCenterInner {
+	height: 1px !important;
+	background: #f00;
+}
+.mosaic-DecoratedButton .buttonMiddleLeft,
+.mosaic-DecoratedButton .buttonMiddleRight {
+	width: 1px;
+	background: #444;
+}
+.mosaic-DecoratedButton .buttonTopLeftInner,
+.mosaic-DecoratedButton .buttonTopRightInner,
+.mosaic-DecoratedButton .buttonBottomLeftInner,
+.mosaic-DecoratedButton .buttonBottomRightInner {
+	width: 1px;
+	height: 1px;
+}
+.mosaic-DecoratedButton .buttonMiddleCenterInner {
+	width: 100%;
+	height: 100%;
+	background: #0ff;
+}
+
+/*** ComboBox ***/
+
+.mosaic-ComboBox {
+	border: 1px inset #ccc;
+	background: url("images/hborder.png") repeat-x 0px -27px;
+}
+
+.mosaic-ComboBox input {
+	border: 0px;
+	text-align: middle;
+}
+.mosaic-ComboBox button {
+	width: 17px !important;
+	border: 0px;
+	border-left: 1px solid #ccc;
+	padding: 0px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(images/combobox/arrow-down.png);
+}
+
+/*** ToolButton ***/
+
+.mosaic-ToolButton {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	background: url("images/hborder.png") repeat-x 0px -27px;
+}
+.mosaic-ToolButton .mosaic-Button  {
+  margin: 0;
+  padding: 3px 5px;
+  text-decoration: none;
+  font-size: small;
+  cursor: pointer;
+  cursor: hand;
+  background: url("images/hborder.png") repeat-x 0px -27px;
+  border: 1px outset #ccc;
+}
+.mosaic-ToolButton .mosaic-Button:active {
+  border: 1px inset #ccc;
+}
+.mosaic-ToolButton .mosaic-Button:hover {
+  border-color: #9cf #69e #69e #7af;
+}
+.mosaic-ToolButton .mosaic-Button[disabled] {
+  cursor: default;
+  color: #888;
+}
+.mosaic-ToolButton .mosaic-Button[disabled]:hover {
+  border: 1px outset #ccc;
+}
+.mosaic-ToolButton .mosaic-Button {
+    background: none;
+}
+.mosaic-ToolButton .mosaic-Menu-Button,
+.mosaic-ToolButton .mosaic-Split-Button {
+    padding-right: 20px;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+.mosaic-ToolButton .mosaic-Menu-Button {
+    background-image: url(images/button/menu-button-arrow.png);
+}
+.mosaic-ToolButton .mosaic-Split-Button {
+    background-image: url(images/button/split-button-arrow.png);
+}
+.mosaic-ToolButton .mosaic-Split-Button-focus {
+    background-image: url(split-button-arrow-focus.png);
+}
+.mosaic-ToolButton .mosaic-Split-Button-hover {
+    background-image: url(images/button/split-button-arrow-hover.png);
+}
+.mosaic-ToolButton .mosaic-Split-Button-activeoption {
+    background-image: url(images/button/split-button-arrow-active.png);
+}
+
+/* Checked state */
+
+.mosaic-ToolButton .mosaic-Checkbox-Button-checked {
+    border: 1px inset #ccc;
+    background-color: #ccc;
+}
+
+/* Disabled state */
+
+.mosaic-ToolButton .mosaic-Menu-Button-disabled {
+    background-image: url(images/button/menu-button-arrow-disabled.png);
+}
+
+.mosaic-ToolButton .mosaic-Split-Button-disabled {
+    background-image: url(images/button/split-button-arrow-disabled.png);    
+}
+
+.mosaic-ToolButton .mosaic-Checkbox-Button-checked[disabled] {
+    border: 1px inset #ccc;  
+}
+
+/*** Caption ***/
+
+.mosaic-Caption {
+	background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
+	border-bottom: 1px solid #bbbbbb;
+}
+.mosaic-Caption-iconBoxLeft {
+	padding: 0px 0px 0px 2px;
+}
+.mosaic-Caption-iconBoxRight {
+	padding: 0px 2px 0px 0px;
+}
+.mosaic-Caption-text {
+	padding: 4px 4px 4px 4px;
+	text-align: left !important;
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/*** DropDownPanel ***/
+
+.mosaic-DropDownPanel {
+	
+}
+
+.mosaic-DropDownPanel .mosaic-ComboBoxList {
+	background: white;
+	border: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.mosaic-DropDownPanel .gwt-ScrollTable,
+.mosaic-DropDownPanel .mosaic-ColumnWidget,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable {
+	border-color: #aaa;
+	border-style: solid;
+	border-width: 1px 0px 1px 1px;
+}
+
+.mosaic-DropDownPanel .gwt-ScrollTable .headerWrapper,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .headerWrapper,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .headerWrapper {
+	background: #8bd url(images/scrolltable/bg_header_gradient.gif) repeat-x bottom left;
+}
+
+.mosaic-DropDownPanel .gwt-ScrollTable .footerWrapper,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .footerWrapper,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .footerWrapper {
+	border-top: 1px solid #aaa;
+	background: #8bd url(images/scrolltable/bg_header_gradient.gif) repeat-x bottom left;
+}
+
+.mosaic-DropDownPanel .gwt-ScrollTable .dataTable td,
+.mosaic-DropDownPanel .gwt-ScrollTable .headerTable td,
+.mosaic-DropDownPanel .gwt-ScrollTable .footerTable td,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .dataTable td,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .headerTable td,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .footerTable td,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .dataTable td,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .headerTable td,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .footerTable td {
+	border-color: #aaa;
+	border-style: solid;
+	border-width: 0px 0px 0px 0px;
+	white-space: nowrap;
+	overflow: hidden;
+	padding: 1px 3px;
+}
+
+.mosaic-DropDownPanel .gwt-ScrollTable .headerTable td,
+.mosaic-DropDownPanel .gwt-ScrollTable .footerTable td,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .headerTable td,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .footerTable td,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .headerTable td,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .footerTable td {
+	color: #fff;
+}
+    
+.mosaic-DropDownPanel .gwt-ScrollTable .dataTable tr.hovering,
+.mosaic-DropDownPanel .gwt-ScrollTable .dataTable tr.highlighted,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .dataTable tr.hovering,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .dataTable tr.highlighted,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .dataTable tr.hovering,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .dataTable tr.highlighted {
+	background: #C3D9FF;
+}
+
+.mosaic-DropDownPanel .gwt-ScrollTable .dataTable tr.hovering,
+.mosaic-DropDownPanel .gwt-ScrollTable .dataTable tr.highlighted,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .dataTable tr.hovering,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .dataTable tr.highlighted,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .dataTable tr.hovering,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .dataTable tr.highlighted {
+	/*background: #FFFFAA;*/
+	cursor: hand;
+	cursor: pointer;
+}
+
+.mosaic-DropDownPanel .gwt-ScrollTable .dataTable tr.selected td,
+.mosaic-DropDownPanel .mosaic-ColumnWidget .dataTable tr.selected td,
+.mosaic-DropDownPanel .mosaic-ScrollTreeTable .dataTable tr.selected td {
+	background: #7AA5D6;
+}
+
+/*** WindowPanel ***/
+
+.mosaic-WindowPanel {
+}
+.mosaic-WindowPanel .mosaic-CaptionLayoutPanel .dragdrop-handle {
+	cursor: move;
+	user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+}
+.mosaic-WindowPanel .mosaic-CaptionLayoutPanel {	
+	padding: 0px;
+	margin: 0px;
+	
+	/* debug */
+	/*border: 1px solid #00f;*/
+}
+.mosaic-WindowPanel .Body {
+	background: white;
+}
+.mosaic-MessageBox .Body {
+	background: none;
+}
+.mosaic-WindowPanel .Footer {
+}
+.mosaic-WindowPanel .popupMiddleCenter {
+	padding: 0px;
+	margin: 0px;
+}
+.mosaic-WindowPanel .Resize-nw {
+	cursor: nw-resize;
+}
+.mosaic-WindowPanel .Resize-n {
+	cursor: n-resize;
+}
+.mosaic-WindowPanel .Resize-ne {
+	cursor: ne-resize;
+}
+.mosaic-WindowPanel .Resize-e {
+	cursor: e-resize;
+}
+.mosaic-WindowPanel .Resize-se {
+	cursor: se-resize;
+}
+.mosaic-WindowPanel .Resize-s {
+	cursor: s-resize;
+}
+.mosaic-WindowPanel .Resize-sw {
+	cursor: sw-resize;
+}
+.mosaic-WindowPanel .Resize-w {
+	cursor: w-resize;
+}
+
+/*** GlassPanel ***/
+
+.mosaic-GlassPanel-loading,
+.gwt-GlassPanel {
+	/* Override glass panel color to be `green` */
+	background-color: #000 !important;
+	background-repeat: repeat;
+
+	/* Override glass panel to 10% opacity (= 90% transparency) */
+	filter: alpha(opacity = 10) !important; /* IE */
+	opacity: 0.1 !important; /* non-IE */
+
+	/*
+      NOTE: Please do NOT use either CSS 'width' or 'height' here, as
+      this would defeat much of the effort that went into GlassPanel
+      in order to get it to work consistently in a variety of
+      circumstances. Specifically, please resist the urge to use
+      'width/height: 100%' or similar constructs.
+	*/
+}
+.mosaic-GlassPanel-invisible {
+	/* Override glass panel color to be `green` */
+	background-color: #000 !important;
+	background-repeat: repeat;
+	
+	/* Override glass panel to 0% opacity (= 100% transparency) */
+	filter: alpha(opacity = 0) !important; /* IE */
+	opacity: 0.0 !important; /* non-IE */
+}
+.mosaic-GlassPanel-default,
+.mosaic-GlassPanel-blue_ridge {
+	background-image: url("images/glasspanel/blue_ridge.png");
+	background-repeat: repeat;
+
+	filter: alpha(opacity = 33) !important; /* IE */
+	opacity: 0.3 !important; /* non-IE */
+}
+.mosaic-GlassPanel-countertop {
+	background-image: url("images/glasspanel/countertop.png");
+	background-repeat: repeat;
+
+	filter: alpha(opacity = 40) !important; /* IE */
+	opacity: 0.4 !important; /* non-IE */
+}
+.mosaic-GlassPanel-fish {
+	background-image: url("images/glasspanel/fish.png");
+	background-repeat: repeat;
+}
+.mosaic-GlassPanel-fleur_de_lis {
+	background-image: url("images/glasspanel/fleur_de_lis.png");
+	background-repeat: repeat;
+
+	filter: alpha(opacity = 100) !important; /* IE */
+	opacity: 1.0 !important; /* non-IE */
+}
+.mosaic-GlassPanel-floral {
+	background-image: url("images/glasspanel/floral.png");
+	background-repeat: repeat;
+
+	filter: alpha(opacity = 100) !important; /* IE */
+	opacity: 1.0 !important; /* non-IE */
+}
+.mosaic-GlassPanel-moss_ridge {
+	background-image: url("images/glasspanel/moss_ridge.png");
+	background-repeat: repeat;
+
+	filter: alpha(opacity = 100) !important; /* IE */
+	opacity: 1.0 !important; /* non-IE */
+}
+.mosaic-GlassPanel-numbers {
+	background-image: url("images/glasspanel/numbers.png");
+	background-repeat: repeat;
+
+	filter: alpha(opacity = 100) !important; /* IE */
+	opacity: 1.0 !important; /* non-IE */
+}
+.mosaic-GlassPanel-sky_ridge {
+	background-image: url("images/glasspanel/sky_ridge.png");
+	background-repeat: repeat;
+
+	filter: alpha(opacity = 100) !important; /* IE */
+	opacity: 1.0 !important; /* non-IE */
+}
+.mosaic-GlassPanel-snow_ridge {
+	background-image: url("images/glasspanel/snow_ridge.png");
+	background-repeat: repeat;
+
+	filter: alpha(opacity = 100) !important; /* IE */
+	opacity: 1.0 !important; /* non-IE */
+}
+
+/*** ImageButton ***/
+
+.mosaic-ImageButton {
+	cursor: pointer;
+}
+
+.mosaic-ImageButton img {
+	display: block;
+	
+	/*
+	 * Unfortunately, in IE, border-color: transparent is rendered as black.
+	 * We get around the border on hover displacement of content by adjusting
+	 * the margin/padding at the same time.
+	 */
+	border: 0px solid transparent;
+	margin: 1px;
+}
+.mosaic-ImageButton img:hover {
+	/*
+	 * Unfortunately, in IE, border-color: transparent is rendered as black.
+	 * We get around the border on hover displacement of content by adjusting
+	 * the margin/padding at the same time.
+	 */
+	border: 1px solid #4d4d4d;
+	margin: 0px;
+	
+	background-color: #ccc;
+}
+.mosaic-ImageButton img:active {
+	background-color: #dcc;
+}
+
+/*** InfoPanel ***/
+
+.mosaic-InfoPanel {
+}
+.mosaic-InfoPanel-panel {
+}
+.mosaic-InfoPanel-caption {
+	font-weight: bold;
+	display: block;
+}
+.mosaic-InfoPanel-description {
+}
+
+/*** TabLayoutPanel ***/
+
+.mosaic-TabLayoutPanel {
+}
+
+.mosaic-TabLayoutPanelBottom {
+/*
+	border-color: #92c1f0;
+	border-style: solid;
+	border-width: 3px 2px 2px 2px;
+*/
+}
+
+/*** ScrollTabBar ***/
+
+.mosaic-ScrollTabBar {
+}
+
+.mosaic-ScrollTabBar .mosaic-ScrollTabBar-NavBar {
+  margin: 0px 2px !important;	
+}
+
+.mosaic-ScrollTabBar button {
+  padding: 0px !important;
+  margin: 0px 0px 2px 0px !important;
+  border: 1px solid #ccc;
+}
+
+/*** ScrollTable ***/
+
+.gwt-ScrollTable,
+.mosaic-ColumnWidget,
+.mosaic-ScrollTreeTable {
+	border-color: #aaa;
+	border-style: solid;
+	border-width: 1px 0px 1px 1px;
+}
+
+.gwt-ScrollTable .headerWrapper,
+.mosaic-ColumnWidget .headerWrapper,
+.mosaic-ScrollTreeTable .headerWrapper {
+	background: #8bd url(images/scrolltable/bg_header_gradient.gif) repeat-x bottom left;
+}
+
+.gwt-ScrollTable .footerWrapper,
+.mosaic-ColumnWidget .footerWrapper,
+.mosaic-ScrollTreeTable .footerWrapper {
+	border-top: 1px solid #aaa;
+	background: #8bd url(images/scrolltable/bg_header_gradient.gif) repeat-x bottom left;
+}
+
+.gwt-ScrollTable .dataTable td,
+.gwt-ScrollTable .headerTable td,
+.gwt-ScrollTable .footerTable td,
+.mosaic-ColumnWidget .dataTable td,
+.mosaic-ColumnWidget .headerTable td,
+.mosaic-ColumnWidget .footerTable td,
+.mosaic-ScrollTreeTable .dataTable td,
+.mosaic-ScrollTreeTable .headerTable td,
+.mosaic-ScrollTreeTable .footerTable td {
+	border-color: #aaa;
+	border-style: solid;
+	border-width: 0px 1px 1px 0px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.gwt-ScrollTable .headerTable td,
+.gwt-ScrollTable .footerTable td,
+.mosaic-ColumnWidget .headerTable td,
+.mosaic-ColumnWidget .footerTable td,
+.mosaic-ScrollTreeTable .headerTable td,
+.mosaic-ScrollTreeTable .footerTable td {
+	color: #fff;
+}
+
+.gwt-ScrollTable .dataTable tr.highlighted, /* gen2 */
+.gwt-ScrollTable .dataTable tr.hovering,
+.mosaic-ColumnWidget .dataTable tr.hovering,
+.mosaic-ScrollTreeTable .dataTable tr.hovering {
+	background: #C3D9FF;
+}
+
+.gwt-ScrollTable .dataTable td.highlighted, /* gen2 */
+.gwt-ScrollTable .dataTable td.hovering,
+.mosaic-ColumnWidget .dataTable td.hovering,
+.mosaic-ScrollTreeTable .dataTable td.hovering {
+	background: #FFFFAA;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.gwt-ScrollTable .dataTable tr.selected,
+.mosaic-ColumnWidget .dataTable tr.selected,
+.mosaic-ScrollTreeTable .dataTable tr.selected {
+	background: #7AA5D6;
+}
+
+.gwt-ScrollTable .pagingOptions {
+	background: #e8eef7;
+	border-top: 1px solid #aaa;
+	border-right: 1px solid #aaa;
+	padding: 1px 0px;
+}
+
+.gwt-ScrollTable .pagingOptions .errorMessage {
+	color: red;
+}
+
+.gwt-PagingOptions .gwt-Image {
+	cursor: hand;
+	cursor: pointer;
+}
+
+.gwt-InlineCellEditor {
+	border: 3px solid #7AA5D6;
+	padding: 4px;
+	background: white;
+	overflow: auto;
+}
+.gwt-InlineCellEditor .accept {
+	cursor: pointer;
+	cursor: hand;
+}
+.gwt-InlineCellEditor .cancel {
+	cursor: pointer;
+	cursor: hand;
+}
+
+/*** CaptionLayoutPanel ***/
+
+.mosaic-CaptionLayoutPanel {
+	padding: 0px;
+	margin: 0px;
+
+	/* debug */
+	/*border: 1px dotted #00f;*/
+}
+.mosaic-CaptionLayoutPanel .Body {
+	
+	/* debug */
+	/*border: 1px dotted #0f0;*/
+}
+
+/** DisclosureLayoutPanel */
+
+.mosaic-DisclosureLayoutPanel {
+}
+.mosaic-DisclosureLayoutPanel-open {
+}
+.mosaic-DisclosureLayoutPanel-close {
+}
+.mosaic-DisclosureLayoutPanel .mosaic-Caption {
+  background: none;
+  border: none;
+}
+.mosaic-DisclosureLayoutPanel .mosaic-Caption-text a {
+  text-decoration: none;  /* Remove underline from header */
+  color: black; 
+  cursor: pointer;
+  cursor: hand;
+  padding: 1px;
+}
+.mosaic-DisclosureLayoutPanel .Body {
+  border-left: 3px solid #e3e3e3;
+  padding: 4px 0px 4px 8px;
+  margin-left: 6px;
+}
+
+/*** LayoutPanel ***/
+
+.mosaic-LayoutPanel {
+	padding: 5px;
+	margin: 0px;
+	
+	/* debug */
+	/*
+	margin: 1px;
+	border: 1px dotted #f00;
+	*/
+}
+.mosaic-LayoutPanel-FormLayout .mosaic-LayoutPanel {
+	/* required by Safari to handle the 'width' attribute */ 
+	position: absolute !important;
+}
+.mosaic-LayoutPanel-FillLayout {
+	padding: 0px;
+}
+.mosaic-LayoutPanel-BoxLayout {
+}
+.mosaic-LayoutPanel-BorderLayout {
+}
+.mosaic-LayoutPanel-BorderLayout .NorthCollapsedImageButton {
+	border: 1px solid #d0e4f6;
+	border-top: none;
+	height: 18px !important;
+	padding: 0px 1px 1px 1px;
+	overflow: hidden;
+}
+.mosaic-LayoutPanel-BorderLayout .SouthCollapsedImageButton {
+	border: 1px solid #d0e4f6;
+	border-bottom: none;
+	height: 18px !important;
+	padding: 1px 1px 0px 1px;
+	overflow: hidden;
+}
+/* TODO
+html>body .mosaic-LayoutPanel-BorderLayout .NorthCollapsedImageButton img,
+html>body .mosaic-LayoutPanel-BorderLayout .SouthCollapsedImageButton img {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+*/
+.mosaic-LayoutPanel-BorderLayout .WestCollapsedImageButton {
+	border: 1px solid #d0e4f6;
+	border-left: none;
+	
+	/* required by Safari to handle the 'width' attribute */
+	position: absolute !important;
+	width: 18px !important;
+	
+	padding: 1px 1px 1px 0px;
+	overflow: hidden;
+}
+.mosaic-LayoutPanel-BorderLayout .EastCollapsedImageButton {
+	border: 1px solid #d0e4f6;
+	border-right: none;
+	
+	/* required by Safari to handle the 'width' attribute */
+	position: absolute !important;
+	width: 18px !important;
+
+	padding: 1px 0px 1px 1px;
+	overflow: hidden;
+}
+.mosaic-LayoutPanel-BorderLayout .NorthSplitBar {
+	overflow: hidden; /* required by IE6 */
+	background: #fff;
+	cursor: n-resize;
+}
+.mosaic-LayoutPanel-BorderLayout .NorthSplitBar:hover {
+	border-top: 1px dashed #888;
+}
+.mosaic-LayoutPanel-BorderLayout .NorthSplitBar-Movable {
+	background: #000;
+	cursor: n-resize;
+}
+.mosaic-LayoutPanel-BorderLayout .SouthSplitBar {
+	overflow: hidden; /* required by IE6 */
+	background: #fff;
+	cursor: s-resize;
+}
+.mosaic-LayoutPanel-BorderLayout .SouthSplitBar:hover {
+	border-bottom: 1px dashed #888;
+}
+.mosaic-LayoutPanel-BorderLayout .SouthSplitBar-Movable {
+	background: #000;
+	cursor: s-resize;
+}
+.mosaic-LayoutPanel-BorderLayout .WestSplitBar {
+	overflow: hidden; /* required by IE6 */
+	background: #fff;
+	cursor: w-resize;
+}
+.mosaic-LayoutPanel-BorderLayout .WestSplitBar:hover {
+	border-left: 1px dashed #888;
+}
+.mosaic-LayoutPanel-BorderLayout .WestSplitBar-Movable {
+	background: #000;
+	cursor: w-resize;
+}
+.mosaic-LayoutPanel-BorderLayout .EastSplitBar {
+	overflow: hidden; /* required by IE6 */
+	background: #fff;
+	cursor: w-resize;
+}
+.mosaic-LayoutPanel-BorderLayout .EastSplitBar:hover {
+	border-right: 1px dashed #888;
+}
+.mosaic-LayoutPanel-BorderLayout .EastSplitBar-Movable {
+	background: #000;
+}
+
+/*** ToolBar ***/
+
+.mosaic-ToolBar {
+	cursor: default;
+	padding: 3px;
+	background: url("images/hborder.png") repeat-x 0px -27px;
+}
+.mosaic-ToolBar .mosaic-ToolButton {
+	background: none;
+	white-space: nowrap;
+}
+.mosaic-ToolBar .mosaic-ToolBarSeparator {
+	border-left: 1px solid #ccc;
+	background: white;
+	
+	/* required by Safari to handle the 'width' attribute */
+	position: absolute !important;
+	width: 1px;
+	
+	padding: 0px;
+	margin: 5px 3px;
+}
+
+/*** WidgetWrapper ***/
+
+.mosaic-WidgetWrapper {
+	/* debug */
+	/*border: 1px solid;*/	
+}
+
+/*** DateTimePicker ***/
+
+.mosaic-DateTimePicker {
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	cursor: default;
+	background: #dbe6de;
+}
+
+/*** mosaic-DecoratedBottomTabBar ***/
+
+.mosaic-DecoratedBottomTabBar {	
+}
+.mosaic-DecoratedBottomTabBar .gwt-TabBarFirst {
+	width: 5px;  /* first tab distance from the left */
+}
+.mosaic-DecoratedBottomTabBar .gwt-TabBarRest {
+}
+.mosaic-DecoratedBottomTabBar .gwt-TabBarItem {
+	border-collapse: collapse;
+	margin-left: 6px;
+}
+.mosaic-DecoratedBottomTabBar .tabBottomCenter {
+	padding: 0px;
+	background: #d0e4f6;
+}
+.mosaic-DecoratedBottomTabBar .tabBottomLeft,
+.mosaic-DecoratedBottomTabBar .tabBottomRight {
+	padding: 0px;
+	zoom: 1;
+}
+.mosaic-DecoratedBottomTabBar .tabBottomLeftInner,
+.mosaic-DecoratedBottomTabBar .tabBottomRightInner {
+	width: 6px;
+	height: 6px;
+}
+html>body .mosaic-DecoratedBottomTabBar .tabBottomLeft {
+	background: url(images/corner2.png) no-repeat 0px -6px;
+}
+html>body .mosaic-DecoratedBottomTabBar .tabBottomRight {
+	background: url(images/corner2.png) no-repeat -6px -6px;
+}
+* html .mosaic-DecoratedBottomTabBar .tabBottomLeftInner {
+	width: 5px;
+	height: 61px;
+	margin-top: -55px;
+	overflow: hidden;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner2.png',sizingMethod='crop');
+}
+* html .mosaic-DecoratedBottomTabBar .tabBottomRightInner {
+	width: 12px;
+	height: 61px;
+	margin-top: -55px;
+	margin-left: -6px;
+	overflow: hidden;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner2.png',sizingMethod='crop');
+}
+.mosaic-DecoratedBottomTabBar .tabMiddleLeft,
+.mosaic-DecoratedBottomTabBar .tabMiddleRight {
+	width: 6px;
+	padding: 0px;
+	background: #d0e4f6;
+}
+.mosaic-DecoratedBottomTabBar .tabMiddleLeftInner,
+.mosaic-DecoratedBottomTabBar .tabMiddleRightInner {
+	width: 1px;
+	height: 1px;
+}
+.mosaic-DecoratedBottomTabBar .tabMiddleCenter {
+	padding: 0px 4px 2px 4px;
+	cursor: pointer;
+	cursor: hand;
+	color: black;
+	font-weight: bold;
+	text-align: center;
+	background: #d0e4f6;
+}
+.mosaic-DecoratedBottomTabBar .gwt-TabBarItem-selected .tabBottomCenter {
+	background: #92c1f0;
+}
+html>body .mosaic-DecoratedBottomTabBar .gwt-TabBarItem-selected .tabBottomLeft {
+	background-position: 0px 0px;
+}
+html>body .mosaic-DecoratedBottomTabBar .gwt-TabBarItem-selected .tabBottomRight {
+	background-position: -6px 0px;
+}
+* html .mosaic-DecoratedBottomTabBar .gwt-TabBarItem-selected .tabBottomLeftInner {
+	width: 5px;
+	height: 67px;
+	margin-top: -61px;
+	overflow: hidden;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner2.png',sizingMethod='crop');
+}
+* html .mosaic-DecoratedBottomTabBar .gwt-TabBarItem-selected .tabBottomRightInner {
+	width: 12px;
+	height: 67px;
+	margin-top: -61px;
+	margin-left: -6px;
+	overflow: hidden;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner2.png',sizingMethod='crop');
+}
+.mosaic-DecoratedBottomTabBar .gwt-TabBarItem-selected .tabMiddleLeft,
+.mosaic-DecoratedBottomTabBar .gwt-TabBarItem-selected .tabMiddleRight {
+	background: #92c1f0;
+}
+.mosaic-DecoratedBottomTabBar .gwt-TabBarItem-selected .tabMiddleCenter {
+	cursor: default;
+	background: #92c1f0;
+}
+
+/*** StackLayoutPanel ***/
+
+.mosaic-StackLayoutPanel {
+	/*border: 1px solid #bbbbbb;*/
+}
+.mosaic-StackLayoutPanel .mosaic-StackLayoutPanelItem {
+	cursor: pointer;
+	cursor: hand;
+	background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
+}
+.mosaic-StackLayoutPanel .mosaic-StackLayoutPanelItem-selected {
+	cursor: pointer;
+	cursor: hand;
+}
+.mosaic-StackLayoutPanel .mosaic-StackLayoutPanelContent {
+	/*border: 1px solid #bbbbbb;*/
+	/*border-bottom: 0px;*/
+}
+
+/*** FastTree ***/
+
+/* --- Structural CSS --- */
+
+.gwt-FastTree {
+	-moz-user-select: none;
+	position: relative;
+}
+.gwt-FastTreeItem {
+	min-width: 18px;
+}
+.gwt-FastTreeItem .open,.gwt-FastTreeItem .closed {
+	width: 100%;
+}
+.gwt-FastTree .selection-bar {
+	font-size: 0;
+	position: absolute;
+	left: 0;
+	width: 1px;
+	z-index: -1;
+	outline: none;
+	-moz-outline: none;
+}
+.gwt-FastTree .selection-bar :focus {
+	outline: none
+}
+
+/* --- Visual styling --- */
+
+.gwt-FastTree .open .treeItemContent,.gwt-FastTree  .closed .treeItemContent {
+	margin-left: 18px;
+}
+.gwt-FastTreeItem-leaf {
+	display: block;
+	padding: 2px;
+	padding-left: 18px;
+}
+.gwt-FastTreeItem .children {
+	margin-left: 10px;
+}
+.gwt-FastTreeItem .open,.gwt-FastTreeItem .closed,.gwt-FastTreeItem-leaf {
+	color: black;
+}
+.gwt-FastTreeItem .open {
+	background: url('images/fasttree/treeOpen.gif') no-repeat center left;
+}
+.gwt-FastTreeItem .closed {
+	background: url('images/fasttree/treeClosed.gif') no-repeat center left;
+}
+.gwt-FastTreeItem-loading .open {
+	background: url('images/fasttree/treeLoading.gif') no-repeat center left;
+}
+.gwt-FastTreeItem-leaf { 
+}
+.gwt-FastTree .treeItemContent {
+	padding: 2px;
+}
+.gwt-FastTree .selected .treeItemContent {
+	background: #e3e8f3 url('images/fasttree/selectionBar.gif') repeat-x;
+}
+
+/*** FastTreeTable ***/
+
+/* --- Structural CSS --- */
+
+.gwt-FastTreeTable {
+	-moz-user-select: none;
+	position: relative;
+}
+.gwt-FastTreeTable td {
+	white-space: nowrap;
+}
+.gwt-FastTreeTableItem {
+	min-width: 18px;
+}
+.gwt-FastTreeTableItem .open,.gwt-FastTreeTableItem .closed {
+	width: 100%;
+}
+.gwt-FastTreeTable .selection-bar {
+	font-size: 0;
+	position: absolute;
+	left: 0;
+	width: 1px;
+	z-index: -1;
+	outline: none;
+	-moz-outline: none;
+}
+.gwt-FastTreeTable .selection-bar :focus {
+	outline: none
+}
+
+/* --- Visual styling --- */
+
+.gwt-FastTreeTable .open .treeItemContent,.gwt-FastTreeTable .closed .treeItemContent {
+	margin-left: 18px;
+}
+.gwt-FastTreeTableItem-leaf {
+	display: block;
+	padding: 2px;
+	padding-left: 18px;
+}
+.gwt-FastTreeTableItem-children {
+	margin-left: 10px;
+}
+.gwt-FastTreeTableItem .open,.gwt-FastTreeTableItem .closed,.gwt-FastTreeTableItem-leaf {
+	color: black;
+}
+.gwt-FastTreeTableItem .open {
+	background: url('images/fasttree/treeOpen.gif') no-repeat center left;
+}
+.gwt-FastTreeTableItem .closed {
+	background: url('images/fasttree/treeClosed.gif') no-repeat center left;
+}
+.gwt-FastTreeTableItem-loading .open {
+	background: url('images/fasttree/treeLoading.gif') no-repeat center left;
+}
+.gwt-FastTreeTableItem-leaf {
+}
+.gwt-FastTreeTable .treeItemContent {
+	padding: 2px;
+}
+/*
+.gwt-FastTreeTable .selected .treeItemContent {
+	background: #e3e8f3 url('images/fasttree/selectionBar.gif') repeat-x;
+}
+*/
+
+/*** gwt-MenuItem ***/
+
+.gwt-MenuBar .gwt-MenuItem-disabled {
+	cursor: default;
+	background: none;
+	opacity: .5;
+	zoom: 1;
+	filter: alpha(opacity=40);
+}
+
+/*** gwt-MenuBarPopup ***/
+
+.gwt-MenuBarPopup {
+	z-index: 2147483647; /* Integer.MAX_VALUE */
+}
+
+/*** gwt-InlineCellEditor **/
+
+.gwt-InlineCellEditor {
+	z-index: 2147483647; /* Integer.MAX_VALUE */
+}
+
+/*** gwt-PopupPanel **/
+.gwt-PopupPanel,
+.gwt-DecoratedPopupPanel {
+	z-index: 2147483647; /* Integer.MAX_VALUE */
+}
+
+/*** mosaic-FormSeparator **/
+
+.mosaic-FormSeparator {
+	font-weight: bold;
+}
+
+.mosaic-FormSeparator div {
+	border: 1px solid #4d4d4d;
+}
+
+/*** Basic Button with Images ***/
+
+.gwt-Button[disabled] table,
+.gwt-Button[disabled] img {
+	opacity: .5;
+	zoom: 1;
+	filter: alpha(opacity=40);
+}
+
+.gwt-Button {
+	white-space: nowrap;
+}
+
+/*** GWT Incubator SliderBar ***/
+
+.gwt-SliderBar-shell {
+	height: 34pt;
+	width: 256px;
+}
+
+.gwt-SliderBar-shell .gwt-SliderBar-line {
+	border: 1px solid #4d4d4d;
+	background-color: #cdcdcd;
+	height: 4px;
+	width: 95%;
+	top: 22pt;
+	overflow: hidden;
+}
+
+.gwt-SliderBar-shell .gwt-SliderBar-line-disabled {
+	border: 1px solid #8d8d8d;
+}
+
+.gwt-SliderBar-shell .gwt-SliderBar-knob {
+	top: 14pt;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.gwt-SliderBar-shell .gwt-SliderBar-tick {
+	top: 16pt;
+	width: 1px;
+	height: 6pt;
+	background: #4d4d4d;
+	overflow: hidden;
+}
+
+.gwt-SliderBar-shell .gwt-SliderBar-tick-disabled {
+	background: #8d8d8d;
+}
+
+.gwt-SliderBar-shell .gwt-SliderBar-label {
+	top: 2pt;
+	font-size: 8pt;
+	cursor: default;
+}
+
+.gwt-SliderBar-shell-focused {
+	
+}
+
+.gwt-SliderBar-shell .gwt-SliderBar-line-sliding {
+	cursor: pointer;
+}
+
+/*** GWT Incubator ProgressBar ***/
+
+.gwt-ProgressBar-shell {
+	border: 1px solid #4d4d4d;
+	background-color: #AAAAAA;
+	height: 1em;
+	width: 256px;
+}
+.gwt-ProgressBar-shell .gwt-ProgressBar-bar {
+	background-color: #67A7E3;
+}
+.gwt-ProgressBar-shell .gwt-ProgressBar-text {
+	padding: 0px;
+	margin: 0px;
+	color: white;
+}
+
+/*** GWT Incubator Value Spinner ***/
+
+.gwt-ValueSpinner .arrows {
+	width: 17px;
+	height: 18px;
+	margin-left: 1px;
+}
+
+.gwt-ValueSpinner .textBox {
+	border: 0px;
+	text-align: right;
+	font-family: sans-serif;
+	font-weight: bold;
+	border: 1px solid #7F9DB9;
+}
+
+.gwt-TimePicker {
+	padding: 1px;
+}
+
+.gwt-TimePicker .textBox {
+	border: 0px;
+	width: 22px;
+	text-align: center;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+	color: #506374;
+	border: 1px solid #7F9DB9;
+	background: url('images/valuespinner/bg_textbox.png') repeat-x;
+}
+
+.gwt-VolumeSlider .gwt-ProgressBar-shell {
+	border: 1px solid #faf9f7;
+	border-right: 1px solid #848280;
+	border-bottom: 1px solid #848280;
+	background-color: #AAAAAA;
+	width: 50%;
+	height: 12pt;
+}
+
+.gwt-VolumeSlider .gwt-ProgressBar-shell .gwt-ProgressBar-bar {
+	background-color: #67A7E3;
+}
+
+.gwt-VolumeSlider .gwt-ProgressBar-shell .gwt-ProgressBar-text {
+	padding: 0px;
+	margin: 0px;
+	color: white;
+}
+
+.gwt-VolumeSlider .decreaseArrow {
+	margin: 4px;
+}
+
+.gwt-VolumeSlider .increaseArrow {
+	margin: 4px;
+}

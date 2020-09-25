@@ -1,0 +1,135 @@
+// Emily Rabe, Bob Hanson, St. Olaf College Independent Study in Materials Science
+// 3:04 PM 3/14/2013
+
+n = 6//prompt("What is n?", 6)
+m = 4//prompt("What is m?", 4)
+
+watchWrap = false//(prompt("Watch it wrap?", "no") != "no")
+
+
+function doLoad() {
+	load $SCRIPT_PATH$/rabe.phonon 1 {20 20 1}
+	delete {molecule != 1}
+  
+  
+	center @1
+
+	//moveto /* time, axisAngle */ 0.0 { -503 863 49 5.4} /* zoom, translation */  717.7 -31.61 6.47  /* center, rotationRadius */ {0.0 0.0 1.6775} 50.295048 /* navigation center, translation, depth */ {0.0 0.0 0.0} -32.276844 7.033482 0.0;
+	//save coord c0
+  
+  unitcell off
+  axes off
+
+}
+
+function getVectorsAndOrigin() {
+	var a = {1/1 0 0}
+	var b = {0 1/1 0}
+	a1 = a + b
+	a2 = b
+	a3 = cross(a1, a2)
+
+	var v = @85.xyz - @3.xyz
+	pt0 = @1.xyz + v
+}
+
+function drawa1a2() {
+	draw pt0 @pt0
+  draw a1 vector @pt0 @a1 color red
+  draw a2 vector @pt0 @a2 color blue
+}
+
+function getVnm(n,m) {
+	return a1 * n + a2 * m
+}
+
+function drawNM(n, m) {
+	var vnm = getVnm(n,m)
+	draw nm vector @pt0 @vnm
+}
+
+function hideNM(n, m) {
+	var vnm = getVnm(n, m)
+	var ang = angle(vnm, {0 0 0}, a1)
+	var v = pt0 + a3
+	select *
+	translateselected @{-pt0}
+	rotateselected @pt0 @v @{-ang}
+	var c = 1.0 * vnm + 3
+	display x <= c
+	rotateselected @pt0 @v @{ang}
+	translateselected @{pt0}
+}
+
+function makeTube(n, m, f) {
+	if (!f) f = 0.0
+	var vnm = getVnm(n, m)
+	var ang = angle(vnm, {0 0 0}, a1)
+	var v = pt0 + a3
+	select *
+	translateselected @{-pt0}
+	rotateselected @pt0 @v @{-ang}
+	for (a in {*}) { wrap(a, vnm, f) }
+	rotateselected @pt0 @v @{ang}
+	translateselected @{pt0}
+	center {*}
+	zoomto 0.0 {*} 0
+
+}
+
+function wrap(a, vnm, f) {
+	if (!f) f = 0.0
+	// at this point, an atom at {0 0 0} is at pt0
+	// and the x coord of an atom is along vnm
+	var c = 1.0 * vnm + f
+	var pi = 3.1415926
+	vnm = point(c, 0, 0)
+	var r = c / (2.0 * pi)
+	var theta = 360.0 * a.x / c
+	a.x = r * sin(theta)
+	a.z = r * (1 - cos(theta))
+}
+
+function showTitle() {
+  set echo top center
+  var s = "n = "+n+" m = " + m
+  echo @s
+}
+
+
+//n = 6;
+//m = 6;
+
+doLoad()
+getVectorsAndOrigin()
+drawa1a2()
+
+/**
+ *
+drawComponents()
+
+//drawNM(n, m)
+hideNM(n,m)
+//zoomto {*} 0
+//moveto /* time, axisAngle */ 0.0 { -770 -637 18 72.98} /* zoom, translation */  139.15 0.0 0.0  /* center, rotationRadius */ {5.474593 -8.446764 6.263901} 54.30246 /* navigation center, translation, depth */ {0.0 0.0 0.0} 3.5305676 3.0557625 0.0;
+
+//moveto /* time, axisAngle */ 1.0 { -954 -250 -167 84.02} /* zoom, translation */  167.78 0.0 0.0  /* center, rotationRadius */ {10.260521 -11.638438 6.002546} 55.93603 /* navigation center, translation, depth */ {0.0 0.0 0.0} -6.5541353 11.526319 0.0;
+
+if (watchWrap) {
+set zshade off
+	save coord c
+	for (var i = 20; i >= 0; i = i - 2) {
+		restore coord c
+		makeTube(n, m, 1.0 * i)
+		refresh
+	}
+} else {
+	makeTube(n, m)
+}
+
+set zshade 
+set zshadepower 5
+
+
+
+

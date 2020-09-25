@@ -1,0 +1,1091 @@
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Graf D L'
+_journal_name_full "American Mineralogist"
+_journal_volume 46
+_journal_year 1961
+_journal_page_first 1283
+_journal_page_last 1316
+_publ_section_title
+;
+Crystallographic tables for the rhombohedral carbonates
+;
+_chemical_formula_sum 'Ca C O3'
+_cell_length_a 4.9900
+_cell_length_b 4.9900
+_cell_length_c 17.0615
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 367.916
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+Ca 2
+C  4
+O -2
+
+loop_
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ca   0.00000   0.00000   0.00000
+C   0.00000   0.00000   0.25000
+O   0.25780   0.00000   0.25000
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Althoff P L'
+_journal_name_full "American Mineralogist"
+_journal_volume 62
+_journal_year 1977
+_journal_page_first 772
+_journal_page_last 783
+_publ_section_title
+;
+Structural refinements of dolomite and a magnesian calcite and implications for
+dolomite formation in the marine environment
+Mg-calcite
+;
+_chemical_formula_sum '(Ca.9 Mg.1) C O3'
+_cell_length_a 4.941
+_cell_length_b 4.941
+_cell_length_c 16.864
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 356.550
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+Ca   0.00000   0.00000   0.00000   0.90000
+Mg   0.00000   0.00000   0.00000   0.10000
+C   0.00000   0.00000   0.25000   1.00000
+O   0.25830   0.00000   0.25000   1.00000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.02310 0.02310 0.02204 0.01155 0.00000 0.00000
+Mg 0.00186 0.00186 0.00288 0.00093 0.00000 0.00000
+C 0.01651 0.01651 0.01873 0.00826 0.00000 0.00000
+O 0.02505 0.04545 0.04034 0.02273 -0.00475 -0.00950
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Markgraf S A'
+'Reeder R J'
+_journal_name_full "American Mineralogist"
+_journal_volume 70
+_journal_year 1985
+_journal_page_first 590
+_journal_page_last 600
+_publ_section_title
+;
+High-temperature structure refinements of calcite and magnesite
+Sample: T = 24 C
+;
+_chemical_formula_sum 'Ca C O3'
+_cell_length_a 4.988
+_cell_length_b 4.988
+_cell_length_c 17.061
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 367.611
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ca   0.00000   0.00000   0.00000
+C   0.00000   0.00000   0.25000
+O   0.25670   0.00000   0.25000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.01153 0.01153 0.01253 0.00577 0.00000 0.00000
+C 0.01134 0.01134 0.01180 0.00567 0.00000 0.00000
+O 0.01342 0.02420 0.02345 0.01210 -0.00411 -0.00821
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Markgraf S A'
+'Reeder R J'
+_journal_name_full "American Mineralogist"
+_journal_volume 70
+_journal_year 1985
+_journal_page_first 590
+_journal_page_last 600
+_publ_section_title
+;
+High-temperature structure refinements of calcite and magnesite
+Sample: T = 200 C
+;
+_chemical_formula_sum 'Ca C O3'
+_cell_length_a 4.984
+_cell_length_b 4.984
+_cell_length_c 17.121
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 368.312
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ca   0.00000   0.00000   0.00000
+C   0.00000   0.00000   0.25000
+O   0.25620   0.00000   0.25000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.01614 0.01614 0.01648 0.00807 0.00000 0.00000
+C 0.01501 0.01501 0.01500 0.00750 0.00000 0.00000
+O 0.01840 0.03549 0.03282 0.01774 -0.00618 -0.01235
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Markgraf S A'
+'Reeder R J'
+_journal_name_full "American Mineralogist"
+_journal_volume 70
+_journal_year 1985
+_journal_page_first 590
+_journal_page_last 600
+_publ_section_title
+;
+High-temperature structure refinements of calcite and magnesite
+Sample: T = 400 C
+;
+_chemical_formula_sum 'Ca C O3'
+_cell_length_a 4.980
+_cell_length_b 4.980
+_cell_length_c 17.224
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 369.933
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ca   0.00000   0.00000   0.00000
+C   0.00000   0.00000   0.25000
+O   0.25580   0.00000   0.25000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.02535 0.02535 0.03457 0.01267 0.00000 0.00000
+C 0.02167 0.02167 0.03306 0.01084 0.00000 0.00000
+O 0.02921 0.05465 0.06162 0.02733 -0.00960 -0.01919
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Markgraf S A'
+'Reeder R J'
+_journal_name_full "American Mineralogist"
+_journal_volume 70
+_journal_year 1985
+_journal_page_first 590
+_journal_page_last 600
+_publ_section_title
+;
+High-temperature structure refinements of calcite and magnesite
+Sample: T = 600 C
+;
+_chemical_formula_sum 'Ca C O3'
+_cell_length_a 4.978
+_cell_length_b 4.978
+_cell_length_c 17.354
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 372.426
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ca   0.00000   0.00000   0.00000
+C   0.00000   0.00000   0.25000
+O   0.25470   0.00000   0.25000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.03597 0.03597 0.03707 0.01798 0.00000 0.00000
+C 0.03352 0.03352 0.03204 0.01676 0.00000 0.00000
+O 0.04049 0.07438 0.07629 0.03719 -0.01497 -0.02994
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Markgraf S A'
+'Reeder R J'
+_journal_name_full "American Mineralogist"
+_journal_volume 70
+_journal_year 1985
+_journal_page_first 590
+_journal_page_last 600
+_publ_section_title
+;
+High-temperature structure refinements of calcite and magnesite
+Sample: T = 750 C
+;
+_chemical_formula_sum 'Ca C O3'
+_cell_length_a 4.978
+_cell_length_b 4.978
+_cell_length_c 17.462
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 374.744
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ca   0.00000   0.00000   0.00000
+C   0.00000   0.00000   0.25000
+O   0.25280   0.00000   0.25000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.04369 0.04369 0.04727 0.02184 0.00000 0.00000
+C 0.03954 0.03954 0.03553 0.01977 0.00000 0.00000
+O 0.05178 0.10357 0.09269 0.05178 -0.01888 -0.03776
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Markgraf S A'
+'Reeder R J'
+_journal_name_full "American Mineralogist"
+_journal_volume 70
+_journal_year 1985
+_journal_page_first 590
+_journal_page_last 600
+_publ_section_title
+;
+High-temperature structure refinements of calcite and magnesite
+Sample: T = 800 C
+Note: B33 of Ca has been altered from the reported value
+;
+_chemical_formula_sum 'Ca C O3'
+_cell_length_a 4.976
+_cell_length_b 4.976
+_cell_length_c 17.488
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 375.000
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ca   0.00000   0.00000   0.00000
+C   0.00000   0.00000   0.25000
+O   0.25300   0.00000   0.25000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.04817 0.04817 0.04633 0.02408 0.00000 0.00000
+C 0.03669 0.03669 0.04958 0.01835 0.00000 0.00000
+O 0.05927 0.12324 0.09451 0.06162 -0.02157 -0.04314
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Paquette J'
+'Reeder R J'
+_journal_name_full "American Mineralogist"
+_journal_volume 75
+_journal_year 1990
+_journal_page_first 1151
+_journal_page_last 1158
+_publ_section_title
+;
+Single-crystal X-ray structure refinements of two biogenic magnesian calcite
+crystals
+sample LS
+;
+_chemical_formula_sum '(Ca.936 Mg.064) C O3'
+_cell_length_a 4.9673
+_cell_length_b 4.9673
+_cell_length_c 16.9631
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 362.474
+_symmetry_space_group_name_H-M 'R -3 2/c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+Ca   0.00000   0.00000   0.00000   0.93600
+Mg   0.00000   0.00000   0.00000   0.06400
+C   0.00000   0.00000   0.25000   1.00000
+O   0.25750   0.00000   0.25000   1.00000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.01509 0.01509 0.01429 0.00755 0.00000 0.00000
+Mg 0.01509 0.01509 0.01429 0.00755 0.00000 0.00000
+C 0.01284 0.01284 0.01720 0.00642 0.00000 0.00000
+O 0.01697 0.03356 0.03061 0.01678 -0.00444 -0.00887
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Paquette J'
+'Reeder R J'
+_journal_name_full "American Mineralogist"
+_journal_volume 75
+_journal_year 1990
+_journal_page_first 1151
+_journal_page_last 1158
+_publ_section_title
+;
+Single-crystal X-ray structure refinements of two biogenic magnesian calcite
+crystals
+sample LB
+;
+_chemical_formula_sum '(Ca.871 Mg.129) C O3'
+_cell_length_a 4.9382
+_cell_length_b 4.9382
+_cell_length_c 16.832
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 355.471
+_symmetry_space_group_name_H-M 'R -3 2/c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+Ca   0.00000   0.00000   0.00000   0.87100
+Mg   0.00000   0.00000   0.00000   0.12900
+C   0.00000   0.00000   0.25000   1.00000
+O   0.25870   0.00000   0.25000   1.00000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.01760 0.01760 0.01880 0.00880 0.00000 0.00000
+Mg 0.01760 0.01760 0.01880 0.00880 0.00000 0.00000
+C 0.01584 0.01584 0.02110 0.00792 0.00000 0.00000
+O 0.02066 0.04077 0.03717 0.02038 -0.00328 -0.00656
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Prencipe M'
+'Pascale F'
+'Zicovich-Wilson C M'
+'Saunders V R'
+'Orlando R'
+'Dovesi R'
+_journal_name_full "Physics and Chemistry of Minerals"
+_journal_volume 31
+_journal_year 2004
+_journal_page_first 559
+_journal_page_last 564
+_publ_section_title
+;
+The vibrational spectrum of calcite (CaCO3): an ab initio
+quantum-mechanical calculation
+Note: Theoretically derived structure
+;
+_chemical_formula_sum 'Ca C O3'
+_cell_length_a 5.0492
+_cell_length_b 5.0492
+_cell_length_c 17.3430
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 382.913
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ca   0.00000   0.00000   0.00000
+C   0.00000   0.00000   0.25000
+O   0.25642   0.00000   0.25000
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Maslen E N'
+'Streltsov V A'
+'Streltsova N R'
+_journal_name_full "Acta Crystallographica, Section B"
+_journal_volume 49
+_journal_year 1993
+_journal_page_first 636
+_journal_page_last 641
+_publ_section_title
+;
+X-ray study of the electron density in calcite, CaCO3
+;
+_chemical_formula_sum 'Ca C O3'
+_cell_length_a 4.991
+_cell_length_b 4.991
+_cell_length_c 17.062
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 368.074
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ca   0.00000   0.00000   0.00000
+C   0.00000   0.00000   0.25000
+O   0.25730   0.00000   0.25000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.01024 0.01024 0.00980 0.00512 0.00000 0.00000
+C 0.00910 0.00910 0.01060 0.00455 0.00000 0.00000
+O 0.01150 0.02220 0.01950 0.01110 -0.00400 -0.00800
+
+data_global
+_chemical_name 'Calcite'
+loop_
+_publ_author_name
+'Maslen E N'
+'Streltsov V A'
+'Streltsova N R'
+'Ishizawa N'
+_journal_name_full "Acta Crystallographica, Section B"
+_journal_volume 51
+_journal_year 1995
+_journal_page_first 929
+_journal_page_last 939
+_publ_section_title
+;
+Electron density and optical anisotropy in rhombohedral carbonates.
+III. Synchrotron X-ray studies of CaCO3, MgCO3 and MnCO3
+;
+_chemical_formula_sum 'Ca C O3'
+_cell_length_a 4.988
+_cell_length_b 4.988
+_cell_length_c 17.068
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 367.761
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'2/3+x,1/3+y,1/3+z'
+'1/3+x,2/3+y,2/3+z'
+'x,x-y,1/2+z'
+'2/3+x,1/3+x-y,5/6+z'
+'1/3+x,2/3+x-y,1/6+z'
+'y,x,1/2-z'
+'2/3+y,1/3+x,5/6-z'
+'1/3+y,2/3+x,1/6-z'
+'-x+y,y,1/2+z'
+'2/3-x+y,1/3+y,5/6+z'
+'1/3-x+y,2/3+y,1/6+z'
+'-x,-x+y,1/2-z'
+'2/3-x,1/3-x+y,5/6-z'
+'1/3-x,2/3-x+y,1/6-z'
+'-y,-x,1/2+z'
+'2/3-y,1/3-x,5/6+z'
+'1/3-y,2/3-x,1/6+z'
+'x-y,-y,1/2-z'
+'2/3+x-y,1/3-y,5/6-z'
+'1/3+x-y,2/3-y,1/6-z'
+'y,-x+y,-z'
+'2/3+y,1/3-x+y,1/3-z'
+'1/3+y,2/3-x+y,2/3-z'
+'-x+y,-x,z'
+'2/3-x+y,1/3-x,1/3+z'
+'1/3-x+y,2/3-x,2/3+z'
+'-x,-y,-z'
+'2/3-x,1/3-y,1/3-z'
+'1/3-x,2/3-y,2/3-z'
+'-y,x-y,z'
+'2/3-y,1/3+x-y,1/3+z'
+'1/3-y,2/3+x-y,2/3+z'
+'x-y,x,-z'
+'2/3+x-y,1/3+x,1/3-z'
+'1/3+x-y,2/3+x,2/3-z'
+
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+Ca 2
+C  4
+O -2
+
+loop_
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ca   0.00000   0.00000   0.00000
+C   0.00000   0.00000   0.25000
+O   0.25670   0.00000   0.25000
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Ca 0.00988 0.00988 0.00932 0.00494 0.00000 0.00000
+C 0.00834 0.00834 0.01080 0.00417 0.00000 0.00000
+O 0.01129 0.02200 0.02020 0.01100 -0.00424 -0.00848
+Script completed
+Jmol script terminated

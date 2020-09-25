@@ -1,0 +1,37 @@
+load files "$tyrosine" "$lysergamide"
+select 2.1; translateSelected {10 0 0}
+frame *;zoomto 0 {*} 0
+select {2.1}
+wireframe only
+display  remove 1.1 and _H
+delay 1
+
+// use a SMARTS string to find the key atoms in both molecules
+sm = "c1ccccc1CCN"
+keyatoms = {*}.find(sm)
+select keyatoms
+selectionHalos on
+
+// optional way to get dihedral lists based on SMARTS
+//print {1.1}.find(sm, "BONDS")
+
+// get an array of numbers indicating the dihedrals, their current values, and their target values based on a SMARTS match.
+x = compare({1.1},{2.1},sm,"BONDS")
+
+// rotate using a new option to rotate a whole series of dihedrals concurrently
+rotate branch @x 1
+
+// overlay one model on another with a fit based on the same SMARTS match
+compare {1.1} {2.1} SMARTS @sm rotate translate
+
+// fly in to the model 
+zoomto 1 {*} 0  
+
+
+// new distance option -- minimum distances to another atom set
+{1.1}.property_d = {1.1}.distance.min({2.1})
+select {1.1}
+color balls property_d
+select {1.1 and keyatoms}
+set echo top
+echo tyrosine colored by distance |to lysergamide

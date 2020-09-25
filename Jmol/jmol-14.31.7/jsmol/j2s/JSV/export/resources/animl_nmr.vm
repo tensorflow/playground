@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnIML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xsi:noNamespaceSchemaLocation="http://animl.sourceforge.net/schema/animl-core.xsd" version="1.0">
+
+<!--from Velocity template file for construction of AnIML XML file from JCAMP-DX file -->
+<!--Based on JCAMP-DX, using IR protocol 4.24 but updated for 5.01 with LONGDATE  -->
+<!--AniML UV-Vis Technique Definition (http://animl.sf.net/schema/techniques/UV%20base%20instance%20document.atid) dated 2004/08/30 -->
+<!--AniML IR Technique Definition (http://animl.sf.net/schema/techniques/IR%20base%20instance%20document.atid) dated 2004/09/01 -->
+<!--AniML NMR Technique Definition (http://animl.sf.net/schema/techniques/NMR%20base%20instance%20document.atid) dated 2004/08/30 -->
+<!--AniML Sample Schema (http://animl.sf.net/schema/techniques/Sample%20Parameters%20base%20instance%20document.atid) dated 2004/09/01 -->
+<!--AniML Core Schema (http://animl.sourceforge.net/schema/animl-core.xsd) dated 2004/04/20 -->
+<!--JCAMP-DX v4.24 (http://www.jcamp-dx.org/protocols/dxir01.pdf) accessed 2nd March 2012 -->
+<!--JCAMP/AnIML crosswalk XL spreadsheet (http://animl.sourceforge.net/IUPAC/All%20JCAMP-DX%20and%20netCDF%20Labels%20version%2028%20August%202003.xls) 02/19/06 -->
+
+<!--Stuart J. Chalk February 19, 2006 -->
+<!--Robert J. Lancashire July 18, 2008 -->
+<!--Version 0.3 -->
+
+<!--Notes -->
+<!--Originally used as an include file in jcamp2animl.php -->
+<!--Originally written using a template AnIML file JCAMP_UV_Template.xml -->
+
+<!-- SampleSet is defined in animl-core.xsd -->
+    <SampleSet>
+        <Sample sampleID="sample" derived="false" parameterType="String">
+            <ParameterCategorySet>
+                <ParameterCategory name="Description">
+                    <ParameterSet>
+                        <Parameter name="Name" parameterType="String">   <!-- REQUIRED -->
+                            <String>$title</String>
+                        </Parameter>
+#if($molform !="")
+			<Parameter name="Molecular Formula" parameterType="String">
+			    <String>$molform</String>
+			</Parameter>
+#end
+#if($CASrn !="")
+                        <Parameter name="CAS Registry Number" parameterType="String">
+                            <String>$CASrn</String>
+                        </Parameter>
+#end
+#if($CASn !="")
+			<Parameter name="CAS Name" parameterType="String">
+			     <String>$CASn</String>
+			</Parameter>
+#end
+#if($state !="")
+<!-- can be: solid | amorphous solid | crystalline solid | liquid | liquid crystal | gas | supercritical fluid | colloid | plasma | crystal -->
+                        <Parameter name="State" parameterType="String">
+                            <String>$state</String>
+                        </Parameter>
+#end
+#if($samplingproc !="")
+                        <Parameter name="Preparation Procedure" parameterType="String">
+                            <String>$samplingproc</String>
+                        </Parameter>
+#end
+                        <Parameter name="Owner" parameterType="String">
+                            <String>$owner</String>
+                        </Parameter>
+#if($temp !="")
+                        <Parameter name="Temperature" parameterType="Float32">
+                            <Float32>$temp</Float32>
+                        </Parameter>
+#end
+#if($bp !="")
+                        <ParameterCategory name="BP">
+                            <Parameter name="Max" parameterType="Float32">
+                                <Float32>$bp</Float32>
+                            </Parameter>
+                            <Parameter name="Pressure" parameterType="Float32">
+                                <Float32>101325.01</Float32>
+                                <Unit label="Pa">
+                                    <SIUnit exponent="-1">m</SIUnit>
+                                    <SIUnit exponent="1">kg</SIUnit>
+                                    <SIUnit exponent="-2">s</SIUnit>
+                                </Unit>
+                            </Parameter>
+                        </ParameterCategory>
+#end
+#if($mp !="")
+                        <ParameterCategory name="MP">
+                            <Parameter name="Max" parameterType="Float32">
+                                <Float32>$mp</Float32>
+                            </Parameter>
+                            <Parameter name="Pressure" parameterType="Float32">
+                                <Float32>101325.01</Float32>
+                                <Unit label="Pa">
+                                    <SIUnit exponent="-1">m</SIUnit>
+                                    <SIUnit exponent="1">kg</SIUnit>
+                                    <SIUnit exponent="-2">s</SIUnit>
+                                </Unit>
+                            </Parameter>
+                        </ParameterCategory>
+#end
+                    </ParameterSet>
+                </ParameterCategory>
+            </ParameterCategorySet>
+        </Sample>
+    </SampleSet>
+    <Sample sampleID="solvent" derived="false">
+	<ParameterCategorySet>
+		<ParameterCategory name="SampleDescription">
+			<ParameterSet>
+				<Parameter name="Name">
+					<String>$SolvName</String>
+				</Parameter>
+			        <Parameter name="State">
+				         <String>Liquid?</String>
+			        </Parameter>
+		        </ParameterSet>
+	      </ParameterCategory>
+	</ParameterCategorySet>
+    </Sample>
+
+    <!-- ExperimentStepSet is defined in animl-core.xsd -->
+    <ExperimentStepSet>
+        <ExperimentStep name="$DataType">
+            <Author type="software">
+                <Name>$origin</Name>
+                <Location>$owner</Location>
+            </Author>
+	        <Timestamp>$timestamp</Timestamp>
+            <SamplesUsed>
+               <SampleRef sampleID="sample" role="SampleMeasurement" purpose="consumed"/>
+               <SampleRef sampleID="solvent" role="Solvent" purpose="consumed"/>
+            </SamplesUsed>
+            <Technique name="NMR" uri="http://animl.sf.net/schema/techniques/NMR%20base%20instance%20document.atid"/>
+            <ParameterCategorySet>
+                <ParameterCategory name="Instrument Description">
+                    <ParameterSet>
+                        <Parameter name="Manufacturer" parameterType="String">
+                            <String>$vendor</String>
+                        </Parameter>
+                        <Parameter name="Model Name" parameterType="String">
+                            <String>$model</String>
+                        </Parameter>
+			<Parameter name="Magnet" parameterType="String">
+			    <String>unknown</String>
+			</Parameter>
+                    </ParameterSet>
+                </ParameterCategory>
+            </ParameterCategorySet>
+            <PageSet>
+                <Page name="spectrum">
+                    <VectorSet length="$npoints">
+                        <Vector name="Intensity" dependency="dependent" vectorID="Itensity_ID" plotUse="attribute" type="$ydata_type">
+	                            <IndividualValueSet>
+#foreach ($coord in $xyCoords)
+<$ydata_type>$coord.getYString()</$ydata_type>
+#end
+	                            </IndividualValueSet>
+	                            <Unit label="$yUnits" />
+                        </Vector>
+			<Vector name="ChemicalShift" dependency="independent" vectorID="Shift1" plotUse="dimension" visible="true" scale="linear" type="$xdata_type">
+	                            <AutoIncrementedValueSet>
+	                                <StartValue>
+	                                    <$xdata_type>$firstX</$xdata_type>
+	                                </StartValue>
+	                                <Increment>
+	                                    <$xdata_type>$deltaX</$xdata_type>
+	                                </Increment>
+	                            </AutoIncrementedValueSet>
+	                            <Unit label="Hz" />
+                        </Vector>
+                    </VectorSet>
+                    <ParameterCategorySet>
+                        <ParameterCategory name="Measurement Description">
+                            <ParameterSet>
+                                <Parameter name="Identifier" parameterType="String">
+                                    <String>$title</String>
+                                </Parameter>
+				<Parameter name="Nucleus"  parameterType="String">
+					<String>$ObNucleus</String>
+				</Parameter>
+				<Parameter name="ObserveFrequency" parameterType="Float32">
+					<Float32>$ObFreq</Float32>
+						<Unit label="Hz">
+				 		      <SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+				</Parameter>
+				<Parameter name="SolventReference" parameterType="Float32">
+					<Float32>0</Float32>
+						<Unit label="ppm"/>
+				</Parameter>
+				<Parameter name="ReferencePoint" parameterType="Float32">
+					<Float32>0</Float32>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+				</Parameter>
+				<Parameter name="NPointsOrigin" parameterType="Int">
+					<Int>0</Int>
+				</Parameter>
+				<Parameter name="PointOffset" parameterType="Int">
+					<Int>0</Int>
+				</Parameter>
+                            </ParameterSet>
+                         </ParameterCategory>
+                    </ParameterCategorySet>
+                    <ParameterCategorySet>
+                         <ParameterCategory name="Instrument Properties">
+ 		            <ParameterSet>
+				<Parameter name="LB" parameterType="Float32">
+					<Float32>1</Float32>
+				</Parameter>
+				<Parameter name="PhaseCorr0" parameterType="String">
+					<String>unknown</String>
+				</Parameter>
+				<Parameter name="PhaseCorr1" parameterType="String">
+					<String>unknown</String>
+				</Parameter>
+			    </ParameterSet>
+			</ParameterCategory>
+                    </ParameterCategorySet>
+                </Page>
+            </PageSet>
+        </ExperimentStep>
+    </ExperimentStepSet>
+
+    <!-- AuditTrial is defined in animl-core.xsd -->
+    <AuditTrail>
+        <LogEntry>
+            <Timestamp>$timestamp</Timestamp>
+            <User type="software">
+                <Name>AnIML exporter 1.0 JSpecView http://jspecview.sf.net</Name>
+            </User>
+            <Action>created</Action>
+            <Reason>Conversion from JCAMP-DX file - $file</Reason>
+            <Reference>There may be additional header items in the JCAMP-DX file that have not been converted to XML</Reference>
+        </LogEntry>
+    </AuditTrail>
+
+    <!-- SignatureSet is defined in xmldsig-core-schema.xsd via animl-core.xsd -->
+    <SignatureSet>
+        <Signature>
+            <SignedInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <CanonicalizationMethod Algorithm=""/>
+                <SignatureMethod Algorithm=""/>
+                <Reference>
+                    <DigestMethod Algorithm=""/>
+                    <DigestValue/>
+                </Reference>
+            </SignedInfo>
+            <SignatureValue xmlns="http://www.w3.org/2000/09/xmldsig#"/>
+        </Signature>
+    </SignatureSet>
+</AnIML>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jmol CIP Demo</title>
+<meta charset="utf-8" />
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/JSmolJME.js"></script>
+<script type="text/javascript" language="javascript" src="jsme/jsme/jsme.nocache.js"></script>
+
+<script type="text/javascript">
+
+//Jmol._debugCode = true;//(s.indexOf("debugcode") >= 0);
+
+
+calcscript = ";select *;calculate chirality;set labelfor {*} \"%[chirality]\";"
+styleYellow = ";select *;font label 20;set labeloffset 10 10; background label yellow;color labels black;set labelfor {*} \"%[chirality]\";"
+style2 = ";select *;font label 20;set labelfront;set labeloffset 0 0;display remove _H;background labels none;set labelfor {chirality == ''} \"\";select {chirality == ''};spacefill off;set labelfor {*} \"%a %[chirality]\";"
+style3 = ";select *;font label 20;set labelfront;set labeloffset 0 0;display remove _H;background labels none;set labelfor {chirality == ''} \"\";select {chirality == ''};spacefill off;set labelfor {chirality != ''} \"%a %[chirality]\";"
+
+var jmol="jmol";
+var jme = "jme";
+
+var defaultScript = ""
+if (document.location.href.indexOf("model=") >= 0) { 
+ defaultScript = "set zoomlarge false; load \"$" + document.location.href.split("model=")[1].split("&")[0] + "\";"
+} else if (document.location.href.indexOf("load=") >= 0) {
+ defaultScript = "set zoomlarge false;load \"" + document.location.href.split("load=")[1].split("&")[0] + "\";"
+                + styleYellow
+}
+ 
+var JmolInfo = {
+	width: 1000,
+	height: 600,
+	debug: false,
+	color: "black",
+	use: "HTML5",
+  addSelectionOptions: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+  disableJ2SLoadMonitor: true,
+  disableInitialConsole: true,
+  jarPath: "java",
+	jarFile: "JmolAppletSigned.jar",
+  j2sPath: "j2s",
+	isSigned: true,
+  defaultModel: "",
+	script: defaultScript + ";calculate chirality;label %[chirality];background label yellow;color labels black;set antialiasdisplay"
+}
+
+var JMEInfo = {     
+	use: "HTML5"
+  ,visible: true
+  ,divId: "jmediv"
+  ,options : "autoez;nocanonize"
+	//,jarPath: "jme",
+	//,jarFile: "JME.jar"
+  //optional parameters
+  //,"jme" : startingStructure   
+}
+
+//Jmol.setGrabberOptions([[":", "PubChem"]])
+//Jmol.setGrabberOptions([["$", "NCI"]])
+        
+        
+function showSmiles(from3d) {
+  $("#jsmolsmiles").html(jmol._getSmiles("/opensmiles/"));
+  $("#jsmesmiles").html(jme._getSmiles());
+}
+
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10>
+<tr>
+<td>
+<H3>Cahn-Ingold-Prelog Stereochemistry Page</H3>
+Draw compounds in 2D and convert them to 3D or search for models in 3D, then show Jmol's
+calculation of the <a target=_blank href=https://en.wikipedia.org/wiki/Cahn%E2%80%93Ingold%E2%80%93Prelog_priority_rules>CIP descriptors</a> 
+for that compound. You can save your work as an <a target=_blank href=https://en.wikipedia.org/wiki/Chemical_table_file#SDF>SDF model file</a>
+ or as a <a target=_blank href=http://wiki.jmol.org/index.php/File_formats/Compressed#PNGJ>PNG+Jmol image/model</a> (droppable back into this page or into Jmol).
+<br><br>
+
+<br>
+<br>
+
+<div id="jmediv" style="position:relative;width:350px;height:300px;"></div></td>
+<td>
+<input type="button" onclick="Jmol.show2d(jmol, false);showSmiles(false)" value="&#8594" />
+<br>  
+<input type="button" onclick="Jmol.show2d(jmol, true);showSmiles(true)" value="&#8592" />
+</td>
+<td>
+
+<a href="javascript:Jmol.showInfo(jmol, true)">info</a>
+<a href="javascript:Jmol.clearConsole(jmol)">clear</a>
+<a href="javascript:Jmol.showInfo(jmol, false)">no info</a>
+<br>
+<script>
+jmol = Jmol.getApplet(jmol, JmolInfo)
+jme = Jmol.getJMEApplet(jme, JMEInfo, jmol);
+
+Jmol.jmolButton(jmol, "load $glucose;" + calcscript + styleYellow, "glucose");
+Jmol.jmolHtml("<center>")
+Jmol.jmolHtml("<br>")
+Jmol.jmolButton(jmol, calcscript + styleYellow,"show R/S")
+Jmol.jmolButton(jmol, calcscript + "set labelfor {chirality != ''} \"%[chirality](%[cipRule])\"","show CIP rule")
+Jmol.jmolButton(jmol, "if(picking != 'identify'){set picking identify" + calcscript + ";prompt 'picking set to IDENTIFY'}else{set picking invertstereo; prompt 'picking set to INVERTSTEREO - click on an atom to invert it'};set labelfor {!_H} \"%a\"","toggle select/invert center")
+Jmol.jmolHtml("<br>")
+Jmol.jmolButton(jmol, styleYellow,"display style 1")
+Jmol.jmolButton(jmol, style2,"display style 2")
+Jmol.jmolButton(jmol, style3,"display style 3")
+Jmol.jmolHtml("<br>")
+Jmol.jmolButton(jmol, "select *;invertselected plane xy;" + calcscript,"invert all chirality")
+Jmol.jmolButton(jmol, "set modelkitmode @{!modelkitmode}","toggle modelKitMode")
+Jmol.jmolHtml("<br>")
+Jmol.jmolButton(jmol, "select *; write coord test.sdf","save SDF")
+Jmol.jmolButton(jmol, "select *; write test.pngj","save PNG+Jmol")
+Jmol.jmolButton(jmol, "console","open console")
+Jmol.jmolHtml("</center>")
+</script>
+</tr>
+</table>
+<br>  
+JSME SMILES: <span id="jsmesmiles"></span>
+<br>
+JSmol OpenSMILES: <span id="jsmolsmiles"></span>
+</body>
+</html>

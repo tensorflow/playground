@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSmol-InChI test</title>
+<meta charset="utf-8">
+<script src="JSmol.min.js"></script>
+<script>
+
+InChI = {
+  memoryInitializerPrefixURL: 'inchi/',
+  onRuntimeInitialized: function () {
+
+    InChI.fromMolfile = InChI.cwrap('get_inchi', 'string', ['string']);
+
+ // JSmol initialization after InChI initialization so that InChI is ready for the first call
+     
+    $("#mydiv").html(Jmol.getAppletHtml("jmolApplet0",Info))
+
+  }
+};
+
+</script>
+<script async src="inchi/inchi.js"></script>
+<script> 
+
+Info = {
+	width: 500,
+	height: 500,
+	debug: false,
+	j2sPath: "j2s",
+	color: "0xC0C0C0",
+  disableJ2SLoadMonitor: true,
+  disableInitialConsole: true,
+	addSelectionOptions: true,
+  LoadStructCallback: "getInChI",
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	readyFunction: null,
+	script: "load $caffeine"
+}
+
+function getInChI(app,url) {
+  setTimeout(function() {dotest(app,url)})
+}
+
+function dotest(app,url) {
+  $("#inchi2div").html("working...")
+  $("#inchi1div").html("working...")
+  $("#log").html("working...")
+  if (!url)
+    return  
+  var nci = Jmol.evaluateVar(jmolApplet0,"show('chemical stdinchi')").trim()
+  $("#inchi2div").html(nci + "&nbsp;&nbsp;&nbsp;&nbsp;(from NCI/CADD)")
+  var  mol = Jmol.evaluateVar(jmolApplet0,"(_modelType=='mol' ? show('file'):write('MOL'))")
+  var calc = InChI.fromMolfile(mol).trim()
+  $("#inchi1div").html(calc + "&nbsp;&nbsp;&nbsp;&nbsp;(calculated in JavaScript)")
+  $("#log").html(nci==calc ? "no difference" : "check differences?")  
+  $("#mol").html(mol)  
+}
+
+
+$(document).ready(function() {
+  // must wait for Inchi initialization
+});
+
+
+
+</script>
+</head>
+<body>
+This test uses <a href=https://github.com/metamolecular/inchi-js/>inchi.js</a>, a JavaScript version of inchi.c.
+See the <a href=inchi>inchi</a> directory.
+<br>
+Enter a compound name in the box under the applet -- either real or imagined -- and press [Enter] or "Search"
+<br>
+<br>
+examples: <a href="javascript:Jmol.script(jmolApplet0,'load data/taxol.mol')">taxol</a>
+<a href="javascript:Jmol.script(jmolApplet0,'load $morphine')">morphine</a>
+<a href="javascript:Jmol.script(jmolApplet0,'load $cholesterol')">cholesterol</a>
+<br>
+<br>
+<span id=mydiv></span>
+<div id=inchi1div style='background-color:yellow'></div>
+<div id=inchi2div style='background-color:lightyellow'></div>
+<div id=log></div>
+<br>
+<pre>
+<div id=mol></div>
+</pre>
+</body>
+</html>

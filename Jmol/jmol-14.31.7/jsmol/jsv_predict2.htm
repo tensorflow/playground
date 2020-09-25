@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSpecView/JSME/nmrdb/NIH-Resolver demo</title>
+<meta charset="utf-8" />
+
+<script type="text/javascript" src="JSmol.min.js"></script>
+<!--
+<script type="text/javascript" src="jquery/jquery.js"></script>
+<script type="text/javascript" src="js/JSmoljQueryExt.js"></script>
+<script type="text/javascript" src="js/JSmolCore.js"></script>
+<script type="text/javascript" src="js/JSmolApplet.js"></script>
+<script type="text/javascript" src="js/JSmolApi.js"></script>
+<script type="text/javascript" src="js/JSmolControls.js"></script>
+<script type="text/javascript" src="js/j2sjmol.js"></script>
+<script type="text/javascript" src="js/JSmol.js"></script>
+<script type="text/javascript" src="js/JSmolConsole.js"></script>
+-->
+
+
+<script type="text/javascript" src="js/JSmolMenu.js"></script>
+<script type="text/javascript" src="js/JSmolJSV.js"></script>
+<script type="text/javascript" src="js/JSmolJME.js"></script>
+<script type="text/javascript" language="javascript" src="jsme/jsme/jsme.nocache.js"></script>
+
+<!-- Jmol_functions 
+//var x = load("https://cactus.nci.nih.gov/chemical/structure/tylenol/file?format=mrv")
+
+function getJMEHs() {
+select visible
+var x= show("chemical mrv")
+var x2 = x.split('x2="')[2].split('"')[1].split(" ")
+var y2 = x.split('y2="')[2].split('"')[1].split(" ")
+var s =  "" + {*}.size + " " + {*}.bonds.size
+for (var i = 1; i <= x2.length; i++) {
+ s += " " + {*}[i].element + " " + x2[i] + " " + y2[i]
+}
+var b = x.split("<bond ")
+for (var i = 2; i <= b.length; i++) {
+ var bi = b[i]
+ var at = bi.split("atomRefs2=\"")[2].split('"')[1].replace("a","").split(" ")
+ var n = (bi.find(">W<") ? -1 : bi.find(">H<") ? -2 : bi.split("order=\"")[2].split('"')[1])  
+ s += " " +  at[1] + " " + at[2] + " " + n
+}
+return s
+}
+
+--> 
+
+<script type="text/javascript">
+
+function predictSpectrum(isJmol) {
+  unhideJSV();
+  if (!isJmol) {
+    var data = Jmol.jmeGetFile(jme, false);
+    if (!data.length) {
+      alert("Please draw a structure or do a search first.");
+      return;
+    }
+  }
+  Jmol.updateView(isJmol ? jmol : jme);
+}
+
+js = Jmol._search;
+
+Jmol._search = function(applet, query) {
+ unhideJSV();
+ js(applet, query);
+}
+
+Jmol.User.viewUpdatedCallback = function(applet, note) {
+  $("#moldiv").html(note + "\n\n" + Jmol.View.dumpViews(applet._viewSet))
+}
+
+function unhideJSV() {
+ $("#infodiv").hide();
+ $("#jsvdiv").show(); 
+}
+
+
+// The special thing here is Info.viewSet, which defines the group of applets 
+// that are to be communicating with each other. Info.viewSet is an HTML5-only
+// option. You can have any combination of JSME, Jmol, and JSV applets in a group.
+
+var JMEInfo = {     
+  viewSet: 1,
+	use: "HTML5",
+  divId: "jmediv",
+  options : "autoez;nocanonize",
+  addSelectionOptions: true,
+  structureChangeCallback: null // Jmol will handle this
+}
+
+Jmol.setGrabberOptions([["$", "NCI"]]) // allows 2D reading
+
+var JmolInfo = {     
+  viewSet: 1,
+	use: "HTML5",
+  width: 300,
+  height:250,
+  addSelectionOptions: false,
+  disableJ2SLoadMonitor: false,
+  disableInitialConsole: false
+ // script: "x = load('" 
+ // + document.location.href + "').split('Jmol_functions')[2].split('--')[1];script inline @x"
+}
+
+
+JSVInfo = {
+  viewSet: 1,
+	use: "HTML5",
+	width: 800,
+	height: 600,
+	color: "0xC0C0C0",
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+  preloadScript: "close views;close simulations > 1; DEFAULTNMRNORMALIZATION 100;",
+  script: 'defaultLoadScript "OVERLAYSTACKED true; VIEW *;STACKOFFSETY 50;";',
+  disableJ2SLoadMonitor: false,
+  disableInitialConsole: false,
+  addSelectionOptions: true,
+}
+
+//Jmol.setAppletSync(["jsv", "jmol"], ["", ""], true);
+
+$(document).ready(function() {
+ $("#infodiv").show();
+ $("#jsvdiv").hide(); 
+ $("#jmol_query").val("ethanol");
+ $("#jme_query").val("ethanol");
+ $("#jsv_query").val("ethanol");
+ $(".btn").css({width:"30px"});
+ $("a").css({"text-decoration":"none"});
+ 
+});
+        
+</script>
+</head>
+<body>
+<table width=1000 cellpadding=10>
+<tr>
+<td valign="top">
+<table><tr><td>
+<div id="jmediv" style="position:relative;width:300px;height:300px;"></div>
+<script>
+Jmol.getJMEApplet("jme", JMEInfo);
+</script>
+<br>
+<br>
+<!--
+<textarea id=test cols=40 rows=3>
+insert mol file data here
+</textarea>
+<a href="javascript:jme._applet.readMolFile($('#test').val())">test</a>
+<a href="javascript:x = jmol._getMol();jme._applet.readMolFile(x);void($('#test').val(x));">test2</a>
+-->
+</td><td>
+<input class="btn" type="button" onclick="predictSpectrum(0)" value="&#8594" />
+</td>
+</tr>
+<tr><td>
+<script>
+Jmol.getApplet("jmol", JmolInfo)
+</script>
+</td><td>
+<input class="btn" type="button" onclick="predictSpectrum(1)" value="&#8594" />
+</td>
+</tr>
+</table>
+</td>
+<td valign="top">
+<div id="jsvdiv" style="position:relative">
+<script>
+Jmol.getJSVApplet("jsv", JSVInfo)
+</script>
+<br>
+<a href="javascript:unhideJSV();Jmol.showInfo(jsv, true);Jmol.showInfo(jmol, true)">info</a>
+<a href="javascript:Jmol.clearConsole(jsv);Jmol.clearConsole(jmol);">clear</a>
+<a href="javascript:Jmol.showInfo(jsv, false);Jmol.showInfo(jmol, false)">spectrum</a>
+ (note that OH and NH hydrogens will not be shown)
+<div style="position:absolute;left:745px;top:565px;z-index:9005"><input type="button" value="print" onclick="Jmol.script(jsv, 'write PDF')"/></div>
+</div>
+<div id="infodiv" style="text-align:center">
+This page illustrates how we can use JSME (the JavaScript Molecular Editor) 
+<br>along with JSpecView to quickly get a simulated spectrum for a compound of our choice.
+<br>Note that the three applets can be combined easily in any combination. 
+<br><br>JSmol on this page calls servers in Frederick, Maryland (NIH resolver, for name-to-structure)
+<br>and Lausanne, Switzerland (nmrdb, for structure-to-spectrum)
+<br><br><span style="color:blue">Draw a chemical structure 
+<br>or search for a chemical identifier such as <b>caffeine</b> or <i>CCOCC</i>, 
+<br>then press <input class="btn" type="button" onclick="predictSpectrum()" value="&#8594" />.</span>
+<br><br><span style="color:red">Note that these spectra are <i>just predictions.</i> 
+<br>They may differ significantly from actual NMR spectra.</span>
+
+</div>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<span style="white-space:pre">
+credits:
+
+<a href=http://jsmol.sourceforge.net/>JSmol and page development</a>: <a href=mailto:hansonr@stolaf.edu>Bob Hanson</a>
+<a href=http://peter-ertl.com/jsme/>JSME</a>: Peter Ertl, Bruno Bienfait
+<a href=http://jspecview.sourceforge.net>JSpecView</a>: Robert Lancashire, Bob Hanson
+<a href=http://www.nmrdb.org>nmrdb</a>: Luc Patiny
+<a href=http://cactus.nci.nih.gov>NIH Resolver</a>: Markus Sitzmann
+<a href=https://code.google.com/p/java2script>Java2Script</a>: Zhou Renjian
+</span>
+</td><td>
+<div id="moldiv" style="white-space:pre;font-family:monospace"></div>
+</td>
+</tr>
+
+</table>
+</body>
+</html>

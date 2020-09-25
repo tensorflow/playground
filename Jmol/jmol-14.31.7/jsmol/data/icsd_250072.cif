@@ -1,0 +1,154 @@
+###############################################################################
+# Lomnytska, Ya.F.; Orishchin, S.V.; Babizhetskii, V.S.; Kuz'ma, Yu.B. (2003)
+# Neorganicheskie Materialy 39, 664-670
+# Crystal structure of (Ti, Mo)12 P7 and refined phase equilibria in the \
+# Ti-Mo-P system
+# 
+# CIF by ICSD-for-WWW,  Copyright 2003 FIZ-Karlsruhe & A.W.Hewat (hewat@ill.fr)
+# NOT TO BE PUBLISHED IN ANY FORM. See http://icsd.ill.fr/icsd/conditions.html
+###############################################################################
+
+data_250072-ICSD
+_database_code_ICSD                250072
+_audit_creation_date               2004-04-01
+_chemical_name_systematic
+'Titanium molybdenum phosphide (3.8/8.2/7)'
+_chemical_formula_structural       
+'Ti3.8 Mo8.2 P7'
+_chemical_formula_sum              
+'Mo8.2 P7 Ti3.8'
+_publ_section_title                
+'Mo8.2 P7 Ti3.8'
+loop_
+_citation_id
+_citation_journal_abbrev
+_citation_year
+_citation_journal_volume
+_citation_page_first
+_citation_page_last
+_citation_journal_id_ASTM
+primary 'Neorganicheskie Materialy' 2003 39 664 670 NMATEI
+loop_
+_publ_author_name
+Lomnytska, Ya.F.; Orishchin, S.V.; Babizhetskii, V.S.; Kuz'ma, Yu.B.
+_cell_length_a                     16.7821(6)
+_cell_length_b                     16.7821(6)
+_cell_length_c                     3.3196(2)
+_cell_angle_alpha                  90
+_cell_angle_beta                   90
+_cell_angle_gamma                  120
+_cell_volume                       809.671
+_cell_formula_units_Z              3
+_symmetry_space_group_name_H-M     'P -6'
+_symmetry_Int_Tables_number        174
+_refine_ls_R_factor_all            0.074
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+   1   '-x+y, -x, -z'
+   2   '-y, x-y, -z'
+   3   'x, y, -z'
+   4   '-x+y, -x, z'
+   5   '-y, x-y, z'
+   6   'x, y, z'
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+Mo1+5     1.75
+Ti1+5     1.75
+Mo1+5     1.75
+Ti1+5     1.75
+Mo1+5     1.75
+Ti1+5     1.75
+Mo1+5     1.75
+Ti1+5     1.75
+Mo1+5     1.75
+Ti1+5     1.75
+Mo1+5     1.75
+Ti1+5     1.75
+Mo1+5     1.75
+Ti1+5     1.75
+Mo1+5     1.75
+Ti1+5     1.75
+P3-     -3.
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_B_iso_or_equiv
+_atom_site_occupancy
+Mo1 Mo1+5 3 k 0.3761(2) 0.2555(2) 0.5 0.75(9) 1.
+Mo2 Mo1+5 3 k 0.4173(2) 0.4562(2) 0.5 0.51(8) 1.
+Mo3 Mo1+5 3 k 0.2187(2) 0.2965(2) 0.5 0.70(9) 1.
+Mo4 Mo1+5 3 j 0.4459(3) 0.0387(3) 0.0 0.64(10) 0.79(3)
+Ti1 Ti1+5 3 j 0.4459(3) 0.0387(3) 0.0 0.64(10) 0.21(3)
+Mo5 Mo1+5 3 j 0.1164(3) 0.3680(3) 0.0 0.71(10) 0.83(3)
+Ti2 Ti1+5 3 j 0.1164(3) 0.3680(3) 0.0 0.71(10) 0.17(3)
+Mo6 Mo1+5 3 k 0.5871(3) 0.1612(3) 0.5 0.69(9) 0.84(3)
+Ti3 Ti1+5 3 k 0.5871(3) 0.1612(3) 0.5 0.69(9) 0.16(3)
+Mo7 Mo1+5 3 j 0.2917(3) 0.0808(3) 0.0 0.67(10) 0.81(3)
+Ti4 Ti1+5 3 j 0.2917(3) 0.0808(3) 0.0 0.67(10) 0.19(3)
+Mo8 Mo1+5 3 k 0.2569(3) 0.4949(3) 0.5 0.74(10) 0.76(3)
+Ti5 Ti1+5 3 k 0.2569(3) 0.4949(3) 0.5 0.74(10) 0.24(3)
+Mo9 Mo1+5 3 j 0.5322(4) 0.2598(4) 0.0 0.79(14) 0.35(3)
+Ti6 Ti1+5 3 j 0.5322(4) 0.2598(4) 0.0 0.79(14) 0.65(3)
+Mo10 Mo1+5 3 j 0.0767(3) 0.1685(3) 0.0 0.64(11) 0.51(3)
+Ti7 Ti1+5 3 j 0.0767(3) 0.1685(3) 0.0 0.64(11) 0.49(3)
+Mo11 Mo1+5 3 j 0.1971(5) 0.5901(4) 0.0 1.1(2) 0.35(3)
+Ti8 Ti1+5 3 j 0.1971(5) 0.5901(4) 0.0 1.1(2) 0.65(3)
+Ti9 Ti1+5 3 k 0.1593(7) 0.0871(6) 0.5 1.4(3) 1.
+P1 P3- 1 a 0.0 0.0 0.0 0.9(3) 0.50(6)
+P2 P3- 1 b 0.0 0.0 0.5 0.7(5) 0.52(6)
+P3 P3- 1 f 0.66667 0.33333 0.5 0.9(3) 1.
+P4 P3- 1 d 0.33333 0.66667 0.5 0.8(3) 1.
+P5 P3- 3 j 0.6242(7) 0.0836(7) 0.0 0.5(3) 1.
+P6 P3- 3 j 0.2478(7) 0.2047(8) 0.0 0.8(3) 1.
+P7 P3- 3 k 0.0385(8) 0.2442(9) 0.5 1.1(3) 1.
+P8 P3- 3 j 0.2959(7) 0.4193(8) 0.0 0.5(3) 1.
+P9 P3- 3 k 0.4205(7) 0.1330(7) 0.5 0.5(3) 1.
+P10 P3- 3 k 0.5361(8) 0.6276(8) 0.5 0.7(3) 1.
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_type_symbol
+_atom_site_aniso_B_11
+_atom_site_aniso_B_22
+_atom_site_aniso_B_33
+_atom_site_aniso_B_12
+_atom_site_aniso_B_13
+_atom_site_aniso_B_23
+Mo1 Mo1+5 0.72(11) 1.02(12) 0.45(13) 0.39(9) 0 0
+Mo2 Mo1+5 0.47(10) 0.67(10) 0.46(12) 0.35(8) 0 0
+Mo3 Mo1+5 1.03(11) 0.77(11) 0.55(12) 0.63(9) 0 0
+Mo4 Mo1+5 0.30(11) 0.82(12) 0.81(14) 0.28(10) 0 0
+Ti1 Ti1+5 0.30(11) 0.82(12) 0.81(14) 0.28(10) 0 0
+Mo5 Mo1+5 0.99(13) 0.87(12) 0.40(14) 0.56(10) 0 0
+Ti2 Ti1+5 0.99(13) 0.87(12) 0.40(14) 0.56(10) 0 0
+Mo6 Mo1+5 0.69(11) 0.72(11) 0.96(13) 0.58(10) 0 0
+Ti3 Ti1+5 0.69(11) 0.72(11) 0.96(13) 0.58(10) 0 0
+Mo7 Mo1+5 0.61(12) 0.65(12) 0.58(14) 0.19(10) 0 0
+Ti4 Ti1+5 0.61(12) 0.65(12) 0.58(14) 0.19(10) 0 0
+Mo8 Mo1+5 0.62(12) 1.06(13) 0.76(14) 0.59(13) 0 0
+Ti5 Ti1+5 0.62(12) 1.06(13) 0.76(14) 0.59(13) 0 0
+Mo9 Mo1+5 1.1(2) 0.7(2) 0.6(2) 0.46(12) 0 0
+Ti6 Ti1+5 1.1(2) 0.7(2) 0.6(2) 0.46(12) 0 0
+Mo10 Mo1+5 0.42(14) 1.20(14) 0.30(14) 0.39(12) 0 0
+Ti7 Ti1+5 0.42(14) 1.20(14) 0.30(14) 0.39(12) 0 0
+Mo11 Mo1+5 0.42(14) 1.20(14) 0.30(14) 0.39(12) 0 0
+Ti8 Ti1+5 0.42(14) 1.20(14) 0.30(14) 0.39(12) 0 0
+Ti9 Ti1+5 3.8(4) 1.3(3) 0.1(3) 1.9(3) 0 0
+P1 P3- 0.9(3) 0.9(3) 0.9(3) 0 0 0
+P2 P3- 0.7(5) 0.7(5) 0.7(5) 0 0 0
+P3 P3- 1.0(4) 1.0(4) 0.8(7) 0.5(4) 0 0
+P4 P3- 1.0(4) 1.0(4) 0.4(6) 0.5(4) 0 0
+P5 P3- 0.9(3) 0.4(3) 0.2(3) 0.2(3) 0 0
+P6 P3- 0.3(3) 1.0(4) 1.0(4) 0.4(3) 0 0
+P7 P3- 1.2(4) 0.5(3) 0.9(5) -0.1(3) 0 0
+P8 P3- 0.0(3) 0.8(3) 0.6(4) 0.1(3) 0 0
+P9 P3- 0.7(3) 0.5(3) 0.4(3) 0.4(3) 0 0
+P10 P3- 1.2(4) 1.2(4) 0.1(3) 0.8(3) 0 0
+#End of data_250072-ICSD
+

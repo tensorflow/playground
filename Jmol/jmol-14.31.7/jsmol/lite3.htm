@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<title>Super-Lightweight Jmol Testing</title>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="jquery/jquery.min.js"></script>
+<script type="text/javascript" src="JSmol.lite.nojq.js"></script>
+
+<!-- 
+
+see lite.htm for other options
+
+--> 
+
+
+<!-- MOL DATA
+681
+  -OEChem-03251317163D
+
+ 22 22  0     0  0  0  0  0  0999 V2000
+   -2.2392    1.9626    0.0548 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.3557   -0.5612    0.3868 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.4081    0.2624    0.3445 N   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1628   -0.0212   -0.6613 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7040   -0.1603   -0.3850 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.9862    0.1008    0.6289 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0999    0.9759   -0.2919 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.1434   -1.4267   -0.2187 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4642    0.8456   -0.0326 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.2209   -1.5570    0.0407 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.0247   -0.4208    0.1336 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5111   -0.8817   -1.2481 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3332    0.8564   -1.2993 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8490   -0.7888    1.2541 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.6457    0.9593    1.2192 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3315    1.9659   -0.4187 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7594   -2.3195   -0.2869 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.6445   -2.5496    0.1686 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5468    1.0868   -0.2388 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.7362   -0.5285   -0.2089 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.1541    1.6866    0.2377 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.5639   -1.5074    0.4721 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  9  1  0  0  0  0
+  1 21  1  0  0  0  0
+  2 11  1  0  0  0  0
+  2 22  1  0  0  0  0
+  3  6  1  0  0  0  0
+  3 19  1  0  0  0  0
+  3 20  1  0  0  0  0
+  4  5  1  0  0  0  0
+  4  6  1  0  0  0  0
+  4 12  1  0  0  0  0
+  4 13  1  0  0  0  0
+  5  7  2  0  0  0  0
+  5  8  1  0  0  0  0
+  6 14  1  0  0  0  0
+  6 15  1  0  0  0  0
+  7  9  1  0  0  0  0
+  7 16  1  0  0  0  0
+  8 10  2  0  0  0  0
+  8 17  1  0  0  0  0
+  9 11  2  0  0  0  0
+ 10 11  1  0  0  0  0
+ 10 18  1  0  0  0  0
+M  END
+> <PUBCHEM_COMPOUND_CID>
+681
+
+> <PUBCHEM_CONFORMER_RMSD>
+0.4
+
+> <PUBCHEM_CONFORMER_DIVERSEORDER>
+1
+10
+11
+6
+2
+9
+4
+8
+12
+7
+5
+3
+
+> <PUBCHEM_MMFF94_PARTIAL_CHARGES>
+18
+1 -0.53
+10 -0.15
+11 0.08
+16 0.15
+17 0.15
+18 0.15
+19 0.36
+2 -0.53
+20 0.36
+21 0.45
+22 0.45
+3 -0.99
+4 0.14
+5 -0.14
+6 0.27
+7 -0.15
+8 -0.15
+9 0.08
+
+> <PUBCHEM_EFFECTIVE_ROTOR_COUNT>
+2
+
+> <PUBCHEM_PHARMACOPHORE_FEATURES>
+5
+1 1 donor
+1 2 donor
+1 3 cation
+1 3 donor
+6 5 7 8 9 10 11 rings
+
+> <PUBCHEM_HEAVY_ATOM_COUNT>
+11
+
+> <PUBCHEM_ATOM_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ATOM_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ISOTOPIC_ATOM_COUNT>
+0
+
+> <PUBCHEM_COMPONENT_COUNT>
+1
+
+> <PUBCHEM_CACTVS_TAUTO_COUNT>
+18
+
+> <PUBCHEM_CONFORMER_ID>
+000002A900000001
+
+> <PUBCHEM_MMFF94_ENERGY>
+18.63
+
+> <PUBCHEM_FEATURE_SELFOVERLAP>
+25.376
+
+> <PUBCHEM_SHAPE_FINGERPRINT>
+10857977 72 18411698815616744384
+12251169 10 18336262431474704496
+12932764 1 17632570557228583102
+13024252 1 13406787813918322623
+14325111 11 18411418367538085596
+15219456 202 18059298656393979366
+15310529 11 14620526583701806095
+16945 1 18337965561795389591
+17846911 113 18342737420610839217
+20510252 161 18343586217817938648
+20645464 45 18060422412943193102
+20871998 184 18200316644330923263
+21040471 1 18265343815144450351
+22445834 79 17895183390516357346
+23402539 116 18341321275794639815
+23402655 69 18267570318598203973
+2748010 2 18193570960474824879
+369184 2 18201997733353704774
+53812653 166 18271524200074478465
+6333449 129 18341609295963879597
+75552 356 18408602586868045176
+
+> <PUBCHEM_SHAPE_MULTIPOLES>
+209.66
+5.32
+1.51
+0.72
+4.61
+0.13
+-0.02
+0.59
+1.19
+-1.1
+-0.03
+0.22
+-0.01
+0.11
+
+> <PUBCHEM_SHAPE_SELFOVERLAP>
+430.729
+
+> <PUBCHEM_SHAPE_VOLUME>
+121.4
+
+> <PUBCHEM_COORDINATE_TYPE>
+2
+5
+10
+
+$$$$
+-->
+
+
+<script type="text/javascript"> 
+
+var Info;
+
+;(function() {
+
+
+Info = {
+	width: 500,
+	height: 500,
+	debug: false,
+	color: "0xC0C0C0",
+	addSelectionOptions: false,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	readyFunction: null,
+	defaultModel: "",
+    bondWidth: 4,
+    zoomScaling: 1.5,
+    pinchScaling: 2.0,
+    mouseDragFactor: 0.5,
+    touchDragFactor: 0.15,
+    multipleBondSpacing: 4,
+    spinRateX: 0.2,
+    spinRateY: 0.5,
+    spinFPS: 20,
+    spin:true,
+    debug: false
+}
+
+})();
+
+$(window).ready(function() {
+  Jmol._document = null;
+  Jmol.getTMApplet("jmol", Info);
+  $("#apphere").html(jmol._code);
+  var mol = $('html').html().split("MOL DATA\n")[1].split("-->")[0];
+  jmol.__loadModel(mol);
+  
+  $("#spinstuff").html('<a href="javascript:jmol.spin(true)">spin ON</a> <a href="javascript:jmol.spin(false)">spin OFF</a>');  
+});
+
+</script>
+</head>
+<body>
+<div id="spinstuff"></div>
+<br>
+<div id="apphere"></div>
+
+</body>
+</html>

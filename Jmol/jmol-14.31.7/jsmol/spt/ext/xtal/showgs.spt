@@ -1,0 +1,17 @@
+function showGP(fname) {
+	if (fname) {
+		load @fname packed
+	}
+	spacefill 0.3
+	wireframe off
+	color property z
+}
+
+//showGP("t50_GF.bcs")
+
+load data "sg"155
+4 4 4 45 45 45
+1
+Ba 1 8m 0.08 0.13 0.23
+end "sg" packed
+showGP()

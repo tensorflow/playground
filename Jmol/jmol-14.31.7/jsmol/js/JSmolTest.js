@@ -1,0 +1,1 @@
+LoadClazz();LoadClazz = function(){};

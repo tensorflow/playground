@@ -1,0 +1,52 @@
+
+data_global
+_chemical_name Quartz
+loop_
+_publ_author_name
+'Levien L'
+'Prewitt C T'
+'Weidner D J'
+_journal_name_full "American Mineralogist"
+_journal_volume 65 
+_journal_year 1980
+_journal_page_first 920
+_journal_page_last 930
+_publ_section_title
+;
+ Structure and elastic properties of quartz at pressure
+ P = 1 atm
+;
+_chemical_formula_sum 'Si O2'
+_cell_length_a 4.916
+_cell_length_b 4.916
+_cell_length_c 5.4054
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 113.131
+_symmetry_space_group_name_H-M 'P 32 2 1'
+loop_
+_symmetry_equiv_pos_as_xyz
+  'x,y,z'
+  'y,x,2/3-z'
+  '-y,x-y,2/3+z'
+  '-x,-x+y,1/3-z'
+  '-x+y,-x,1/3+z'
+  'x-y,-y,-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Si   0.46970   0.00000   0.00000
+O   0.41350   0.26690   0.11910
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Si 0.00854 0.00716 0.00725 0.00358 -0.00001 -0.00002
+O 0.01745 0.01322 0.01229 0.00973 -0.00291 -0.00408

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+
+jmol-flot.htm
+Bob Hanson hansonr@stolaf.edu
+5:52 AM 5/12/2009
+
+BH  1/20/2014 1:22:24 PM modified for JSmol/HTML5
+
+This demonstration illustrates how Jquery Flot can be use with Jmol.
+
+-->
+
+<style>
+@media print {
+	.noprint {display:none}
+	.printonly {display:block}
+}
+@media screen {
+	.noprint {display:block}
+	.printonly {display:none}
+}
+</style>
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/Jmol2.js"></script>
+<script type="text/javascript" src="flot/jquery.flot2.js"></script>
+<script type="text/javascript">
+
+var appletPrintable = (navigator.appName != "Netscape") // Sorry, I don't know how to check for this
+
+
+
+/*
+$(function () {
+	// document ready function
+	if (!appletPrintable)$("#appletdiv").addClass("noprint") 
+})
+*/
+
+function getStructureSelect() {
+	var s = "<select id=selstruc>";
+	var proteins = "examples 1crn 1d66 1a6g 1ag6 "
+	+"high_straightness(Table_1a) 1JEK 3CAY 2Q5U 1YOD 2EFR 1PFI "
+	+"low_straightness(Table_1b) 2B5P 1QS3 1DG0 1GNB 1UYB 1RSX"
+	var S = proteins.split(" ")
+	for (var i = 0; i < S.length; i++)
+		s += "<option value='" + (S[i].length==4 ? S[i] : "") + "'>" + S[i] + "</option>"
+	document.write(s + "</select><a href=javascript:selectStructure()>load</a>")
+}
+
+function selectStructure() {
+	var d = document.getElementById("selstruc")
+	var name = d[d.selectedIndex].value
+	if (name) jmolScript("zap;set echo top left;echo loading " + name + "...;refresh;load =" + name)
+}
+
+function jmolGetData(selection,format, def, raw) {
+	// a simple method to get Jmol atom data into Flot-ready format
+	var script = '"[" + {' + selection + '}.label("[' + format + ']").join(",") + "]"'
+
+	var s = jmolEvaluate(script)
+	if (s.indexOf("%") >= 0) {
+		var s = s.split("%")
+		for (var i = 1; i < s.length; i+= 2) s[i] = (def || 0) + s[i].substring(1)
+		s = s.join("")
+	}
+	s = s.replace(/\,\]/g,",null]")
+	if (raw)return s
+	return eval(s)
+}
+
+function concat(A,B) {
+	for (var i = 0; i < B.length; i++)A.push(B[i])
+}
+
+function sort0(a,b) {
+	return (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0)
+}
+
+var theplot  // global, mostly for testing.
+
+function doDSSP(isChecked) {
+	var script = (isChecked? 
+		  "if (!isDssp) { save structure s1; isDssp = true; calculate structure DSSP;cartoons only;color structure }"
+		: "if (isDssp) { restore structure s1; isDssp = false; cartoons only;color structure }")
+	jmolScriptWait(script)
+	doPlot()
+}
+
+function doPlot() {
+	var data = []
+	var nplots = 0
+	var radios = document.getElementsByTagName("input")
+	var title = ""
+	for (var i = 0; i < radios.length; i++) {
+		var r = radios.item(i)
+		if (!r.checked 
+			|| r.name.indexOf("chkplot") != 0 
+			|| r.id.indexOf("none") == 0
+			|| r.value == title
+		)continue
+		nplots++
+		title = (title ? "<font color=brown>" + title + "</font>, <font color=blue>" + r.value + "</font>": r.value)
+		var x = r.id.charAt(0)
+		var A = []
+		if (x == "p" || x == "c") {
+			jmolScriptWait('set quaternionFrame "' + x + '";calculate straightness')
+			x = "T"
+		} else if (x == "r") {
+			// straightness from Ramachandran angles
+			var S = jmolEvaluate('write("ramachandran","r").split("\n").find("ATOM")').split('\n')
+			var B = {}
+			for (var j = 0; j < S.length; j++) {
+				var tokens = S[j].replace(/\s+/g," ").split(" ")
+				var group = tokens[3]
+				var chain = tokens[4]
+				var resno = tokens[5]
+				var phi = parseFloat(tokens[6])
+				var psi = parseFloat(tokens[7])
+				var theta = parseFloat(tokens[8])
+				var rc = resno + ":" + chain
+				var straightness = 1 - 2 * Math.acos(Math.abs(Math.cos(theta/2/180 * Math.PI)))/Math.PI 
+				B[rc] = [0000,straightness,rc,group + " " + rc + " (VALUE)"]
+			}
+			x = ""
+			A = jmolGetData('*.ca/1.1','%G+1,\'%R:%c\'')
+			for (var j = 0; j < A.length; j++) {
+				var rc = A[j][1]
+				if (B[rc]) {
+					B[rc][0] = A[j][0]
+					A[j] = B[rc]
+				} else {
+					A[j][1] = null
+				} 
+			}
+		}
+		if (x == "_") {
+			// structure
+			A = jmolGetData('*.ca/1.1 and helix','%G+1,1.3,\'%R:%c\',\'%n %R:%c %[structure]\'')
+			concat(A,jmolGetData('*.ca/1.1 and sheet','%G+1,1.2,\'%R:%c\',\'%n %R:%c %[structure]\''))
+			concat(A,jmolGetData('*.ca/1.1 and turn','%G+1,1,\'%R:%c\',\'%n %R:%c %[structure]\''))
+			concat(A,jmolGetData('*.ca/1.1 and not helix and not sheet and not turn','%G+1,null'))
+			A = A.sort(sort0)
+		} else if (x) {
+			A = jmolGetData('*.ca/1.1','%G+1,%' + x +',\'%R:%c\',\'%n %R:%c (VALUE) %[structure]\'')
+		}
+		data.push(A)
+	}
+	var options
+	if (div("chkxy").checked && data.length == 2) {
+		var D1 = data[0]
+		var D2 = data[1]
+		var A = []
+		for (var i = 0; i < D1.length; i++)
+			A[D1[i][0]] = D1[i]
+		for (var i = 0; i < D2.length; i++) {
+			var x = D2[i][0]
+			if (A[x]) {
+				var a2 = A[x]
+				var a1 = D2[i]
+				A[x] = [a1[1],a2[1],a1[2],x + ": " + a2[3] + " / (VALUE)"]
+			}
+		}
+		setLinRegEqn(A)
+		var D = []
+		for (var i = 0; i < A.length; i++)
+			if (A[i])
+				D.push(A[i])
+		data = [D]
+		options = {
+			points: { show: true, fill: true },
+			selection: { mode: "xy", hoverMode: "xy" },
+			grid: { hoverable: true, clickable: true, hoverDelay: 1000 }
+			// no comma here, or IE will fail!
+        	}
+	} else {
+	  setLinRegEqn("")
+	  eqn = ""
+		options = {
+			lines: { show: true },
+			points: { show: true, fill: true },
+			selection: { mode: (nplots == 1 ? "x" : "xy"), hoverMode: (nplots == 1 ? "x" : "xy") },
+			grid: { hoverable: true, clickable: true, hoverDelay: 1000 },
+			yaxis: { min: 0 }
+        	}
+	}
+	options.points.colors = jmolGetColors()
+	theplot = $.plot($("#plotarea"), data, options)
+
+
+	/* jQuery Flot methods added by BH:
+
+		thePlot.setData()
+		thePlot.getOptions()
+		thePlot.getTarget()
+		thePlot.setOptions()
+		thePlot.setAxes()
+		thePlot.setTarget()
+		theplot = $.replot(theplot)
+
+	*/
+
+	previousPoint = null
+	$("#plotarea").unbind("plothover plotclick", null)
+	$("#plotarea").bind("plothover", plotHoverCallback)
+	$("#plotarea").bind("plotclick", plotClickCallback)
+	div("plottitle").innerHTML = title
+}
+
+function setLinRegEqn(A) {
+  var sout = A
+  if (A) {
+    var sx = 0
+    var sy = 0
+    var sxy = 0
+    var sxx = 0
+    var syy = 0
+    var n = A.length
+    var count = 0
+    for (var i = 0; i < n; i++) {
+      if (!A[i]) continue
+      count++
+      var x = A[i][0]
+      var y = A[i][1]
+      sx += x
+      sy += y
+      sxy += x * y
+      sxx += x * x
+      syy += y * y
+    }
+    var s1 = count * sxx - sx*sx
+    var s2 = count * sxy - sx*sy
+    var s3 = count * syy - sy*sy
+    
+    var m = s2 / s1
+    var b = (sy - m * sx ) / count
+    var r = s2 / Math.sqrt(s1 * s3)
+    sout = "y = " + m + " x + " + b + " &nbsp;&nbsp;&nbsp;r = " + r
+  }  
+  document.getElementById("linRegEqn").innerHTML = sout
+}
+
+var previousPoint = null
+
+function plotHoverCallback(event, pos, item) {
+	var script
+	if (item) {
+		if (previousPoint != item.datapoint) {
+			$("#tooltip").remove()
+			previousPoint = item.datapoint	
+			var x = item.datapoint[0]
+			var y = item.datapoint[1].toFixed(2)
+			script = "selectionHalos on;select *.CA and " + item.datapoint[2]
+			var label = "&nbsp;&nbsp;" + item.datapoint[3].replace(/VALUE/,y)
+			if (label.indexOf("VALUE") >= 0)label = label.replace(/VALUE/,item.datapoint[0].toFixed(2))
+			showTooltip(item.pageX, item.pageY, label)
+			setTimeout("plotHoverCallback()",5000)
+		}
+	} else {
+		$("#tooltip").remove()
+		previousPoint = null
+		script = "selectionHalos off;select *"
+	}
+	jmolScriptWait(script)
+}
+
+function plotClickCallback(event, pos, item) {
+	var residue = (item ? item.datapoint[2] : -1)
+	var script = 'if (false && {tempa}.radius != 0 && {!tempa}.radius == 0);select tempa;wireframe off;spacefill off;endif;'
+		+'selectionHalos off;select '+residue+';spacefill 20%;wireframe 0.15;@tempa selected;select *'
+	jmolScriptWait(script)
+}
+
+var ramData = []
+
+function doPlotRamachandran() {
+	var data = []
+	var title = "Ramachandran Plot"
+	var options = {
+		lines: { show: false },
+		points: { show: true, fill: true },
+		selection: { mode: "xy" },
+		grid: { 
+			hoverable: true, 
+			clickable: true
+		},
+		xaxis: { 
+			min: -180, 
+			max: 180, 
+			ticks:[-180,-150,-120,-90,-60,-30,[0,"<b>phi</b>"],30,60,90,120,150,180],
+			majorTicks:[0]
+			},
+		yaxis: {
+			min: -180,
+			max: 180, 
+			ticks:[-180,-150,-120,-90,-60,-30,[0,"<b>psi</b>"],30,60,90,120,150,180],
+			majorTicks:[0]
+		}
+        }
+	options.points.colors = jmolGetColors()
+	A = jmolGetData('*.ca/1.1','%f,%p,\'%R:%c\',\'%n %R:%c\'',-1000)
+	data.push(A)
+	theplot = $.plot($("#plotarea"), data, options)
+	previousPoint = null
+	$("#plotarea").unbind("plothover plotclick", null)
+	$("#plotarea").bind("plotclick", plotClickCallback)
+	$("#plotarea").bind("plothover", plotRamHoverCallback)
+	div("plottitle").innerHTML = title
+}
+
+function jmolGetColors() {
+	var A = jmolGetData('*.ca/1.1','%[color]', '', "raw")
+	return eval(A.replace(/\.00/g,",").replace(/\,\]/g, "]"))
+}
+function plotRamHoverCallback(event, pos, item) {
+	if (item) {
+		if (previousPoint != item.datapoint) {
+			$("#tooltip").remove()
+			previousPoint = item.datapoint	
+			var x = item.datapoint[0].toFixed(0)
+			var y = item.datapoint[1].toFixed(0)
+			var selection = '*.CA && ' + item.datapoint[2]
+			jmolScript("selectionHalos on;select " + selection)
+			label = "&nbsp;&nbsp;" + item.datapoint[3] + " ("+x + "," + y +")"
+			showTooltip(item.pageX, item.pageY, label)
+		}
+	} else {
+		$("#tooltip").remove()
+		previousPoint = null
+		jmolScript("selectionHalos off;select *")
+	}
+}
+
+function showTooltip(x, y, contents) {
+	$('<div id="tooltip">' + contents + '</div>').css( {
+		position: 'absolute',
+		display: 'none',
+		top: y + 5,
+		left: x + 5,
+		border: '1px solid #fdd',
+		padding: '2px',
+		'background-color': '#fee',
+		opacity: 0.80
+		}).appendTo("body").fadeIn(200);
+}
+
+function jmolLoadStructCallback() {
+	document.getElementById("chkDSSP").checked = false	
+	setTimeout('doPlot()')
+}
+
+// code that fakes an applet print by creating an image in its place! :)
+
+function setImage() {
+	if (appletPrintable)return
+	var image = jmolGetPropertyAsString("image")
+	var html = '<img src="data:image/jpeg;base64,'+image+'" />'
+	div("imagediv").innerHTML = html
+}
+
+function div(id) {
+	return document.getElementById(id)
+}
+
+function doPrintAll() {
+	setImage()
+	window.print()
+}
+
+
+</script>
+</head>
+<body>
+
+<center>
+
+
+<table><tr><td align=center>
+<div id="imagediv" class="printonly"></div>
+<div id="appletdiv" style="width:450;height:450">
+<script type="text/javascript">
+
+Jmol.Info.j2sPath = "j2s";
+
+jmolInitialize("java","JmolAppletSigned0.jar")
+
+
+var xxxx = document.location.search
+if (xxxx.indexOf("USE=") > 0)xxxx = "";
+if (xxxx.indexOf("?load") == 0) {
+	script = unescape(xxxx.substring(1))
+} else {
+	xxxx = (xxxx + "?1crn").substring(1,5)
+	script = 'set animframecallback "jmolscript:select model=_modelNumber";'
+	+'set zoomlarge false;set echo top left;echo loading XXXX...;refresh;'
+	+'load "=XXXX";set echo top center;echo XXXX;'
+	+'spacefill off;wireframe off;cartoons on;color structure;'
+	script = script.replace(/XXXX/g, xxxx)
+}
+jmolApplet(["450","450"],script + ";set loadStructCallback \"jmolLoadStructCallback\";set defaultloadscript \"cartoon only;color structure;set bondmode OR;isDssp = false;\"")
+
+</script>
+</div>
+
+</td>
+<td bgcolor=yellow>
+<table><tr><td width=40></td><td>
+ <div id="plottitle"></div>
+ <div id="plotarea" style="width:400px;height:400px;background-color:yellow"></div>
+</td></tr></table>
+</td>
+</tr>
+
+<tr><td align=center valign=top>
+<span class="noprint">
+
+<script type="text/javascript">
+_jmol.buttonCssText="style='width:96'"
+jmolButton("color cpk")
+jmolButton("color group")
+jmolButton("color temperature","color temp")
+jmolButton("calculate straightness;color straightness","color straight")
+jmolButton("color structure")
+jmolBr()
+_jmol.buttonCssText="style='width:96'"
+jmolButton("trace only","trace")
+jmolButton("cartoon only","cartoon")
+jmolButton("backbone only","backbone")
+jmolButton("spacefill only;spacefill 20%;wireframe 0.15","ball&stick")
+jmolButton("if (!qd);quaternion difference draw;qd=true;else;draw off;qd=false;endif","quatern diff")
+jmolBr()
+_jmol.buttonCssText="style='width:120'"
+jmolButton("load ?=1crn","Load PDB")
+jmolButton("load ?","Load URL")
+jmolButton("load ?","Load FILE")
+jmolButton("script ?.spt","Load SCRIPT")
+jmolBr()
+jmolButton("write FILE ?","Save FILE")
+jmolButton("write state jsmol.spt","Save STATE")
+jmolButton("write image jsmol.jpg","Save JPG")
+jmolButton("write image jsmol.png","Save PNG")
+jmolBr()
+_jmol.buttonCssText="style='width:80'"
+jmolButton("console")
+jmolCommandInput()
+jmolBr()
+getStructureSelect()
+</script>
+</span>
+</td>
+<td valign=top>
+<span class="noprint">
+Plot 1: 
+<label><input type="radio" name="chkplot1" value="" id="none1" onclick="doPlot()" checked />none</label>
+<label><input type="radio" name="chkplot1" value="Temperature" id="t1" onclick="doPlot()" />temperature</label>
+<label><input type="radio" name="chkplot1" value="Straightness(p)" title="Straightness calculated using a peptide plane frame" id="p1" onclick="doPlot()" />straightness(p)</label>
+<label><input type="radio" name="chkplot1" value="Straightness(c)" title="Straightness calculated using a C-alpha frame" id="c1" onclick="doPlot()" />straightness(c)</label>
+<label><input type="radio" name="chkplot1" value="Structure" id="_1" title="Helix, sheet, or turn structure" onclick="doPlot()" />structure</label>
+<br>
+Plot 2: 
+<label><input type="radio" name="chkplot2" value="" id="none2" onclick="doPlot()" checked />none</label>
+<label><input type="radio" name="chkplot2" value="Straightness(p)" title="Straightness calculated using a peptide plane frame" id="p2" onclick="doPlot()" />straightness(p)</label>
+<label><input type="radio" name="chkplot2" value="Straightness(c)" title="Straightness calculated using a C-alpha frame" id="c2" onclick="doPlot()" />straightness(c)</label>
+<label><input type="radio" name="chkplot2" value="Straightness(r)" title="Straightness calculated using Ramachandran angles" id="r2" onclick="doPlot()" />straightness(r)</label>
+<label><input type="radio" name="chkplot2" value="Structure" title="Helix, sheet, or turn structure" id="_2" onclick="doPlot()" />structure</label>
+<br>
+<a href="javascript:doPlotRamachandran()">Ramachandran Plot</a>
+ <label><input type="checkbox" id="chkxy" onclick="doPlot()"  />Plot 1 vs 2</label> 
+ <label><input type="checkbox" id="chkDSSP" onclick="doDSSP(checked)"  />DSSP</label> 
+ <a href="javascript:doPrintAll()">print</a> 
+<br><span id="linRegEqn"></span>
+<br>
+<br>
+show: 
+<a href="javascript:showJSON(theplot.getData())">data(JSON)</a>
+<a href="javascript:showTabbed(theplot.getData(),'data')">data(TAB)</a>
+<a href="javascript:showJSON(theplot.getAxes())">axes</a>
+<a href="javascript:showJSON(theplot.getOptions())">options</a>
+
+</span>
+</td></tr>
+<tr><td colspan=2>
+This page and <a href=jmol-flot-energy.htm>jmol-flot-energy.htm</a> illustrate how the <a href=http://code.google.com/p/flot/>Flot</a> graphing package can be used with Jmol to depict molecular data graphically. The Flot package is quite flexible and very easy to work with. For these pages I've adapted it a bit -- the modified flot JavaScript file is in the <a href=flot>flot subdirectory</a>. Mostly I added a hover delay option and the option to hover over a vertical or horizontal slice rather than exactly on a point. For the Ramachandran Plot, I added the option to have major tick marks drawn in a darker color. 
+
+</td></tr></table>
+
+</body>
+</html>

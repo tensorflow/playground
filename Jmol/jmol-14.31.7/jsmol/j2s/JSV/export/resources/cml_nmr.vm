@@ -1,0 +1,65 @@
+<cml xmlns="http://www.xml-cml.org/schema"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:siUnits="http://www.xml-cml.org/units/siUnits"
+   xmlns:units="http://www.xml-cml.org/units/units"
+   xmlns:nmr="http://www.nmrshiftdb.org/dict"
+   xmlns:jspecview="http://jspecview.sf.net/convention.html"
+   xmlns:cmlDict="http://www.xml-cml.org/dict/cmlDict"
+   xmlns:cml="http://www.xml-cml.org/dict/cml"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:jcamp="http://www.xml-cml.org/dict/jcampDict"
+   xsi:schemaLocation="http://www.xml-cml.org/dict/jcampDict dict/jcampDict.xml
+   http://www.xml-cml.org/schema schema.xsd 
+   http://www.xml-cml.org/dict/cml dict/cmlDict.xml 
+   http://www.xml-cml.org/dict/cmlDict dict/simpleCmlDict.xml 
+   http://www.xml-cml.org/units/units dict/unitsDict.xml 
+   http://www.xml-cml.org/units/siUnits dict/siUnitsDict.xml">
+  <spectrum id="$ident" title="$title" convention="JSpecView" type="$specinits">
+    <conditionList>
+       <scalar dataType="xsd:string" dictRef="cml:field" units="siUnits:hertz">$ObFreq</scalar>
+    </conditionList>
+    <metadataList>
+        <metadata name="jcamp:origin" content="$origin" />
+        <metadata name="jcamp:owner" content="$owner" />
+        <metadata name="nmr:OBSERVENUCLEUS" content="$ObNucleus"/>
+    </metadataList>
+    <parameterList>
+#if($model !="")
+      <parameter dictRef="jcamp:SpectrometerDataSystem" title="Spectrometer/Data System">$model</parameter>
+#end
+      <parameter dictRef="jcamp:NMR_OBSERVEFREQUENCY" title="NMR.Observe Frequency">
+          <scalar units="units:hz">$ObFreq</scalar>
+      </parameter>
+      <parameter dictRef="jcamp:NMR_OBSERVENUCLEUS" title="NMR.Observe Nucleus">$ObNucleus</parameter>
+    </parameterList>
+    <sample>
+        <molecule>
+#if($molform !="")
+            <formula inline="$molform"/>
+#end
+#if($CASrn !="")
+            <name convention="jcamp:casregistryno">$CASrn</name>
+#end
+        </molecule>
+    </sample>
+#if($continuous)
+    <spectrumData>
+        <xaxis>
+            <array units="units:hz" start="$firstX" end="$lastX" size="$npoints" dataType="xsd:double" />
+        </xaxis>
+        <yaxis multiplierToData="1.000">
+            <array units="units:arbitrary" size="$npoints" dataType="xsd:double">
+#foreach ($coord in $xyCoords)$coord.getYString() #end
+            </array>
+        </yaxis>
+    </spectrumData>
+#end
+#if (!$continuous)
+     <peakList size="$npoints">
+#foreach ($coord in $xyCoords)<peak id="peak$velocityCount" xUnits="units:$xUnits" xValue="$coord.getXString()" yUnits="units:$yUnits" yValue="$coord.getYString()"></peak>#end
+      </peakList>
+#end
+
+
+</spectrum>
+</cml>

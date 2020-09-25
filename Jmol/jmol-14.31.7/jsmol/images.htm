@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JSmol -- Jmol/HTML5 Demo</title>
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="flot/jquery.flot2.js"></script>
+
+<script type="text/javascript">
+
+Images = [["image", "model", "scale", "caption"]
+	,["data/Sr2Nb2O7_working2.gif","data/Sr2Nb2O7_working2.png", 0.3, "<a href='http://www.crystal.uni-bayreuth.de/en/research/incommensurately_modulated_Sr2Nb2O7/'>Sr2Nb2O7</a>, View 1", 800, 445]
+	,["data/Sr2Nb2O7_working.gif","data/Sr2Nb2O7_working.png", 0.3, "<a href='http://www.crystal.uni-bayreuth.de/en/research/incommensurately_modulated_Sr2Nb2O7/'>Sr2Nb2O7</a>, View 2", 800, 445]
+	]
+	
+function setImages() {
+	var s = ""
+	for (var i = 1; i < Images.length; i++) {
+		var img = Images[i];
+		var src = img[0];
+		var scale = img[2];
+		var caption = img[3];
+		var width = img[4];
+		var height = img[5];
+		s += "<img src='SRC' id='img_IMG' onclick='getImage(this.id)' style='width:SCALEWpx;height:SCALEHpx'/></br>CAPTION</br></br>";
+		s = s.replace(/SRC/, src).replace(/IMG/, i).replace(/SCALEW/g,Math.floor(scale * width)).replace(/SCALEH/g,Math.floor(scale * height)).replace(/CAPTION/,caption);
+	}
+	$("#leftpanel").html(s);
+}
+
+function getImage(id) {
+	var d = Images[parseInt(id.substring(4))];
+	Jmol.script(jmol, 'script "' + d[1] + '"');
+}
+
+function myPickCallback(a,b,c,d) {
+
+	var d = $("#consolediv");
+	var s = d.html();
+	if (s.indexOf("plotT(a)") >= 0)s = "";
+	d.html(s + b + "\n");
+	
+	d[0].scrollTop = 0;//d[0].scrollHeight
+	setTimeout(tPlot,100)
+}
+
+var nAtoms = 1;
+var outputType = "mc";
+var xyz = "x";
+
+function doSetOpt(a, n) {
+	switch(n[1]) {
+	case 1:
+		nAtoms = n[2];
+		$("#optdiv2").css("visibility",(nAtoms == 1 ? "visible" : "hidden"));
+		break;
+	case 2:
+		outputType = n[2];
+		break;
+	case 3:
+		xyz = n[2];
+		break;
+	}
+	doTPlot();
+}
+
+function doTPlot() {
+	clearSelection();
+	tPlot();
+}
+
+function clearSelection() {
+  Jmol.script(jmol, "selectonHalos on;set picking select atom;measures delete;select none;picked = ({});pickedList=[];");
+}
+
+var AtomInfo=["", "one atom", "two atoms", "three atoms", "four atoms"];
+var DataInfo=["", "its modulation", "the distance modulation", "the angle modulation", "the dihedral modulation"];
+
+function tPlot() {
+  // we use Jmol.evaluate with script to retrieve a table of data from Jmol
+  // created using spt/ext/xtal/plott.spt
+  
+  // picked and pickedList give us the last
+
+  Jmol.scriptWait(jmol, "measures delete;modulation scale 1;set echo bottom center;echo;if (!plotT){script spt/ext/xtal/plott.spt};")
+	var n= Jmol.evaluate(jmol,"{picked}.count")
+	var s;
+	var firstRow = 3; // plott...   min/max...   ave/stddev...
+	var dataColumn = 1;
+	if (n < nAtoms) {
+		$("#plotarea").html("		After loading a model, click on \n		" + AtomInfo[nAtoms] + " to see " + DataInfo[nAtoms] + ".");
+		Jmol.script(jmol, "select picked");
+		return;
+	}
+	switch (nAtoms) {
+	case 1:
+		if (xyz.length == 1) {
+			firstRow = 4; // plott... t/type...   min/max...   ave/stddev...
+			s = Jmol.evaluate(jmol,"script('plotT(pickedList[0],\""+outputType+xyz+"\");')");
+		} else {
+			firstRow = 1000; // skip graph
+			s = Jmol.evaluate(jmol,"script('plotT(pickedList[0],\""+outputType+"\");')");
+		}
+		break;
+	case 2:
+		s = Jmol.evaluate(jmol,"script('plotT(pickedList[-1] pickedList[0]);')");
+		break;
+	case 3:
+		s = Jmol.evaluate(jmol,"script('plotT(pickedList[-2] pickedList[-1] pickedList[0]);')");
+		break;
+	case 4:
+		s = Jmol.evaluate(jmol,"script('plotT(pickedList[-3] pickedList[-2] pickedList[-1] pickedList[0]);')");
+		break;
+	default:
+		clearSelection();
+	  return;
+	}
+	
+	// write the output
+	s = '<textarea style="width:450px;height:225px">' + s +'</textarea>'
+	$("#consolediv").html(s)
+
+	// plotT will return a tab-separated list with two header lines
+	// generate an array of [x,y] pairs
+	
+	var S = s.split("\n");
+	var a = [];
+	var max = -1e10;
+	var min = 1e10;
+	for (var i = firstRow; i < S.length; i++) {
+		var SS = S[i].trim().split("\t");
+		var val = parseFloat(SS[dataColumn]);
+		if (isNaN(val))
+			continue;
+		max = Math.max(max, val);
+		min = Math.min(min, val);
+		a.push([parseFloat(SS[0]), val, nAtoms]);
+	}
+
+	// fix dihedrals:
+	
+	if (nAtoms == 4 && max > 170 && min < -170)
+		for (var i = a.length; --i >= 0;)
+			if (a[i][1] < 0)
+				a[i][1] += 360;
+
+	// set plot options
+		
+	var options = {
+		lines: { show: true, color:"#FF0000" },
+		points: { show: false },
+		selection: { mode: "x"},
+		grid: { clickable: true }
+	}
+
+	// draw the plot
+
+	theplot = $.plot($("#plotarea"), [a], options)
+	$("#plotarea").unbind("plothover plotclick", null)
+	$("#plotarea").bind("plotclick", plotClickCallback)
+
+	setTimeout(function(){Jmol.scriptWait(jmol, "refresh")},100);
+}
+
+function plotClickCallback(event, pos, item) {
+	// We're getting back	Flot "event" that returns the [x,y,modelIndex,label] point clicked.
+	if (!item)return
+	// It's important to use jmolScriptWait here, otherwise Jmol 
+	var t = item.datapoint[0];
+	var n = item.datapoint[2];
+	var s = (n > 1 ? ";set echo bottom center;echo \"@{format('%5.3f',getproperty('measurementinfo.1.value'))} @ t=" + (Math.round(t*100)/100) + "\"" : "");
+	// force float
+	Jmol.scriptWait(jmol, "vibration off; modulation " + (t+0.000001) + s)
+}
+
+
+////// every page will need one variable and one Info object for each applet object
+
+var Info = {
+	width: 700,
+	height: 450,
+	script: "set echo top left;echo click on an image;set debugscript",
+	use: "JAVA",
+	jarPath: "java",
+	j2sPath: "j2s",
+	pickCallback: "myPickCallback",
+	jarFile: "JmolAppletSigned.jar",
+	isSigned: true,
+	addSelectionOptions: false,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	readyFunction: null,
+	console: "infodiv",
+	color:"#A0A0A0",
+	disableInitialConsole: true,
+	defaultModel: null,
+	debug: false
+}
+
+$(document).ready(function(){	
+
+	setImages();
+
+		$("#middlepanel").html(Jmol.getAppletHtml("jmol", Info));
+
+	// right panel
+	
+	var isApplet = true;
+	Jmol.setButtonCss(null, "style='width:160px'");	
+	$("#loadpanel").html(
+		Jmol.jmolButton(jmol,"load http://? ","Load URL")
+		+ Jmol.jmolButton(jmol,"load ? ","Load FILE")
+		+ "<br>"
+		+ Jmol.jmolButton(jmol,"write FILE ?","Save FILE")
+		+ Jmol.jmolButton(jmol,"write PNGJ jsmol.png","Save 3D-PNG")
+		+ "<br><br>"
+		+ " <a href=images.htm?_USE=JAVA>JAVA version</a>"
+		+ " <a href=images.htm?_USE=HTML5>HTML5 version</a>"
+		+ "<br>"
+	);
+
+	// button panel:
+	
+	Jmol.setButtonCss(null,"style='width:100px'");
+	$("#btnpanel").html(
+		Jmol.jmolButton(jmol,"modulation off;set echo top right;echo", "no modulation")
+		+ "<br>"
+		+ Jmol.jmolButton(jmol,"modulation scale 1.0;set echo top right;echo x 1.0", "mod x 1")
+ 		+ "<br>"
+		+ Jmol.jmolButton(jmol,"modulation scale 5.0;set echo top right;echo x 5.0", "mod x 5")
+		+ "<br>"
+		+ Jmol.jmolButton(jmol,"vibration off", "motion off")
+		+ "<br>"
+		+ Jmol.jmolButton(jmol,"vibration on", "motion on")
+		+ "<br>"
+//		+ Jmol.jmolButton(jmol,"set measurementunits angstroms;x= {within(4.0, @144) and( O7 or O3)}; measure @144 @x all;moveto /* time, axisAngle */ 1.0 { 333 598 -729 107.8} /* zoom, translation */	305.81 0.35 -1.91	/* center, rotationRadius */ {-9.536743E-7 13.3745 8.550301} 17.275505 /* navigation center, translation, depth */ {0 0 0} 0 0 0 /* cameraDepth, cameraX, cameraY */	3.0 0.0 0.0;", "measurements")
+//		+ "<br>"
+		+ Jmol.jmolButton(jmol,"load '' {3 1 1};unitcell off;set zoomlarge false;zoom {*} 0", "3x1x1 block")
+		+ "<br>"
+		+ Jmol.jmolButton(jmol,"load '' {1 3 1};unitcell off;set zoomlarge false;zoom {*} 0", "1x3x1 block")
+		+ "<br>"
+		+ Jmol.jmolButton(jmol,"load '' {1 1 3};rotate y 90;unitcell off;set zoomlarge false;zoom {*} 0", "1x1x3 block")
+		+ "<br>"
+		+ Jmol.jmolButton(jmol,"unitcell off;axes off", "unit cell off")
+		+ "<br>"
+		+ Jmol.jmolButton(jmol,"unitcell on;axes on", "unit cell on")
+		+ "<br>"
+		+ Jmol.jmolButton(jmol,doTPlot, "t-plot")
+		+ "<br>"
+	);
+	
+	// lower panel:
+			
+	Jmol.setButtonCss(null,"style='width:160px'");
+	var s = 
+		Jmol.jmolButton(jmol,"color {*} property vxyz", "color by modulation")
+		+ Jmol.jmolButton(jmol,"color {*} cpk", "reset color")
+		+ "<br>"
+	Jmol.setButtonCss(null,"style='width:120px'");
+	s	+= Jmol.jmolButton(jmol,"wireframe -0.1 #alt:SETTING Line", "wireframe")
+		+ Jmol.jmolButton(jmol,"spacefill only;spacefill 23%;wireframe 0.15 #alt:SETTING Ball and Stick","ball&stick");
+	s += Jmol.jmolButton(jmol,"spacefill #alt:SETTING van der Waals Spheres", "spacefill");	
+	Jmol.setButtonCss(null,"style='width:100px'");
+	s += "<br>"
+	s += Jmol.jmolButton(jmol,"console");
+	s += Jmol.jmolCommandInput(jmol);
+	$("#lowerpanel").html(s);
+	
+	// option divs:
+	
+	$("#optdiv1").html(
+		Jmol.jmolRadioGroup(jmol, [
+		[[doSetOpt, 1, 1],"atom", "checked"],
+		[[doSetOpt, 1, 2], "distance"],
+		[[doSetOpt, 1, 3], "angle"],
+		[[doSetOpt, 1, 4], "dihedral"]
+		])
+	);
+	
+	$("#optdiv2").html(
+		Jmol.jmolRadioGroup(jmol, [
+		[[doSetOpt, 2, "mf"], "mod(frac)", "checked"],
+		[[doSetOpt, 2, "mc"], "mod(Cart)"],
+		[[doSetOpt, 2, "pf"], "pt(frac)"],
+		[[doSetOpt, 2, "pc"], "pt(Cart)"]
+		])
+		+ "<br>"
+		+ Jmol.jmolRadioGroup(jmol, [
+		[[doSetOpt, 3, "x"], "x", "checked"],
+		[[doSetOpt, 3, "y"], "y"],
+		[[doSetOpt, 3, "z"], "z"],
+		[[doSetOpt, 3, "xyz"], "xyz"]
+		])
+	);
+		
+})
+
+</script>
+</head>
+<body>
+<table cellpadding=5>
+	<tr>
+		<td><table><tr>
+		<td><div id="leftpanel"></div></td>
+		<td><div id="btnpanel"></div></td>
+	</tr>
+	<tr>
+		<td colspan=2 valign=top>
+			<div id="loadpanel"></div>
+		</td>
+	</tr></table>
+		</td>
+		<td valign=top>
+			<table><tr>
+					<td><div id="middlepanel"></div></td>
+				</tr><tr>
+					<td style="text-align:center" valign=top><div id="lowerpanel"></div></td>
+				</tr>
+			</table>
+			
+		</td>
+		<td valign=top>
+		<div id="optdiv1"></div>
+		<div id="optdiv2"></div>
+		<div id="plotarea" style="white-space:pre;font-family:sanSerif;background-color:#E0E0A0;width:450px;height:225px"></div>
+		<div id="consolediv" style="white-space:pre;font-family:sanSerif;background-color:#E0E0A0;width:450px;height:225px">
+	This page demonstrates some relatively new capabilities
+	in Jmol relating to <a href=http://reference.iucr.org/dictionary/Incommensurate_modulated_structure target=_blank>incommensurately modulated structures</a>
+	(msCIF data). After clicking on atoms, you will get a 
+	<a href="http://www.flotcharts.org/">FLOT</a> graph that you can click on to set a specific t-value.
+	Some interesting Jmol features used here include
+	easy manipulation of data arrays for tabulation, the animated
+	GIFS created using the CAPTURE command, dynamic 
+	measurements, and a few more goodies that you can find 
+	in <a href=spt/ext/xtal/plott.spt target=_blank>plott.spt</a>." -- Bob Hanson Dec 12, 2013/May 4, 2014
+		</div>
+
+	 </td>
+	</tr>
+</table>
+<div id="infodiv"></div>
+</body>
+</html>

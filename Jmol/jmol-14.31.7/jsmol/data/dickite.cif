@@ -1,0 +1,57 @@
+data_global
+_chemical_name 'Dickite'
+loop_
+_publ_author_name
+'Dera P'
+'Prewitt C T'
+'Japel S'
+'Bish D L'
+'Johnston C T'
+_journal_name_full "American Mineralogist"
+_journal_volume 88 
+_journal_year 2003
+_journal_page_first 1428
+_journal_page_last 1435
+_publ_section_title
+;
+ Pressure-controlled polytypism in hydrous layered materials
+ Sample: Low pressure dickite at P = 0.1 MPa	
+;
+_chemical_formula_sum 'Si2 Al2 O9 H4'
+_cell_length_a 5.161
+_cell_length_b 8.960
+_cell_length_c 14.459
+_cell_angle_alpha 90
+_cell_angle_beta 96.77
+_cell_angle_gamma 90
+_cell_volume 663.959
+_symmetry_space_group_name_H-M 'C 1 c 1'
+loop_
+_symmetry_equiv_pos_as_xyz
+  'x,y,z'
+  '1/2+x,1/2+y,z'
+  'x,-y,1/2+z'
+  '1/2+x,1/2-y,1/2+z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_Uiso_or_equiv
+Si1   0.00880   0.40100   0.03240   0.01200
+Si2  -0.00350   0.07220   0.03150   0.01000
+Al1   0.91260   0.25230   0.22330   0.01600
+Al2   0.41840   0.41760   0.22260   0.01800
+O1   0.95620   0.23800   0.98640   0.01700
+O2   0.25480   0.47140   0.98560   0.01800
+O3   0.76360   0.50580   0.99910   0.01700
+O4   0.07890   0.39080   0.14280   0.02100
+O5   0.00250   0.08070   0.14430   0.01200
+O-h1   0.58500   0.27470   0.14880   0.02200
+O-h2   0.24320   0.27800   0.28660   0.01800
+O-h3   0.25250   0.89320   0.28880   0.01500
+O-h4   0.32340   0.58370   0.28630   0.02100
+H1   0.57000   0.17300   0.15200   0.02600
+H2   0.30700   0.26000   0.34600   0.02200
+H3   0.25000   0.99000   0.30500   0.01800
+H4   0.27000   0.58800   0.34200   0.02600

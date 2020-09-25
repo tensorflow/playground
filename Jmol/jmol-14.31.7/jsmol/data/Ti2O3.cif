@@ -1,0 +1,70 @@
+data_global
+_chemical_name 'Ti2O3'
+loop_
+_publ_author_name
+'Newnham R E'
+'de Haan Y M'
+_journal_name_full "Zeitschrift fur Kristallographie"
+_journal_volume 117 
+_journal_year 1962
+_journal_page_first 235
+_journal_page_last 237
+_publ_section_title
+;
+ Refinement of the alpha Al2O3, Ti2O3, V2O3 and Cr2O3 structures
+ Locality: synthetic
+;
+_chemical_formula_sum 'Ti2 O3'
+_cell_length_a 5.149
+_cell_length_b 5.149
+_cell_length_c 13.642
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_volume 313.224
+_symmetry_space_group_name_H-M 'R -3 c'
+loop_
+_symmetry_equiv_pos_as_xyz
+  'x,y,z'
+  '2/3+x,1/3+y,1/3+z'
+  '1/3+x,2/3+y,2/3+z'
+  'x,x-y,1/2+z'
+  '2/3+x,1/3+x-y,5/6+z'
+  '1/3+x,2/3+x-y,1/6+z'
+  'y,x,1/2-z'
+  '2/3+y,1/3+x,5/6-z'
+  '1/3+y,2/3+x,1/6-z'
+  '-x+y,y,1/2+z'
+  '2/3-x+y,1/3+y,5/6+z'
+  '1/3-x+y,2/3+y,1/6+z'
+  '-x,-x+y,1/2-z'
+  '2/3-x,1/3-x+y,5/6-z'
+  '1/3-x,2/3-x+y,1/6-z'
+  '-y,-x,1/2+z'
+  '2/3-y,1/3-x,5/6+z'
+  '1/3-y,2/3-x,1/6+z'
+  'x-y,-y,1/2-z'
+  '2/3+x-y,1/3-y,5/6-z'
+  '1/3+x-y,2/3-y,1/6-z'
+  'y,-x+y,-z'
+  '2/3+y,1/3-x+y,1/3-z'
+  '1/3+y,2/3-x+y,2/3-z'
+  '-x+y,-x,z'
+  '2/3-x+y,1/3-x,1/3+z'
+  '1/3-x+y,2/3-x,2/3+z'
+  '-x,-y,-z'
+  '2/3-x,1/3-y,1/3-z'
+  '1/3-x,2/3-y,2/3-z'
+  '-y,x-y,z'
+  '2/3-y,1/3+x-y,1/3+z'
+  '1/3-y,2/3+x-y,2/3+z'
+  'x-y,x,-z'
+  '2/3+x-y,1/3+x,1/3-z'
+  '1/3+x-y,2/3+x,2/3-z'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ti   0.00000   0.00000   0.34500
+O   0.31700   0.00000   0.25000

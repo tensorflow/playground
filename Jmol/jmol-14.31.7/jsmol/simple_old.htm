@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/Jmol2.js"></script>
+<script type="text/javascript">
+
+// This file simple_old.htm is exactly the same as an old one
+// except for the addition of the two JS script tags above and Info below. 
+// Clearly you could concatenate those two files and make one
+// called "Jmol.js" and then not have ANY difference with any older files.
+// 
+// If you have a big site with many HTML files, see comments in js/Jmol2.js
+
+Jmol.Info = {
+      
+      jarPath: "java",
+      jarFile: "JmolAppletSigned0.jar",
+      j2sPath: "j2s",
+      use: "HTML5", // could be JAVA or HTML5
+			disableJ2SLoadMonitor: false,
+			disableInitialConsole: true
+      
+}
+
+myCallback = function (a, b, c, d) {
+//alert("myCallback a="+a+" b="+b+" c="+c+" d="+d)
+}
+
+Models = []
+
+template = "xid='%1';load =%1|%2 (%1)"
+function addModel(xxxx, text) {
+ Models.push(template.replace(/\%1/g, xxxx).replace(/%2/g, text).split("|"))
+}
+
+addModel("1crn", "small")
+addModel("1blu","Fe/S")
+addModel("1bna","b-DNA")
+addModel("1d66","transcription")
+
+</script>
+</head>
+<body>
+
+<center>
+
+
+<table><tr><td align=center>
+
+<script type="text/javascript">
+//jmolInitialize(".","https://chemapps.stolaf.edu/pe/protexpl/molview/JmolAppletSigned.jar")
+
+jmolInitialize("java","JmolAppletSigned0.jar")
+
+jmolSetCallback("errorCallback","myCallback")
+
+var xxxx = document.location.search
+if (xxxx.indexOf("USE=") > 0)xxxx = "";
+if (xxxx.length == 5 || xxxx.length == 0) {
+	xxxx = (xxxx + "?1crn").substring(1,5)
+	script = 'h2oOn=true;set animframecallback "jmolscript:if (!selectionHalos) {select model=_modelNumber}";'
+//	+'set errorCallback "myCallback";'
+	+'set defaultloadscript "isDssp = false;set defaultVDW babel;if(!h2oOn){display !water}";'
+	+'set zoomlarge false;set echo top left;echo loading XXXX...;refresh;'
+	+'load "http://www.rcsb.org/pdb/files/XXXX.pdb";set echo top center;echo XXXX;'
+	+'spacefill off;wireframe off;cartoons on;color structure;'
+	script = script.replace(/XXXX/g, xxxx)
+} else {
+	script = unescape(xxxx.substring(1))
+}
+
+jmolApplet(["450","450"],script)
+
+</script>
+</td><td>
+<form><!-- (FORM tag is important to automatically set checkbox off when page reloads) -->
+<script type="text/javascript">
+jmolSetButtonCssClass("\" style='width:160' \"")
+jmolSetMenuCssClass("\" style='width:160' \"")
+jmolButton("if (!xid) { xid = '1crn'};var x = prompt('Enter a four-digit PDB ID',xid);if (!x) { quit }; xid = x; load @{'=' + x}","Load PDB by ID")
+jmolBr()
+jmolCheckbox("set pdbAddHydrogens TRUE","set pdbAddHydrogens FALSE","with hydrogens",false)
+jmolBr()
+jmolCheckbox("set defaultLoadFilter 'biomolecule 1'","set defaultLoadFilter ''","biomolecule 1",false)
+jmolBr()
+jmolHtml("Examples:")
+jmolBr()
+jmolMenu(Models)
+jmolBr()
+jmolButton("if (!molname) { molname = 'tylenol'};var x = prompt('Enter the name or identifier (SMILES, InChI, CAS) of a molecule',molname);if (!x) { quit }; molname = x; load @{'$' + molname}","Load MOL by NAME")
+jmolBr()
+jmolButton("load ?","Load URL")
+jmolBr()
+jmolButton("load ?","Load FILE")
+jmolBr()
+jmolButton("script ?.spt","Load SCRIPT")
+jmolBr()
+jmolBr()
+jmolCheckbox("h2oOn=true;display *","h2oOn=false;display !water","display water",true)
+jmolBr()
+jmolBr()
+jmolButton("write FILE ?","Save FILE")
+jmolBr()
+jmolButton("write image jsmol.jpg","Save JPG")
+jmolBr()
+jmolButton("write image jsmol.png","Save PNG")
+jmolBr()
+jmolButton("write jsmol.jmol","Save Jmol")
+jmolBr()
+jmolButton("write PNGJ jsmol.png","Save PNG+Jmol")
+jmolBr()
+jmolButton("write state jsmol.spt","Save STATE")
+jmolBr()
+
+
+</script>
+</form>
+</td></tr>
+
+<tr><td align=center>
+
+
+
+
+<script type="text/javascript">
+jmolBr()
+jmolSetButtonCssClass("\" style='width:120' \"")
+jmolButton("color cpk")
+jmolButton("color group")
+jmolButton("color amino")
+jmolButton("color structure")
+jmolBr()
+jmolButton("trace only")
+jmolButton("cartoon only")
+jmolButton("backbone only")
+jmolButton("spacefill only;spacefill 23%;wireframe 0.15","ball&stick")
+jmolBr()
+jmolSetButtonCssClass("\" style='width:60' \"")
+jmolButton("Model")
+jmolSetButtonCssClass("\" style='width:50' \"")
+jmolButton("model; if (!isDssp) { save structure s1; isDssp = true; calculate structure DSSP;cartoons only;color structure}", "DSSP")
+jmolSetButtonCssClass("\" style='width:50' \"")
+jmolButton("model; if (isDssp) { restore structure s1; isDssp = false; cartoons only;color structure}", "Auth")
+jmolSetButtonCssClass("\" style='width:160' \"")
+jmolButton("Ramachandran relative")
+jmolButton("Quaternion difference")
+jmolBr()
+jmolSetButtonCssClass("\" style='width:100' \"")
+jmolButton("console")
+jmolCommandInput()
+</script>
+
+</td></tr></table>
+
+</body>
+</html>

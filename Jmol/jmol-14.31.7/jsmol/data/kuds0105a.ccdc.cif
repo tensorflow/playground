@@ -1,0 +1,413 @@
+###################################################################
+#
+# CIF created for deposition with Cambridge Crystallographic Data Centre
+#
+###################################################################
+data_MDA014
+_audit_creation_method           cif4csd
+_audit_creation_date             2006-05-01
+_journal_coden_Cambridge         1078
+_journal_year                    2006
+_journal_name_full               'Private Communication'
+_chemical_name_common            kuds0105a
+_chemical_name_systematic        Not_named
+_chemical_formula_weight         247.29
+_chemical_compound_source        ?
+_chemical_formula_sum            'C8 H16 F3 N O2 S'
+_chemical_formula_moiety         'C8 H16 F3 N O2 S'
+_chemical_absolute_configuration ?
+_exptl_crystal_colour            ?
+_exptl_crystal_density_meas      ?
+_exptl_crystal_density_diffrn    1.335
+_exptl_absorpt_coefficient_mu    0.284
+_exptl_absorpt_correction_T_max  0.989
+_exptl_absorpt_correction_T_min  0.895
+_exptl_absorpt_correction_type   multi-scan
+_exptl_crystal_F_000             1040
+_exptl_crystal_size_max          0.400
+_exptl_crystal_size_mid          0.040
+_exptl_crystal_size_min          0.040
+_cell_length_a                   12.131(3)
+_cell_length_b                   14.025(3)
+_cell_length_c                   14.464(3)
+_cell_angle_alpha                90.00
+_cell_angle_beta                 90.00
+_cell_angle_gamma                90.00
+_cell_volume                     2460.9(10)
+_cell_formula_units_Z            8
+_symmetry_Int_Tables_number      19
+_symmetry_cell_setting           Orthorhombic
+_symmetry_space_group_name_H-M   'P 21 21 21'
+_symmetry_space_group_name_Hall  'P 2ac 2ab'
+_diffrn_ambient_temperature      100
+_diffrn_measurement_device       '\k-geometry diffractometer'
+_diffrn_radiation_type           'Mo K\a'
+_diffrn_reflns_av_R_equivalents  0.0563
+_diffrn_reflns_av_sigmaI/netI    0.0487
+_diffrn_reflns_limit_h_max       15
+_diffrn_reflns_limit_h_min       -16
+_diffrn_reflns_limit_k_max       18
+_diffrn_reflns_limit_k_min       -18
+_diffrn_reflns_limit_l_max       19
+_diffrn_reflns_limit_l_min       -18
+_diffrn_reflns_theta_full        28.34
+_diffrn_reflns_theta_max         28.34
+_diffrn_reflns_theta_min         2.19
+_diffrn_reflns_number            29776
+_diffrn_measured_fraction_theta_full 0.990
+_diffrn_measured_fraction_theta_max 0.990
+_refine_ls_R_factor_gt           0.0531
+_refine_ls_wR_factor_ref         0.1543
+_refine_ls_goodness_of_fit_ref   1.013
+_refine_ls_number_parameters     263
+_refine_ls_number_reflns         6004
+_refine_ls_abs_structure_Flack   0.04(10)
+_refine_ls_abs_structure_details 'Flack H D (1983), Acta Cryst. A39, 876-881'
+_reflns_number_gt                4855
+_reflns_number_total             6004
+_refine_special_details
+;
+Refinement of F^2^ against ALL reflections.  The weighted R-factor wR and
+ goodness of fit S are based on F^2^, conventional R-factors R are based
+ on F, with F set to zero for negative F^2^. The threshold expression of
+ F^2^ > 2sigma(F^2^) is used only for calculating R-factors(gt) etc. and is
+ not relevant to the choice of reflections for refinement.  R-factors based
+ on F^2^ are statistically about twice as large as those based on F, and R-
+ factors based on ALL data will be even larger.
+REMARKS: the S-O bond is a dative one not double and the S is prochiral (S).The
+config at the chiral C is S.
+;
+
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+ 1      x,y,z
+ 2      1/2-x,-y,1/2+z
+ 3      1/2+x,1/2-y,-z
+ 4      -x,1/2+y,1/2-z
+
+
+
+
+
+
+loop_
+_atom_site_label
+_atom_site_chemical_conn_number
+_atom_site_type_symbol
+_atom_site_occupancy
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_adp_type
+_atom_site_attached_hydrogens
+_atom_site_calc_attached_atom
+_atom_site_calc_flag
+_atom_site_constraints
+_atom_site_description
+_atom_site_disorder_assembly
+_atom_site_disorder_group
+_atom_site_refinement_flags
+_atom_site_restraints
+_atom_site_symmetry_multiplicity
+S1 1 S 1 0.83010(6) 0.64526(5) 0.84930(5) 0.02194(17) Uani ? ? d ? ? . . . ? 1
+O2 2 O 1 0.8839(2) 0.65369(17) 0.75690(15) 0.0284(5) Uani ? ? d ? ? . . . ? 1
+C3 3 C 1 0.7163(3) 0.5603(2) 0.8326(2) 0.0272(7) Uani ? ? d ? ? . . . ? 1
+C4 4 C 1 0.7582(3) 0.4652(2) 0.7984(3) 0.0365(9) Uani ? ? d ? ? . . . ? 1
+H4A 5 H 1 0.7958 0.4739 0.7390 0.055 Uiso ? ? calc ? ? . . R ? 1
+H4B 6 H 1 0.6959 0.4214 0.7903 0.055 Uiso ? ? calc ? ? . . R ? 1
+H4C 7 H 1 0.8099 0.4385 0.8436 0.055 Uiso ? ? calc ? ? . . R ? 1
+C5 8 C 1 0.6436(3) 0.6074(3) 0.7598(3) 0.0362(8) Uani ? ? d ? ? . . . ? 1
+H5A 9 H 1 0.6838 0.6111 0.7011 0.054 Uiso ? ? calc ? ? . . R ? 1
+H5B 10 H 1 0.6238 0.6718 0.7801 0.054 Uiso ? ? calc ? ? . . R ? 1
+H5C 11 H 1 0.5764 0.5696 0.7513 0.054 Uiso ? ? calc ? ? . . R ? 1
+C6 12 C 1 0.6559(3) 0.5532(3) 0.9245(3) 0.0388(9) Uani ? ? d ? ? . . . ? 1
+H6A 13 H 1 0.6301 0.6166 0.9430 0.058 Uiso ? ? calc ? ? . . R ? 1
+H6B 14 H 1 0.7061 0.5282 0.9717 0.058 Uiso ? ? calc ? ? . . R ? 1
+H6C 15 H 1 0.5926 0.5103 0.9180 0.058 Uiso ? ? calc ? ? . . R ? 1
+N7 16 N 1 0.9061(2) 0.57954(18) 0.92066(19) 0.0234(5) Uani ? ? d ? ? . . . ? 1
+H7 17 H 1 0.8957 0.5176 0.9257 0.028 Uiso ? ? calc ? ? . . R ? 1
+C8 18 C 1 0.9896(3) 0.6279(2) 0.9742(2) 0.0296(8) Uani ? ? d ? ? . . . ? 1
+H8 19 H 1 1.0455 0.5796 0.9939 0.035 Uiso ? ? calc ? ? . . R ? 1
+O9 20 O 1 1.0449(2) 0.70116(16) 0.92667(18) 0.0301(5) Uani ? ? d ? ? . . . ? 1
+C10 21 C 1 1.1270(3) 0.6648(3) 0.8629(3) 0.0399(9) Uani ? ? d ? ? . . . ? 1
+H10A 22 H 1 1.0958 0.6113 0.8267 0.048 Uiso ? ? calc ? ? . . R ? 1
+H10B 23 H 1 1.1917 0.6409 0.8976 0.048 Uiso ? ? calc ? ? . . R ? 1
+C11 24 C 1 1.1610(4) 0.7436(3) 0.7997(4) 0.0497(11) Uani ? ? d ? ? . . . ? 1
+H11A 25 H 1 1.2163 0.7198 0.7559 0.074 Uiso ? ? calc ? ? . . R ? 1
+H11B 26 H 1 1.1926 0.7959 0.8360 0.074 Uiso ? ? calc ? ? . . R ? 1
+H11C 27 H 1 1.0966 0.7668 0.7656 0.074 Uiso ? ? calc ? ? . . R ? 1
+C12 28 C 1 0.9414(4) 0.6732(3) 1.0601(3) 0.0418(10) Uani ? ? d ? ? . . . ? 1
+F13 29 F 1 1.0214(3) 0.7104(2) 1.11330(18) 0.0620(8) Uani ? ? d ? ? . . . ? 1
+F14 30 F 1 0.8700(3) 0.74417(19) 1.04136(17) 0.0576(7) Uani ? ? d ? ? . . . ? 1
+F15 31 F 1 0.8879(2) 0.6095(2) 1.11052(16) 0.0563(7) Uani ? ? d ? ? . . . ? 1
+S1_1 32 S 1 0.12643(7) 0.38567(5) 0.91632(6) 0.02463(18) Uani ? ? d ? ? . . . ? 1
+O2_1 33 O 1 0.0077(2) 0.39796(18) 0.8929(2) 0.0378(6) Uani ? ? d ? ? . . . ? 1
+C3_1 34 C 1 0.1299(3) 0.2907(2) 1.0044(2) 0.0273(7) Uani ? ? d ? ? . . . ? 1
+C4_1 35 C 1 0.0695(3) 0.2029(2) 0.9692(3) 0.0325(8) Uani ? ? d ? ? . . . ? 1
+H4A_1 36 H 1 0.1085 0.1770 0.9155 0.049 Uiso ? ? calc ? ? . . R ? 1
+H4B_1 37 H 1 -0.0057 0.2206 0.9512 0.049 Uiso ? ? calc ? ? . . R ? 1
+H4C_1 38 H 1 0.0666 0.1547 1.0182 0.049 Uiso ? ? calc ? ? . . R ? 1
+C5_1 39 C 1 0.0708(4) 0.3341(3) 1.0875(3) 0.0456(10) Uani ? ? d ? ? . . . ? 1
+H5A_1 40 H 1 0.1109 0.3909 1.1083 0.068 Uiso ? ? calc ? ? . . R ? 1
+H5B_1 41 H 1 0.0680 0.2874 1.1378 0.068 Uiso ? ? calc ? ? . . R ? 1
+H5C_1 42 H 1 -0.0043 0.3520 1.0698 0.068 Uiso ? ? calc ? ? . . R ? 1
+C6_1 43 C 1 0.2509(3) 0.2705(3) 1.0266(3) 0.0429(10) Uani ? ? d ? ? . . . ? 1
+H6A_1 44 H 1 0.2864 0.3291 1.0484 0.064 Uiso ? ? calc ? ? . . R ? 1
+H6B_1 45 H 1 0.2885 0.2478 0.9708 0.064 Uiso ? ? calc ? ? . . R ? 1
+H6C_1 46 H 1 0.2555 0.2216 1.0749 0.064 Uiso ? ? calc ? ? . . R ? 1
+N7_1 47 N 1 0.1906(2) 0.32721(19) 0.83203(19) 0.0248(6) Uani ? ? d ? ? . . . ? 1
+H7_1 48 H 1 0.1924 0.2645 0.8315 0.030 Uiso ? ? calc ? ? . . R ? 1
+C8_1 49 C 1 0.2434(3) 0.3814(2) 0.7597(2) 0.0287(7) Uani ? ? d ? ? . . . ? 1
+H8_1 50 H 1 0.2580 0.3371 0.7069 0.034 Uiso ? ? calc ? ? . . R ? 1
+O9_1 51 O 1 0.1834(2) 0.4584(2) 0.7257(2) 0.0427(7) Uani ? ? d ? ? . . . ? 1
+C10_1 52 C 1 0.0922(4) 0.4208(4) 0.6662(3) 0.0744(18) Uani ? ? d ? ? . . . ? 1
+H10A_1 53 H 1 0.1214 0.3751 0.6201 0.089 Uiso ? ? calc ? ? . . R ? 1
+H10B_1 54 H 1 0.0360 0.3881 0.7044 0.089 Uiso ? ? calc ? ? . . R ? 1
+C11_1 55 C 1 0.0439(4) 0.5049(4) 0.6195(3) 0.095(2) Uiso ? ? d ? ? . . R ? 1
+H11A_1 56 H 1 -0.0178 0.4846 0.5805 0.142 Uiso ? ? calc ? ? . . R ? 1
+H11B_1 57 H 1 0.1002 0.5357 0.5812 0.142 Uiso ? ? calc ? ? . . R ? 1
+H11C_1 58 H 1 0.0173 0.5502 0.6661 0.142 Uiso ? ? calc ? ? . . R ? 1
+C12_1 59 C 1 0.3531(3) 0.4221(3) 0.7909(3) 0.0312(8) Uani ? ? d ? ? . . . ? 1
+F13_1 60 F 1 0.41917(18) 0.35420(18) 0.82209(17) 0.0449(6) Uani ? ? d ? ? . . . ? 1
+F14_1 61 F 1 0.40497(19) 0.46380(17) 0.71979(17) 0.0445(6) Uani ? ? d ? ? . . . ? 1
+F15_1 62 F 1 0.34413(19) 0.48708(17) 0.85758(18) 0.0464(6) Uani ? ? d ? ? . . . ? 1
+
+
+loop_
+ _atom_site_aniso_label
+ _atom_site_aniso_U_11
+ _atom_site_aniso_U_22
+ _atom_site_aniso_U_33
+ _atom_site_aniso_U_23
+ _atom_site_aniso_U_13
+ _atom_site_aniso_U_12
+S1 0.0235(4) 0.0187(3) 0.0237(4) 0.0034(3) -0.0005(3) 0.0008(3)
+O2 0.0289(12) 0.0314(12) 0.0248(11) 0.0075(10) 0.0006(10) 0.0009(10)
+C3 0.0239(15) 0.0228(15) 0.0351(19) 0.0017(13) -0.0020(14) -0.0025(13)
+C4 0.040(2) 0.0223(16) 0.047(2) -0.0029(16) -0.0106(18) -0.0035(15)
+C5 0.0300(19) 0.0313(18) 0.047(2) 0.0047(16) -0.0101(16) -0.0033(15)
+C6 0.0343(19) 0.040(2) 0.042(2) 0.0080(17) 0.0072(17) -0.0055(16)
+N7 0.0263(13) 0.0170(11) 0.0270(13) 0.0042(11) -0.0007(12) -0.0012(10)
+C8 0.0345(19) 0.0271(17) 0.0270(17) 0.0053(14) -0.0097(14) -0.0047(14)
+O9 0.0331(13) 0.0216(11) 0.0357(13) 0.0003(10) -0.0034(11) -0.0045(9)
+C10 0.0278(17) 0.0346(19) 0.057(2) 0.0053(17) -0.0005(19) 0.0009(15)
+C11 0.038(2) 0.053(2) 0.058(3) 0.015(2) 0.005(2) -0.005(2)
+C12 0.057(3) 0.040(2) 0.0289(19) -0.0006(16) -0.0063(18) -0.0023(19)
+F13 0.089(2) 0.0609(17) 0.0358(13) -0.0077(13) -0.0202(14) -0.0165(16)
+F14 0.081(2) 0.0519(14) 0.0402(13) -0.0120(11) 0.0043(14) 0.0216(15)
+F15 0.0730(18) 0.0683(17) 0.0275(11) 0.0092(12) 0.0053(12) -0.0135(15)
+S1_1 0.0275(4) 0.0178(3) 0.0286(4) -0.0007(3) 0.0001(3) 0.0022(3)
+O2_1 0.0290(13) 0.0291(13) 0.0552(17) 0.0032(12) -0.0042(12) 0.0091(10)
+C3_1 0.0323(17) 0.0251(15) 0.0245(16) -0.0001(13) 0.0044(15) -0.0010(14)
+C4_1 0.041(2) 0.0244(16) 0.0317(18) 0.0023(14) 0.0090(16) -0.0065(15)
+C5_1 0.063(3) 0.043(2) 0.0312(19) -0.0075(17) 0.017(2) -0.003(2)
+C6_1 0.041(2) 0.048(2) 0.039(2) 0.0161(19) -0.0123(18) 0.0029(19)
+N7_1 0.0314(15) 0.0195(12) 0.0235(14) -0.0010(10) 0.0022(11) -0.0017(10)
+C8_1 0.0339(18) 0.0279(16) 0.0242(16) 0.0041(14) -0.0022(14) -0.0053(14)
+O9_1 0.0372(16) 0.0423(15) 0.0487(16) 0.0241(13) -0.0131(13) -0.0083(12)
+C10_1 0.054(3) 0.110(5) 0.059(3) 0.033(3) -0.032(3) -0.017(3)
+C12_1 0.0304(19) 0.0317(16) 0.0313(18) 0.0051(14) -0.0003(15) -0.0028(14)
+F13_1 0.0295(11) 0.0481(13) 0.0571(15) 0.0170(12) -0.0028(10) 0.0065(10)
+F14_1 0.0365(12) 0.0451(13) 0.0519(14) 0.0173(11) 0.0042(11) -0.0126(10)
+F15_1 0.0368(12) 0.0482(13) 0.0542(14) -0.0175(11) -0.0031(11) -0.0102(10)
+
+
+
+
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_distance
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+_geom_bond_publ_flag
+ S1      O2         1.492(2)                     .       .                   yes
+ S1      N7         1.663(3)                     .       .                   yes
+ S1      C3         1.840(3)                     .       .                   yes
+ S1_1    C3_1       1.844(3)                     .       .                   yes
+ S1_1    O2_1       1.490(3)                     .       .                   yes
+ S1_1    N7_1       1.663(3)                     .       .                   yes
+ F13     C12        1.344(6)                     .       .                   yes
+ F14     C12        1.347(5)                     .       .                   yes
+ F15     C12        1.323(5)                     .       .                   yes
+ F13_1   C12_1      1.324(5)                     .       .                   yes
+ F14_1   C12_1      1.340(5)                     .       .                   yes
+ F15_1   C12_1      1.331(5)                     .       .                   yes
+ O9      C10        1.450(5)                     .       .                   yes
+ O9      C8         1.407(4)                     .       .                   yes
+ O9_1    C8_1       1.392(4)                     .       .                   yes
+ O9_1    C10_1      1.498(5)                     .       .                   yes
+ N7      C8         1.444(4)                     .       .                   yes
+ N7      H7           0.8800                     .       .                   no
+ N7_1    C8_1       1.443(4)                     .       .                   yes
+ N7_1    H7_1         0.8800                     .       .                   no
+ C3      C5         1.524(5)                     .       .                   no
+ C3      C6         1.521(5)                     .       .                   no
+ C3      C4         1.511(4)                     .       .                   no
+ C8      C12        1.513(5)                     .       .                   no
+ C10     C11        1.492(6)                     .       .                   no
+ C4      H4B          0.9800                     .       .                   no
+ C4      H4C          0.9800                     .       .                   no
+ C4      H4A          0.9800                     .       .                   no
+ C5      H5C          0.9800                     .       .                   no
+ C5      H5A          0.9800                     .       .                   no
+ C5      H5B          0.9800                     .       .                   no
+ C6      H6C          0.9800                     .       .                   no
+ C6      H6A          0.9800                     .       .                   no
+ C6      H6B          0.9800                     .       .                   no
+ C8      H8           1.0000                     .       .                   no
+ C10     H10A         0.9900                     .       .                   no
+ C10     H10B         0.9900                     .       .                   no
+ C11     H11A         0.9800                     .       .                   no
+ C11     H11B         0.9800                     .       .                   no
+ C11     H11C         0.9800                     .       .                   no
+ C3_1    C4_1       1.521(4)                     .       .                   no
+ C3_1    C5_1       1.526(5)                     .       .                   no
+ C3_1    C6_1       1.529(5)                     .       .                   no
+ C8_1    C12_1      1.517(5)                     .       .                   no
+ C10_1   C11_1        1.4801                     .       .                   no
+ C4_1    H4A_1        0.9800                     .       .                   no
+ C4_1    H4B_1        0.9800                     .       .                   no
+ C4_1    H4C_1        0.9800                     .       .                   no
+ C5_1    H5A_1        0.9800                     .       .                   no
+ C5_1    H5B_1        0.9800                     .       .                   no
+ C5_1    H5C_1        0.9800                     .       .                   no
+ C6_1    H6A_1        0.9800                     .       .                   no
+ C6_1    H6B_1        0.9800                     .       .                   no
+ C6_1    H6C_1        0.9800                     .       .                   no
+ C8_1    H8_1         1.0000                     .       .                   no
+ C10_1   H10A_1       0.9900                     .       .                   no
+ C10_1   H10B_1       0.9900                     .       .                   no
+ C11_1   H11A_1       0.9800                     .       .                   no
+ C11_1   H11B_1       0.9800                     .       .                   no
+ C11_1   H11C_1       0.9800                     .       .                   no
+
+
+
+
+loop_
+_geom_angle_atom_site_label_1
+_geom_angle_atom_site_label_2
+_geom_angle_atom_site_label_3
+_geom_angle
+_geom_angle_site_symmetry_1
+_geom_angle_site_symmetry_2
+_geom_angle_site_symmetry_3
+_geom_angle_publ_flag
+ O2      S1      N7       110.94(14)             .       .       .           yes
+ O2      S1      C3       105.19(14)             .       .       .           yes
+ N7      S1      C3        97.96(13)             .       .       .           yes
+ O2_1    S1_1    C3_1     105.24(16)             .       .       .           yes
+ N7_1    S1_1    C3_1      98.03(14)             .       .       .           yes
+ O2_1    S1_1    N7_1     110.06(15)             .       .       .           yes
+ C8      O9      C10        112.4(3)             .       .       .           yes
+ C8_1    O9_1    C10_1      108.4(3)             .       .       .           yes
+ S1      N7      C8         117.5(2)             .       .       .           yes
+ S1      N7      H7           121.00             .       .       .           no
+ C8      N7      H7           121.00             .       .       .           no
+ S1_1    N7_1    C8_1       118.7(2)             .       .       .           yes
+ C8_1    N7_1    H7_1         121.00             .       .       .           no
+ S1_1    N7_1    H7_1         121.00             .       .       .           no
+ C4      C3      C5         110.6(3)             .       .       .           no
+ S1      C3      C4         111.3(2)             .       .       .           yes
+ S1      C3      C5         104.1(2)             .       .       .           yes
+ C4      C3      C6         113.0(3)             .       .       .           no
+ S1      C3      C6         106.8(2)             .       .       .           yes
+ C5      C3      C6         110.7(3)             .       .       .           no
+ O9      C8      N7         114.6(2)             .       .       .           yes
+ O9      C8      C12        106.2(3)             .       .       .           yes
+ N7      C8      C12        111.5(3)             .       .       .           yes
+ O9      C10     C11        108.6(3)             .       .       .           yes
+ F13     C12     F15        107.5(3)             .       .       .           yes
+ F13     C12     C8         110.7(4)             .       .       .           yes
+ F14     C12     C8         113.2(3)             .       .       .           yes
+ F15     C12     C8         111.0(3)             .       .       .           yes
+ F14     C12     F15        107.1(4)             .       .       .           yes
+ F13     C12     F14        107.0(3)             .       .       .           yes
+ H4B     C4      H4C          109.00             .       .       .           no
+ C3      C4      H4A          109.00             .       .       .           no
+ H4A     C4      H4B          109.00             .       .       .           no
+ C3      C4      H4B          109.00             .       .       .           no
+ C3      C4      H4C          110.00             .       .       .           no
+ H4A     C4      H4C          110.00             .       .       .           no
+ H5A     C5      H5B          109.00             .       .       .           no
+ C3      C5      H5A          109.00             .       .       .           no
+ C3      C5      H5B          110.00             .       .       .           no
+ C3      C5      H5C          109.00             .       .       .           no
+ H5A     C5      H5C          109.00             .       .       .           no
+ H5B     C5      H5C          109.00             .       .       .           no
+ C3      C6      H6A          109.00             .       .       .           no
+ C3      C6      H6B          109.00             .       .       .           no
+ C3      C6      H6C          109.00             .       .       .           no
+ H6A     C6      H6B          109.00             .       .       .           no
+ H6A     C6      H6C          109.00             .       .       .           no
+ H6B     C6      H6C          110.00             .       .       .           no
+ N7      C8      H8           108.00             .       .       .           no
+ O9      C8      H8           108.00             .       .       .           no
+ C12     C8      H8           108.00             .       .       .           no
+ C11     C10     H10B         110.00             .       .       .           no
+ O9      C10     H10A         110.00             .       .       .           no
+ C11     C10     H10A         110.00             .       .       .           no
+ O9      C10     H10B         110.00             .       .       .           no
+ H10A    C10     H10B         108.00             .       .       .           no
+ H11A    C11     H11C         109.00             .       .       .           no
+ C10     C11     H11B         110.00             .       .       .           no
+ C10     C11     H11C         110.00             .       .       .           no
+ C10     C11     H11A         109.00             .       .       .           no
+ H11B    C11     H11C         109.00             .       .       .           no
+ H11A    C11     H11B         109.00             .       .       .           no
+ S1_1    C3_1    C4_1       110.0(2)             .       .       .           yes
+ C4_1    C3_1    C5_1       111.1(3)             .       .       .           no
+ C4_1    C3_1    C6_1       112.5(3)             .       .       .           no
+ C5_1    C3_1    C6_1       111.1(3)             .       .       .           no
+ S1_1    C3_1    C5_1       104.2(2)             .       .       .           yes
+ S1_1    C3_1    C6_1       107.5(2)             .       .       .           yes
+ N7_1    C8_1    C12_1      111.8(3)             .       .       .           yes
+ O9_1    C8_1    N7_1       115.6(3)             .       .       .           yes
+ O9_1    C8_1    C12_1      105.8(3)             .       .       .           yes
+ O9_1    C10_1   C11_1        105.91             .       .       .           yes
+ F13_1   C12_1   F15_1      107.2(3)             .       .       .           yes
+ F13_1   C12_1   C8_1       111.2(3)             .       .       .           yes
+ F14_1   C12_1   C8_1       110.4(3)             .       .       .           yes
+ F15_1   C12_1   C8_1       113.7(3)             .       .       .           yes
+ F14_1   C12_1   F15_1      107.2(3)             .       .       .           yes
+ F13_1   C12_1   F14_1      106.9(3)             .       .       .           yes
+ C3_1    C4_1    H4A_1        109.00             .       .       .           no
+ C3_1    C4_1    H4B_1        109.00             .       .       .           no
+ C3_1    C4_1    H4C_1        109.00             .       .       .           no
+ H4A_1   C4_1    H4B_1        109.00             .       .       .           no
+ H4A_1   C4_1    H4C_1        110.00             .       .       .           no
+ H4B_1   C4_1    H4C_1        109.00             .       .       .           no
+ C3_1    C5_1    H5A_1        109.00             .       .       .           no
+ C3_1    C5_1    H5B_1        110.00             .       .       .           no
+ C3_1    C5_1    H5C_1        109.00             .       .       .           no
+ H5A_1   C5_1    H5B_1        109.00             .       .       .           no
+ H5A_1   C5_1    H5C_1        109.00             .       .       .           no
+ H5B_1   C5_1    H5C_1        109.00             .       .       .           no
+ C3_1    C6_1    H6A_1        110.00             .       .       .           no
+ C3_1    C6_1    H6B_1        110.00             .       .       .           no
+ C3_1    C6_1    H6C_1        110.00             .       .       .           no
+ H6A_1   C6_1    H6B_1        109.00             .       .       .           no
+ H6A_1   C6_1    H6C_1        109.00             .       .       .           no
+ H6B_1   C6_1    H6C_1        109.00             .       .       .           no
+ O9_1    C8_1    H8_1         108.00             .       .       .           no
+ N7_1    C8_1    H8_1         108.00             .       .       .           no
+ C12_1   C8_1    H8_1         108.00             .       .       .           no
+ O9_1    C10_1   H10A_1       111.00             .       .       .           no
+ O9_1    C10_1   H10B_1       111.00             .       .       .           no
+ C11_1   C10_1   H10A_1       110.00             .       .       .           no
+ C11_1   C10_1   H10B_1       111.00             .       .       .           no
+ H10A_1  C10_1   H10B_1       109.00             .       .       .           no
+ C10_1   C11_1   H11A_1       109.00             .       .       .           no
+ C10_1   C11_1   H11B_1       109.00             .       .       .           no
+ C10_1   C11_1   H11C_1       109.00             .       .       .           no
+ H11A_1  C11_1   H11B_1       110.00             .       .       .           no
+ H11A_1  C11_1   H11C_1       109.00             .       .       .           no
+ H11B_1  C11_1   H11C_1       109.00             .       .       .           no
+
+
+
+
+#END

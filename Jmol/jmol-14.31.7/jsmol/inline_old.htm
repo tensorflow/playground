@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/Jmol2.js"></script>
+<script type="text/javascript">
+
+// This file inline_old.htm shows how to use the older jmolAppletInline() function of Jmol.js
+
+Jmol.Info = {
+      
+      jarPath: "java",
+      jarFile: "",
+      j2sPath: "j2s",
+      use: "HTML5", // could be JAVA or HTML5
+			disableJ2SLoadMonitor: false,
+			disableInitialConsole: true
+      
+}
+
+var octmodel=
+"Octahedral Model\n" +
+"RLChime   06130615133D\n" +
+"http://wwwchem.uwimona.edu.jm\n" +
+" 15  6  0        0              1 V2000\n" +
+"    0.0000    0.0000    0.0000 Ti  0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"    0.0000    0.0000    2.0000 Cl   0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"    0.0000    2.0000    0.0000 Cl   0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"    2.0000    0.0000    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"    0.0000    0.0000   -2.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"    0.0000   -2.0000    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"   -2.0000    0.0000    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"    2.0000    2.0000    2.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"   -2.0000    2.0000    2.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"    2.0000   -2.0000    2.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"   -2.0000   -2.0000    2.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"    2.0000    2.0000   -2.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"   -2.0000    2.0000   -2.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"    2.0000   -2.0000   -2.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"   -2.0000   -2.0000   -2.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n" +
+"  7  1  1  0\n" +
+"  6  1  1  0\n" +
+"  5  1  1  0\n" +
+"  4  1  1  0\n" +
+"  3  1  1  0\n" +
+"  2  1  1  0\n" +
+"  END\n";
+
+</script>
+</head>
+<body>
+
+
+
+<script type="text/javascript">
+//jmolInitialize(".","https://chemapps.stolaf.edu/pe/protexpl/molview/JmolAppletSigned.jar")
+jmolInitialize(".","JmolAppletSigned0.jar")
+jmolAppletInline(["450","450"], octmodel, "background blue")
+</script>
+
+</body>
+</html>

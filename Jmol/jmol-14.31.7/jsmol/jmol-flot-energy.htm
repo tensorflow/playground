@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+
+jmol-flot.htm
+Bob Hanson hansonr@stolaf.edu
+5:52 AM 5/12/2009
+
+BH 1/20/2014 1:16:57 PM adding "0+" to generate numbers in JavaScript
+
+This demonstration illustrates how Jquery Flot can be use with Jmol.
+
+page HTML:
+
+
+left: 
+	imagediv  (usually empty, for printing, not absolutely required)
+	appletdiv (for Jmol)
+right:
+      	graphdiv contains two divs: plottitle and plotarea
+
+-->
+
+<style>
+@media print {
+	.noprint {display:none}
+	.printonly {display:block}
+}
+@media screen {
+	.noprint {display:block}
+	.printonly {display:none}
+}
+</style>
+<script type="text/javascript" src="JSmol.min.js"></script>
+<script type="text/javascript" src="js/Jmol2.js"></script>
+<script type="text/javascript" src="flot/jquery.flot2.js"></script>
+
+
+<script type="text/javascript">
+
+function roundoff(x,ndec){
+	//round x to ndec decimal places (+) fixed; (-) floating
+	if(x==0)return 0
+	if(ndec==0)return Math.round(x)
+	var neg=(x<0?"-":"")
+	var xs=Math.abs(x)+""
+	var i=(xs.indexOf("E") & xs.indexOf("e"))
+	if(ndec<0 && i<0){
+		var xs=roundoff(Math.abs(x)*1e-100,-ndec)
+		var i=(xs.indexOf("E") & xs.indexOf("e"))
+		var e=(eval(xs.substring(i+1,xs.length))+100)
+		return neg+xs.substring(0,i)+(e!=0?"E"+e:"")
+	}
+	if (i>0) {
+		var s=roundoff(xs.substring(0,i),Math.abs(ndec)-1)+"E"+xs.substring(i+1,xs.length)
+		return neg+s
+	}
+	i=xs.indexOf(".")
+	if (i<0) {
+		xs=xs+"."
+		i=xs.indexOf(".")
+	}
+	xs=xs+"000000000"
+	var s="."+xs.substring(i+1+ndec,xs.length)
+	xs=xs.substring(0,i)+xs.substring(i+1,i+1+ndec)
+	var add1=(xs.charAt(0)=="0")
+	if(add1)xs="1"+xs
+	xs=eval(xs)+Math.round(eval(s))+""
+	if(add1)xs=xs.substring(1,xs.length)
+	xs=xs.substring(0,xs.length-ndec)+"."+xs.substring(xs.length-ndec,xs.length)
+	if(xs.substring(0,1)==".")xs="0"+xs
+	return neg+xs
+}
+
+//Jmol._debugCode=true
+
+modelFile = (document.location.search + "model=").split("model=")[1].split("&")[0]
+if (!modelFile)modelFile = "data/n-butane_M0001.jxyz; frame ALIGN {C8};moveto /* time, axisAngle */ 1.0 { -955 -237 -176 110.47} /* zoom, translation */  100.0 0.0 0.0  /* center, rotationRadius */ {-0.06835014 4.9948692E-5 0.015650034} 3.9922192 /* navigation center, translation, depth */ {0.0 0.0 0.0} 0.75183785 0.06514825 50.0;"
+var appletPrintable = (navigator.appName != "Netscape") // Sorry, I don't know how to check for this
+
+// code that fakes an applet print by creating an image in its place! :)
+
+function setImage() {
+	if (appletPrintable)return
+	var image = jmolGetPropertyAsString("image")
+	var html = '<img src="data:image/jpeg;base64,'+image+'" />'
+	document.getElementById("imagediv").innerHTML = html
+}
+
+
+function doPrintAll() {
+	setImage()
+	window.print()
+}
+
+
+$(function () {
+
+	// jQUery document ready function -- replaces body onLoad
+
+	if (!appletPrintable)$("#appletdiv").addClass("noprint") 
+
+})
+
+var theplot = null  // global, mostly for testing.
+
+
+	//jQuery Flot methods added by BH specifically for Jmol:
+
+	//	thePlot.setData()
+//		thePlot.getOptions()
+//		thePlot.getTarget()
+//		thePlot.setOptions()
+//		thePlot.setAxes()
+//		thePlot.setTarget()
+//		theplot = $.replot(theplot)
+
+	//
+
+
+// all the methods from here on are callbacks 
+
+
+// Jmol loadStructCallback -- plotEnergies() -- does the plotting
+// Flot plotClickCallback  -- from clicking on a point on the graph
+// Flot plotHoverCallback  -- you guessed it!
+// Jmol animFrameCallback  -- doHighlight() -- highlights that point
+
+
+
+var data = []
+
+function plotEnergies(a,b,c,d,e) {
+if (c == "zapped")return
+//alert([a,b,c,d,e])
+
+	// loadStructCallback -- does the plotting
+	
+	// Just get the data and run the Flot $.plot method
+
+
+	// This is just a trick to allow printing
+
+	setImage()
+
+	data = []
+	var A = []
+	var nplots = 1
+        Info = jmolGetPropertyAsArray("auxiliaryInfo.models");  
+	var modelCount = Info.length	
+
+	// Gather the data we want for each model.
+
+	//   Note that Flot allows additional element data other than just x and y -- we use this in the callback.
+	//   We build an array: [x,y,modelnumber,label].
+
+	for (var i = 0; i < modelCount; i++) {
+		var modelnumber = 0 + Info[i].modelNumber
+		var name = Info[i].name
+		var Properties = Info[i].modelProperties
+		var energy = (Properties && Properties.Energy ? parseFloat(Properties.Energy)
+			: Info[i].energy ? parseFloat(Info[i].energy) 
+			: parseFloat(name.substring((name.toLowerCase() + " kj").split("kj")[0].lastIndexOf("=") + 1))); //parse the name to pull out the energy
+		var label = (Properties && Properties.Constraint ? Properties.Constraint : 'Model = ' + modelnumber) 
+			+ ', Energy = ' + roundoff(energy,1) + ' kJ/mol'
+		A.push([i+1,0 + energy,modelnumber,label])
+	}
+
+
+	// add that data to the array
+
+	data.push(A)
+
+	// select flot options:
+
+	// Note that hoverMode, hoverDelay, and hoverDelayDefault are not in the original Flot package.
+
+
+
+	var options = {
+		lines: { show: true },
+		points: { show: true, color:"#FF0000" },
+		selection: { mode: (nplots == 1 ? "x" : "xy"), hoverMode: (nplots == 1 ? "x" : "xy") },
+		grid: { hoverable: true, clickable: true, hoverDelay: 10, hoverDelayDefault: 10 }
+        }
+
+	// draw the plot
+
+	theplot = $.plot($("#plotarea"), data, options)
+
+
+
+	// globals for callback
+
+	previousPoint = null
+	item0 = {datapoint:A[0]}
+
+	$("#plotarea").unbind("plothover plotclick", null)
+	$("#plotarea").bind("plothover", plotHoverCallback)
+	$("#plotarea").bind("plotclick", plotClickCallback)
+
+	// execute an initial plotClickCallback:
+
+
+	setTimeout('plotClickCallback(null,null,item0);iamready=true;jmolScript("animation mode palindrome 1 1;animation on")',100)
+
+
+	
+}
+
+var iamready = false
+
+function doHighlight(app, modelIndex) {
+	if (!iamready)return
+	theplot.unhighlight(0,-1)
+
+  modelIndex = 0 + modelIndex // required for JavaScript
+
+	theplot.highlight(0, modelIndex)
+	var label = data[0][modelIndex][3]
+        setTimeout('jmolScript("set echo top left;echo ' + label+'")',100)
+}
+
+var item0
+var previousPoint = null
+
+function plotClickCallback(event, pos, item) {
+	// We're getting back  Flot "event" that returns the [x,y,modelIndex,label] point clicked.
+
+	if (!item)return
+	var model = item.datapoint[2]
+	var label = item.datapoint[3]
+	var script = ' animation off;model 1.'+model+';font echo 16; set echo top left;echo ' + label
+
+	// It's important to use jmolScriptWait here, otherwise Jmol 
+	// will impose a 100 ms wait of its own in processing the script queue.
+
+	jmolScriptWait(script)
+}
+
+function plotHoverCallback(event, pos, item) {
+
+	// for hover, we set the "tooltip" div -- 
+
+	// $("#xxxx") is a jQuery wrapper for a div. $("#xxxx")[0] is the div itself
+
+	if (item) {
+		if (previousPoint != item.datapoint) {
+			$("#tooltip").remove()
+			previousPoint = item.datapoint	
+			var y = roundoff(item.datapoint[1],1)
+			var model = item.datapoint[2]
+			var label = "&nbsp;&nbsp;Model "+ model + ", Energy = " + y +" kJ/mol)"
+			showTooltip(item.pageX, item.pageY + 10, label, pos)
+		}
+
+		if (pos.canvasY > 350)plotClickCallback(event, pos, item)
+	} else {
+		$("#tooltip").remove()
+		previousPoint = null
+	}
+}
+
+function showTooltip(x, y, contents, pos) {
+
+	// from the plot hover callback -- create the tooltip div and set its content and style
+
+	if (pos.canvasY > 340) y += (340 - pos.canvasY)
+	$('<div id="tooltip">' + contents + '</div>').css( {
+		position: 'absolute',
+		display: 'none',
+		top: y + 5,
+		left: x + 5,
+		border: '1px solid #fdd',
+		padding: '2px',
+		'background-color': '#fee',
+		opacity: 0.80
+		}).appendTo("body").fadeIn(200);
+}
+
+
+</script>
+</head>
+<body>
+
+
+<table><tr><td bgcolor=lightblue align=center>
+<div id="imagediv" class="printonly"></div>
+<div id="appletdiv" style="width:450px;height:470px;text-align:center">
+<script type="text/javascript">
+
+  Jmol.Info.j2sPath = "j2s"
+  
+	jmolInitialize("java","JmolAppletSigned0.jar")
+	jmolSetAppletColor("lightblue");
+	jmolApplet(450, "set antialiasDisplay;set loadStructCallback 'plotEnergies';set animFrameCallback 'doHighlight'; load " + modelFile);
+
+</script>
+</div>
+
+animation:
+ <a href='javascript:jmolScript("model first")'>first</a> 
+ <a href='javascript:jmolScript("model prev")'>previous</a> 
+ <a href='javascript:jmolScript("animation mode palindrome 1 1;animation play")'>on</a> 
+ <a href='javascript:jmolScript("animation off")'>off</a> 
+ <a href='javascript:jmolScript("model next")'>next</a> 
+ <a href='javascript:jmolScript("model last")'>last</a>
+&nbsp;&nbsp;&nbsp;&nbsp; view: 
+ <a href='javascript:jmolScript("spacefill 100%")'>Van der Waals</a> 
+ <a href='javascript:jmolScript("spacefill 23%")'>Ball and Stick</a> 
+<br>
+</td>
+<td bgcolor=lightblue align=center>
+<table><tr><td width=40></td><td>
+<div id="graphdiv" style="width:450;height:450;background-color:lightblue">
+ <div id="plottitle"></div>
+ <br>
+ <div id="plotarea" style="width:400px;height:400px;background-color:lightblue"></div>
+</div>
+</td></tr></table>
+</td>
+</tr>
+<tr><td align=center valign=top>
+<span class="noprint">
+Drag and drop any Spartan file into the above applet.
+</span>
+</td>
+<td valign=top>
+<span class="noprint">
+Click on a point, or scan along the baseline to move rapidly among the models.
+<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;show: 
+<a href="javascript:showJSON(theplot.getData())">data(JSON)</a>
+<a href="javascript:showTabbed(theplot.getData(),'data')">data(TAB)</a>
+<a href="javascript:showJSON(theplot.getAxes())">axes</a>
+<a href="javascript:showJSON(theplot.getOptions())">options</a>
+
+</span>
+</td>
+</tr>
+<tr><td colspan=2>
+This page and <a href=jmol-flot.htm>jmol-flot.htm</a> illustrate how the <a href=http://code.google.com/p/flot/>Flot</a> graphing package can be used with Jmol to depict molecular data graphically. Note that this page uses the signed applet, so you can drag-and-drop a file from your local file system onto the Jmol applet. The Flot package is quite flexible and very easy to work with. For these pages I've adapted it a bit -- the modified flot JavaScript file is in the <a href=flot>flot subdirectory</a>. Mostly I added a hover delay option and the option to hover over a vertical or horizontal slice rather than exactly on a point. For the Ramachandran Plot at jmol-flot.htm, I added the option to have major tick marks drawn in a darker color. 
+
+</td></tr></table>
+
+</body>
+</html>

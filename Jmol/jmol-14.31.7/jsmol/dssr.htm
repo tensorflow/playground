@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jmol/DSSR Demonatration Page</title>
+<script type="text/javascript" src="JSmol.min.js"></script>
+
+<script type="text/javascript">
+
+// BH 4/4/2017 10:48:04 AM adds cartoon steps, blocks; adds antialiasdisplay 
+// BH 12/8/2016 1:57:17 PM added submenus and dataarea 
+// BH 12/7/2016 11:47:28 PM added auto-calculate
+// BH 9/20/2015 6:46:24 AM upgrade to JSON-based data
+// Bob Hanson 4/22/2014 6:49:57 PM  hansonr@stolaf.edu
+
+var jmolApplet0; // set up in HTML table, below
+
+var stemScript = "select nucleic;set cartoonSteps;cartoons only;select nucleic and leadAtom;spacefill 1.5;label %[group1];set labelOffset 0 0;color labels yellow";
+
+var _1ehzScript = "reset;center {60.992996 51.431 25.178501}; rotate z -142.9; rotate y 68.91; rotate z 112.36;";
+
+var maxDrop = 5;
+
+var Info = {
+	width: 600,
+	height: 600,
+	color: "white",
+	addSelectionOptions: false,
+	disableInitialConsole: true,
+	serverURL: "https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+	use: "HTML5",
+	jarFile: "JmolAppletSigned0.jar",
+	isSigned: true,
+	loadStructCallback: "enableButtons",
+	script: "set antialiasDisplay;set debugscript;background black;set defaultLoadScript '"+ stemScript + ";display nucleic;if(h2oOn){display add water};if(protOn){display add protein};color grey;if (!_M.dssr){calculate structure dssr};javascript enableButtons()';load =1ehz/dssr;" + _1ehzScript
+}
+
+var hbondsON = false;
+
+function enableButtons(app,fullPath,fileName,modelName,errorMsg,status) {
+  hbondsON = false;
+  var atomcount = Jmol.evaluateVar(jmolApplet0, "{*}.count")
+  var dssr = atomcount && Jmol.evaluateVar(jmolApplet0, "_M.dssr")
+  if (true || atomcount && !dssr)
+	  Jmol.scriptWait(jmolApplet0, "calculate structure dssr");
+  var counts = Jmol.evaluateVar(jmolApplet0, "(_M.dssr ? _M.dssr.counts : {})");
+	for (var i = dssrBtns.length; --i >= 0;) {
+		var name = dssrBtns[i];
+		$("#dssrBtn_"+name).prop("disabled", !counts[name]);
+	}
+   $("#dssrBtn_counts").prop("disabled", !counts.nts); // BH FIX
+}
+
+///////// MODEL LIST /////////
+
+Models = []
+
+template = "xid='%1';zap;set echo top left;echo loading...;refresh;load %4;%3;|%2 (%1)"
+function addModel(xxxx, load, text, script, selected) {
+	script || (script = "");
+  selected || (selected = false);
+	load || (load = "=%1/dssr 1;");
+  var t = template.replace(/%4/, load)
+    .replace(/%1/g, xxxx)
+    .replace(/%2/, text)
+    .replace(/%3/, script)
+    .split("|");
+
+
+  t.push(selected);    
+	Models.push(t)
+}
+
+addModel("1ehz", "", "T-RNA", _1ehzScript, true)
+addModel("2m5u", "", "P4 Hairpin Loop")
+addModel("2m4w", "", "G-Bulge")
+addModel("4jab", "", "U/G Wobble Base Pair")
+addModel("2mi0", "", "I-V Kissing Loop")
+addModel("1msy", "", "GUAA tetraloop E. Coli 23 S rRNA")
+addModel("4c40", "", "L7Ae kink turn")
+
+addModel("2mhi", "", "telomerase CR4/5 domain")
+addModel("4lvv", "", "THF Riboswitch", "rotate Y -90")
+addModel("4mgn", "", "glyQS T box riboswitch+tRNA") 
+
+addModel("1d66", "", "yeast phenylalanine tRNA -- uncorrected")
+addModel("1d66", "=1d66.cif", "yeast phenylalanine tRNA -- corrected", "rotate branch @563 @564 180;javascript calculateDSSR()")
+function jmolCheckbox(script1, script0,text,ischecked) {Jmol.jmolCheckbox(jmolApplet0,script1, script0, text, ischecked)}
+function jmolButton(script, text) {Jmol.jmolButton(jmolApplet0, "select *;" + (script || text), (text || script))}
+function jmolHtml(s) { document.write(s) };
+function jmolBr() { jmolHtml("<br>") }
+function jmolMenu(a) {Jmol.jmolMenu(jmolApplet0, a)}
+function jmolScript(script) {	
+	$("#jmolCmd0").val(script);
+	Jmol.script(jmolApplet0, script);
+}
+
+///////// SPECIALIZED BUTTONS /////////
+
+var dssrBtns = []
+
+function dssrBtn(key, name) {
+	if (name == null)
+    name = key;
+  else
+		dssrBtns.push(name);
+	Jmol.jmolButton("jmolApplet0", [showDSSR, key, name],key, "dssrBtn_"+name);
+}	
+
+function showDSSR(btn, data) {
+	var dssrType = data[1].replace(/ /g,"");
+	var dssrWhat = data[2]
+	var dssrPlural = dssrType.toLowerCase();
+	var s = "";
+	var n = 0;
+	$("#menudiv").css('visibility', 'hidden');
+	$("#menudiv1").css('visibility', 'hidden');
+	$("#datadiv").css('visibility', 'hidden');
+	if (btn) {
+		if (dssrWhat == "counts") {
+			alert(Jmol.scriptEcho(jmolApplet0, "print _M.dssr.counts"));
+			return;
+		}
+    if (dssrWhat == "hbonds") {
+      if ((hbondsON = !hbondsON)) {
+        jmolScript("select off *;wireframe only;calculate hbonds structure;hbonds 0.2");
+      } else {
+        jmolScript("select off *;hbonds off;" + stemScript);
+      }
+      return;
+    }
+    if (dssrWhat == "hbondsOff") {
+      jmolScript("select off *;hbonds off");
+      return;
+    }
+		jmolScript("select off *;color gray;");
+		if (dssrWhat == null) // "highlights off"
+			return;
+      
+		var data = Jmol.evaluateVar(jmolApplet0, "_M.dssr."+dssrWhat);
+ 		var n = data.length;
+		var s = "<select id='dssr' style='width:140px' size='"+Math.min(n+1, maxDrop)+"'>"
+		if (n > 1)
+			s += "<option value='' selected>" + (n == 2 ? "both" : "all " + n) + " " + dssrPlural + "</option>"
+		for (var i = 0; i < n; i++)
+		  s += "<option value="+(i+1)+">"+ dssrWhat + ".."+ (i + 1)+"</option>";
+		s += "</select>"
+		$("#menudiv").html(s).css('visibility', (n == 0 ? 'hidden' : 'visible'));
+		$("#datadiv").css('visibility', (n == 0 ? 'hidden' : 'visible'));
+    if (n)
+      setDataArea(data);
+		var f = function(a,e){selectOn(dssrWhat, $(e || this).val())};
+		$("#dssr").change(f).keyup(function() {var me = this;setTimeout(function(){f(0, me)}, 50)});
+		selectOn(dssrWhat, 0);    
+    s = "";  
+    if (n > 0) {
+      switch(dssrWhat) {
+      case "pairs":
+        s = getPivotSelect("pairs", ["name"]);
+        break;
+      case "nts":
+        s = getPivotSelect("nts", ["is_modified", "baseSugar_conf", "sugar_class"]);
+        break;
+      }
+    }      
+  }
+  $("#menudiv1").html(s).css('visibility', (s ? 'visible' : 'hidden'));
+  if (s) {
+  	var f = function(a,e){selectOn2(dssrWhat, $(e || this).val())};
+		$("#dssrwhat").change(f).keyup(function() {var me = this;setTimeout(function(){f(0, me)}, 50)});
+	}
+}
+
+function setDataArea(data) {
+      $("#dataarea").val(JSON.stringify(data, null, 2));
+}
+
+function getPivotSelect(dssrWhat, keys) {
+  var n = keys.length;
+  var data = [];
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    data.push(key);
+    var pivot = Jmol.evaluateVar(jmolApplet0, "_M.dssr."+dssrWhat+".select('(" + key +")').pivot");  
+    for (var val in pivot)
+      n++;
+    data.push(pivot);
+  }
+  var s = "<select id='dssrwhat' style='width:140px' size='"+Math.min(n, maxDrop)+"'>"
+  for (var i = 0; i < data.length; i++) {
+    var key = data[i];
+    s += "<option value='' style='font-weight:bold;background-color:#eee'>" + key + "</option>";
+    var pivot = data[++i];
+    for (var val in pivot)
+  	  s += "<option value=\"" + key + "|" + val + "\">"+ val + " ("+pivot[val]+")"+"</option>";
+  }
+	s += "</select>"
+  return s;
+}
+
+function selectOn(dssrWhat, n) {
+  var select = "select " + dssrWhat;  
+  var isStem = Jmol.evaluateVar(jmolApplet0,"{visible} == {leadatom and nucleic}");
+  var color = (isStem ? "red" : "cpk");  
+  var script = "select *;color grey;"+select+"; color " + (n ? "translucent white " : color) + ";";
+	if (n) {
+		script += "select @{_M.dssr."+dssrWhat+".." + n + "}; color " + color;
+    setDataArea(Jmol.evaluateVar(jmolApplet0, "_M.dssr."+dssrWhat+".." + n));
+  }
+
+	jmolScript(script);
+}
+
+function selectOn2(key, what_value) {
+  lastSelect = null;
+  if (!what_value)
+    return;
+  var what = what_value.split("|")[0];
+  var value = what_value.split("|")[1];
+  var data = "_M.dssr."+key+".select('where "+what+"=\""+value.replace(/\'/g,"\\'")+ "\"')";
+  var select = "select @{"+data+"}";
+  setDataArea(Jmol.evaluateVar(jmolApplet0, data));
+
+  var isStem = Jmol.evaluateVar(jmolApplet0,"{visible} == {leadatom and nucleic}");
+  var color = (isStem ? "red" : "cpk");  
+  var t = (isStem ? "" : "translucent 1.0");
+  var script = "select *;color " + t + " grey; select "+key+"; color " + t + " white;"+select+";color " + color + ";";
+	jmolScript(script);
+}
+
+function calculateDSSR() {
+  if (Jmol.evaluateVar(jmolApplet0,"_M.dssr.type != 'hash'"))
+    jmolScript("calculate structure DSSR;javascript enableButtons()");
+  else
+    alert("The DSSR analysis for this structure has already been carried out; push this button if you load your structure yourself or drag-drop a structure into the JSmol frame.")
+}
+
+function openAnalysis(isText) {
+  jmolScript("console");
+  setTimeout(function(){jmolScript("console clear;print _M.dssr")}, 2000);
+}
+
+$(document).ready(function() {
+	
+	$("#menudiv").css("visibility","hidden");
+	$("#menudiv1").css("visibility","hidden");
+  $("#datadiv").css('visibility', 'hidden');
+
+  $("#btnform")[0].reset();
+});
+</script>
+</head>
+<body>
+
+<center>
+
+<table><tr>
+<td valign=top style="width:300px" rowspan=3>
+This test page for <a href=http://jmol.x3dna.org/>jmol.x3dna.org</a> demonstrates capabilities in Jmol 
+that involve RNA and DNA secondary structure
+using real-time DSSR analysis provided by <a href=http://goo.gl/ap12xJ>3DNA</a>.
+<br>
+<br>
+The commands being issued by the buttons are displayed in the 
+box under the applet.
+<br>
+<br>
+<script type="text/javascript">
+Jmol.setButtonCss(null,"style='width:140px'")
+dssrBtn('bulges', 'bulges');
+dssrBtn('coaxial stacks', 'coaxStacks');
+jmolBr();
+dssrBtn('hairpins', 'hairpins');
+dssrBtn('helices', 'helices');
+jmolBr();
+dssrBtn('internal loops', 'iloops');
+dssrBtn('isocanonical pairs', 'isoCanonPairs');
+jmolBr();
+dssrBtn('junctions', 'junctions');
+dssrBtn('kissing loops', 'kissingLoops');
+jmolBr();
+dssrBtn('stacks', 'stacks');
+dssrBtn('stems', 'stems');
+jmolBr();
+jmolBr();
+dssrBtn('all nucleotides', 'nts');
+dssrBtn('toggle hydr. bonds', 'hbonds');
+jmolBr();
+jmolBr();
+dssrBtn("pairs", "pairs");
+dssrBtn('multiplets', 'multiplets');
+jmolBr();
+dssrBtn('nonstacked bases', 'nonStack');
+dssrBtn('single-stranded', 'ssSegments');
+jmolBr();
+jmolBr();
+dssrBtn("highlight off");
+dssrBtn("counts");
+jmolBr();
+jmolBr();
+</script>
+<table><tr>
+<td><div id="menudiv" style="visiblity:hidden"></div></td>
+<td><div id="menudiv1" style="visiblity:hidden"></div></td>
+</tr><tr>
+<td colspan=2><div id="datadiv" style="visiblity:hidden"><textarea id=dataarea style="width:280px;height:140px" wrap=off></textarea></div></td>
+</tr></table>
+
+</td>
+<td valign=top align=center style="height:600px">
+
+<script type="text/javascript">
+
+jmolApplet0 = Jmol.getApplet("jmolApplet0", Info)
+
+</script>
+</td><td valign=top >
+<form id="btnform"><!-- (FORM tag is important to automatically set checkbox off when page reloads) -->
+<script type="text/javascript">
+Jmol.setButtonCss(null,"style='width:160px'")
+Jmol.setMenuCss(null,"style='width:160px'")
+jmolButton("if (!xid) { xid = '1ehz'};var x = prompt('Enter a four-digit PDB ID',xid);if (!x || x == 'null') { quit }; xid = x; load @{'=' + x + '/dssr'} 1;set echo top center;echo @x","Load PDB by ID")
+jmolBr()
+Jmol.jmolButton("jmolApplet0", [function(){Jmol.loadFileFromDialog(jmolApplet0)}],"Open CIF or DSSR File")
+jmolBr()
+Jmol.jmolButton("jmolApplet0", [enableButtons],"Refresh DSSR Buttons")
+jmolBr()
+
+jmolCheckbox("set pdbAddHydrogens TRUE","set pdbAddHydrogens FALSE","with hydrogens",false)
+jmolBr()
+jmolCheckbox("h2oOn=true;display add water","h2oOn=false;display remove water","display water",false)
+jmolBr()
+jmolCheckbox("protOn=true;display add protein","protOn=false;display remove protein","display protein",false)
+jmolBr()
+jmolHtml("Examples:")
+jmolBr()
+jmolMenu(Models)
+jmolBr()
+jmolBr()
+jmolButton("load ? 1;calculate structure dssr","Load File")
+jmolBr()
+//no longer needed  is part of the defaultLoadScript
+//Jmol.jmolButton("jmolApplet0",[calculateDSSR], "Calculate DSSR");
+//jmolBr()
+jmolBr()
+Jmol.jmolButton("jmolApplet0",[openAnalysis, true], "View Analysis");
+jmolBr()
+jmolBr()
+jmolButton("write FILE ?","Save FILE")
+jmolBr()
+jmolButton("write image jsmol.png","Save PNG")
+jmolBr()
+jmolButton("write PNGJ jsmol.png","Save PNG+Jmol")
+
+
+</script>
+</form>
+</td></tr>
+<tr>
+<td align=center valign=top>
+<script type="text/javascript">
+jmolBr()
+Jmol.setButtonCss(null,"style='width:120px'")
+jmolButton("color cpk")
+jmolButton("color group")
+jmolButton("color chain")
+jmolButton("color nucleic")
+jmolBr()
+jmolButton(stemScript,"stem diag")
+jmolButton("cartoon only;set cartoonBlocks false;set catoonSteps false", "rings")
+jmolButton("cartoon only;set cartoonBlocks true;set cartoonSteps false","blocks")
+jmolButton("cartoon only;set cartoonBlocks false;set cartoonSteps true", "steps")
+jmolBr()
+Jmol.setButtonCss(null,"style='width:100px'")
+jmolButton("console")
+Jmol.jmolCommandInput(jmolApplet0, "execute", "100px", null, null, "help dssr")
+</script>
+
+</td></tr></table>
+
+</body>
+</html>

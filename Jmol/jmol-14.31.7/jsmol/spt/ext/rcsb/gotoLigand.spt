@@ -1,0 +1,73 @@
+// jsmol/spt/ext/gotoLigand.spt
+// 
+// RCSB extension for zooming to a ligand in a PDB file
+//
+// example: 
+//
+// gotoLigand("2bxa", "2001:A")
+//
+// (optionally) loads a PDB file with hydrogen atoms
+// and then flies to a ligand and displays it with a
+// background isosurface and a set of contacts
+//
+// Bob Hanson, hansonr@stolaf.edu 3:51 PM 11/13/2013
+
+function gotoLigand(xxxx,ligandAtoms) {
+
+// load with hydrogens (13.3.9_2013_11_13c)
+
+if (!ligandAtoms) { return }
+if (xxxx) { 
+	load @{"="+xxxx} filter "addhydrogens" 
+} else {
+	isosurface delete;
+	contact delete;
+}
+if (ligandAtoms.type == "string" && !ligandAtoms.find("[")) {
+  ligandAtoms = "[" + ligandAtoms + "]"
+}
+select @ligandAtoms
+ligandAtoms = {selected}[1]
+ligandAtoms = {within(group, ligandAtoms)}
+
+
+// contact surface 
+
+//isosurface select {ligandAtoms} only vdw
+//isosurface slab 60 fullylit
+
+contact ID "surf" {ligandAtoms} surface
+contact slab 60 fullylit
+
+// hydrogen bonds
+
+contact ID "hb" {ligandAtoms} hbond
+select within(3,ligandAtoms)
+calculate hbonds
+hbonds  0.1
+color hbonds green
+
+// display
+
+select not ligand;wireframe -0.1
+center {ligandAtoms}
+display group contact(ligandAtoms)
+select ligandAtoms
+rotate best
+zoomto {selected} 0
+
+// labels
+
+  select ligandAtoms
+select (*.ca|*.P)& within(group, within(3,selected))
+label %n%r:%c
+background label yellow
+color labels black
+set labelgroup
+
+select ligandAtoms
+return ligandAtoms
+}
+
+print "gotoLigand(xxxx,{ligandID})"
+
