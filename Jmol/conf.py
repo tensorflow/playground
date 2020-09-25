@@ -38,7 +38,7 @@ html_search_language = 'english'
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'remain']
 pygments_style = 'default'
 
-html_static_path = ['assets']
+html_static_path = ['jmol-14.31.7']
 html_theme = 'sphinx_rtd_theme'
 html_favicon = 'GCC.png'
 html_logo = 'GCC.png'
