@@ -896,14 +896,10 @@ function constructInputIds(): string[] {
   return result;
 }
 
+const inputNames = Object.keys(INPUTS);
+
 function constructInput(x: number, y: number): number[] {
-  let input: number[] = [];
-  for (let inputName in INPUTS) {
-    if (state[inputName]) {
-      input.push(INPUTS[inputName].f(x, y));
-    }
-  }
-  return input;
+  return inputNames.filter(inputName => state[inputName]).map(inputName => INPUTS[inputName].f(x, y));
 }
 
 function oneStep(): void {
