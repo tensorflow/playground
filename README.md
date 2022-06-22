@@ -21,3 +21,7 @@ HTML and CSS files whenever they change.
 To push to production: `git subtree push --prefix dist origin gh-pages`.
 
 This is not an official Google product.
+
+## Video Tutorial
+
+[Chinese video tutorial](https://www.bilibili.com/video/BV15J411u7Ly)
