@@ -88,7 +88,7 @@ export class HeatMap {
         position: "relative",
         top: `-${padding}px`,
         left: `-${padding}px`
-      });
+      })
     this.canvas = container.append("canvas")
       .attr("width", numSamples)
       .attr("height", numSamples)
@@ -97,7 +97,7 @@ export class HeatMap {
       .style("position", "absolute")
       .style("top", `${padding}px`)
       .style("left", `${padding}px`);
-
+  
     if (!this.settings.noSvg) {
       this.svg = container.append("svg").attr({
           "width": width,
