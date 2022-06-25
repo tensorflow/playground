@@ -140,8 +140,9 @@ export function classifySpiralData(numSamples: number, noise: number):
 
   function genSpiral(deltaT: number, label: number) {
     for (let i = 0; i < n; i++) {
-      let r = i / n * 5;
-      let t = 1.75 * i / n * 2 * Math.PI + deltaT;
+      let j = randUniform(0, n);
+      let r = j / n * 5;
+      let t = 1.75 * j / n * 2 * Math.PI + deltaT;
       let x = r * Math.sin(t) + randUniform(-1, 1) * noise;
       let y = r * Math.cos(t) + randUniform(-1, 1) * noise;
       points.push({x, y, label});
@@ -205,6 +206,65 @@ export function classifyXORData(numSamples: number, noise: number):
   }
   return points;
 }
+
+export function classifyDiagonalTrainData(numSamples: number, noise: number):
+    Example2D[] {
+  function getDiagonalLabel(p: Point) { return p.y <= -p.x ? 1 : -1; }
+
+  let points: Example2D[] = [];
+  let numNoiseSamples = numSamples * noise;
+  let numNegSamples  = (numSamples - numNoiseSamples) / 2;
+  let numPosSamples = numNegSamples;
+  let padding = 0.3;
+
+  // Generate the negative examples in the upper triangle.
+  for (let i = 0; i < numNegSamples; i++) {
+    let x = randUniform(-5, 5);
+    let y = randUniform(-x, 5);
+    x += y > -x ? padding : -padding; // pad the diagonal
+    let label = -1;
+    points.push({x, y, label});
+  }
+
+  // Generate the positive examples as a subset of the lower triangle.
+  for (let i = 0; i < numPosSamples; i ++) {
+    let x = randUniform(-5, 2);
+    let y = randUniform(-5, Math.min(-x, 2));
+    x += y > -x ? padding : -padding; // pad the diagonal
+    let label = 1;
+    points.push({x, y, label});
+  }
+
+  // Generate noise data points across entire plane.
+  for (let i = 0; i < numNoiseSamples / 2; i++) {
+    let x = randUniform(-5, 5);
+    let y = randUniform(-5, 5);
+    let noiseX = randUniform(-5, 5);
+    let noiseY = randUniform(-5, 5);
+    let label = getDiagonalLabel({x: x + noiseX, y: y + noiseY});
+    points.push({x, y, label});
+  }
+
+  return points;
+}
+
+export function classifyDiagonalTestData(numSamples: number, noise: number):
+    Example2D[] {
+  function getDiagonalLabel(p: Point) { return p.y <= -p.x ? 1 : -1; }
+
+  // Generate negative data below the diagonal and positive data above.
+  let points: Example2D[] = [];
+  for (let i = 0; i < numSamples; i++) {
+    let x = randUniform(-5, 5);
+    let y = randUniform(-5, 5);
+    let noiseX = randUniform(-5, 5) * noise;
+    let noiseY = randUniform(-5, 5) * noise;
+    let label = getDiagonalLabel({x: x + noiseX, y: y + noiseY});
+    points.push({x, y, label});
+  }
+  return points;
+}
+
 
 /**
  * Returns a sample from a uniform [a, b] distribution.
