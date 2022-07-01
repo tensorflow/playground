@@ -341,7 +341,8 @@ function makeGUI() {
       function() {
     state.regularization = regularizations[this.value];
     parametersChanged = true;
-    reset();
+    state.serialize();
+    userHasInteracted();
   });
   regularDropdown.property("value",
       getKeyFromValue(regularizations, state.regularization));
@@ -349,7 +350,8 @@ function makeGUI() {
   let regularRate = d3.select("#regularRate").on("change", function() {
     state.regularizationRate = +this.value;
     parametersChanged = true;
-    reset();
+    state.serialize();
+    userHasInteracted();
   });
   regularRate.property("value", state.regularizationRate);
 
@@ -913,7 +915,7 @@ function oneStep(): void {
     nn.forwardProp(network, input);
     nn.backProp(network, point.label, nn.Errors.SQUARE);
     if ((i + 1) % state.batchSize === 0) {
-      nn.updateWeights(network, state.learningRate, state.regularizationRate);
+      nn.updateWeights(network, state.learningRate, state.regularization, state.regularizationRate);
     }
   });
   // Compute the loss.
@@ -956,7 +958,7 @@ function reset(onStartup=false) {
   let outputActivation = (state.problem === Problem.REGRESSION) ?
       nn.Activations.LINEAR : nn.Activations.TANH;
   network = nn.buildNetwork(shape, state.activation, outputActivation,
-      state.regularization, constructInputIds(), state.initZero);
+      constructInputIds(), state.initZero);
   lossTrain = getLoss(network, trainData);
   lossTest = getLoss(network, testData);
   drawNetwork(network);
