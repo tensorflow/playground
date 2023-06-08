@@ -84,8 +84,8 @@ export function regressPlane(numSamples: number, noise: number):
   for (let i = 0; i < numSamples; i++) {
     let x = randUniform(-radius, radius);
     let y = randUniform(-radius, radius);
-    let noiseX = randUniform(-radius, radius) * noise;
-    let noiseY = randUniform(-radius, radius) * noise;
+    let noiseX = randUniformWithNoise(-radius, radius, noise);
+    let noiseY = randUniformWithNoise(-radius, radius, noise);
     let label = getLabel(x + noiseX, y + noiseY);
     points.push({x, y, label});
   }
@@ -125,8 +125,8 @@ export function regressGaussian(numSamples: number, noise: number):
   for (let i = 0; i < numSamples; i++) {
     let x = randUniform(-radius, radius);
     let y = randUniform(-radius, radius);
-    let noiseX = randUniform(-radius, radius) * noise;
-    let noiseY = randUniform(-radius, radius) * noise;
+    let noiseX = randUniformWithNoise(-radius, radius, noise);
+    let noiseY = randUniformWithNoise(-radius, radius, noise);
     let label = getLabel(x + noiseX, y + noiseY);
     points.push({x, y, label});
   };
@@ -210,8 +210,16 @@ export function classifyXORData(numSamples: number, noise: number):
  * Returns a sample from a uniform [a, b] distribution.
  * Uses the seedrandom library as the random generator.
  */
-function randUniform(a: number, b: number) {
+function randUniform(a: number, b: number): number {
   return Math.random() * (b - a) + a;
+}
+
+/**
+ * calls randUniform function with (a , b) 
+ * and the returned value is multiplied with noise parameter.
+ */
+function randUniformWithNoise(a: number, b: number, noise: number): number {
+  return randUniform(a, b) * noise;
 }
 
 /**
