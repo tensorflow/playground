@@ -779,7 +779,7 @@ function drawLink(
   container.append("path")
     .attr("d", diagonal(datum, 0))
     .attr("class", "link-hover")
-    .on("mouseenter", function() {
+    .on("mousemove", function() {
       updateHoverCard(HoverType.WEIGHT, input, d3.mouse(this));
     }).on("mouseleave", function() {
       updateHoverCard(null);
