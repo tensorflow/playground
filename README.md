@@ -1,23 +1,18 @@
-# Deep playground
+# 🌟 Deep Playground ++: a Project of MLS Sup'Com 🚀
 
-Deep playground is an interactive visualization of neural networks, written in
-TypeScript using d3.js. We use GitHub issues for tracking new requests and bugs.
-Your feedback is highly appreciated!
+Deep Playground Plus is an enhanced version of Deep playground, an interactive visualization of neural networks written in TypeScript using d3.js. We've added a new exciting feature that allows users to change the input of the neural network based on their preferences! 🎨🧠
 
-**If you'd like to contribute, be sure to review the [contribution guidelines](CONTRIBUTING.md).**
+We use GitHub issues to track new requests and bugs. Your feedback is highly appreciated! If you'd like to contribute, be sure to review the contribution guidelines. 📝👀
 
-## Development
+## Development 🛠️
 
-To run the visualization locally, run:
-- `npm i` to install dependencies
-- `npm run build` to compile the app and place it in the `dist/` directory
-- `npm run serve` to serve from the `dist/` directory and open a page on your browser.
+To run the visualization locally, follow these steps:
 
-For a fast edit-refresh cycle when developing run `npm run serve-watch`.
-This will start an http server and automatically re-compile the TypeScript,
-HTML and CSS files whenever they change.
+1. Run `npm i` to install dependencies.
+2. Run `npm run build` to compile the app and place it in the `dist/` directory.
+3. Run `npm run serve` to serve from the `dist/` directory and open a page on your browser.
+4. For a fast edit-refresh cycle when developing, run `npm run serve-watch`. This will start an HTTP server and automatically recompile the TypeScript, HTML, and CSS files whenever they change. 🔄
 
-## For owners
-To push to production: `git subtree push --prefix dist origin gh-pages`.
+## For Owners 💼
 
-This is not an official Google product.
+To push to production, use the command: `git subtree push --prefix dist origin gh-pages`. 🚀
