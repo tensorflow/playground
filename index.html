@@ -98,6 +98,20 @@ limitations under the License.
             <option value="tanh">Tanh</option>
             <option value="sigmoid">Sigmoid</option>
             <option value="linear">Linear</option>
+            <option value="leakyRelu">Leaky ReLU</option>
+            <option value="elu">ELU</option>
+            <option value="swish">Swish</option>
+          </select>
+        </div>
+      </div>
+      <div class="control ui-optimizer">
+        <label for="optimizer">Optimizer</label>
+        <div class="select">
+          <select id="optimizer">
+            <option value="sgd">SGD</option>
+            <option value="momentum">Momentum</option>
+            <option value="rmsprop">RMSProp</option>
+            <option value="adam">Adam</option>
           </select>
         </div>
       </div>
@@ -136,6 +150,20 @@ limitations under the License.
             <option value="regression">Regression</option>
           </select>
         </div>
+      </div>
+      <div class="control ui-theme">
+        <button class="mdl-button mdl-js-button mdl-button--icon" id="theme-toggle" title="Toggle dark mode">
+          <i class="material-icons">brightness_6</i>
+        </button>
+      </div>
+      <div class="control ui-saveload">
+        <button class="mdl-button mdl-js-button mdl-button--icon" id="save-model-button" title="Save model (weights + biases) as a JSON file">
+          <i class="material-icons">save</i>
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--icon" id="load-model-button" title="Load a previously saved model JSON file">
+          <i class="material-icons">folder_open</i>
+        </button>
+        <input type="file" id="load-model-input" accept="application/json" style="display:none">
       </div>
     </div>
   </div>
@@ -189,6 +217,18 @@ limitations under the License.
           <p class="slider">
             <input class="mdl-slider mdl-js-slider" type="range" id="batchSize" min="1" max="30" step="1">
           </p>
+        </div>
+        <div class="ui-dropoutRate">
+          <label for="dropoutRate">Dropout rate:&nbsp;&nbsp;<span class="value">XX</span></label>
+          <p class="slider">
+            <input class="mdl-slider mdl-js-slider" type="range" id="dropoutRate" min="0" max="50" step="5">
+          </p>
+        </div>
+        <div class="ui-earlyStopping">
+          <label for="earlyStopping">
+            <input type="checkbox" id="earlyStopping">
+            Early stopping
+          </label>
         </div>
           <button class="basic-button" id="data-regen-button" title="Regenerate data">
             Regenerate

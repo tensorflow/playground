@@ -992,3 +992,31 @@ footer .links a:hover {
 #main-part .mdl-slider.is-upgraded:focus:not(:active)::-webkit-slider-thumb {
   box-shadow: 0 0 0 10px rgba(0,0,0, 0.12);
 }
+
+/*
+ * Dark mode. Inverts the whole page's lightness/hue, then inverts back the
+ * areas whose colors are meaningful data encodings (the orange/blue decision
+ * boundary, dataset thumbnails, loss chart, network diagram, color legend)
+ * so those keep their original, semantically-correct colors.
+ */
+body.dark-mode {
+  filter: invert(0.92) hue-rotate(180deg);
+  background-color: #fff;
+}
+
+body.dark-mode #network,
+body.dark-mode #heatmap,
+body.dark-mode #linechart,
+body.dark-mode #colormap,
+body.dark-mode canvas.data-thumbnail,
+body.dark-mode .data-thumbnail {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+body.dark-mode img {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+body.dark-mode ::selection {
+  background: rgba(13, 101, 140, 0.5);
+}

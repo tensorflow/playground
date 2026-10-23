@@ -24,7 +24,18 @@ export let activations: {[key: string]: nn.ActivationFunction} = {
   "relu": nn.Activations.RELU,
   "tanh": nn.Activations.TANH,
   "sigmoid": nn.Activations.SIGMOID,
-  "linear": nn.Activations.LINEAR
+  "linear": nn.Activations.LINEAR,
+  "leakyRelu": nn.Activations.LEAKY_RELU,
+  "elu": nn.Activations.ELU,
+  "swish": nn.Activations.SWISH
+};
+
+/** A map between names and optimizer types. */
+export let optimizers: {[key: string]: nn.OptimizerType} = {
+  "sgd": "sgd",
+  "momentum": "momentum",
+  "rmsprop": "rmsprop",
+  "adam": "adam"
 };
 
 /** A map between names and regularization functions. */
@@ -130,7 +141,11 @@ export class State {
     {name: "tutorial", type: Type.STRING},
     {name: "problem", type: Type.OBJECT, keyMap: problems},
     {name: "initZero", type: Type.BOOLEAN},
-    {name: "hideText", type: Type.BOOLEAN}
+    {name: "hideText", type: Type.BOOLEAN},
+    {name: "optimizer", type: Type.OBJECT, keyMap: optimizers},
+    {name: "dropoutRate", type: Type.NUMBER},
+    {name: "earlyStopping", type: Type.BOOLEAN},
+    {name: "theme", type: Type.STRING}
   ];
 
   [key: string]: any;
@@ -163,6 +178,10 @@ export class State {
   dataset: dataset.DataGenerator = dataset.classifyCircleData;
   regDataset: dataset.DataGenerator = dataset.regressPlane;
   seed: string;
+  optimizer: nn.OptimizerType = "sgd";
+  dropoutRate = 0;
+  earlyStopping = false;
+  theme: string = "light";
 
   /**
    * Deserializes the state from the url hash.
@@ -231,6 +250,16 @@ export class State {
       state[prop] = (map[prop] === "true") ? true : false;
     });
     state.numHiddenLayers = state.networkShape.length;
+    if (!hasKey("theme")) {
+      try {
+        let savedTheme = window.localStorage.getItem("theme");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          state.theme = savedTheme;
+        }
+      } catch (e) {
+        // localStorage may be unavailable (e.g. privacy mode); keep default.
+      }
+    }
     if (state.seed == null) {
       state.seed = Math.random().toFixed(5);
     }

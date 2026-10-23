@@ -20,6 +20,7 @@ import {
   datasets,
   regDatasets,
   activations,
+  optimizers,
   problems,
   regularizations,
   getKeyFromValue,
@@ -171,6 +172,8 @@ let testData: Example2D[] = [];
 let network: nn.Node[][] = null;
 let lossTrain = 0;
 let lossTest = 0;
+let optimizerStep = 1;
+let earlyStopper = new nn.EarlyStopping();
 let player = new Player();
 let lineChart = new AppendingLineChart(d3.select("#linechart"),
     ["#777", "black"]);
@@ -312,6 +315,47 @@ function makeGUI() {
   noise.property("value", state.noise);
   d3.select("label[for='noise'] .value").text(state.noise);
 
+  let dropoutRate = d3.select("#dropoutRate").on("input", function() {
+    state.dropoutRate = this.value / 100;
+    d3.select("label[for='dropoutRate'] .value").text(this.value + "%");
+    parametersChanged = true;
+    reset();
+  });
+  dropoutRate.property("value", state.dropoutRate * 100);
+  d3.select("label[for='dropoutRate'] .value")
+      .text((state.dropoutRate * 100) + "%");
+
+  let earlyStopping = d3.select("#earlyStopping").on("change", function() {
+    state.earlyStopping = this.checked;
+    state.serialize();
+    userHasInteracted();
+    earlyStopper.reset();
+  });
+  earlyStopping.property("checked", state.earlyStopping);
+
+  let themeToggle = d3.select("#theme-toggle").on("click", () => {
+    setTheme(state.theme === "dark" ? "light" : "dark");
+  });
+  setTheme(state.theme);
+
+  d3.select("#save-model-button").on("click", () => {
+    saveModel();
+  });
+
+  d3.select("#load-model-button").on("click", () => {
+    (document.getElementById("load-model-input") as HTMLInputElement).click();
+  });
+
+  d3.select("#load-model-input").on("change", function() {
+    let input = this as HTMLInputElement;
+    let file = input.files && input.files[0];
+    if (!file) {
+      return;
+    }
+    loadModel(file);
+    input.value = "";
+  });
+
   let batchSize = d3.select("#batchSize").on("input", function() {
     state.batchSize = this.value;
     d3.select("label[for='batchSize'] .value").text(this.value);
@@ -336,6 +380,16 @@ function makeGUI() {
     parametersChanged = true;
   });
   learningRate.property("value", state.learningRate);
+
+  let optimizerDropdown = d3.select("#optimizer").on("change", function() {
+    state.optimizer = optimizers[this.value];
+    optimizerStep = 1;
+    state.serialize();
+    userHasInteracted();
+    parametersChanged = true;
+  });
+  optimizerDropdown.property("value",
+      getKeyFromValue(optimizers, state.optimizer));
 
   let regularDropdown = d3.select("#regularizations").on("change",
       function() {
@@ -910,16 +964,21 @@ function oneStep(): void {
   iter++;
   trainData.forEach((point, i) => {
     let input = constructInput(point.x, point.y);
-    nn.forwardProp(network, input);
+    nn.forwardProp(network, input, state.dropoutRate, true);
     nn.backProp(network, point.label, nn.Errors.SQUARE);
     if ((i + 1) % state.batchSize === 0) {
-      nn.updateWeights(network, state.learningRate, state.regularizationRate);
+      nn.updateWeights(network, state.learningRate, state.regularizationRate,
+          {type: state.optimizer, t: optimizerStep});
+      optimizerStep++;
     }
   });
-  // Compute the loss.
+  // Compute the loss (no dropout at evaluation time).
   lossTrain = getLoss(network, trainData);
   lossTest = getLoss(network, testData);
   updateUI();
+  if (state.earlyStopping && earlyStopper.shouldStop(lossTest)) {
+    player.pause();
+  }
 }
 
 export function getOutputWeights(network: nn.Node[][]): number[] {
@@ -951,6 +1010,8 @@ function reset(onStartup=false) {
 
   // Make a simple network.
   iter = 0;
+  optimizerStep = 1;
+  earlyStopper.reset();
   let numInputs = constructInput(0 , 0).length;
   let shape = [numInputs].concat(state.networkShape).concat([1]);
   let outputActivation = (state.problem === Problem.REGRESSION) ?
@@ -962,6 +1023,59 @@ function reset(onStartup=false) {
   drawNetwork(network);
   updateUI(true);
 };
+
+function setTheme(theme: string) {
+  state.theme = theme;
+  d3.select("body").classed("dark-mode", theme === "dark");
+  try {
+    window.localStorage.setItem("theme", theme);
+  } catch (e) {
+    // localStorage may be unavailable (e.g. privacy mode); ignore.
+  }
+  state.serialize();
+}
+
+/** Downloads the current network's weights/biases as a JSON file. */
+function saveModel() {
+  let data = nn.serializeNetwork(network);
+  let blob = new Blob([JSON.stringify(data)], {type: "application/json"});
+  let url = URL.createObjectURL(blob);
+  let link = document.createElement("a");
+  link.href = url;
+  link.download = "playground-model.json";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+/** Loads a previously-saved model JSON file into the current network. */
+function loadModel(file: File) {
+  let reader = new FileReader();
+  reader.onload = () => {
+    let data: nn.SerializedNetwork;
+    try {
+      data = JSON.parse(reader.result as string);
+    } catch (e) {
+      window.alert("That file isn't valid JSON.");
+      return;
+    }
+    try {
+      nn.deserializeNetwork(network, data);
+    } catch (e) {
+      window.alert(e.message);
+      return;
+    }
+    lossTrain = getLoss(network, trainData);
+    lossTest = getLoss(network, testData);
+    drawNetwork(network);
+    updateUI(true);
+  };
+  reader.onerror = () => {
+    window.alert("Couldn't read that file.");
+  };
+  reader.readAsText(file);
+}
 
 function initTutorial() {
   if (state.tutorial == null || state.tutorial === '' || state.hideText) {
