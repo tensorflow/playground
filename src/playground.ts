@@ -176,6 +176,14 @@ let lineChart = new AppendingLineChart(d3.select("#linechart"),
     ["#777", "black"]);
 
 function makeGUI() {
+  // Close a pinned hovercard when the user presses the mouse outside of it.
+  document.addEventListener("mousedown", (event: MouseEvent) => {
+    let card = document.getElementById("hovercard");
+    if (hovercardPinned && !card.contains(event.target as Node)) {
+      closeHoverCard();
+    }
+  });
+
   d3.select("#reset-button").on("click", () => {
     reset();
     userHasInteracted();
@@ -702,8 +710,23 @@ function addPlusMinusControl(x: number, layerIdx: number) {
   );
 }
 
+/**
+ * While a weight or bias is being edited, the hovercard is pinned: moving the
+ * mouse off the link (or onto another one) no longer closes or replaces it.
+ * It closes on Enter, Escape or a mouse press outside of the card.
+ */
+let hovercardPinned = false;
+
+function closeHoverCard() {
+  hovercardPinned = false;
+  updateHoverCard(null);
+}
+
 function updateHoverCard(type: HoverType, nodeOrLink?: nn.Node | nn.Link,
     coordinates?: [number, number]) {
+  if (hovercardPinned) {
+    return;
+  }
   let hovercard = d3.select("#hovercard");
   if (type == null) {
     hovercard.style("display", "none");
@@ -711,6 +734,7 @@ function updateHoverCard(type: HoverType, nodeOrLink?: nn.Node | nn.Link,
     return;
   }
   d3.select("#svg").on("click", () => {
+    hovercardPinned = true;
     hovercard.select(".value").style("display", "none");
     let input = hovercard.select("input");
     input.style("display", null);
@@ -724,9 +748,10 @@ function updateHoverCard(type: HoverType, nodeOrLink?: nn.Node | nn.Link,
         updateUI();
       }
     });
-    input.on("keypress", () => {
-      if ((d3.event as any).keyCode === 13) {
-        updateHoverCard(type, nodeOrLink, coordinates);
+    input.on("keydown", () => {
+      let keyCode = (d3.event as any).keyCode;
+      if (keyCode === 13 || keyCode === 27) {
+        closeHoverCard();
       }
     });
     (input.node() as HTMLInputElement).focus();

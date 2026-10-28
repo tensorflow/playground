@@ -707,7 +707,7 @@ g.column rect {
 
 /** Invisible thick links used for showing weight values on mouse hover. */
 #network .core .link-hover {
-  stroke-width: 8;
+  stroke-width: 14;
   stroke: black;
   fill: none;
   opacity: 0;
